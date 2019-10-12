@@ -1,6 +1,9 @@
 package projekpati.com.projekpati;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +12,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import androidx.annotation.NonNull;
+import androidx.core.graphics.PathParser;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import javax.xml.transform.Result;
@@ -38,14 +48,37 @@ public class KulinerAdapter extends ArrayAdapter<ListKuliner> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.kuliner_adapter, parent, false);
 
-//        ListKuliner[] data = kuliner.get(pos).getData();
+        ImageView imageView = (ImageView) rowView.findViewById(R.id.mImage);
         TextView textNama = (TextView) rowView.findViewById(R.id.mNama);
         TextView textAlamat = (TextView) rowView.findViewById(R.id.mAlamat);
         TextView textJam = (TextView) rowView.findViewById(R.id.mJamBuka);
 
+//        String urldisplay = kuliner.get(pos).getFile_small();
+//        Bitmap mIcon11 = null;
+//        try {
+//            InputStream in = new java.net.URL(urldisplay).openStream();
+//            mIcon11 = BitmapFactory.decodeStream(in);
+//        } catch (Exception e) {
+//            Log.e("Error", e.getMessage());
+//            e.printStackTrace();
+//        }
+//
+//        imageView.setImageBitmap(mIcon11);
+
+        URL url = null;
+        try {
+            url = new URL(kuliner.get(pos).getFile_small());
+            Picasso.with(getContext())
+                    .load(String.valueOf(url))
+                    .resize(150,100).noFade().into(imageView);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+
         textNama.setText(kuliner.get(pos).getNama());
         textAlamat.setText(kuliner.get(pos).getAlamat());
-       textJam.setText(kuliner.get(pos).getJam_buka());
+        textJam.setText(kuliner.get(pos).getJam_buka());
 
 
         return rowView;

@@ -31,6 +31,13 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
 
+    //slider
+    implementation "androidx.viewpager:viewpager:1.0.0"
+
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.3.3'
+
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0-beta05'
 }

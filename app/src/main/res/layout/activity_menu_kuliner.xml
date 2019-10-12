@@ -7,12 +7,23 @@
     android:layout_height="match_parent"
     tools:context=".MenuKuliner">
 
-
-
-    <ListView
-        android:id="@+id/listKuliner"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusable="true">
-    </ListView>
+        app:cardCornerRadius="5dp"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true">
+
+        <ListView
+            android:id="@+id/listKuliner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true">
+        </ListView>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
 </RelativeLayout>
