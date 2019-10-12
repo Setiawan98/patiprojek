@@ -1,14 +1,18 @@
 package projekpati.com.projekpati.Model;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class KulinerModel {
     String status, judul, key, waktu, icon;
     Integer jumlah_data, halaman_selanjutnya;
-    List<ListKuliner> data;
+    Map<String,ListKuliner> data;
 
-    public KulinerModel(String status, String judul, String key, String waktu, String icon, Integer jumlah_data, Integer halaman_selanjutnya, List<ListKuliner> data) {
+
+    public KulinerModel(String status, String judul, String key, String waktu, String icon, Integer jumlah_data, Integer halaman_selanjutnya,Map<String,ListKuliner> data) {
         this.status = status;
         this.judul = judul;
         this.key = key;
@@ -47,7 +51,11 @@ public class KulinerModel {
         return halaman_selanjutnya;
     }
 
-    public List<ListKuliner> getData() {
+//    public ListKuliner getData() {
+//        return data;
+//    }
+
+    public Map<String, ListKuliner> getData() {
         return data;
     }
 }

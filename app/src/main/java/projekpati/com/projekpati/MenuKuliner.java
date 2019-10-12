@@ -9,9 +9,17 @@ import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -29,7 +37,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MenuKuliner extends AppCompatActivity {
 
     ListView listView;
-    List<ListKuliner> list;
+    List<ListKuliner> list = new ArrayList<>();
 
 
     @Override
@@ -51,12 +59,24 @@ public class MenuKuliner extends AppCompatActivity {
 
         call.enqueue(new Callback<KulinerModel>() {
             @Override
-            public void onResponse(Call<KulinerModel> call, Response<KulinerModel> response)  {
+            public void onResponse(Call<KulinerModel> call, Response<KulinerModel> response) {
 
 
-//                list = response.body()
-                Log.d("onResponse", response.toString());
-            //    listView.setAdapter(new KulinerAdapter(MenuKuliner.this, R.layout.kuliner_adapter, list));
+                //KulinerModel km=response.body();
+                Map<String, ListKuliner> data = response.body().getData();
+
+                //Log.d("onResponse", response.body().getData());
+                Log.w("Response", new Gson().toJson(response.body()));
+                for (int i = 1; i <= 20; i++)
+                {
+                    //int a=i+1;
+                    list.add(data.get(String.valueOf(i)));
+                    Log.d("value",data.get(String.valueOf(i)).getNama());
+                }
+
+
+
+                listView.setAdapter(new KulinerAdapter(MenuKuliner.this, R.layout.kuliner_adapter, list));
                 Toast.makeText(MenuKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
             }
