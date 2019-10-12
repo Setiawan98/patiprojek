@@ -6,8 +6,13 @@ import projekpati.com.projekpati.Model.KulinerModel;
 import projekpati.com.projekpati.Model.ListKuliner;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface API {
-    //@GET("kuliner/data/?key=TechnoPhoriaIndonesia")
+    @GET("kuliner/data/?key=TechnoPhoriaIndonesia")
+    Call<List<ListKuliner>> tampilSemuaKuliner();
+
+    @GET("kuliner/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<ListKuliner> detailKuliner(@Path("id") String id);
 
 }
