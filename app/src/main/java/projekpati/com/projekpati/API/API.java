@@ -10,7 +10,7 @@ import retrofit2.http.Path;
 
 public interface API {
     @GET("kuliner/data/?key=TechnoPhoriaIndonesia")
-    Call<List<ListKuliner>> tampilSemuaKuliner();
+    Call<KulinerModel> tampilSemuaKuliner();
 
     @GET("kuliner/detail/{id}?key=TechnoPhoriaIndonesia")
     Call<ListKuliner> detailKuliner(@Path("id") String id);

@@ -76,4 +76,6 @@ public class ListKuliner {
     public Integer getNomor() {
         return nomor;
     }
+
+
 }
