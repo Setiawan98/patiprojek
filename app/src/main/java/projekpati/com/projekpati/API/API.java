@@ -15,4 +15,6 @@ public interface API {
     @GET("kuliner/detail/{id}?key=TechnoPhoriaIndonesia")
     Call<ListKuliner> detailKuliner(@Path("id") String id);
 
+
+
 }

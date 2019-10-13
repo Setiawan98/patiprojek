@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetilKuliner">
     <ImageView
         android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"
@@ -18,7 +21,7 @@
     <TextView
         android:id="@+id/mNama"
         android:layout_gravity="left"
-        android:textSize="20pt"
+        android:textSize="12pt"
         android:textStyle="bold"
         android:ellipsize="end"
         android:layout_marginLeft="10dp"
@@ -42,7 +45,7 @@
         <TextView
             android:id="@+id/mJamBuka"
             android:paddingRight="20dp"
-            android:textSize="13pt"
+            android:textSize="8pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"/>
@@ -75,7 +78,7 @@
         <TextView
             android:id="@+id/mTelpon"
             android:paddingRight="20dp"
-            android:textSize="13pt"
+            android:textSize="8pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"/>
@@ -96,7 +99,7 @@
         <TextView
             android:id="@+id/mAlamat"
             android:paddingRight="20dp"
-            android:textSize="13pt"
+            android:textSize="8pt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"/>

@@ -3,9 +3,12 @@ package projekpati.com.projekpati;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -47,6 +50,7 @@ public class MenuKuliner extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listKuliner);
         getAllKuliner();
+
     }
 
     public void getAllKuliner(){
@@ -88,6 +92,17 @@ public class MenuKuliner extends AppCompatActivity {
                 Log.d("onResponse", t.toString());
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MenuKuliner.this,DetilKuliner.class);
+                intent.putExtra("id_kuliner",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 

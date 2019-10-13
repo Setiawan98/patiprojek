@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".DetilKuliner"></activity>
         <activity android:name=".MenuKuliner" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>

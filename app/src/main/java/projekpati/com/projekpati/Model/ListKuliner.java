@@ -77,5 +77,4 @@ public class ListKuliner {
         return nomor;
     }
 
-
 }
