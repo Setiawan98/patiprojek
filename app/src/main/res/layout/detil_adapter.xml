@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="12dp"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:src="@drawable/iconmakan"
+        android:layout_height="200dp"
+        android:id="@+id/mImage">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/mNama"
+        android:layout_gravity="left"
+        android:textSize="20pt"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:layout_marginLeft="10dp"
+        android:paddingRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="7dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/iconjam"
+            android:layout_marginRight="10dp">
+        </ImageView>
+        <TextView
+            android:id="@+id/mJamBuka"
+            android:paddingRight="20dp"
+            android:textSize="13pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:scaleType="center"
+        android:layout_marginBottom="12dp"
+        android:layout_width="350dp"
+        android:layout_gravity="center"
+        android:src="@drawable/garisbatas"
+        android:layout_height="5dp">
+    </ImageView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/logotelpon"
+            android:layout_marginRight="10dp">
+        </ImageView>
+        <TextView
+            android:id="@+id/mTelpon"
+            android:paddingRight="20dp"
+            android:textSize="13pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/placeholder"
+            android:layout_marginRight="10dp">
+        </ImageView>
+        <TextView
+            android:id="@+id/mAlamat"
+            android:paddingRight="20dp"
+            android:textSize="13pt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
+</LinearLayout>
