@@ -66,15 +66,21 @@ public class KulinerAdapter extends ArrayAdapter<ListKuliner> {
 //        imageView.setImageBitmap(mIcon11);
 
         URL url = null;
-        try {
-            url = new URL(kuliner.get(pos).getFile_small());
-            Picasso.with(getContext())
-                    .load(String.valueOf(url))
-                    .resize(150,100).noFade().into(imageView);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+        if(kuliner.get(pos).getFile_small().equals(""))
+        {
+            //tidak terjadi perubahan apapun
         }
-
+        else
+        {
+            try {
+                url = new URL(kuliner.get(pos).getFile_small());
+                Picasso.with(getContext())
+                        .load(String.valueOf(url))
+                        .resize(150,100).noFade().into(imageView);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
 
         textNama.setText(kuliner.get(pos).getNama());
         textAlamat.setText(kuliner.get(pos).getAlamat());
