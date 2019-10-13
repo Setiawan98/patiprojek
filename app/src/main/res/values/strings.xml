@@ -17,6 +17,8 @@
     <string name="slide_4_title">GUIDE</string>
     <string name="slide_4_desc">Cari Guide Untuk Menemani Perjalananmu Agar  semakin asyik </string>
     <string name="title_activity_navigation_bar">NavigationBar</string>
+    <string name="Open">NavBar</string>
+    <string name="Close">NavBar</string>
 
 
 </resources>
