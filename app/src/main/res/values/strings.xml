@@ -4,6 +4,7 @@
     <string name="skip">LEWATI</string>
     <string name="start">MULAI</string>
 
+    <!--Kalimat Untuk Slider-->
     <string name="slide_1_title">KULINER</string>
     <string name="slide_1_desc">Rasakan Berbagai Kelezatan Kuliner khas Pati</string>
 
@@ -15,4 +16,9 @@
 
     <string name="slide_4_title">GUIDE</string>
     <string name="slide_4_desc">Cari Guide Untuk Menemani Perjalananmu Agar  semakin asyik </string>
+    <string name="title_activity_navigation_bar">NavigationBar</string>
+
+
+
+
 </resources>
