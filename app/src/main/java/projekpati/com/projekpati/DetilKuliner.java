@@ -3,6 +3,7 @@ package projekpati.com.projekpati;
 import androidx.appcompat.app.AppCompatActivity;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
+import projekpati.com.projekpati.Model.DetilKulinerModel;
 import projekpati.com.projekpati.Model.KulinerModel;
 import projekpati.com.projekpati.Model.ListKuliner;
 import retrofit2.Call;
@@ -39,42 +40,42 @@ public class DetilKuliner extends AppCompatActivity {
         mImage = findViewById(R.id.mImage);
 
         final Bundle bundle = getIntent().getExtras();
+        String id = bundle.getString("id_kuliner");
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<ListKuliner> call = api.detailKuliner("2");
+        Call<DetilKulinerModel> call = api.detailKuliner(id);
 
-        call.enqueue(new Callback<ListKuliner>() {
+        call.enqueue(new Callback<DetilKulinerModel>() {
             @Override
-            public void onResponse(Call<ListKuliner> call, Response<ListKuliner> response) {
-                if(response.isSuccessful())
-                {
+            public void onResponse(Call<DetilKulinerModel> call, Response<DetilKulinerModel> response) {
 
-                    Log.w("ResponseAsu", new Gson().toJson(response.body().getId()));
-                    textNama.setText(response.body().getNama());
-                    textAlamat.setText(response.body().getAlamat());
-                    textJamBuka.setText(response.body().getJam_buka());
-                    textTelepon.setText(response.body().getTelp());
-//                    URL url = null;
-//                    if(response.body().getFile().equals(""))
-//                    {
-//                        //tidak terjadi perubahan apapun
-//                    }
-//                    else
-//                    {
-//                        try {
-//                            url = new URL(response.body().getFile());
-//                            Picasso.with(getApplicationContext())
-//                                    .load(String.valueOf(url))
-//                                    .resize(300,200).noFade().into(mImage);
-//                        } catch (MalformedURLException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-                }
+
+                    Log.w("ResponseAsu", new Gson().toJson(response.body()));
+                    textNama.setText(response.body().getData().getNama());
+                    textAlamat.setText(response.body().getData().getAlamat());
+                    textJamBuka.setText(response.body().getData().getJam_buka());
+                    textTelepon.setText(response.body().getData().getTelp());
+                    URL url = null;
+                    if(response.body().getData().getFile().equals(""))
+                    {
+                        //tidak terjadi perubahan apapun
+                    }
+                    else
+                    {
+                        try {
+                            url = new URL(response.body().getData().getFile());
+                            Picasso.with(getApplicationContext())
+                                    .load(String.valueOf(url))
+                                    .resize(300,200).noFade().into(mImage);
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
             }
 
             @Override
-            public void onFailure(Call<ListKuliner> call, Throwable t) {
+            public void onFailure(Call<DetilKulinerModel> call, Throwable t) {
                 Log.e("OnFailureDetil", t.getMessage().toString());
             }
         });

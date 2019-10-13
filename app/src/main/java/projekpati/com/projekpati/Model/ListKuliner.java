@@ -1,10 +1,10 @@
 package projekpati.com.projekpati.Model;
 
 public class ListKuliner {
-    String id, nama, pemilik, telp, email, website, deskripsi, alamat, tipe, file, file_small, hari_ini, jam_buka;
+    String id, nama, pemilik, telp, email, website, deskripsi, alamat, tipe, file, file_small, hari_ini, jam_buka, situs_sumber,tipe_sumber,latitude,longitude;
     Integer nomor;
 
-    public ListKuliner(String id, String nama, String pemilik, String telp, String email, String website, String deskripsi, String alamat, String tipe, String file, String file_small, String hari_ini, String jam_buka, Integer nomor) {
+    public ListKuliner(String id, String nama, String pemilik, String telp, String email, String website, String deskripsi, String alamat, String tipe, String file, String file_small, String hari_ini, String jam_buka, String situs_sumber, String tipe_sumber, String latitude, String longitude, Integer nomor) {
         this.id = id;
         this.nama = nama;
         this.pemilik = pemilik;
@@ -18,6 +18,10 @@ public class ListKuliner {
         this.file_small = file_small;
         this.hari_ini = hari_ini;
         this.jam_buka = jam_buka;
+        this.situs_sumber = situs_sumber;
+        this.tipe_sumber = tipe_sumber;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.nomor = nomor;
     }
 
@@ -77,4 +81,19 @@ public class ListKuliner {
         return nomor;
     }
 
+    public String getSitus_sumber() {
+        return situs_sumber;
+    }
+
+    public String getTipe_sumber() {
+        return tipe_sumber;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
 }
