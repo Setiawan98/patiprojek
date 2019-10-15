@@ -53,17 +53,7 @@ public class KulinerAdapter extends ArrayAdapter<ListKuliner> {
         TextView textAlamat = (TextView) rowView.findViewById(R.id.mAlamat);
         TextView textJam = (TextView) rowView.findViewById(R.id.mJamBuka);
 
-//        String urldisplay = kuliner.get(pos).getFile_small();
-//        Bitmap mIcon11 = null;
-//        try {
-//            InputStream in = new java.net.URL(urldisplay).openStream();
-//            mIcon11 = BitmapFactory.decodeStream(in);
-//        } catch (Exception e) {
-//            Log.e("Error", e.getMessage());
-//            e.printStackTrace();
-//        }
-//
-//        imageView.setImageBitmap(mIcon11);
+
 
         URL url = null;
         if(kuliner.get(pos).getFile_small().equals(""))

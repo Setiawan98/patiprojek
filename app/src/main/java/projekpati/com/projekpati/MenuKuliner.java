@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MenuKuliner extends AppCompatActivity {
 
     ListView listView;
+    EditText cari;
     List<ListKuliner> list = new ArrayList<>();
 
 
@@ -55,7 +57,7 @@ public class MenuKuliner extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.kulinerToolbar);
         setSupportActionBar(toolbar);
-
+        cari = findViewById(R.id.cariKuliner);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -161,7 +163,33 @@ public class MenuKuliner extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-            Toast.makeText(MenuKuliner.this, "Search Clicked",Toast.LENGTH_SHORT).show();
+            API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+            Call<KulinerModel> call = api.cariKulinerbyAPI(cari.getText().toString());
+            call.enqueue(new Callback<KulinerModel>() {
+                @Override
+                public void onResponse(Call<KulinerModel> call, Response<KulinerModel> response) {
+                    Map<String, ListKuliner> data = response.body().getData();
+                    list.clear();
+                    Log.w("ResponseCari", new Gson().toJson(response.body()));
+                    for (int i = 1; i <= 20; i++) {
+                        if (data.get(String.valueOf(i)) == null) {
+                            break;
+                        } else {
+                            list.add(data.get(String.valueOf(i)));
+                        }
+
+                        Log.d("value", data.get(String.valueOf(i)).getNama());
+                    }
+                        listView.setAdapter(new KulinerAdapter(MenuKuliner.this, R.layout.kuliner_adapter, list));
+                        Toast.makeText(MenuKuliner.this.getApplicationContext(),"Ditemukan", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<KulinerModel> call, Throwable t) {
+                    Toast.makeText(MenuKuliner.this.getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
+                    Log.d("onResponse", t.toString());
+                }
+            });
         }
         else if(id==android.R.id.home)
         {

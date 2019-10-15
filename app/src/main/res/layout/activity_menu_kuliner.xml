@@ -16,7 +16,13 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="Kuliner"
-        app:navigationIcon="@drawable/ic_person_black_24dp"/>
+        app:navigationIcon="@drawable/ic_person_black_24dp">
+        <EditText
+            android:layout_marginLeft="50dp"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/cariKuliner"/>
+    </androidx.appcompat.widget.Toolbar>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
