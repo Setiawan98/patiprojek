@@ -58,7 +58,9 @@ public class MenuKuliner extends AppCompatActivity {
 
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().
        // getSupportActionBar().setDisplayShowTitleEnabled(false);
         BottomNavigationView bottomNavigationView = findViewById(R.id.menuKuliner);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -161,7 +163,7 @@ public class MenuKuliner extends AppCompatActivity {
         {
             Toast.makeText(MenuKuliner.this, "Search Clicked",Toast.LENGTH_SHORT).show();
         }
-        else if(id==R.id.home)
+        else if(id==android.R.id.home)
         {
             Intent i = new Intent(MenuKuliner.this,MainActivity.class);
             startActivity(i);
