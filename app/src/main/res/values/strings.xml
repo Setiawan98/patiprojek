@@ -21,4 +21,12 @@
     <string name="Close">NavBar</string>
 
 
+    <string name="beranda">Beranda</string>
+    <string name="kategori">Kategori</string>
+    <string name="Tambah">Tambah</string>
+    <string name="Saring">Saring</string>
+    <string name="dataku">Dataku</string>
+
+
+
 </resources>

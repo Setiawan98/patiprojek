@@ -7,12 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".MenuKuliner">
 
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/kulinerToolbar"
+        android:background="@android:color/white"
+        android:elevation="10dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Kuliner"
+        app:navigationIcon="@drawable/ic_person_black_24dp"/>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
         app:cardElevation="10dp"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_alignBottom="@id/menuKuliner"
+        android:layout_alignTop="@id/kulinerToolbar">
 
         <ListView
             android:id="@+id/listKuliner"
@@ -24,6 +39,16 @@
 
     </androidx.cardview.widget.CardView>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/menuKuliner"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        app:itemIconTint="@drawable/state_bnve"
+        app:itemTextColor="@drawable/state_bnve"
+        app:menu="@menu/bottomnavigation_menu"
+        app:labelVisibilityMode="labeled"/>
 
 
 </RelativeLayout>

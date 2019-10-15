@@ -40,4 +40,11 @@
     </array>
     <color name="yello">#ade9e9</color>
 
+    <color name="blue">#3f51b5</color>
+    <color name="DarkBlue">#303f9f</color>
+    <color name="a">#ff4081</color>
+    <color name="navigationIcon">#dae9f6</color>
+    <color name="navigationText">#ffffff</color>
+    <color name="grey">#525151</color>
+
 </resources>
