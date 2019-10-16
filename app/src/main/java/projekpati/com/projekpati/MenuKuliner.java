@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -60,6 +61,7 @@ public class MenuKuliner extends AppCompatActivity {
     Toolbar toolbar;
     TextView title;
     ImageView iconView;
+    Integer nextPage;
 
 
     @Override
@@ -106,6 +108,37 @@ public class MenuKuliner extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listKuliner);
         getAllKuliner();
+
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+                int threshold = 1;
+                int count = listView.getCount();
+
+                if (scrollState == SCROLL_STATE_IDLE) {
+                    if (listView.getLastVisiblePosition() >= count - threshold) {
+                        // Execute LoadMoreDataTask AsyncTask
+                        //Toast.makeText(MenuKuliner.this, String.valueOf(nextPage),Toast.LENGTH_SHORT).show();
+                        if (nextPage==0){
+                            Toast.makeText(MenuKuliner.this, "No More Data",Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                           loadMoreData();
+                        }
+
+                    }
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+
+            }
+        });
 
 
 
@@ -176,6 +209,7 @@ public class MenuKuliner extends AppCompatActivity {
                 }
 
 
+                nextPage = response.body().getHalaman_selanjutnya();
 
                 listView.setAdapter(new KulinerAdapter(MenuKuliner.this, R.layout.kuliner_adapter, list));
                 Toast.makeText(MenuKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
@@ -252,4 +286,68 @@ public class MenuKuliner extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void loadMoreData(){
+        //defining a progress dialog to show while signing up
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<KulinerModel> call = api.loadMoreKuliner(String.valueOf(nextPage));
+
+        call.enqueue(new Callback<KulinerModel>() {
+            @Override
+            public void onResponse(Call<KulinerModel> call, final Response<KulinerModel> response) {
+
+
+                //KulinerModel km=response.body();
+                Map<String, ListKuliner> data = response.body().getData();
+
+
+                //Log.d("onResponse", response.body().getData());
+                Log.w("Response", new Gson().toJson(response.body()));
+                for (int i = nextPage; i <= nextPage+response.body().getJumlah_data()-1; i++)
+                {
+                    list.add(data.get(String.valueOf(i)));
+                    Log.d("value :", String.valueOf(i) );
+                    //Log.d("value",data.get(String.valueOf(21)).getNama());
+                }
+
+
+                nextPage = response.body().getHalaman_selanjutnya();
+                Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
+
+
+                KulinerAdapter adapter = new KulinerAdapter(MenuKuliner.this, R.layout.kuliner_adapter, list);
+                listView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                Toast.makeText(MenuKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+
+
+            }
+
+            @Override
+            public void onFailure(Call<KulinerModel> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(MenuKuliner.this.getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("onResponse", t.toString());
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MenuKuliner.this,DetilKuliner.class);
+                intent.putExtra("id_kuliner",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
+
+
+
+    }
+
+
 }

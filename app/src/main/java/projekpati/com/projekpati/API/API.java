@@ -15,6 +15,9 @@ public interface API {
     @GET("kuliner/data/?key=TechnoPhoriaIndonesia")
     Call<KulinerModel> tampilSemuaKuliner();
 
+    @GET("kuliner/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<KulinerModel> loadMoreKuliner(@Path("id") String id);
+
     @GET("kuliner/data/?key=TechnoPhoriaIndonesia")
     Call<KulinerModel> cariKulinerbyAPI(@Query("cari") String keyword);
 
