@@ -7,6 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,17 +17,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -48,6 +57,9 @@ public class MenuKuliner extends AppCompatActivity {
     ListView listView;
     EditText cari;
     List<ListKuliner> list = new ArrayList<>();
+    Toolbar toolbar;
+    TextView title;
+    ImageView iconView;
 
 
     @Override
@@ -55,13 +67,16 @@ public class MenuKuliner extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_kuliner);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.kulinerToolbar);
+         toolbar = (Toolbar) findViewById(R.id.kulinerToolbar);
         setSupportActionBar(toolbar);
         cari = findViewById(R.id.cariKuliner);
+         title = toolbar.findViewById(R.id.title);
+         iconView = toolbar.findViewById(R.id.icon);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         //getSupportActionBar().
        // getSupportActionBar().setDisplayShowTitleEnabled(false);
         BottomNavigationView bottomNavigationView = findViewById(R.id.menuKuliner);
@@ -106,11 +121,50 @@ public class MenuKuliner extends AppCompatActivity {
 
         call.enqueue(new Callback<KulinerModel>() {
             @Override
-            public void onResponse(Call<KulinerModel> call, Response<KulinerModel> response) {
+            public void onResponse(Call<KulinerModel> call, final Response<KulinerModel> response) {
 
 
                 //KulinerModel km=response.body();
                 Map<String, ListKuliner> data = response.body().getData();
+
+
+                Target target = new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        Bitmap b = Bitmap.createScaledBitmap(bitmap,80,80,false);
+                        BitmapDrawable icon = new BitmapDrawable(toolbar.getResources(),b);
+                        iconView.setImageDrawable(icon);
+                        title.setText("Kuliner");
+
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Drawable errorDrawable) {
+
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                    }
+                };
+
+                URL url = null;
+                if(response.body().getIcon().equals(""))
+                {
+                    //tidak terjadi perubahan apapun
+                }
+                else
+                {
+                    try {
+                        url = new URL(response.body().getIcon());
+                        Picasso.with(toolbar.getContext())
+                                .load(String.valueOf(url))
+                                .into(target);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                }
 
                 //Log.d("onResponse", response.body().getData());
                 Log.w("Response", new Gson().toJson(response.body()));

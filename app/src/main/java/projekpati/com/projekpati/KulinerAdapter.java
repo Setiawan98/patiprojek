@@ -52,6 +52,7 @@ public class KulinerAdapter extends ArrayAdapter<ListKuliner> {
         TextView textNama = (TextView) rowView.findViewById(R.id.mNama);
         TextView textAlamat = (TextView) rowView.findViewById(R.id.mAlamat);
         TextView textJam = (TextView) rowView.findViewById(R.id.mJamBuka);
+        ImageView iconJam= (ImageView) rowView.findViewById(R.id.iconJam);
 
 
 
@@ -75,6 +76,11 @@ public class KulinerAdapter extends ArrayAdapter<ListKuliner> {
         textNama.setText(kuliner.get(pos).getNama());
         textAlamat.setText(kuliner.get(pos).getAlamat());
         textJam.setText(kuliner.get(pos).getJam_buka());
+        if(textJam.getText().equals(""))
+        {
+            iconJam.setVisibility(View.INVISIBLE);
+        }
+
 
 
         return rowView;

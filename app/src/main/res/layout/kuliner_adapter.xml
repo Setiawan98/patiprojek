@@ -66,6 +66,7 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="7dp">
                 <ImageView
+                    android:id="@+id/iconJam"
                     android:layout_width="20dp"
                     android:layout_height="16dp"
                     android:src="@drawable/iconjam"
