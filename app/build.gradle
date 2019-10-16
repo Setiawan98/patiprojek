@@ -40,6 +40,9 @@ dependencies {
     implementation "androidx.viewpager:viewpager:1.0.0"
 
 
+    //zoom in zoom out
+    implementation 'com.commit451:PhotoView:1.2.4'
+
     //picasso
     implementation 'com.squareup.picasso:picasso:2.3.3'
 

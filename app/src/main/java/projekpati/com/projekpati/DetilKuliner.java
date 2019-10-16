@@ -1,6 +1,7 @@
 package projekpati.com.projekpati;
 
         import androidx.appcompat.app.AppCompatActivity;
+        import androidx.appcompat.widget.Toolbar;
         import projekpati.com.projekpati.API.API;
         import projekpati.com.projekpati.API.RetrofitClientInstance;
         import projekpati.com.projekpati.Model.DetilKulinerModel;
@@ -35,11 +36,18 @@ public class DetilKuliner extends AppCompatActivity {
     float lat;
     float longt;
     ImageView mImage, btnMap;
+    Toolbar toolbar;
+    TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detil_kuliner);
+
+        toolbar = (Toolbar) findViewById(R.id.kulinerToolbar);
+        setSupportActionBar(toolbar);
+        title = toolbar.findViewById(R.id.title);
+
         textNama = findViewById(R.id.mNama);
         textAlamat = findViewById(R.id.mAlamat);
         textJamBuka = findViewById(R.id.mJamBuka);
@@ -47,6 +55,10 @@ public class DetilKuliner extends AppCompatActivity {
         mImage = findViewById(R.id.mImage);
         btnMap = findViewById(R.id.btnMap);
 
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        title.setText("Detil Kuliner");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
         final Bundle bundle = getIntent().getExtras();
@@ -104,5 +116,15 @@ public class DetilKuliner extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        mImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetilKuliner.this,tampilFotoKuliner.class);
+                intent.putExtra("id_kuliner",bundle.getString("id_kuliner"));
+                startActivity(intent);
+            }
+        });
+
     }
 }

@@ -41,6 +41,8 @@
     <color name="yello">#ade9e9</color>
 
     <color name="blue">#3f51b5</color>
+    <color name="black">#000000</color>
+    <color name="gelapbiru">#08115C</color>
     <color name="DarkBlue">#303f9f</color>
     <color name="a">#ff4081</color>
     <color name="navigationIcon">#dae9f6</color>
