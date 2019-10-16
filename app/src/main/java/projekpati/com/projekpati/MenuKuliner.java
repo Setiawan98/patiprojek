@@ -19,6 +19,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +63,7 @@ public class MenuKuliner extends AppCompatActivity {
     TextView title;
     ImageView iconView;
     Integer nextPage;
+    Integer CountShowData;
 
 
     @Override
@@ -108,6 +110,7 @@ public class MenuKuliner extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listKuliner);
         getAllKuliner();
+
 
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -214,6 +217,7 @@ public class MenuKuliner extends AppCompatActivity {
                 listView.setAdapter(new KulinerAdapter(MenuKuliner.this, R.layout.kuliner_adapter, list));
                 Toast.makeText(MenuKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
+
             }
 
             @Override
@@ -290,6 +294,12 @@ public class MenuKuliner extends AppCompatActivity {
 
     public void loadMoreData(){
         //defining a progress dialog to show while signing up
+
+        CountShowData = (listView.getHeight()/161)+1;
+        Log.d("Height: ", String.valueOf(listView.getHeight()));
+        Log.d("Height: ", String.valueOf(CountShowData));
+
+
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
@@ -303,7 +313,7 @@ public class MenuKuliner extends AppCompatActivity {
 
                 //KulinerModel km=response.body();
                 Map<String, ListKuliner> data = response.body().getData();
-
+                Integer beforePage = nextPage;
 
                 //Log.d("onResponse", response.body().getData());
                 Log.w("Response", new Gson().toJson(response.body()));
@@ -322,8 +332,14 @@ public class MenuKuliner extends AppCompatActivity {
                 KulinerAdapter adapter = new KulinerAdapter(MenuKuliner.this, R.layout.kuliner_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+
                 Toast.makeText(MenuKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
+
+                //Log.d("Height: ", String.valueOf(listView.getHeight()));
+
+                //Integer countDataView = listView.get
+                listView.setSelection(beforePage-CountShowData);
 
 
             }
