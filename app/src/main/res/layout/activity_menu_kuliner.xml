@@ -35,12 +35,6 @@
                 android:layout_gravity="center"/>
 
         </LinearLayout>
-        <EditText
-            android:layout_marginLeft="50dp"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:id="@+id/cariKuliner"/>
     </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout

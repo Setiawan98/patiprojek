@@ -72,7 +72,6 @@ public class MenuKuliner extends AppCompatActivity {
 
          toolbar = (Toolbar) findViewById(R.id.kulinerToolbar);
         setSupportActionBar(toolbar);
-        cari = findViewById(R.id.cariKuliner);
          title = toolbar.findViewById(R.id.title);
          iconView = toolbar.findViewById(R.id.icon);
 
@@ -195,34 +194,9 @@ public class MenuKuliner extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-            cari.setVisibility(View.VISIBLE);
-//            API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-//            Call<KulinerModel> call = api.cariKulinerbyAPI(cari.getText().toString());
-//            call.enqueue(new Callback<KulinerModel>() {
-//                @Override
-//                public void onResponse(Call<KulinerModel> call, Response<KulinerModel> response) {
-//                    Map<String, ListKuliner> data = response.body().getData();
-//                    list.clear();
-//                    Log.w("ResponseCari", new Gson().toJson(response.body()));
-//                    for (int i = 1; i <= 20; i++) {
-//                        if (data.get(String.valueOf(i)) == null) {
-//                            break;
-//                        } else {
-//                            list.add(data.get(String.valueOf(i)));
-//                        }
-//
-//                        Log.d("value", data.get(String.valueOf(i)).getNama());
-//                    }
-//                        listView.setAdapter(new KulinerAdapter(MenuKuliner.this, R.layout.kuliner_adapter, list));
-//                        Toast.makeText(MenuKuliner.this.getApplicationContext(),"Ditemukan", Toast.LENGTH_SHORT).show();
-//                }
-//
-//                @Override
-//                public void onFailure(Call<KulinerModel> call, Throwable t) {
-//                    Toast.makeText(MenuKuliner.this.getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
-//                    Log.d("onResponse", t.toString());
-//                }
-//            });
+            Intent intent = new Intent(MenuKuliner.this,CariKuliner.class);
+            startActivity(intent);
+
         }
         else if(id==android.R.id.home)
         {
