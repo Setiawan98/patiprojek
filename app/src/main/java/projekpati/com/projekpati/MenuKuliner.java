@@ -41,6 +41,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import androidx.fragment.app.FragmentManager;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -62,8 +63,6 @@ public class MenuKuliner extends AppCompatActivity {
     Toolbar toolbar;
     TextView title;
     ImageView iconView;
-    Integer nextPage;
-    Integer CountShowData;
 
 
     @Override
@@ -78,11 +77,8 @@ public class MenuKuliner extends AppCompatActivity {
          iconView = toolbar.findViewById(R.id.icon);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        //getSupportActionBar().
-       // getSupportActionBar().setDisplayShowTitleEnabled(false);
         BottomNavigationView bottomNavigationView = findViewById(R.id.menuKuliner);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -90,10 +86,14 @@ public class MenuKuliner extends AppCompatActivity {
                 int id = menuItem.getItemId();
 
                 if(id==R.id.beranda){
-                    Toast.makeText(MenuKuliner.this, "Beranda Clicked",Toast.LENGTH_SHORT).show();
+                    DataKulinerFragment first = new DataKulinerFragment();
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.fragment, first).commit();
                 }
                 else if(id==R.id.kategori){
-                    Toast.makeText(MenuKuliner.this, "Kategori Clicked",Toast.LENGTH_SHORT).show();
+                    KategoriFragment second = new KategoriFragment();
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.fragment, second).commit();
                 }
                 else if(id==R.id.tambah){
                     Toast.makeText(MenuKuliner.this, "Tambah Clicked",Toast.LENGTH_SHORT).show();
@@ -108,46 +108,13 @@ public class MenuKuliner extends AppCompatActivity {
             }
         });
 
-        listView = (ListView) findViewById(R.id.listKuliner);
-        getAllKuliner();
-
-
-
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-                int threshold = 1;
-                int count = listView.getCount();
-
-                if (scrollState == SCROLL_STATE_IDLE) {
-                    if (listView.getLastVisiblePosition() >= count - threshold) {
-                        // Execute LoadMoreDataTask AsyncTask
-                        //Toast.makeText(MenuKuliner.this, String.valueOf(nextPage),Toast.LENGTH_SHORT).show();
-                        if (nextPage==0){
-                            Toast.makeText(MenuKuliner.this, "No More Data",Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
-                           loadMoreData();
-                        }
-
-                    }
-                }
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
-
-            }
-        });
-
-
-
+        DataKulinerFragment first = new DataKulinerFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment, first).commit();
+        getIconImage();
     }
 
-    public void getAllKuliner(){
+    public void getIconImage(){
         //defining a progress dialog to show while signing up
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
@@ -158,9 +125,6 @@ public class MenuKuliner extends AppCompatActivity {
         call.enqueue(new Callback<KulinerModel>() {
             @Override
             public void onResponse(Call<KulinerModel> call, final Response<KulinerModel> response) {
-
-
-                //KulinerModel km=response.body();
                 Map<String, ListKuliner> data = response.body().getData();
 
 
@@ -202,19 +166,6 @@ public class MenuKuliner extends AppCompatActivity {
                     }
                 }
 
-                //Log.d("onResponse", response.body().getData());
-                Log.w("Response", new Gson().toJson(response.body()));
-                for (int i = 1; i <= 20; i++)
-                {
-                    //int a=i+1;
-                    list.add(data.get(String.valueOf(i)));
-                    Log.d("value",data.get(String.valueOf(i)).getNama());
-                }
-
-
-                nextPage = response.body().getHalaman_selanjutnya();
-
-                listView.setAdapter(new KulinerAdapter(MenuKuliner.this, R.layout.kuliner_adapter, list));
                 Toast.makeText(MenuKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
 
@@ -227,17 +178,6 @@ public class MenuKuliner extends AppCompatActivity {
                 Log.d("onResponse", t.toString());
             }
         });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MenuKuliner.this,DetilKuliner.class);
-                intent.putExtra("id_kuliner",list.get(position).getId());
-                startActivity(intent);
-            }
-        });
-
-
 
     }
 
@@ -255,33 +195,34 @@ public class MenuKuliner extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-            API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-            Call<KulinerModel> call = api.cariKulinerbyAPI(cari.getText().toString());
-            call.enqueue(new Callback<KulinerModel>() {
-                @Override
-                public void onResponse(Call<KulinerModel> call, Response<KulinerModel> response) {
-                    Map<String, ListKuliner> data = response.body().getData();
-                    list.clear();
-                    Log.w("ResponseCari", new Gson().toJson(response.body()));
-                    for (int i = 1; i <= 20; i++) {
-                        if (data.get(String.valueOf(i)) == null) {
-                            break;
-                        } else {
-                            list.add(data.get(String.valueOf(i)));
-                        }
-
-                        Log.d("value", data.get(String.valueOf(i)).getNama());
-                    }
-                        listView.setAdapter(new KulinerAdapter(MenuKuliner.this, R.layout.kuliner_adapter, list));
-                        Toast.makeText(MenuKuliner.this.getApplicationContext(),"Ditemukan", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onFailure(Call<KulinerModel> call, Throwable t) {
-                    Toast.makeText(MenuKuliner.this.getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
-                    Log.d("onResponse", t.toString());
-                }
-            });
+            cari.setVisibility(View.VISIBLE);
+//            API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+//            Call<KulinerModel> call = api.cariKulinerbyAPI(cari.getText().toString());
+//            call.enqueue(new Callback<KulinerModel>() {
+//                @Override
+//                public void onResponse(Call<KulinerModel> call, Response<KulinerModel> response) {
+//                    Map<String, ListKuliner> data = response.body().getData();
+//                    list.clear();
+//                    Log.w("ResponseCari", new Gson().toJson(response.body()));
+//                    for (int i = 1; i <= 20; i++) {
+//                        if (data.get(String.valueOf(i)) == null) {
+//                            break;
+//                        } else {
+//                            list.add(data.get(String.valueOf(i)));
+//                        }
+//
+//                        Log.d("value", data.get(String.valueOf(i)).getNama());
+//                    }
+//                        listView.setAdapter(new KulinerAdapter(MenuKuliner.this, R.layout.kuliner_adapter, list));
+//                        Toast.makeText(MenuKuliner.this.getApplicationContext(),"Ditemukan", Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void onFailure(Call<KulinerModel> call, Throwable t) {
+//                    Toast.makeText(MenuKuliner.this.getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
+//                    Log.d("onResponse", t.toString());
+//                }
+//            });
         }
         else if(id==android.R.id.home)
         {
@@ -290,80 +231,4 @@ public class MenuKuliner extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-    public void loadMoreData(){
-        //defining a progress dialog to show while signing up
-
-        CountShowData = (listView.getHeight()/161)+1;
-        Log.d("Height: ", String.valueOf(listView.getHeight()));
-        Log.d("Height: ", String.valueOf(CountShowData));
-
-
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<KulinerModel> call = api.loadMoreKuliner(String.valueOf(nextPage));
-
-        call.enqueue(new Callback<KulinerModel>() {
-            @Override
-            public void onResponse(Call<KulinerModel> call, final Response<KulinerModel> response) {
-
-
-                //KulinerModel km=response.body();
-                Map<String, ListKuliner> data = response.body().getData();
-                Integer beforePage = nextPage;
-
-                //Log.d("onResponse", response.body().getData());
-                Log.w("Response", new Gson().toJson(response.body()));
-                for (int i = nextPage; i <= nextPage+response.body().getJumlah_data()-1; i++)
-                {
-                    list.add(data.get(String.valueOf(i)));
-                    Log.d("value :", String.valueOf(i) );
-                    //Log.d("value",data.get(String.valueOf(21)).getNama());
-                }
-
-
-                nextPage = response.body().getHalaman_selanjutnya();
-                Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
-
-
-                KulinerAdapter adapter = new KulinerAdapter(MenuKuliner.this, R.layout.kuliner_adapter, list);
-                listView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-
-                Toast.makeText(MenuKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
-
-                //Log.d("Height: ", String.valueOf(listView.getHeight()));
-
-                //Integer countDataView = listView.get
-                listView.setSelection(beforePage-CountShowData);
-
-
-            }
-
-            @Override
-            public void onFailure(Call<KulinerModel> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(MenuKuliner.this.getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("onResponse", t.toString());
-            }
-        });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MenuKuliner.this,DetilKuliner.class);
-                intent.putExtra("id_kuliner",list.get(position).getId());
-                startActivity(intent);
-            }
-        });
-
-
-
-    }
-
-
 }
