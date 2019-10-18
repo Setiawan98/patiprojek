@@ -2,14 +2,18 @@ package projekpati.com.projekpati;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Camera;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
@@ -28,6 +32,16 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -42,11 +56,13 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DataKulinerFragment extends Fragment {
+public class DataKulinerFragment extends Fragment implements OnMapReadyCallback {
     ListView listView;
     Integer CountShowData;
     Integer nextPage;
+    Integer npLatn=1;
     List<ListKuliner> list = new ArrayList<>();
+    List<ListKuliner> listLatn = new ArrayList<>();
 
     public DataKulinerFragment() {
         // Required empty public constructor
@@ -60,6 +76,9 @@ public class DataKulinerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_data_kuliner, container, false);
         listView = (ListView) view.findViewById(R.id.listKuliner);
         getAllKuliner();
+        getAllData();
+
+
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -198,5 +217,145 @@ public class DataKulinerFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+
+    public void getAllData(){
+
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<KulinerModel> call = api.tampilSemuaKuliner();
+
+        call.enqueue(new Callback<KulinerModel>() {
+            @Override
+            public void onResponse(Call<KulinerModel> call, final Response<KulinerModel> response) {
+                Map<String, ListKuliner> data = response.body().getData();
+
+                Log.w("Response1", new Gson().toJson(response.body()));
+                for (int i = npLatn; i <= npLatn+response.body().getJumlah_data()-1; i++)
+                {
+
+                    listLatn.add(data.get(String.valueOf(i)));
+
+                }
+                Log.w("List", new Gson().toJson((listLatn)));
+                npLatn = response.body().getHalaman_selanjutnya();
+
+
+
+                Integer np=1;
+                Log.d("next: ",String.valueOf(npLatn));
+                if(npLatn!=0)
+                {
+                    loadmore();
+
+                }
+                else {
+
+                    loadMap();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<KulinerModel> call, Throwable t) {
+                Toast.makeText(getContext(),t.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("onResponse", t.toString());
+            }
+        });
+
+    }
+
+    public void loadmore(){
+
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<KulinerModel> a = api.loadMoreKuliner(String.valueOf(npLatn));
+        a.enqueue(new Callback<KulinerModel>() {
+
+            @Override
+            public void onResponse(Call<KulinerModel> call, final Response<KulinerModel> response) {
+                Map<String, ListKuliner> data = response.body().getData();
+
+
+                Log.w("Response", new Gson().toJson(response.body()));
+                for (int i = npLatn; i <= npLatn+response.body().getJumlah_data()-1; i++)
+                {
+
+                        listLatn.add(data.get(String.valueOf(i)));
+
+                }
+                // beforePage=nextPage;
+                npLatn = response.body().getHalaman_selanjutnya();
+                Log.d("nextpage",String.valueOf(npLatn));
+                if(npLatn!=0)
+                {
+                    loadmore();
+                }
+                else {
+                    Log.w("List", new Gson().toJson((listLatn)));
+                    loadMap();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<KulinerModel> call, Throwable t) {
+                Toast.makeText(getContext(),t.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("onResponse", t.toString());
+            }
+        });
+
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        googleMap.clear();
+
+        CameraPosition googlePlex = CameraPosition.builder()
+            .target(new LatLng(-6.7487,111.0379))
+            .zoom(15)
+            .bearing(0)
+            .build();
+
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex),100,null);
+
+        for(ListKuliner lk : listLatn)
+        {
+            Log.d("masuk","a");
+            googleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
+                    .title(lk.getNama())
+                    .snippet(lk.getAlamat())
+                    .icon(bitmapDescriptor(getContext(),R.drawable.ic_location_on_black_24dp)));
+        }
+
+//        googleMap.addMarker(new MarkerOptions()
+//                .position(new LatLng(48.8584,2.2945))
+//                .title("c")
+//                .snippet("d")
+//                .icon(bitmapDescriptor(getContext(),R.drawable.ic_location_on_black_24dp)));
+
+    }
+
+    private BitmapDescriptor bitmapDescriptor(Context context, int vectorID)
+    {
+        Drawable vectorDrawable = ContextCompat.getDrawable(context,vectorID);
+        vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight(),Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
+
+    public void loadMap()
+    {
+        SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 }

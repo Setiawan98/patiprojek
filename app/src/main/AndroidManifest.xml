@@ -3,6 +3,8 @@
     package="projekpati.com.projekpati">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CariKuliner"></activity>
+        <activity android:name=".DetailMap"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/api_key" />
+
+        <activity android:name=".CariKuliner" />
         <activity android:name=".TampilKulinerByJenis" />
         <activity android:name=".tampilFotoKuliner" />
         <activity android:name=".DetilKuliner" />

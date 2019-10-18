@@ -64,6 +64,7 @@ public class TampilKulinerByJenis extends AppCompatActivity {
 
 
 
+
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
