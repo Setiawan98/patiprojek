@@ -122,7 +122,7 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
                 }
 
                 loadlLayout.addView(clickAbleColumn);
-                if(i==0)
+                if(i==size-1)
                 {
                     ImageView layout = (ImageView) clickAbleColumn.findViewById(R.id.padding);
                     layout.setVisibility(View.VISIBLE);
