@@ -4,47 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundberanda"
     android:orientation="vertical"
     tools:context=".CariKuliner">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
-        <EditText
-            android:layout_marginLeft="10dp"
-            android:hint="Cari Kuliner disini"
-            android:layout_width="260dp"
-            android:layout_height="50dp"
-            android:id="@+id/cari"/>
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            android:clickable="true"
-            android:id="@+id/imageCari"
-            android:src="@drawable/ic_search_black_24dp"/>
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="10dp"
-        app:cardUseCompatPadding="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_alignTop="@id/kulinerToolbar">
-
-        <ListView
-            android:id="@+id/listKuliner"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="true">
-        </ListView>
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <EditText
+                android:layout_marginLeft="10dp"
+                android:hint="Cari Kuliner disini"
+                android:layout_width="260dp"
+                android:layout_height="50dp"
+                android:id="@+id/cari"/>
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:id="@+id/imageCari"
+                android:src="@drawable/ic_search_black_24dp"/>
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="10dp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_alignTop="@id/kulinerToolbar">
+
+            <ListView
+                android:id="@+id/listKuliner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true">
+            </ListView>
 
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
 
 
 </LinearLayout>

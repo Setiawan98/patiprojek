@@ -1,6 +1,7 @@
 package projekpati.com.projekpati;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.KulinerModel;
@@ -15,10 +16,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -33,18 +37,29 @@ public class TampilKulinerByJenis extends AppCompatActivity {
     Integer nextPage=1;
     Integer beforePage;
     List<ListKuliner> list = new ArrayList<>();
+    Toolbar toolbar;
+    TextView title;
     Boolean isFinised=true;
      ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tampil_kuliner_by_jenis);
-
+        toolbar = findViewById(R.id.kulinerToolbar);
         listView = (ListView) findViewById(R.id.listKuliner);
+        setSupportActionBar(toolbar);
+        title = toolbar.findViewById(R.id.title);
+        title.setTextColor(0xFFFFFFFF);
        // getAllKuliner();
 
+        final Bundle bundle = getIntent().getExtras();
+        final String kategori = bundle.getString("kategori");
 
 
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        title.setText(kategori);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
@@ -316,5 +331,24 @@ public class TampilKulinerByJenis extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.back_toolbar,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id==android.R.id.home)
+        {
+            Intent i = new Intent(TampilKulinerByJenis.this,MenuKuliner.class);
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

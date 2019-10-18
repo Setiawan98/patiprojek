@@ -73,6 +73,7 @@ public class MenuKuliner extends AppCompatActivity {
          toolbar = (Toolbar) findViewById(R.id.kulinerToolbar);
         setSupportActionBar(toolbar);
          title = toolbar.findViewById(R.id.title);
+         title.setTextColor(0xFFFFFFFF);
          iconView = toolbar.findViewById(R.id.icon);
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);

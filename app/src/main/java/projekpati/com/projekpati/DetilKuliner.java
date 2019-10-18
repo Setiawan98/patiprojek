@@ -15,6 +15,8 @@ package projekpati.com.projekpati;
         import android.net.Uri;
         import android.os.Bundle;
         import android.util.Log;
+        import android.view.Menu;
+        import android.view.MenuItem;
         import android.view.View;
         import android.widget.ImageView;
         import android.widget.ListView;
@@ -47,7 +49,7 @@ public class DetilKuliner extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.kulinerToolbar);
         setSupportActionBar(toolbar);
         title = toolbar.findViewById(R.id.title);
-
+        title.setTextColor(0xFFFFFFFF);
         textNama = findViewById(R.id.mNama);
         textAlamat = findViewById(R.id.mAlamat);
         textJamBuka = findViewById(R.id.mJamBuka);
@@ -126,5 +128,24 @@ public class DetilKuliner extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.back_toolbar,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id==android.R.id.home)
+        {
+            Intent i = new Intent(DetilKuliner.this,MenuKuliner.class);
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

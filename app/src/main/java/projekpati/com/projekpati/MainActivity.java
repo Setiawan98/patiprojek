@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     private LinearLayout kulinerLayout;
     private DrawerLayout dl;
+    Toolbar toolbar;
+
     private ActionBarDrawerToggle abdt;
 
 
@@ -33,8 +35,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dl= (DrawerLayout) findViewById(R.id.dl);
+        toolbar = findViewById(R.id.myToolbar);
+        toolbar.setTitleTextColor(0xFFFFFFFF);
         abdt = new ActionBarDrawerToggle(this,dl,R.string.Open,R.string.Close);
         abdt.setDrawerIndicatorEnabled(true);
+
 
         dl.addDrawerListener(abdt);
         abdt.syncState();
