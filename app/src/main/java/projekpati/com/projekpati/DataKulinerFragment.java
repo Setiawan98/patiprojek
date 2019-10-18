@@ -25,10 +25,12 @@ import retrofit2.Response;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -53,16 +55,16 @@ import java.util.List;
 import java.util.Map;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class DataKulinerFragment extends Fragment implements OnMapReadyCallback {
     ListView listView;
     Integer CountShowData;
     Integer nextPage;
     Integer npLatn=1;
     List<ListKuliner> list = new ArrayList<>();
-    List<ListKuliner> listLatn = new ArrayList<>();
+    ArrayList<ListKuliner> listLatn = new ArrayList<ListKuliner>();
+    LinearLayout lp;
+
 
     public DataKulinerFragment() {
         // Required empty public constructor
@@ -77,6 +79,16 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
         listView = (ListView) view.findViewById(R.id.listKuliner);
         getAllKuliner();
         getAllData();
+
+//        lp= (LinearLayout) view.findViewById(R.id.mapView) ;
+//        lp.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getContext(),"memek",Toast.LENGTH_SHORT);
+//                Intent i = new Intent(getContext(), DetailMap.class);
+//                startActivity(i);
+//            }
+//        });
 
 
 
@@ -312,6 +324,18 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                Intent i = new Intent(getContext(), DetailMap.class);
+                Bundle bundle = new Bundle();
+
+               // bundle.putParcelableArrayList("list",listLatn);
+
+                i.putParcelableArrayListExtra("list",listLatn);
+                startActivity(i);
+            }
+        });
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         googleMap.clear();
@@ -356,6 +380,9 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
     {
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
+
         mapFragment.getMapAsync(this);
+
+
     }
 }

@@ -48,5 +48,8 @@
     <color name="navigationIcon">#dae9f6</color>
     <color name="navigationText">#ffffff</color>
     <color name="grey">#525151</color>
+    <color name="red">#E91D1D</color>
+    <color name="green">#4CAF50</color>
+    <color name="yellow">#E2CC20</color>
 
 </resources>

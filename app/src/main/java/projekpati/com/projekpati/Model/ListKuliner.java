@@ -1,8 +1,14 @@
 package projekpati.com.projekpati.Model;
 
-public class ListKuliner {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class ListKuliner implements Parcelable {
     String id, nama, pemilik, telp, email, website, deskripsi, alamat, tipe, file, file_small, hari_ini, jam_buka, situs_sumber,tipe_sumber,latitude,longitude;
     Integer nomor;
+
 
     public ListKuliner(String id, String nama, String pemilik, String telp, String email, String website, String deskripsi, String alamat, String tipe, String file, String file_small, String hari_ini, String jam_buka, String situs_sumber, String tipe_sumber, String latitude, String longitude, Integer nomor) {
         this.id = id;
@@ -24,6 +30,76 @@ public class ListKuliner {
         this.longitude = longitude;
         this.nomor = nomor;
     }
+
+    protected ListKuliner(Parcel in) {
+        id = in.readString();
+        nama = in.readString();
+        pemilik = in.readString();
+        telp = in.readString();
+        email = in.readString();
+        website = in.readString();
+        deskripsi = in.readString();
+        alamat = in.readString();
+        tipe = in.readString();
+        file = in.readString();
+        file_small = in.readString();
+        hari_ini = in.readString();
+        jam_buka = in.readString();
+        situs_sumber = in.readString();
+        tipe_sumber = in.readString();
+        latitude = in.readString();
+        longitude = in.readString();
+        if (in.readByte() == 0) {
+            nomor = null;
+        } else {
+            nomor = in.readInt();
+        }
+    }
+
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(nama);
+        dest.writeString(pemilik);
+        dest.writeString(telp);
+        dest.writeString(email);
+        dest.writeString(website);
+        dest.writeString(deskripsi);
+        dest.writeString(alamat);
+        dest.writeString(tipe);
+        dest.writeString(file);
+        dest.writeString(file_small);
+        dest.writeString(hari_ini);
+        dest.writeString(jam_buka);
+        dest.writeString(situs_sumber);
+        dest.writeString(tipe_sumber);
+        dest.writeString(latitude);
+        dest.writeString(longitude);
+        if (nomor == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(nomor);
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<ListKuliner> CREATOR = new Creator<ListKuliner>() {
+        @Override
+        public ListKuliner createFromParcel(Parcel in) {
+            return new ListKuliner(in);
+        }
+
+        @Override
+        public ListKuliner[] newArray(int size) {
+            return new ListKuliner[size];
+        }
+    };
 
     public String getId() {
         return id;
