@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="0dp"
+    android:orientation="vertical"
     android:background="@drawable/backgroundberanda"
     tools:context=".MenuKuliner">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/kulinerToolbar"
@@ -44,21 +39,25 @@
 
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white">
         <FrameLayout
             android:id="@+id/fragment"
             android:layout_marginTop="0dp"
             android:background="@android:color/white"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="640dp" />
     </LinearLayout>
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
         android:id="@+id/menuKuliner"
+        android:layout_marginTop="-50dp"
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
         app:itemIconTint="@drawable/state_bnve"
@@ -67,4 +66,4 @@
         app:labelVisibilityMode="labeled"/>
 
 
-</RelativeLayout>
+</LinearLayout>

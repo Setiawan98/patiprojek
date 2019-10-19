@@ -76,6 +76,7 @@ public class MenuKuliner extends AppCompatActivity {
          title.setTextColor(0xFFFFFFFF);
          iconView = toolbar.findViewById(R.id.icon);
 
+        getIconImage();
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -99,7 +100,9 @@ public class MenuKuliner extends AppCompatActivity {
                     Toast.makeText(MenuKuliner.this, "Tambah Clicked",Toast.LENGTH_SHORT).show();
                 }
                 else if(id==R.id.saring){
-                    Toast.makeText(MenuKuliner.this, "Saring Clicked",Toast.LENGTH_SHORT).show();
+                    SaringFragment fouth = new SaringFragment();
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.fragment, fouth).commit();
                 }
                 else if(id==R.id.dataku){
                     Toast.makeText(MenuKuliner.this, "Dataku Clicked",Toast.LENGTH_SHORT).show();
@@ -111,7 +114,6 @@ public class MenuKuliner extends AppCompatActivity {
         DataKulinerFragment first = new DataKulinerFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment, first).commit();
-        getIconImage();
     }
 
     public void getIconImage(){
