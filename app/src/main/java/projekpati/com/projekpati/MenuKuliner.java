@@ -97,7 +97,8 @@ public class MenuKuliner extends AppCompatActivity {
                     fragmentManager.beginTransaction().replace(R.id.fragment, second).commit();
                 }
                 else if(id==R.id.tambah){
-                    Toast.makeText(MenuKuliner.this, "Tambah Clicked",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MenuKuliner.this,LoginActivity.class);
+                    startActivity(intent);
                 }
                 else if(id==R.id.saring){
                     SaringFragment fouth = new SaringFragment();
@@ -105,7 +106,8 @@ public class MenuKuliner extends AppCompatActivity {
                     fragmentManager.beginTransaction().replace(R.id.fragment, fouth).commit();
                 }
                 else if(id==R.id.dataku){
-                    Toast.makeText(MenuKuliner.this, "Dataku Clicked",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MenuKuliner.this,LoginActivity.class);
+                    startActivity(intent);
                 }
                 return true;
             }

@@ -52,6 +52,7 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
     GoogleMap mMap;
     HorizontalScrollView horizontalScrollView;
     LinearLayout content;
+    TextView title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +63,9 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
         toolbar = (Toolbar) findViewById(R.id.kulinerToolbar);
         loadlLayout = (LinearLayout) findViewById(R.id.loadLayout);
         horizontalScrollView = (HorizontalScrollView) findViewById(R.id.Horizontalscroll) ;
-
+        title = toolbar.findViewById(R.id.title);
+        title.setTextColor(0xFFFFFFFF);
+        title.setText("Detil Map");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 

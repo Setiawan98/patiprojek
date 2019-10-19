@@ -99,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Tentang Kami Clicked",Toast.LENGTH_SHORT).show();
                 }
                 else if(id==R.id.mMasukDaftar){
-                    Toast.makeText(MainActivity.this, "Masuk Daftar Clicked",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                    startActivity(intent);
                 }
                 return true;
             }
