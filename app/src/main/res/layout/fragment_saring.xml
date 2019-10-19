@@ -28,8 +28,110 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/blue"
                 android:text="AKTIFKAN" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/diet"/>
+                <EditText
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="6pt"
+                    android:layout_height="50dp"
+                    android:hint="Masukan kata kunci"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/grey"
+                android:layout_marginLeft="15dp"
+                android:textSize="6pt"
+                android:layout_height="40dp"
+                android:text="(Aktifkan GPS untuk memilih radius)"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="-5dp"
+                android:textColor="@color/grey"
+                android:layout_marginLeft="15dp"
+                android:textSize="6pt"
+                android:layout_height="40dp"
+                android:text="Radius"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+                <RadioButton
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="3 Km"
+                    android:textSize="6pt"
+                    android:textColor="@color/grey"/>
+                <RadioButton
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="6pt"
+                    android:text="5 Km"
+                    android:textColor="@color/grey"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="6pt"
+                        android:text="8 Km"
+                        android:textColor="@color/grey"/>
+                    <RadioButton
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="6pt"
+                        android:text="10 Km"
+                        android:textColor="@color/grey"/>
+                </LinearLayout>
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="130dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="60dp"
+                    android:text="ATUR ULANG"/>
+                <Button
+                    android:layout_width="170dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/blue"
+                    android:text="TERAPKAN"/>
+            </LinearLayout>
+
+
         </LinearLayout>
     </LinearLayout>
 
