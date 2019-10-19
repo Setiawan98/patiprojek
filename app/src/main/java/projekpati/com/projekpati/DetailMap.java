@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
@@ -46,6 +48,10 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
     ArrayList<ListKuliner> listLatn;
     LinearLayout loadlLayout;
     View beforeClick;
+    SupportMapFragment mapFragment;
+    GoogleMap mMap;
+    HorizontalScrollView horizontalScrollView;
+    LinearLayout content;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +61,7 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
 
         toolbar = (Toolbar) findViewById(R.id.kulinerToolbar);
         loadlLayout = (LinearLayout) findViewById(R.id.loadLayout);
+        horizontalScrollView = (HorizontalScrollView) findViewById(R.id.Horizontalscroll) ;
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -69,13 +76,113 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
             loadMap();
         }
 
+    }
 
+    public void loadMap()
+    {
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+
+        mMap=googleMap;
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        googleMap.clear();
+
+        CameraPosition googlePlex = CameraPosition.builder()
+                .target(new LatLng(-6.7487,111.0379))
+                .zoom(15)
+                .bearing(0)
+                .build();
+
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex),100,null);
+
+        for(ListKuliner lk : listLatn)
+        {
+            Log.d("masuk","a");
+            googleMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
+                    .title(lk.getNama())
+                    .snippet(lk.getAlamat())
+                    .icon(bitmapDescriptor(this,R.drawable.ic_location_on_black_24dp)));
+        }
+
+        listKuliner();
+
+    }
+
+    private BitmapDescriptor bitmapDescriptor(Context context, int vectorID)
+    {
+        Drawable vectorDrawable = ContextCompat.getDrawable(context,vectorID);
+        vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight(),Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_toolbar,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id==android.R.id.home)
+        {
+            Intent i = new Intent(DetailMap.this,MenuKuliner.class);
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void setVisible(View v)
+    {
+        if(beforeClick!=null)
+        {
+            beforeClick.setVisibility(View.GONE);
+        }
+        v.setVisibility(View.VISIBLE);
+        beforeClick=v;
+    }
+
+
+    public void listKuliner()
+    {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         int size = listLatn.size();
         Log.d("size",String.valueOf(size));
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                for(int i = 0;i<listLatn.size();i++)
+                {
+
+                    LinearLayout ly = (LinearLayout) horizontalScrollView.getChildAt(0);
+                    TextView name = ly.getChildAt(i).findViewById(R.id.textThumbnail);
+                    content = (LinearLayout) ly.getChildAt(i);
+                    if(name.getText().toString().equals(marker.getTitle()))
+                    {
+                        setOnClickMarker(content);
+                    }
+
+                }
+                return true;
+            }
+        });
         for(int i =0;i<size;i++)
         {
-            ListKuliner lk = listLatn.get(i);
+            final ListKuliner lk = listLatn.get(i);
             Log.d("nama",lk.getNama());
 
             if(lk!=null)
@@ -130,110 +237,48 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
 
                 }
 
+
                 clickAbleColumn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //ListKuliner kuliner = (ListKuliner) v.getTag();
-//                        TextView titleText = (TextView) v.findViewById(R.id.textThumbnail);
-//                        Toast.makeText(DetailMap.this,titleText.getText(), Toast.LENGTH_SHORT).show();
+
+
+                        int x = (int) v.getLeft()-((horizontalScrollView.getWidth()-v.getWidth())/2);
+                        int y = v.getTop();
+                        horizontalScrollView.smoothScrollTo(x,y);
+                        Log.d("width hv",String.valueOf((horizontalScrollView.getWidth()-v.getWidth())/2));
                         ImageView layout = (ImageView) v.findViewById(R.id.padding);
 
                         setVisible(layout);
+                        CameraPosition googlePlex = CameraPosition.builder()
+                                .target(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
+                                .zoom(20)
+                                .bearing(0)
+                                .build();
 
+                        Marker marker = mMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
+                                .title(lk.getNama())
+                                .snippet(lk.getAlamat())
+                                .icon(bitmapDescriptor(DetailMap.this,R.drawable.ic_location_on_black_24dp)));
 
-//                        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) layout.getLayoutParams();
-//                        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) layout.getLayoutParams();
-//                        layoutParams.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,192,getResources().getDisplayMetrics());
-//                        layoutParams.width =(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,156,getResources().getDisplayMetrics());
-//
-//                        layout.setLayoutParams(layoutParams);
+                        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex),1000,null);
+                        marker.showInfoWindow();
 
-                        //layout.setLayoutParams(new LinearLayout.LayoutParams(width,height));
 
                     }
                 });
 
             }
         }
+
     }
 
-    public void loadMap()
+    public void setOnClickMarker(LinearLayout clickAbleColumn)
     {
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-
-
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.clear();
-
-        CameraPosition googlePlex = CameraPosition.builder()
-                .target(new LatLng(-6.7487,111.0379))
-                .zoom(15)
-                .bearing(0)
-                .build();
-
-        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex),100,null);
-
-        for(ListKuliner lk : listLatn)
-        {
-            Log.d("masuk","a");
-            googleMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
-                    .title(lk.getNama())
-                    .snippet(lk.getAlamat())
-                    .icon(bitmapDescriptor(this,R.drawable.ic_location_on_black_24dp)));
-        }
-
-//        googleMap.addMarker(new MarkerOptions()
-//                .position(new LatLng(48.8584,2.2945))
-//                .title("c")
-//                .snippet("d")
-//                .icon(bitmapDescriptor(getContext(),R.drawable.ic_location_on_black_24dp)));
-
-    }
-
-    private BitmapDescriptor bitmapDescriptor(Context context, int vectorID)
-    {
-        Drawable vectorDrawable = ContextCompat.getDrawable(context,vectorID);
-        vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight());
-        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight(),Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        vectorDrawable.draw(canvas);
-        return BitmapDescriptorFactory.fromBitmap(bitmap);
+        clickAbleColumn.callOnClick();
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_toolbar,menu);
 
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if(id==android.R.id.home)
-        {
-            Intent i = new Intent(DetailMap.this,MenuKuliner.class);
-            startActivity(i);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void setVisible(View v)
-    {
-        if(beforeClick!=null)
-        {
-            beforeClick.setVisibility(View.GONE);
-        }
-        v.setVisibility(View.VISIBLE);
-        beforeClick=v;
-    }
 }

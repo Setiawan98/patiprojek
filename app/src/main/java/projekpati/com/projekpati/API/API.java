@@ -3,6 +3,7 @@ package projekpati.com.projekpati.API;
 import java.util.List;
 
 import projekpati.com.projekpati.DetilKuliner;
+import projekpati.com.projekpati.Model.APIKey;
 import projekpati.com.projekpati.Model.DetilKulinerModel;
 import projekpati.com.projekpati.Model.JenisKulinerLengkap;
 import projekpati.com.projekpati.Model.KulinerModel;
@@ -27,6 +28,9 @@ public interface API {
 
     @GET("kuliner/detail/{id}?key=TechnoPhoriaIndonesia")
     Call<DetilKulinerModel> detailKuliner(@Path("id") String id);
+
+    @GET("gkey")
+    Call<APIKey> getAPIkey();
 
 
 

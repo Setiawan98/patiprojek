@@ -4,6 +4,8 @@ package projekpati.com.projekpati;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Camera;
 import android.graphics.Canvas;
@@ -16,7 +18,9 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import projekpati.com.projekpati.API.API;
+import projekpati.com.projekpati.API.RetrofitClientApiKey;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
+import projekpati.com.projekpati.Model.APIKey;
 import projekpati.com.projekpati.Model.KulinerModel;
 import projekpati.com.projekpati.Model.ListKuliner;
 import retrofit2.Call;
@@ -37,6 +41,7 @@ import android.widget.Toast;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -64,6 +69,8 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
     List<ListKuliner> list = new ArrayList<>();
     ArrayList<ListKuliner> listLatn = new ArrayList<ListKuliner>();
     LinearLayout lp;
+    MapView mapView;
+    String apikey;
 
 
     public DataKulinerFragment() {
@@ -77,18 +84,10 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_data_kuliner, container, false);
         listView = (ListView) view.findViewById(R.id.listKuliner);
+
         getAllKuliner();
         getAllData();
 
-//        lp= (LinearLayout) view.findViewById(R.id.mapView) ;
-//        lp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getContext(),"memek",Toast.LENGTH_SHORT);
-//                Intent i = new Intent(getContext(), DetailMap.class);
-//                startActivity(i);
-//            }
-//        });
 
 
 
@@ -383,6 +382,28 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
 
         mapFragment.getMapAsync(this);
 
+
+    }
+
+    public void getApiKey(){
+        //defining a progress dialog to show while signing up
+
+        final API api = RetrofitClientApiKey.getRetrofitInstance().create(API.class);
+        Call<APIKey> call = api.getAPIkey();
+
+        call.enqueue(new Callback<APIKey>() {
+            @Override
+            public void onResponse(Call<APIKey> call, final Response<APIKey> response) {
+
+                Log.w("Response", response.body().getKey());
+                apikey=response.body().getKey();
+            }
+
+            @Override
+            public void onFailure(Call<APIKey> call, Throwable t) {
+                Log.d("onResponse", t.toString());
+            }
+        });
 
     }
 }

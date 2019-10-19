@@ -9,16 +9,35 @@ import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.gson.Gson;
+
+import java.util.Map;
+
+import projekpati.com.projekpati.API.API;
+import projekpati.com.projekpati.API.RetrofitClientApiKey;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
+import projekpati.com.projekpati.Model.APIKey;
+import projekpati.com.projekpati.Model.KulinerModel;
+import projekpati.com.projekpati.Model.ListKuliner;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(0xFFFFFFFF);
         abdt = new ActionBarDrawerToggle(this,dl,R.string.Open,R.string.Close);
         abdt.setDrawerIndicatorEnabled(true);
+
 
 
         dl.addDrawerListener(abdt);
@@ -122,4 +142,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return abdt.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
+
+
 }
