@@ -44,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout kulinerLayout;
     private DrawerLayout dl;
     Toolbar toolbar;
-
+    Integer icon=1;
+    LinearLayout menuicon;
+    private PrefManager prefManager;
     private ActionBarDrawerToggle abdt;
 
 
@@ -54,12 +56,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dl= (DrawerLayout) findViewById(R.id.dl);
+        menuicon = findViewById(R.id.menuicon);
         toolbar = findViewById(R.id.myToolbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
         abdt = new ActionBarDrawerToggle(this,dl,R.string.Open,R.string.Close);
         abdt.setDrawerIndicatorEnabled(true);
-
-
 
         dl.addDrawerListener(abdt);
         abdt.syncState();
@@ -87,7 +88,16 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Pemberitahuan Clicked",Toast.LENGTH_SHORT).show();
                 }
                 else if(id==R.id.mMenuIcon){
-                    Toast.makeText(MainActivity.this, "Menu Icon Clicked",Toast.LENGTH_SHORT).show();
+                    if(icon==1)
+                    {
+                        menuicon.setVisibility(View.INVISIBLE);
+                        icon=0;
+                    }
+                    else
+                    {
+                        menuicon.setVisibility(View.VISIBLE);
+                        icon=1;
+                    }
                 }
                 else if(id==R.id.mReaksiAnda){
                     Toast.makeText(MainActivity.this, "Reaksi Anda Clicked",Toast.LENGTH_SHORT).show();

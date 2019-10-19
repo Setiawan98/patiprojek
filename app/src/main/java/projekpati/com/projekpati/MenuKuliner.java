@@ -97,8 +97,9 @@ public class MenuKuliner extends AppCompatActivity {
                     fragmentManager.beginTransaction().replace(R.id.fragment, second).commit();
                 }
                 else if(id==R.id.tambah){
-                    Intent intent = new Intent(MenuKuliner.this,LoginActivity.class);
-                    startActivity(intent);
+                    SaringFragment third = new SaringFragment();
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.fragment, third).commit();
                 }
                 else if(id==R.id.saring){
 //                    SaringFragment fouth = new SaringFragment();
