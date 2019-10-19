@@ -35,6 +35,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
+import com.google.maps.android.clustering.Cluster;
+import com.google.maps.android.clustering.ClusterManager;
 import com.squareup.picasso.Picasso;
 
 import java.net.MalformedURLException;
@@ -42,6 +44,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import projekpati.com.projekpati.Model.ListKuliner;
+import projekpati.com.projekpati.Model.MyItem;
 
 public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -53,6 +56,10 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
     HorizontalScrollView horizontalScrollView;
     LinearLayout content;
     TextView title;
+    Marker beforeShow;
+    Marker beforeClickLayout;
+    private ClusterManager<MyItem> mClusterManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,10 +81,13 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
         Log.w("List", new Gson().toJson((listLatn)));
 
 
+
         if(listLatn!=null)
         {
             loadMap();
         }
+
+
 
     }
 
@@ -91,28 +101,77 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-
         mMap=googleMap;
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.clear();
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        mMap.clear();
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-6.7487,111.0379),10));
+        mClusterManager = new ClusterManager<MyItem>(this,mMap);
+        mMap.setOnCameraIdleListener(mClusterManager);
+        mMap.setOnMarkerClickListener(mClusterManager);
+        mMap.setOnInfoWindowClickListener(mClusterManager);
 
-        CameraPosition googlePlex = CameraPosition.builder()
-                .target(new LatLng(-6.7487,111.0379))
-                .zoom(15)
-                .bearing(0)
-                .build();
+        final CustomClusterRenderer renderer = new CustomClusterRenderer(this, mMap, mClusterManager);
+        googleMap.setOnMarkerClickListener(mClusterManager);
+        mClusterManager.setRenderer(renderer);
 
-        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex),100,null);
+        mClusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<MyItem>() {
+            @Override
+            public boolean onClusterClick(Cluster<MyItem> cluster) {
+                Toast.makeText(DetailMap.this,"cluster Cliced", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
 
-        for(ListKuliner lk : listLatn)
-        {
-            Log.d("masuk","a");
-            googleMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
-                    .title(lk.getNama())
-                    .snippet(lk.getAlamat())
-                    .icon(bitmapDescriptor(this,R.drawable.ic_location_on_black_24dp)));
-        }
+
+        mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
+            @Override
+            public boolean onClusterItemClick(MyItem myItem) {
+                if(beforeShow!=null)
+                {
+                    beforeShow.hideInfoWindow();
+                }
+                renderer.getMarker(myItem).showInfoWindow();
+                Log.d("aaa",renderer.getMarker(myItem).getTitle());
+                for(int i = 0;i<listLatn.size();i++)
+                {
+
+                    LinearLayout ly = (LinearLayout) horizontalScrollView.getChildAt(0);
+                    TextView name = ly.getChildAt(i).findViewById(R.id.textThumbnail);
+                    content = (LinearLayout) ly.getChildAt(i);
+                    if(name.getText().toString().equals(myItem.getTitle()))
+                    {
+                        setOnClickMarker(content);
+                    }
+
+                }
+                beforeShow = renderer.getMarker(myItem);
+                return true;
+            }
+        });
+
+
+        addItems();
+        mClusterManager.cluster();
+
+
+
+//        CameraPosition googlePlex = CameraPosition.builder()
+//                .target(new LatLng(-6.7487,111.0379))
+//                .zoom(15)
+//                .bearing(0)
+//                .build();
+//
+//        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex),100,null);
+//
+//        for(ListKuliner lk : listLatn)
+//        {
+//            Log.d("masuk","a");
+//            googleMap.addMarker(new MarkerOptions()
+//                    .position(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
+//                    .title(lk.getNama())
+//                    .snippet(lk.getAlamat())
+//                    .icon(bitmapDescriptor(this,R.drawable.ic_location_on_black_24dp)));
+//        }
 
         listKuliner();
 
@@ -165,24 +224,8 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
         int size = listLatn.size();
         Log.d("size",String.valueOf(size));
 
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                for(int i = 0;i<listLatn.size();i++)
-                {
 
-                    LinearLayout ly = (LinearLayout) horizontalScrollView.getChildAt(0);
-                    TextView name = ly.getChildAt(i).findViewById(R.id.textThumbnail);
-                    content = (LinearLayout) ly.getChildAt(i);
-                    if(name.getText().toString().equals(marker.getTitle()))
-                    {
-                        setOnClickMarker(content);
-                    }
 
-                }
-                return true;
-            }
-        });
         for(int i =0;i<size;i++)
         {
             final ListKuliner lk = listLatn.get(i);
@@ -245,7 +288,12 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
                     @Override
                     public void onClick(View v) {
 
-
+//
+//                        if(beforeClickLayout!=null)
+//                        {
+//                            beforeClickLayout.hideInfoWindow();
+//                            beforeClickLayout.remove();
+//                        }
                         int x = (int) v.getLeft()-((horizontalScrollView.getWidth()-v.getWidth())/2);
                         int y = v.getTop();
                         horizontalScrollView.smoothScrollTo(x,y);
@@ -258,15 +306,26 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
                                 .zoom(20)
                                 .bearing(0)
                                 .build();
-
-                        Marker marker = mMap.addMarker(new MarkerOptions()
-                                .position(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
-                                .title(lk.getNama())
-                                .snippet(lk.getAlamat())
-                                .icon(bitmapDescriptor(DetailMap.this,R.drawable.ic_location_on_black_24dp)));
+//
+//                        Marker marker = mMap.addMarker(new MarkerOptions()
+//                                .position(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
+//                                .title(lk.getNama())
+//                                .snippet(lk.getAlamat())
+//                                .icon(bitmapDescriptor(DetailMap.this,R.drawable.ic_location_on_black_24dp)));
 
                         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex),1000,null);
-                        marker.showInfoWindow();
+//                        marker.showInfoWindow();
+//                        beforeClickLayout = marker;
+
+                        for(Marker m: mClusterManager.getMarkerCollection().getMarkers())
+                        {
+                            if(lk.getNama().equals(m.getTitle()))
+                            {
+                                m.showInfoWindow();
+                                beforeShow=m;
+                            }
+
+                        }
 
 
                     }
@@ -280,6 +339,18 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
     public void setOnClickMarker(LinearLayout clickAbleColumn)
     {
         clickAbleColumn.callOnClick();
+    }
+
+
+
+    private void addItems(){
+
+        for(ListKuliner lk : listLatn) {
+
+            MyItem offsetItem = new MyItem(Double.parseDouble(lk.getLatitude()),Double.parseDouble(lk.getLongitude()),lk.getNama(),lk.getAlamat());
+            mClusterManager.addItem(offsetItem);
+        }
+
     }
 
 

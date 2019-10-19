@@ -3,11 +3,16 @@ package projekpati.com.projekpati.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.clustering.ClusterItem;
+
 import java.io.Serializable;
 
 public class ListKuliner implements Parcelable {
     String id, nama, pemilik, telp, email, website, deskripsi, alamat, tipe, file, file_small, hari_ini, jam_buka, situs_sumber,tipe_sumber,latitude,longitude;
     Integer nomor;
+
+
 
 
     public ListKuliner(String id, String nama, String pemilik, String telp, String email, String website, String deskripsi, String alamat, String tipe, String file, String file_small, String hari_ini, String jam_buka, String situs_sumber, String tipe_sumber, String latitude, String longitude, Integer nomor) {
@@ -29,6 +34,7 @@ public class ListKuliner implements Parcelable {
         this.latitude = latitude;
         this.longitude = longitude;
         this.nomor = nomor;
+
     }
 
     protected ListKuliner(Parcel in) {
@@ -172,4 +178,5 @@ public class ListKuliner implements Parcelable {
     public String getLongitude() {
         return longitude;
     }
+
 }
