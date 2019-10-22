@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="6"
+        android:weightSum="8"
         android:background="@color/white">
 
         <LinearLayout
@@ -25,7 +25,6 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_weight="1"
-                android:layout_marginRight="10dp"
                 android:clickable="true"
                 android:id="@+id/imageBack"
                 android:src="@drawable/arrowyow"/>
@@ -33,16 +32,14 @@
                 <EditText
                     android:id="@+id/cari"
                     android:layout_width="wrap_content"
-                    android:layout_weight="4"
+                    android:layout_weight="6"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="10dp"
                     android:hint="Cari Kuliner disini" />
 
                 <ImageView
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:clickable="true"
                     android:id="@+id/imageCari"
