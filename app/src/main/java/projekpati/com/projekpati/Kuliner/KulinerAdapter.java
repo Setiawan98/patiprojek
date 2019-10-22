@@ -1,4 +1,4 @@
-package projekpati.com.projekpati;
+package projekpati.com.projekpati.Kuliner;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -28,6 +28,7 @@ import javax.xml.transform.Result;
 
 import projekpati.com.projekpati.Model.KulinerModel;
 import projekpati.com.projekpati.Model.ListKuliner;
+import projekpati.com.projekpati.R;
 
 public class KulinerAdapter extends ArrayAdapter<ListKuliner> {
 

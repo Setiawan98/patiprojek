@@ -1,4 +1,4 @@
-package projekpati.com.projekpati;
+package projekpati.com.projekpati.Kuliner;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.List;
 
 import projekpati.com.projekpati.Model.JenisKuliner;
+import projekpati.com.projekpati.R;
 
 public class JenisAdapter  extends ArrayAdapter<JenisKuliner> {
     private Context context;

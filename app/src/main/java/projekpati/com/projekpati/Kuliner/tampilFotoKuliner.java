@@ -1,9 +1,10 @@
-package projekpati.com.projekpati;
+package projekpati.com.projekpati.Kuliner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.DetilKulinerModel;
+import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

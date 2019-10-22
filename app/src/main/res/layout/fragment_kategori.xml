@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".KategoriFragment">
+    tools:context=".Kuliner.KategoriFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

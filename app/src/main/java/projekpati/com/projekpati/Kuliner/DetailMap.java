@@ -1,8 +1,7 @@
-package projekpati.com.projekpati;
+package projekpati.com.projekpati.Kuliner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
@@ -12,12 +11,10 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,7 +30,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
@@ -45,6 +41,7 @@ import java.util.ArrayList;
 
 import projekpati.com.projekpati.Model.ListKuliner;
 import projekpati.com.projekpati.Model.MyItem;
+import projekpati.com.projekpati.R;
 
 public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
 

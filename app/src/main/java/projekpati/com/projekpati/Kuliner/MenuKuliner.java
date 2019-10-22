@@ -1,4 +1,4 @@
-package projekpati.com.projekpati;
+package projekpati.com.projekpati.Kuliner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -14,46 +13,33 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import androidx.fragment.app.FragmentManager;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
+import projekpati.com.projekpati.LoginActivity;
+import projekpati.com.projekpati.MainActivity;
 import projekpati.com.projekpati.Model.KulinerModel;
 import projekpati.com.projekpati.Model.ListKuliner;
+import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MenuKuliner extends AppCompatActivity {
 
@@ -115,7 +101,7 @@ public class MenuKuliner extends AppCompatActivity {
                     fragmentManager.beginTransaction().replace(R.id.fragment, fouth).commit();
                 }
                 else if(id==R.id.dataku){
-                    Intent intent = new Intent(MenuKuliner.this,LoginActivity.class);
+                    Intent intent = new Intent(MenuKuliner.this, LoginActivity.class);
                     startActivity(intent);
                 }
                 return true;
@@ -214,7 +200,7 @@ public class MenuKuliner extends AppCompatActivity {
         }
         else if(id==android.R.id.home)
         {
-            Intent i = new Intent(MenuKuliner.this,MainActivity.class);
+            Intent i = new Intent(MenuKuliner.this, MainActivity.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);

@@ -1,9 +1,10 @@
-package projekpati.com.projekpati;
+package projekpati.com.projekpati.Kuliner;
 
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import projekpati.com.projekpati.R;
 
 import android.view.LayoutInflater;
 import android.view.View;

@@ -2,16 +2,12 @@ package projekpati.com.projekpati;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
+import projekpati.com.projekpati.Kuliner.MenuKuliner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
@@ -50,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(id==android.R.id.home)
         {
-            Intent i = new Intent(LoginActivity.this,MenuKuliner.class);
+            Intent i = new Intent(LoginActivity.this, MenuKuliner.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);

@@ -1,17 +1,17 @@
-package projekpati.com.projekpati;
+package projekpati.com.projekpati.Kuliner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.KulinerModel;
 import projekpati.com.projekpati.Model.ListKuliner;
+import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;

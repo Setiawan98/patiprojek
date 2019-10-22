@@ -1,4 +1,4 @@
-package projekpati.com.projekpati;
+package projekpati.com.projekpati.Kuliner;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -19,6 +19,7 @@ import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.google.maps.android.ui.IconGenerator;
 
 import projekpati.com.projekpati.Model.MyItem;
+import projekpati.com.projekpati.R;
 
 public class CustomClusterRenderer extends DefaultClusterRenderer<MyItem> {
     private final IconGenerator iconGenerator;
@@ -32,7 +33,7 @@ public class CustomClusterRenderer extends DefaultClusterRenderer<MyItem> {
 
     @Override
     protected void onBeforeClusterItemRendered(MyItem item, MarkerOptions markerOptions) {
-        final BitmapDescriptor markerDescriptor = bitmapDescriptor(context,R.drawable.ic_location_on_black_24dp);
+        final BitmapDescriptor markerDescriptor = bitmapDescriptor(context, R.drawable.ic_location_on_black_24dp);
         markerOptions.icon(markerDescriptor).title(item.getTitle()).snippet(item.getSnippet());
 
     }

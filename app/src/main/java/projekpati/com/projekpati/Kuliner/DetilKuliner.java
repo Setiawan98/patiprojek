@@ -1,12 +1,11 @@
-package projekpati.com.projekpati;
+package projekpati.com.projekpati.Kuliner;
 
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.appcompat.widget.Toolbar;
         import projekpati.com.projekpati.API.API;
         import projekpati.com.projekpati.API.RetrofitClientInstance;
         import projekpati.com.projekpati.Model.DetilKulinerModel;
-        import projekpati.com.projekpati.Model.KulinerModel;
-        import projekpati.com.projekpati.Model.ListKuliner;
+        import projekpati.com.projekpati.R;
         import retrofit2.Call;
         import retrofit2.Callback;
         import retrofit2.Response;
@@ -18,10 +17,8 @@ package projekpati.com.projekpati;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.view.View;
-        import android.view.ViewGroup;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
-        import android.widget.ListView;
         import android.widget.TextView;
 
         import com.google.gson.Gson;
@@ -29,10 +26,7 @@ package projekpati.com.projekpati;
 
         import java.net.MalformedURLException;
         import java.net.URL;
-        import java.util.ArrayList;
-        import java.util.List;
         import java.util.Locale;
-        import java.util.Map;
 
 public class DetilKuliner extends AppCompatActivity {
 

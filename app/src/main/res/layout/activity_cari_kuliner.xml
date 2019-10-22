@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundberanda"
     android:orientation="vertical"
-    tools:context=".CariKuliner">
+    tools:context=".Kuliner.CariKuliner">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package projekpati.com.projekpati;
+package projekpati.com.projekpati.Kuliner;
 
 
 import android.app.ProgressDialog;
@@ -10,8 +10,7 @@ import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.JenisKuliner;
 import projekpati.com.projekpati.Model.JenisKulinerLengkap;
-import projekpati.com.projekpati.Model.KulinerModel;
-import projekpati.com.projekpati.Model.ListKuliner;
+import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;

@@ -20,17 +20,17 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".DetailMap" />
+        <activity android:name=".Kuliner.DetailMap" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/api_key" />
 
-        <activity android:name=".CariKuliner" />
-        <activity android:name=".TampilKulinerByJenis" />
-        <activity android:name=".tampilFotoKuliner" />
-        <activity android:name=".DetilKuliner" />
-        <activity android:name=".MenuKuliner" />
+        <activity android:name=".Kuliner.CariKuliner" />
+        <activity android:name=".Kuliner.TampilKulinerByJenis" />
+        <activity android:name=".Kuliner.tampilFotoKuliner" />
+        <activity android:name=".Kuliner.DetilKuliner" />
+        <activity android:name=".Kuliner.MenuKuliner" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
