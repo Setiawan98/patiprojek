@@ -62,6 +62,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:textAlignment="center"
                             android:layout_marginLeft="36dp"
                             android:textSize="7pt"
                             android:text="Kuliner"
@@ -89,13 +90,17 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:orientation="horizontal">
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal"
+                                android:weightSum="4">
 
                                 <LinearLayout
                                     android:id="@+id/kulinerLinear"
-                                    android:layout_width="75dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="110dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_weight="1"
                                     android:background="@drawable/linear_layout_shadow"
                                     android:gravity="center"
                                     android:orientation="vertical">
@@ -119,9 +124,11 @@
 
                                 <LinearLayout
                                     android:id="@+id/wisataLinear"
-                                    android:layout_width="75dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="110dp"
+                                    android:layout_marginTop="10dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_weight="1"
                                     android:background="@drawable/linear_layout_shadow"
                                     android:gravity="center"
                                     android:orientation="vertical">
@@ -145,9 +152,11 @@
 
                                 <LinearLayout
                                     android:id="@+id/hotelLinear"
-                                    android:layout_width="75dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="110dp"
+                                    android:layout_marginTop="10dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_weight="1"
                                     android:background="@drawable/linear_layout_shadow"
                                     android:gravity="center"
                                     android:orientation="vertical">
@@ -171,9 +180,12 @@
 
                                 <LinearLayout
                                     android:id="@+id/guideLinear"
-                                    android:layout_width="75dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="110dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_weight="1"
                                     android:background="@drawable/linear_layout_shadow"
                                     android:gravity="center"
                                     android:orientation="vertical">
@@ -199,13 +211,17 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:orientation="horizontal">
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="20dp"
+                                android:orientation="horizontal"
+                                android:weightSum="4">
 
                                 <LinearLayout
                                     android:id="@+id/spbulinear"
-                                    android:layout_width="75dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="110dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_weight="2"
                                     android:background="@drawable/linear_layout_shadow"
                                     android:gravity="center"
                                     android:orientation="vertical">
@@ -229,9 +245,11 @@
 
                                 <LinearLayout
                                     android:id="@+id/beritaLinear"
-                                    android:layout_width="75dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="110dp"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_weight="2"
                                     android:background="@drawable/linear_layout_shadow"
                                     android:gravity="center"
                                     android:orientation="vertical">
@@ -252,7 +270,6 @@
                                         android:textColor="@android:color/black" />
 
                                 </LinearLayout>
-
                             </LinearLayout>
 
                         </LinearLayout>
@@ -269,7 +286,7 @@
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_marginLeft="100dp"
+                    android:layout_gravity="center"
                     android:layout_width="150dp"
                     android:layout_height="100dp"
                     app:cardCornerRadius="15dp"
@@ -305,12 +322,16 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:weightSum="4"
+                            android:layout_marginTop="20dp"
                             android:orientation="horizontal">
 
                             <LinearLayout
                                 android:id="@+id/x"
                                 android:layout_width="75dp"
                                 android:layout_height="110dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_weight="1"
                                 android:background="@drawable/linear_layout_shadow"
                                 android:gravity="center"
                                 android:orientation="vertical">
@@ -335,6 +356,7 @@
                             <LinearLayout
                                 android:id="@+id/y2"
                                 android:layout_width="75dp"
+                                android:layout_weight="1"
                                 android:layout_height="110dp"
                                 android:layout_marginLeft="5dp"
                                 android:background="@drawable/linear_layout_shadow"
@@ -362,6 +384,7 @@
                                 android:id="@+id/y3"
                                 android:layout_width="75dp"
                                 android:layout_height="110dp"
+                                android:layout_weight="1"
                                 android:layout_marginLeft="5dp"
                                 android:background="@drawable/linear_layout_shadow"
                                 android:gravity="center"
@@ -387,8 +410,10 @@
                             <LinearLayout
                                 android:id="@+id/y7"
                                 android:layout_width="75dp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="110dp"
                                 android:layout_marginLeft="5dp"
+                                android:layout_weight="1"
                                 android:background="@drawable/linear_layout_shadow"
                                 android:gravity="center"
                                 android:orientation="vertical">
@@ -414,12 +439,16 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:weightSum="4"
                             android:orientation="horizontal">
 
                             <LinearLayout
                                 android:id="@+id/y4"
                                 android:layout_width="75dp"
+                                android:layout_weight="2"
+                                android:layout_marginLeft="10dp"
                                 android:layout_height="110dp"
                                 android:background="@drawable/linear_layout_shadow"
                                 android:gravity="center"
@@ -445,8 +474,10 @@
                             <LinearLayout
                                 android:id="@+id/y5"
                                 android:layout_width="75dp"
+                                android:layout_weight="2"
                                 android:layout_height="110dp"
                                 android:layout_marginLeft="5dp"
+                                android:layout_marginRight="10dp"
                                 android:background="@drawable/linear_layout_shadow"
                                 android:gravity="center"
                                 android:orientation="vertical">
@@ -481,7 +512,7 @@
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_marginLeft="100dp"
+                    android:layout_gravity="center"
                     android:layout_width="150dp"
                     android:layout_height="100dp"
                     app:cardCornerRadius="15dp"
@@ -517,11 +548,15 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:weightSum="4"
+                            android:layout_marginTop="20dp"
                             android:orientation="horizontal">
 
                             <LinearLayout
                                 android:id="@+id/y"
                                 android:layout_width="75dp"
+                                android:layout_weight="1"
+                                android:layout_marginLeft="10dp"
                                 android:layout_height="110dp"
                                 android:background="@drawable/linear_layout_shadow"
                                 android:gravity="center"
@@ -547,6 +582,7 @@
                             <LinearLayout
                                 android:id="@+id/x2"
                                 android:layout_width="75dp"
+                                android:layout_weight="1"
                                 android:layout_height="110dp"
                                 android:layout_marginLeft="5dp"
                                 android:background="@drawable/linear_layout_shadow"
@@ -572,6 +608,7 @@
 
                             <LinearLayout
                                 android:id="@+id/x3"
+                                android:layout_weight="1"
                                 android:layout_width="75dp"
                                 android:layout_height="110dp"
                                 android:layout_marginLeft="5dp"
@@ -598,9 +635,11 @@
 
                             <LinearLayout
                                 android:id="@+id/x7"
+                                android:layout_weight="1"
                                 android:layout_width="75dp"
                                 android:layout_height="110dp"
                                 android:layout_marginLeft="5dp"
+                                android:layout_marginRight="10dp"
                                 android:background="@drawable/linear_layout_shadow"
                                 android:gravity="center"
                                 android:orientation="vertical">
@@ -626,11 +665,15 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:weightSum="4"
                             android:orientation="horizontal">
 
                             <LinearLayout
                                 android:id="@+id/x4"
+                                android:layout_weight="2"
+                                android:layout_marginLeft="10dp"
                                 android:layout_width="75dp"
                                 android:layout_height="110dp"
                                 android:background="@drawable/linear_layout_shadow"
@@ -656,7 +699,9 @@
 
                             <LinearLayout
                                 android:id="@+id/x5"
+                                android:layout_weight="2"
                                 android:layout_width="75dp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="110dp"
                                 android:layout_marginLeft="5dp"
                                 android:background="@drawable/linear_layout_shadow"
