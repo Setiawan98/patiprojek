@@ -49,8 +49,7 @@ public class tampilFotoKuliner extends AppCompatActivity {
                     try {
                         url = new URL(response.body().getData().getFile());
                         Picasso.with(getApplicationContext())
-                                .load(String.valueOf(url))
-                                .resize(800,500).noFade().into(mImage);
+                                .load(String.valueOf(url)).noFade().into(mImage);
 
                     } catch (MalformedURLException e) {
                         e.printStackTrace();

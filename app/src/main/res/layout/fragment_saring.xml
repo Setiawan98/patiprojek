@@ -10,12 +10,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
-            android:layout_width="500dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@color/Gps"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="7pt"
                 android:layout_marginLeft="20dp"
@@ -23,112 +23,163 @@
                 android:textColor="@android:color/black"
                 android:text="Aktifkan GPS untuk memilih radius"/>
 
-            <Button
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/blue"
-                android:text="AKTIFKAN" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right">
+                <Button
+                  android:layout_gravity="center"
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                   android:layout_marginRight="20dp"
+                    android:background="@color/blue"
+                    android:text="AKTIFKAN" />
+
+            </LinearLayout>
+
+
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/diet"/>
+                    android:src="@drawable/diet" />
+
                 <EditText
-                    android:layout_marginTop="2dp"
                     android:layout_width="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:textSize="6pt"
                     android:layout_height="50dp"
-                    android:hint="Masukan kata kunci"/>
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="2dp"
+                    android:hint="Masukan kata kunci"
+                    android:textSize="6pt" />
             </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
+                android:text="(Aktifkan GPS untuk memilih radius)"
                 android:textColor="@color/grey"
-                android:layout_marginLeft="15dp"
-                android:textSize="6pt"
-                android:layout_height="40dp"
-                android:text="(Aktifkan GPS untuk memilih radius)"/>
+                android:textSize="6pt" />
+
             <TextView
                 android:layout_width="match_parent"
-                android:layout_marginTop="-5dp"
-                android:textColor="@color/grey"
-                android:layout_marginLeft="15dp"
-                android:textSize="6pt"
                 android:layout_height="40dp"
-                android:text="Radius"/>
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="-5dp"
+                android:text="Radius"
+                android:textColor="@color/grey"
+                android:textSize="6pt" />
+
             <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="100dp">
+                android:layout_height="wrap_content">
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="horizontal">
-                <RadioButton
-                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="3 Km"
-                    android:textSize="6pt"
-                    android:textColor="@color/grey"/>
-                <RadioButton
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="6pt"
-                    android:text="5 Km"
-                    android:textColor="@color/grey"/>
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RadioButton
+                        android:layout_weight="1"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="3 Km"
+                        android:textColor="@color/grey"
+                        android:textSize="6pt" />
+
+                    <RadioButton
+                        android:layout_weight="1"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="5 Km"
+                        android:textColor="@color/grey"
+                        android:textSize="6pt" />
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
                     <RadioButton
+                        android:layout_weight="1"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:textSize="6pt"
                         android:text="8 Km"
-                        android:textColor="@color/grey"/>
+                        android:textColor="@color/grey"
+                        android:textSize="6pt" />
+
                     <RadioButton
+                        android:layout_weight="1"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:textSize="6pt"
                         android:text="10 Km"
-                        android:textColor="@color/grey"/>
+                        android:textColor="@color/grey"
+                        android:textSize="6pt" />
                 </LinearLayout>
             </RadioGroup>
 
             <LinearLayout
+                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:orientation="horizontal">
-                <Button
-                    android:layout_width="130dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_height="60dp"
-                    android:text="ATUR ULANG"/>
-                <Button
-                    android:layout_width="170dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
-                    android:background="@color/blue"
-                    android:text="TERAPKAN"/>
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    >
+                    <Button
+
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:text="ATUR ULANG" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <Button
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:background="@color/blue"
+                        android:text="TERAPKAN" />
+
+                </LinearLayout>
+
+
+
             </LinearLayout>
 
 

@@ -18,7 +18,9 @@ package projekpati.com.projekpati;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.view.View;
+        import android.view.ViewGroup;
         import android.widget.ImageView;
+        import android.widget.LinearLayout;
         import android.widget.ListView;
         import android.widget.TextView;
 
@@ -40,6 +42,7 @@ public class DetilKuliner extends AppCompatActivity {
     ImageView mImage, btnMap;
     Toolbar toolbar;
     TextView title;
+    LinearLayout ly;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class DetilKuliner extends AppCompatActivity {
         setContentView(R.layout.activity_detil_kuliner);
 
         toolbar = (Toolbar) findViewById(R.id.kulinerToolbar);
+        ly = findViewById(R.id.konten);
         setSupportActionBar(toolbar);
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
@@ -90,10 +94,15 @@ public class DetilKuliner extends AppCompatActivity {
                 else
                 {
                     try {
+                       // LinearLayout ly = findViewById(R.id.konten);
+                        Integer width= ly.getWidth();
+                        Integer height =  width*65/100;
+                        Log.d("layout width",String.valueOf(width));
+                        Log.d("layout height",String.valueOf(height));
                         url = new URL(response.body().getData().getFile());
                         Picasso.with(getApplicationContext())
                                 .load(String.valueOf(url))
-                                .resize(300,200).noFade().into(mImage);
+                                .resize(width,height).noFade().into(mImage);
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
