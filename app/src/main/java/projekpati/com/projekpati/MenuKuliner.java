@@ -71,15 +71,23 @@ public class MenuKuliner extends AppCompatActivity {
         setContentView(R.layout.activity_menu_kuliner);
 
          toolbar = (Toolbar) findViewById(R.id.kulinerToolbar);
-        setSupportActionBar(toolbar);
          title = toolbar.findViewById(R.id.title);
          title.setTextColor(0xFFFFFFFF);
          iconView = toolbar.findViewById(R.id.icon);
 
         getIconImage();
+
+        setSupportActionBar(toolbar);
+
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+
+        //setSupportActionBar(toolbar);
+
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.menuKuliner);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

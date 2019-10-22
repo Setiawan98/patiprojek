@@ -126,9 +126,6 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
 
     public void getAllKuliner(){
         //defining a progress dialog to show while signing up
-        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<KulinerModel> call = api.tampilSemuaKuliner();
 
@@ -136,6 +133,8 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
             @Override
             public void onResponse(Call<KulinerModel> call, final Response<KulinerModel> response) {
                 Map<String, ListKuliner> data = response.body().getData();
+
+
 
                 Log.w("Response", new Gson().toJson(response.body()));
                 for (int i = 1; i <= 20; i++)
@@ -148,13 +147,12 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
 
                 listView.setAdapter(new KulinerAdapter(getContext(), R.layout.kuliner_adapter, list));
                 Toast.makeText(getContext().getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
+
 
             }
 
             @Override
             public void onFailure(Call<KulinerModel> call, Throwable t) {
-                progressDialog.dismiss();
                 Toast.makeText(getContext().getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
             }
@@ -173,7 +171,7 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
     public void loadMoreData(){
         //defining a progress dialog to show while signing up
 
-        CountShowData = (listView.getHeight()/161)+1;
+        CountShowData = (listView.getHeight()/161);
         Log.d("Height: ", String.valueOf(listView.getHeight()));
         Log.d("Height: ", String.valueOf(CountShowData));
 
