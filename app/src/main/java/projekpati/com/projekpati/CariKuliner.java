@@ -31,7 +31,7 @@ import java.util.Map;
 public class CariKuliner extends AppCompatActivity {
 
     EditText textCari;
-    ImageView buttonImage;
+    ImageView buttonImage, imageBack;
     Integer CountShowData;
     Integer nextPage;
     List<ListKuliner> list = new ArrayList<>();
@@ -43,7 +43,16 @@ public class CariKuliner extends AppCompatActivity {
 
         textCari = findViewById(R.id.cari);
         buttonImage = findViewById(R.id.imageCari);
+        imageBack = findViewById(R.id.imageBack);
         listView = findViewById(R.id.listKuliner);
+
+        imageBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CariKuliner.this,MenuKuliner.class);
+                startActivity(intent);
+            }
+        });
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override

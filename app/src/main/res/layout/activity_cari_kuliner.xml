@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:weightSum="6"
         android:background="@color/white">
 
         <LinearLayout
@@ -19,18 +20,35 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="10dp">
-            <EditText
-                android:layout_marginLeft="10dp"
-                android:hint="Cari Kuliner disini"
-                android:layout_width="260dp"
-                android:layout_height="50dp"
-                android:id="@+id/cari"/>
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
                 android:clickable="true"
-                android:id="@+id/imageCari"
-                android:src="@drawable/ic_search_black_24dp"/>
+                android:id="@+id/imageBack"
+                android:src="@drawable/arrowyow"/>
+
+                <EditText
+                    android:id="@+id/cari"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="4"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:hint="Cari Kuliner disini" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:id="@+id/imageCari"
+                    android:src="@drawable/backyow"/>
+
+
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
