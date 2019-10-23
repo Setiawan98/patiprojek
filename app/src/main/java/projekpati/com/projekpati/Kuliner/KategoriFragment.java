@@ -10,6 +10,8 @@ import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.JenisKuliner;
 import projekpati.com.projekpati.Model.JenisKulinerLengkap;
+import projekpati.com.projekpati.Model.JenisMakanan;
+import projekpati.com.projekpati.Model.JenisMakananLengkap;
 import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,9 +37,9 @@ import java.util.Map;
  */
 public class KategoriFragment extends Fragment {
 
-    GridView listView;
+    GridView listView, listMakanan;
     List<JenisKuliner> list = new ArrayList<>();
-
+    List<JenisMakanan> list2 = new ArrayList<>();
     public KategoriFragment() {
         // Required empty public constructor
     }
@@ -49,6 +51,7 @@ public class KategoriFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_kategori, container, false);
         listView = (GridView) view.findViewById(R.id.listKuliner);
+        listMakanan = view.findViewById(R.id.listMakanan);
         getAllJenis();
         return view;
     }
@@ -67,13 +70,9 @@ public class KategoriFragment extends Fragment {
                 Map<String, JenisKuliner> data = response.body().getData();
 
                 Log.w("Response", new Gson().toJson(response.body()));
-                for (int i = 1; i <= 20; i++)
+                for (int i = 1; i <= response.body().getJumlah_data(); i++)
                 {
-                    if (data.get(String.valueOf(i)) == null) {
-                        break;
-                    } else {
                         list.add(data.get(String.valueOf(i)));
-                    }
                 }
 
                 listView.setAdapter(new JenisAdapter(getContext(), R.layout.jenis_adapter, list));
@@ -89,6 +88,34 @@ public class KategoriFragment extends Fragment {
                 Log.d("onResponse", t.toString());
             }
         });
+
+
+        API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<JenisMakananLengkap> call2 = api2.tampilJenisMakanan();
+        call2.enqueue(new Callback<JenisMakananLengkap>() {
+            @Override
+            public void onResponse(Call<JenisMakananLengkap> call, Response<JenisMakananLengkap> response) {
+                Map<String, JenisMakanan> data = response.body().getData();
+
+                Log.w("Response", new Gson().toJson(response.body()));
+                for (int i = 1; i <= response.body().getJumlah_data(); i++)
+                {
+                    list2.add(data.get(String.valueOf(i)));
+                }
+
+                listMakanan.setAdapter(new JenisMakananAdapter(getContext(), R.layout.jenis_makanan_adapter, list2));
+                Toast.makeText(getContext().getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<JenisMakananLengkap> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(getContext().getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("onResponse", t.toString());
+            }
+        });
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

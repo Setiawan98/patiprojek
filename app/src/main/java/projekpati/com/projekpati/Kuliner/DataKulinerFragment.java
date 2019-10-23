@@ -126,11 +126,9 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
 
 
                 Log.w("Response", new Gson().toJson(response.body()));
-                for (int i = 1; i <= 20; i++)
+                for (int i = 1; i <= response.body().getJumlah_data(); i++)
                 {
-                    //int a=i+1;
                     list.add(data.get(String.valueOf(i)));
-                    Log.d("value",data.get(String.valueOf(i)).getNama());
                 }
                 nextPage = response.body().getHalaman_selanjutnya();
 
