@@ -4,10 +4,10 @@ import java.util.Map;
 
 public class DetilKulinerModel {
     String status, judul, key, waktu, icon;
-    ListKuliner data;
+    DetilKulinerBaru data;
 
 
-    public DetilKulinerModel(String status, String judul, String key, String waktu, String icon, ListKuliner data) {
+    public DetilKulinerModel(String status, String judul, String key, String waktu, String icon, DetilKulinerBaru data) {
         this.status = status;
         this.judul = judul;
         this.key = key;
@@ -43,7 +43,7 @@ public class DetilKulinerModel {
 //    }
 
 
-    public ListKuliner getData() {
+    public DetilKulinerBaru getData() {
         return data;
     }
 }

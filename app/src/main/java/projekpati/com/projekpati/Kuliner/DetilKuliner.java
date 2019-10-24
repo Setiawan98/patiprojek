@@ -30,7 +30,7 @@ package projekpati.com.projekpati.Kuliner;
 
 public class DetilKuliner extends AppCompatActivity {
 
-    TextView textNama, textAlamat, textTelepon, textJamBuka;
+    TextView textNama, textAlamat, textTelepon, textDeskripsi, textEmail, textWebsite, textPemilik;
     float lat;
     float longt;
     ImageView mImage, btnMap;
@@ -50,8 +50,12 @@ public class DetilKuliner extends AppCompatActivity {
         title.setTextColor(0xFFFFFFFF);
         textNama = findViewById(R.id.mNama);
         textAlamat = findViewById(R.id.mAlamat);
-        textJamBuka = findViewById(R.id.mJamBuka);
         textTelepon = findViewById(R.id.mTelpon);
+        textDeskripsi = findViewById(R.id.mDeskripsi);
+        textEmail = findViewById(R.id.mEmail);
+        textWebsite = findViewById(R.id.mWebsite);
+        textPemilik = findViewById(R.id.mPemilik);
+
         mImage = findViewById(R.id.mImage);
         btnMap = findViewById(R.id.btnMap);
 
@@ -75,7 +79,10 @@ public class DetilKuliner extends AppCompatActivity {
                 Log.w("ResponseAsu", new Gson().toJson(response.body()));
                 textNama.setText(response.body().getData().getNama());
                 textAlamat.setText(response.body().getData().getAlamat());
-                textJamBuka.setText(response.body().getData().getJam_buka());
+                textDeskripsi.setText(response.body().getData().getDeskripsi());
+                textEmail.setText(response.body().getData().getEmail());
+                textPemilik.setText(response.body().getData().getPemilik());
+                textWebsite.setText(response.body().getData().getWebsite());
                 textTelepon.setText(response.body().getData().getTelp());
                 lat = Float.parseFloat(response.body().getData().getLatitude());
                 longt = Float.parseFloat(response.body().getData().getLongitude());
