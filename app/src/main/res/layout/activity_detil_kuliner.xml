@@ -18,6 +18,7 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
 
         app:navigationIcon="@drawable/ic_person_black_24dp">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,90 +32,94 @@
 
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white">
-        <androidx.cardview.widget.CardView
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearDetil"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="10dp"
-            app:cardUseCompatPadding="false">
-            <LinearLayout
-                android:id="@+id/konten"
+            android:background="@android:color/white">
+            <androidx.cardview.widget.CardView
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:orientation="vertical">
-
-
-
-                <ImageView
-                    android:id="@+id/mImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/iconmakan"/>
-
-
-
+                app:cardCornerRadius="0dp"
+                app:cardElevation="10dp"
+                app:cardUseCompatPadding="false">
                 <LinearLayout
+                    android:id="@+id/konten"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/white"
                     android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/mNama"
-                        android:layout_width="wrap_content"
+
+
+                    <ImageView
+                        android:id="@+id/mImage"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:ellipsize="end"
-                        android:paddingRight="10dp"
-                        android:textColor="@android:color/black"
-                        android:textSize="10pt"
-                        android:textStyle="bold" />
+                        android:src="@drawable/iconmakan" />
+
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="3dp">
+                        android:orientation="vertical">
                         <TextView
-                            android:layout_width="match_parent"
+                            android:id="@+id/mNama"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:text="Kuliner"
                             android:layout_marginLeft="15dp"
                             android:ellipsize="end"
-                            android:paddingRight="5dp"
-                            android:textColor="@color/black"
-                            android:textSize="6pt" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="right"
-                            android:text="• Jam Buka"
-                            android:layout_marginLeft="10dp"
-                            android:ellipsize="end"
-                            android:paddingRight="5dp"
-                            android:textColor="@color/green"
-                            android:textSize="6pt"
+                            android:paddingRight="10dp"
+                            android:textColor="@android:color/black"
+                            android:textSize="10pt"
                             android:textStyle="bold" />
-                    </LinearLayout>
-                </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="3dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:text="Kuliner"
+                                android:layout_marginLeft="15dp"
+                                android:ellipsize="end"
+                                android:paddingRight="5dp"
+                                android:textColor="@color/black"
+                                android:textSize="6pt" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Deskripsi"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/mDeskripsi"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:text="• Jam Buka"
+                                android:layout_marginLeft="10dp"
+                                android:ellipsize="end"
+                                android:paddingRight="5dp"
+                                android:textColor="@color/green"
+                                android:textSize="6pt"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="15dp"
+                        android:text="Deskripsi"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/mDeskripsi"/>
 
 
                     <LinearLayout
@@ -176,7 +181,7 @@
                                 android:layout_width="15dp"
                                 android:layout_height="15dp"
                                 android:layout_marginLeft="10dp"
-                                android:src="@drawable/logotelpon"
+                                android:src="@drawable/logoemail"
                                 android:layout_marginRight="10dp">
                             </ImageView>
                             <TextView
@@ -204,7 +209,7 @@
                                 android:layout_width="15dp"
                                 android:layout_height="15dp"
                                 android:layout_marginLeft="10dp"
-                                android:src="@drawable/logotelpon"
+                                android:src="@drawable/logowebsite"
                                 android:layout_marginRight="10dp">
                             </ImageView>
                             <TextView
@@ -240,20 +245,294 @@
 
                     </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/btnMap"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignEnd="@+id/mImage"
-                    android:layout_alignBottom="@+id/mImage"
-                    android:layout_gravity="right"
-                    android:layout_marginEnd="10dp"
-                    android:clickable="true"
-                    android:layout_marginBottom="20dp"
-                    android:src="@drawable/ic_directions_black_24dp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal"
+                        android:weightSum="8">
 
-    </LinearLayout>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/buttonJam"
+                            android:layout_weight="4"
+                            android:text="Lihat Jam Buka"
+                            android:background="@color/green"/>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:id="@+id/btnMap"
+                            android:layout_weight="1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignEnd="@+id/mImage"
+                            android:layout_alignBottom="@+id/mImage"
+                            android:layout_gravity="right"
+                            android:layout_marginEnd="10dp"
+                            android:clickable="true"
+                            android:layout_marginBottom="20dp"
+                            android:src="@drawable/ic_directions_black_24dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearJam"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:background="@android:color/white">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="10dp"
+                app:cardUseCompatPadding="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/green"
+                        android:gravity="center"
+                        android:text="JAM BUKA"
+                        android:textColor="@color/black"
+                        android:textSize="8pt" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="Senin      :"
+                                android:textColor="@color/black"
+                                android:textSize="8pt"></TextView>
+
+                            <TextView
+                                android:id="@+id/mSenin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="20dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="7pt" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:background="#535353" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="Selasa    :"
+                                android:textColor="@color/black"
+                                android:textSize="8pt"></TextView>
+
+                            <TextView
+                                android:id="@+id/mSelasa"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="20dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="7pt" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:background="#535353" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="Rabu       :"
+                                android:textColor="@color/black"
+                                android:textSize="8pt"></TextView>
+
+                            <TextView
+                                android:id="@+id/mRabu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="20dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="7pt" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:background="#535353" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="Kamis     :"
+                                android:textColor="@color/black"
+                                android:textSize="8pt"></TextView>
+
+                            <TextView
+                                android:id="@+id/mKamis"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="20dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="7pt" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:background="#535353" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="Jumat     :"
+                                android:textColor="@color/black"
+                                android:textSize="8pt"></TextView>
+
+                            <TextView
+                                android:id="@+id/mJumat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="20dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="7pt" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:background="#535353" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="Sabtu      :"
+                                android:textColor="@color/black"
+                                android:textSize="8pt"></TextView>
+
+                            <TextView
+                                android:id="@+id/mSabtu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="20dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="7pt" />
+                        </LinearLayout>
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:background="#535353" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="Minggu   :"
+                                android:textColor="@color/black"
+                                android:textSize="8pt"></TextView>
+
+                            <TextView
+                                android:id="@+id/mMinggu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingRight="20dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="7pt" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#535353" />
+                    <Button
+                        android:id="@+id/buttonDetil"
+                        android:layout_marginBottom="50dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@color/red"
+                        android:text="Kembali ke Detil"
+                        android:textColor="@color/white"
+                        android:textSize="8pt"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </RelativeLayout>
+
 
 </LinearLayout>

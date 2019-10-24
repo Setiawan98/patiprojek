@@ -17,6 +17,7 @@ package projekpati.com.projekpati.Kuliner;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.view.View;
+        import android.widget.Button;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
         import android.widget.TextView;
@@ -31,9 +32,12 @@ package projekpati.com.projekpati.Kuliner;
 public class DetilKuliner extends AppCompatActivity {
 
     TextView textNama, textAlamat, textTelepon, textDeskripsi, textEmail, textWebsite, textPemilik;
+    TextView senin, selasa, rabu, kamis, jumat, sabtu, minggu;
+    Button btnDetil, btnJam;
     float lat;
     float longt;
     ImageView mImage, btnMap;
+    LinearLayout linearDetil, linearJam;
     Toolbar toolbar;
     TextView title;
     LinearLayout ly;
@@ -48,6 +52,17 @@ public class DetilKuliner extends AppCompatActivity {
         setSupportActionBar(toolbar);
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
+        linearDetil = findViewById(R.id.linearDetil);
+        linearJam = findViewById(R.id.linearJam);
+        senin = findViewById(R.id.mSenin);
+        selasa = findViewById(R.id.mSelasa);
+        rabu = findViewById(R.id.mRabu);
+        kamis = findViewById(R.id.mKamis);
+        jumat = findViewById(R.id.mJumat);
+        sabtu = findViewById(R.id.mSabtu);
+        minggu = findViewById(R.id.mMinggu);
+        btnDetil = findViewById(R.id.buttonDetil);
+        btnJam = findViewById(R.id.buttonJam);
         textNama = findViewById(R.id.mNama);
         textAlamat = findViewById(R.id.mAlamat);
         textTelepon = findViewById(R.id.mTelpon);
@@ -64,6 +79,8 @@ public class DetilKuliner extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        linearDetil.setVisibility(View.VISIBLE);
+        linearJam.setVisibility(View.INVISIBLE);
 
         final Bundle bundle = getIntent().getExtras();
         String id = bundle.getString("id_kuliner");
@@ -84,6 +101,13 @@ public class DetilKuliner extends AppCompatActivity {
                 textPemilik.setText(response.body().getData().getPemilik());
                 textWebsite.setText(response.body().getData().getWebsite());
                 textTelepon.setText(response.body().getData().getTelp());
+                senin.setText(response.body().getData().getHari_1());
+                selasa.setText(response.body().getData().getHari_2());
+                rabu.setText(response.body().getData().getHari_3());
+                kamis.setText(response.body().getData().getHari_4());
+                jumat.setText(response.body().getData().getHari_5());
+                sabtu.setText(response.body().getData().getHari_6());
+                minggu.setText(response.body().getData().getHari_0());
                 lat = Float.parseFloat(response.body().getData().getLatitude());
                 longt = Float.parseFloat(response.body().getData().getLongitude());
 
@@ -135,6 +159,22 @@ public class DetilKuliner extends AppCompatActivity {
                 Intent intent = new Intent(DetilKuliner.this,tampilFotoKuliner.class);
                 intent.putExtra("id_kuliner",bundle.getString("id_kuliner"));
                 startActivity(intent);
+            }
+        });
+
+        btnJam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearDetil.setVisibility(View.INVISIBLE);
+                linearJam.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btnDetil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearJam.setVisibility(View.INVISIBLE);
+                linearDetil.setVisibility(View.VISIBLE);
             }
         });
 

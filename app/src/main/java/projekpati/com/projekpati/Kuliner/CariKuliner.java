@@ -111,6 +111,15 @@ public class CariKuliner extends AppCompatActivity {
                         Log.d("onResponse", t.toString());
                     }
                 });
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(CariKuliner.this,DetilKuliner.class);
+                        intent.putExtra("id_kuliner",list.get(position).getId());
+                        startActivity(intent);
+                    }
+                });
             }
         });
 
