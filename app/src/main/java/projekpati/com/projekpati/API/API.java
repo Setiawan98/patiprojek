@@ -1,12 +1,16 @@
 package projekpati.com.projekpati.API;
 
 import projekpati.com.projekpati.Model.APIKey;
+import projekpati.com.projekpati.Model.DetilKulinerBaru;
 import projekpati.com.projekpati.Model.DetilKulinerModel;
 import projekpati.com.projekpati.Model.JenisKulinerLengkap;
 import projekpati.com.projekpati.Model.JenisMakananLengkap;
 import projekpati.com.projekpati.Model.KulinerModel;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -31,6 +35,11 @@ public interface API {
 
     @GET("gkey")
     Call<APIKey> getAPIkey();
+
+    @FormUrlEncoded
+    @POST("kuliner/update?key=TechnoPhoriaIndonesia")
+    Call<DetilKulinerBaru> addDataKuliner(
+            @Field("nama") String nama);
 
 
 
