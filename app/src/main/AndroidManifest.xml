@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Kuliner.TampilJenisMakanan"></activity>
         <activity android:name=".LoginActivity" />
 
         <uses-library

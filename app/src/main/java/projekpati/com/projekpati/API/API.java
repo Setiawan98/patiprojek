@@ -21,6 +21,12 @@ public interface API {
     @GET(" kuliner/jenis/?key=TechnoPhoriaIndonesia")
     Call<JenisKulinerLengkap> tampilSemuaJenis();
 
+    @GET("kuliner/data/?key=TechnoPhoriaIndonesia")
+    Call<KulinerModel> cariKulinerByJenis(@Query("IDJenis") String keyword);
+
+    @GET("kuliner/data/?key=TechnoPhoriaIndonesia")
+    Call<KulinerModel> cariKulinerJenisMakanan(@Query("IDJenisMakanan") String keyword);
+
     @GET(" kuliner/jenis_makanan?key=TechnoPhoriaIndonesia")
     Call<JenisMakananLengkap> tampilJenisMakanan();
 
@@ -40,7 +46,6 @@ public interface API {
     @POST("kuliner/update?key=TechnoPhoriaIndonesia")
     Call<DetilKulinerBaru> addDataKuliner(
             @Field("nama") String nama);
-
 
 
 }

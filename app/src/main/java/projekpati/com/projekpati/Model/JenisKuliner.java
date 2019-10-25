@@ -1,12 +1,13 @@
 package projekpati.com.projekpati.Model;
 
 public class JenisKuliner {
-    String id, nama;
+    String id, nama, icon;
     Integer nomor;
 
-    public JenisKuliner(String id, String nama, Integer nomor) {
+    public JenisKuliner(String id, String nama, String icon, Integer nomor) {
         this.id = id;
         this.nama = nama;
+        this.icon = icon;
         this.nomor = nomor;
     }
 
@@ -20,5 +21,9 @@ public class JenisKuliner {
 
     public Integer getNomor() {
         return nomor;
+    }
+
+    public String getIcon() {
+        return icon;
     }
 }

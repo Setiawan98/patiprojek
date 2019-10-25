@@ -89,6 +89,16 @@ public class KategoriFragment extends Fragment {
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(),TampilKulinerByJenis.class);
+                intent.putExtra("id_kuliner",list.get(position).getId());
+                intent.putExtra("kategori",list.get(position).getNama());
+                startActivity(intent);
+            }
+        });
+
 
         API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<JenisMakananLengkap> call2 = api2.tampilJenisMakanan();
@@ -117,11 +127,12 @@ public class KategoriFragment extends Fragment {
         });
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listMakanan.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(),TampilKulinerByJenis.class);
-                intent.putExtra("kategori",list.get(position).getNama());
+                Intent intent = new Intent(getContext(),TampilJenisMakanan.class);
+                intent.putExtra("id_kuliner",list2.get(position).getId());
+                intent.putExtra("makanan",list2.get(position).getNama());
                 startActivity(intent);
             }
         });

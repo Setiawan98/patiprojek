@@ -34,7 +34,24 @@ public class JenisAdapter  extends ArrayAdapter<JenisKuliner> {
         final View rowView = inflater.inflate(R.layout.jenis_adapter, parent, false);
 
         TextView textNama = (TextView) rowView.findViewById(R.id.mNama);
+        ImageView mImage = rowView.findViewById(R.id.mImage);
 
+        URL url = null;
+        if(kuliner.get(pos).getIcon().equals(""))
+        {
+            //tidak terjadi perubahan apapun
+        }
+        else
+        {
+            try {
+                url = new URL(kuliner.get(pos).getIcon());
+                Picasso.with(getContext())
+                        .load(String.valueOf(url))
+                        .resize(150,100).noFade().into(mImage);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
         textNama.setText(kuliner.get(pos).getNama());
 
         return rowView;

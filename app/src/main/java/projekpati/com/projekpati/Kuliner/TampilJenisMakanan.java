@@ -30,20 +30,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class TampilKulinerByJenis extends AppCompatActivity {
+public class TampilJenisMakanan extends AppCompatActivity {
     ListView listView;
-    Integer CountShowData;
     Integer nextPage=1;
     Integer beforePage;
     List<ListKuliner> list = new ArrayList<>();
     Toolbar toolbar;
     TextView title;
     Boolean isFinised=true;
-     ProgressDialog progressDialog;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tampil_kuliner_by_jenis);
+        setContentView(R.layout.activity_tampil_jenis_makanan);
+
         toolbar = findViewById(R.id.kulinerToolbar);
         listView = (ListView) findViewById(R.id.listKuliner);
         setSupportActionBar(toolbar);
@@ -51,7 +51,7 @@ public class TampilKulinerByJenis extends AppCompatActivity {
         title.setTextColor(0xFFFFFFFF);
 
         final Bundle bundle = getIntent().getExtras();
-        final String nama = bundle.getString("kategori");
+        final String nama = bundle.getString("makanan");
 
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
@@ -66,17 +66,11 @@ public class TampilKulinerByJenis extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(TampilKulinerByJenis.this,DetilKuliner.class);
+                Intent intent = new Intent(TampilJenisMakanan.this,DetilKuliner.class);
                 intent.putExtra("id_kuliner",list.get(position).getId());
                 startActivity(intent);
             }
         });
-
-
-
-
-
-
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -90,7 +84,7 @@ public class TampilKulinerByJenis extends AppCompatActivity {
                         // Execute LoadMoreDataTask AsyncTask
                         //Toast.makeText(MenuKuliner.this, String.valueOf(nextPage),Toast.LENGTH_SHORT).show();
                         if (nextPage==0){
-                            Toast.makeText(TampilKulinerByJenis.this, "No More Data",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TampilJenisMakanan.this, "No More Data",Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
@@ -109,13 +103,12 @@ public class TampilKulinerByJenis extends AppCompatActivity {
         });
     }
 
-
     public void getAllData(){
         final Bundle bundle = getIntent().getExtras();
         final String kategori = bundle.getString("id_kuliner");
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<KulinerModel> call = api.cariKulinerByJenis(kategori);
+        Call<KulinerModel> call = api.cariKulinerJenisMakanan(kategori);
 
         call.enqueue(new Callback<KulinerModel>() {
             @Override
@@ -145,8 +138,8 @@ public class TampilKulinerByJenis extends AppCompatActivity {
                 }
                 else{
 
-                    listView.setAdapter(new KulinerAdapter(TampilKulinerByJenis.this, R.layout.kuliner_adapter, list));
-                    Toast.makeText(TampilKulinerByJenis.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
+                    listView.setAdapter(new KulinerAdapter(TampilJenisMakanan.this, R.layout.kuliner_adapter, list));
+                    Toast.makeText(TampilJenisMakanan.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                 }
 
@@ -154,7 +147,7 @@ public class TampilKulinerByJenis extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<KulinerModel> call, Throwable t) {
-                Toast.makeText(TampilKulinerByJenis.this.getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(TampilJenisMakanan.this.getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
             }
         });
@@ -188,8 +181,8 @@ public class TampilKulinerByJenis extends AppCompatActivity {
                 }
                 else{
 
-                    listView.setAdapter(new KulinerAdapter(TampilKulinerByJenis.this, R.layout.kuliner_adapter, list));
-                    Toast.makeText(TampilKulinerByJenis.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
+                    listView.setAdapter(new KulinerAdapter(TampilJenisMakanan.this, R.layout.kuliner_adapter, list));
+                    Toast.makeText(TampilJenisMakanan.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                 }
 
@@ -200,7 +193,7 @@ public class TampilKulinerByJenis extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<KulinerModel> call, Throwable t) {
-                Toast.makeText(TampilKulinerByJenis.this.getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(TampilJenisMakanan.this.getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
             }
         });
@@ -221,7 +214,7 @@ public class TampilKulinerByJenis extends AppCompatActivity {
 
         if(id==android.R.id.home)
         {
-            Intent i = new Intent(TampilKulinerByJenis.this,MenuKuliner.class);
+            Intent i = new Intent(TampilJenisMakanan.this,MenuKuliner.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);
