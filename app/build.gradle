@@ -52,6 +52,7 @@ dependencies {
 
 
     // Google MAPS
+    implementation 'com.google.android.gms:play-services-auth:11.8.0'
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
 
     // Auto Complete Place & location
