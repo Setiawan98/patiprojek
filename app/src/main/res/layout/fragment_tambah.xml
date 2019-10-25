@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Kuliner.TambahFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Kuliner.TambahFragment"
+    android:orientation="vertical">
+    <ScrollView
+        android:id="@+id/form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -98,7 +104,7 @@
                     android:layout_height="20dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/placeholder"/>
+                    android:src="@drawable/ic_person_black_24dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
@@ -109,18 +115,18 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Lokasi"
+                        android:text="Pemilik"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
                     <EditText
-                        android:id="@+id/mAlamat"
+                        android:id="@+id/mPemilik"
                         android:layout_marginTop="-20dp"
                         android:layout_width="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="20dp"
                         android:textSize="6pt"
                         android:layout_height="50dp"
-                        android:hint="Cari lokasi tempat makan"/>
+                        android:hint="Masukan pemilik tempat makan"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -134,7 +140,7 @@
                     android:layout_height="20dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/ic_menuicon"/>
+                    android:src="@drawable/ic_phone_black_24dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
@@ -145,17 +151,19 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Jenis"
+                        android:text="Nomor Telepon"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
                     <EditText
+                        android:id="@+id/mNomorTelp"
                         android:layout_marginTop="-20dp"
                         android:layout_width="match_parent"
                         android:layout_marginLeft="5dp"
                         android:textSize="6pt"
+                        android:inputType="phone"
                         android:layout_marginRight="20dp"
                         android:layout_height="50dp"
-                        android:hint="Pilih jenis tempat makan"/>
+                        android:hint="Masukan Nomor Telepon Anda"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -169,66 +177,76 @@
                     android:layout_height="20dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/iconjam"/>
+                    android:src="@drawable/logowebsite"
+                    android:backgroundTint="@android:color/black"/>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="80dp"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="120dp"
-                        android:layout_height="80dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="5dp"
-                            android:text="Jam buka"
-                            android:textColor="@color/black"
-                            android:textSize="6pt"/>
-                        <EditText
-                            android:layout_marginTop="-20dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:textSize="6pt"
-                            android:layout_height="50dp"
-                            android:hint="00:00"/>
-
-                    </LinearLayout>
-                    <View
-                        android:layout_width="1dp"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_height="fill_parent"
-                        android:background="#535353" />
-                    <LinearLayout
-                        android:layout_width="120dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_height="80dp"
-                        android:orientation="vertical">
+                        android:text="Website"
+                        android:textColor="@color/black"
+                        android:textSize="6pt"/>
+                    <EditText
+                        android:id="@+id/mWebsite"
+                        android:layout_marginTop="-20dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="6pt"
+                        android:layout_height="50dp"
+                        android:hint="Masukan Website tempat makan Anda"/>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="30dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="5dp"
-                            android:text="Jam tutup"
-                            android:textColor="@color/black"
-                            android:textSize="6pt"/>
-                        <EditText
-                            android:layout_marginTop="-20dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:textSize="6pt"
-                            android:layout_height="50dp"
-                            android:hint="00:00"/>
-
-                    </LinearLayout>
                 </LinearLayout>
-
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/ic_location_on_black_24dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:text="Location"
+                        android:textColor="@color/black"
+                        android:textSize="6pt"/>
+                    <Button
+                        android:id="@+id/btnLocation"
+                        android:layout_width="150dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="6pt"
+                        android:layout_height="wrap_content"
+                        android:text="Set Lokasi >>"/>
+                    <fragment
+                        android:id="@+id/map2"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginRight="20dp"
+                        android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+                </LinearLayout>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -261,6 +279,7 @@
                         android:layout_marginLeft="5dp"
                         android:textSize="6pt"
                         android:layout_height="50dp"
+                        android:id="@+id/mDeskripsi"
                         android:hint="Masukan deskripsi tempat makan Anda"/>
 
                 </LinearLayout>
@@ -278,6 +297,72 @@
 
             </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
 
-</FrameLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/showMap"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.google.android.gms.maps.SupportMapFragment" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+            <fragment
+                android:id="@+id/autoComplete_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"/>
+
+        </LinearLayout>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnSetLocations"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:cardBackgroundColor="@color/grey"
+            app:cardCornerRadius="5dp"
+            android:layout_alignBottom="@+id/icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp">
+            <TextView
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lokasi di sini >>"
+                android:padding="10dp" />
+
+        </androidx.cardview.widget.CardView>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/icon"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_location_on_black_24dp"/>
+        <Button
+
+            android:id="@+id/btnSimpanLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="70dp"
+            android:text="Simpan"
+            android:layout_alignParentBottom="true"
+            android:background="@color/grey"
+            android:textColor="@android:color/white"/>
+    </RelativeLayout>
+
+
+</LinearLayout>
