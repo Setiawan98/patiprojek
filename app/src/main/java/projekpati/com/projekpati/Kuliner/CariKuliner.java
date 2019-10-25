@@ -10,16 +10,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -54,6 +59,18 @@ public class CariKuliner extends AppCompatActivity {
             }
         });
 
+        textCari.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    performSearch();
+                    hideSoftKeyboard(CariKuliner.this);
+                    return true;
+                }
+                return false;
+            }
+        });
+
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -81,9 +98,11 @@ public class CariKuliner extends AppCompatActivity {
 
             }
         });
+
         buttonImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hideSoftKeyboard(CariKuliner.this);
                 API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
                 Call<KulinerModel> call = api.cariKulinerbyAPI(textCari.getText().toString());
                 call.enqueue(new Callback<KulinerModel>() {
@@ -92,15 +111,10 @@ public class CariKuliner extends AppCompatActivity {
                         Map<String, ListKuliner> data = response.body().getData();
                         list.clear();
                         Log.w("ResponseCari", new Gson().toJson(response.body()));
-                        for (int i = 1; i <= 20; i++) {
-                            if (data.get(String.valueOf(i)) == null) {
-                                break;
-                            } else {
-                                list.add(data.get(String.valueOf(i)));
-                            }
-                            nextPage = response.body().getHalaman_selanjutnya();
-                            Log.d("value", data.get(String.valueOf(i)).getNama());
+                        for (int i = 1; i <= response.body().getJumlah_data(); i++) {
+                            list.add(data.get(String.valueOf(i)));
                         }
+                        nextPage = response.body().getHalaman_selanjutnya();
                         listView.setAdapter(new KulinerAdapter(CariKuliner.this, R.layout.kuliner_adapter, list));
                         Toast.makeText(CariKuliner.this.getApplicationContext(), "Ditemukan", Toast.LENGTH_SHORT).show();
                     }
@@ -124,6 +138,49 @@ public class CariKuliner extends AppCompatActivity {
         });
 
 
+    }
+
+    public void performSearch()
+    {
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<KulinerModel> call = api.cariKulinerbyAPI(textCari.getText().toString());
+        call.enqueue(new Callback<KulinerModel>() {
+            @Override
+            public void onResponse(Call<KulinerModel> call, Response<KulinerModel> response) {
+                Map<String, ListKuliner> data = response.body().getData();
+                list.clear();
+                Log.w("ResponseCari", new Gson().toJson(response.body()));
+                for (int i = 1; i <= response.body().getJumlah_data(); i++) {
+                    list.add(data.get(String.valueOf(i)));
+                }
+                nextPage = response.body().getHalaman_selanjutnya();
+                listView.setAdapter(new KulinerAdapter(CariKuliner.this, R.layout.kuliner_adapter, list));
+                Toast.makeText(CariKuliner.this.getApplicationContext(), "Ditemukan", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<KulinerModel> call, Throwable t) {
+                Toast.makeText(CariKuliner.this.getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("onResponse", t.toString());
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(CariKuliner.this,DetilKuliner.class);
+                intent.putExtra("id_kuliner",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(), 0);
     }
 
         public void loadMoreData(){

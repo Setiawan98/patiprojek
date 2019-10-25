@@ -46,8 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(id==android.R.id.home)
         {
-            Intent i = new Intent(LoginActivity.this, MenuKuliner.class);
-            startActivity(i);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -69,11 +69,6 @@ public class MenuKuliner extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-
-
-        //setSupportActionBar(toolbar);
-
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.menuKuliner);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

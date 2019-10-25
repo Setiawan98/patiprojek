@@ -190,11 +190,9 @@ public class DetilKuliner extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if(id==android.R.id.home)
         {
-            Intent i = new Intent(DetilKuliner.this,MenuKuliner.class);
-            startActivity(i);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

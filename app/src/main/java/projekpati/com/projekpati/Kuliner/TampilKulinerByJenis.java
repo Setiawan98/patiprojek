@@ -2,6 +2,7 @@ package projekpati.com.projekpati.Kuliner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.KulinerModel;
@@ -53,7 +54,6 @@ public class TampilKulinerByJenis extends AppCompatActivity {
         final Bundle bundle = getIntent().getExtras();
         final String nama = bundle.getString("kategori");
 
-
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         title.setText(nama);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -73,11 +73,6 @@ public class TampilKulinerByJenis extends AppCompatActivity {
         });
 
 
-
-
-
-
-
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -94,7 +89,7 @@ public class TampilKulinerByJenis extends AppCompatActivity {
                         }
                         else
                         {
-                            //loadMoreData();
+                            loadmore();
                         }
 
                     }
@@ -123,33 +118,14 @@ public class TampilKulinerByJenis extends AppCompatActivity {
                 Map<String, ListKuliner> data = response.body().getData();
 
                 Log.w("Response", new Gson().toJson(response.body()));
-                for (int i = nextPage; i <= nextPage+response.body().getJumlah_data()-1; i++)
+                for (int i = 1; i <= response.body().getJumlah_data(); i++)
                 {
                     list.add(data.get(String.valueOf(i)));
                 }
-                beforePage=nextPage;
                 nextPage = response.body().getHalaman_selanjutnya();
-
-
-
-                Integer np=1;
-                Log.d("next: ",String.valueOf(nextPage));
-                if(nextPage!=0)
-                {
-                    isFinised=false;
-                    Log.d("Masuk: ","aaaa");
-
-                    loadmore();
-
-
-                }
-                else{
-
-                    listView.setAdapter(new KulinerAdapter(TampilKulinerByJenis.this, R.layout.kuliner_adapter, list));
-                    Toast.makeText(TampilKulinerByJenis.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                }
-
+                listView.setAdapter(new KulinerAdapter(TampilKulinerByJenis.this, R.layout.kuliner_adapter, list));
+                Toast.makeText(TampilKulinerByJenis.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
 
             @Override
@@ -162,6 +138,7 @@ public class TampilKulinerByJenis extends AppCompatActivity {
     }
 
     public void loadmore(){
+        CountShowData = (listView.getHeight()/161)+1;
         final Bundle bundle = getIntent().getExtras();
         final String kategori = bundle.getString("kategori");
 
@@ -172,28 +149,20 @@ public class TampilKulinerByJenis extends AppCompatActivity {
             @Override
             public void onResponse(Call<KulinerModel> call, final Response<KulinerModel> response) {
                 Map<String, ListKuliner> data = response.body().getData();
-
+                Integer beforePage = nextPage;
 
                 Log.w("Response", new Gson().toJson(response.body()));
                 for (int i = nextPage; i <= nextPage+response.body().getJumlah_data()-1; i++)
                 {
                     list.add(data.get(String.valueOf(i)));
                 }
-                // beforePage=nextPage;
                 nextPage = response.body().getHalaman_selanjutnya();
                 Log.d("nextpage",String.valueOf(nextPage));
-                if(nextPage!=0)
-                {
-                    loadmore();
-                }
-                else{
+                listView.setAdapter(new KulinerAdapter(TampilKulinerByJenis.this, R.layout.kuliner_adapter, list));
+                Toast.makeText(TampilKulinerByJenis.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
 
-                    listView.setAdapter(new KulinerAdapter(TampilKulinerByJenis.this, R.layout.kuliner_adapter, list));
-                    Toast.makeText(TampilKulinerByJenis.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                }
-
-
+                listView.setSelection(beforePage-CountShowData);
                 isFinised=true;
 
             }
@@ -221,8 +190,7 @@ public class TampilKulinerByJenis extends AppCompatActivity {
 
         if(id==android.R.id.home)
         {
-            Intent i = new Intent(TampilKulinerByJenis.this,MenuKuliner.class);
-            startActivity(i);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
