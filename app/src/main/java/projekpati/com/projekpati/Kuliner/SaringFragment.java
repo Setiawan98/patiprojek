@@ -86,6 +86,7 @@ public class SaringFragment extends Fragment {
                 switch(checkedId)
                 {
                     case R.id.pick3:
+                        //radius nya dalam m, 1000 m = 1 km
                         radius=3000;
                         saring=3;
                         Toast.makeText(getContext(), "3 Km", Toast.LENGTH_SHORT).show();

@@ -36,6 +36,7 @@ public class DataSaringActivity extends AppCompatActivity {
     ListView listView;
     Integer nextPage = 1;
     List<ListKuliner> list = new ArrayList<>();
+    List<ListKuliner> listsaring = new ArrayList<>();
     Toolbar toolbar;
     TextView title;
     ProgressDialog progressDialog;
@@ -95,94 +96,148 @@ public class DataSaringActivity extends AppCompatActivity {
 
     public void getAllData() {
         final Bundle bundle = getIntent().getExtras();
-        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<KulinerModel> call = api.tampilSemuaKuliner();
 
-        call.enqueue(new Callback<KulinerModel>() {
-            @Override
-            public void onResponse(Call<KulinerModel> call, final Response<KulinerModel> response) {
-                Map<String, ListKuliner> data = response.body().getData();
+        String namasaring = bundle.getString("namasaring");
 
-                Log.w("Response", new Gson().toJson(response.body()));
-                for (int i = nextPage; i <= nextPage+response.body().getJumlah_data()-1 ; i++) {
-                    Bundle bundle = getIntent().getExtras();
-                    Double longitude = bundle.getDouble("longitude");
-                    Double latitude = bundle.getDouble("latitude");
-                    Double radius = bundle.getDouble("radius");
-                    String namasaring = bundle.getString("namasaring");
-                    if(latitude<Double.parseDouble(data.get(String.valueOf(i)).getLatitude()))
-                    {
-                        Location startPoint=new Location("locationA");
-                        startPoint.setLatitude(Double.parseDouble(data.get(String.valueOf(i)).getLatitude()));
-                        startPoint.setLongitude(Double.parseDouble(data.get(String.valueOf(i)).getLongitude()));
+        if(namasaring.equals(""))
+        {
+            API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+            Call<KulinerModel> call = api.tampilSemuaKuliner();
 
-                        Location endPoint=new Location("locationB");
-                        endPoint.setLatitude(latitude);
-                        endPoint.setLongitude(longitude);
-                        double distance = startPoint.distanceTo(endPoint);
+            call.enqueue(new Callback<KulinerModel>() {
+                @Override
+                public void onResponse(Call<KulinerModel> call, final Response<KulinerModel> response) {
+                    Map<String, ListKuliner> data = response.body().getData();
 
-                        if(distance <= radius)
+                    Log.w("Response", new Gson().toJson(response.body()));
+                    for (int i = nextPage; i <= nextPage+response.body().getJumlah_data()-1 ; i++) {
+                        Bundle bundle = getIntent().getExtras();
+                        Double longitude = bundle.getDouble("longitude");
+                        Double latitude = bundle.getDouble("latitude");
+                        Double radius = bundle.getDouble("radius");
+
+                        if(latitude<Double.parseDouble(data.get(String.valueOf(i)).getLatitude()))
                         {
-                            if(namasaring.equals(""))
+                            Location startPoint=new Location("locationA");
+                            startPoint.setLatitude(Double.parseDouble(data.get(String.valueOf(i)).getLatitude()));
+                            startPoint.setLongitude(Double.parseDouble(data.get(String.valueOf(i)).getLongitude()));
+
+                            Location endPoint=new Location("locationB");
+                            endPoint.setLatitude(latitude);
+                            endPoint.setLongitude(longitude);
+                            double distance = startPoint.distanceTo(endPoint);
+
+                            if(distance <= radius)
                             {
                                 list.add(data.get(String.valueOf(i)));
                             }
-                            else
-                            {
-                                if(data.get(String.valueOf(i)).getNama().equals(namasaring))
-                                {
-                                    list.add(data.get(String.valueOf(i)));
-                                }
-                            }
                         }
-                    }
-                    else
-                    {
-                        Location startPoint=new Location("locationA");
-                        startPoint.setLatitude(latitude);
-                        startPoint.setLongitude(longitude);
-
-                        Location endPoint=new Location("locationB");
-                        endPoint.setLatitude(Double.parseDouble(data.get(String.valueOf(i)).getLatitude()));
-                        endPoint.setLongitude(Double.parseDouble(data.get(String.valueOf(i)).getLongitude()));
-                        double distance = startPoint.distanceTo(endPoint);
-
-                        if(distance <= radius)
+                        else
                         {
-                            if(namasaring.equals(""))
+                            Location startPoint=new Location("locationA");
+                            startPoint.setLatitude(latitude);
+                            startPoint.setLongitude(longitude);
+
+                            Location endPoint=new Location("locationB");
+                            endPoint.setLatitude(Double.parseDouble(data.get(String.valueOf(i)).getLatitude()));
+                            endPoint.setLongitude(Double.parseDouble(data.get(String.valueOf(i)).getLongitude()));
+                            double distance = startPoint.distanceTo(endPoint);
+
+                            if(distance <= radius)
                             {
                                 list.add(data.get(String.valueOf(i)));
                             }
-                            else
-                            {
-                                if(data.get(String.valueOf(i)).getNama().equals(namasaring))
-                                {
-                                    list.add(data.get(String.valueOf(i)));
-                                }
-                            }
                         }
+                    }
+
+                    nextPage = response.body().getHalaman_selanjutnya();
+                    listView.setAdapter(new KulinerAdapter(DataSaringActivity.this, R.layout.kuliner_adapter, list));
+                    Toast.makeText(DataSaringActivity.this.getApplicationContext(), "Sukses", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+
+                    if(nextPage!=0)
+                    {
+                        loadmore();
+
                     }
                 }
 
-                nextPage = response.body().getHalaman_selanjutnya();
-                listView.setAdapter(new KulinerAdapter(DataSaringActivity.this, R.layout.kuliner_adapter, list));
-                Toast.makeText(DataSaringActivity.this.getApplicationContext(), "Sukses", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
-
-                if(nextPage!=0)
-                {
-                    loadmore();
-
+                @Override
+                public void onFailure(Call<KulinerModel> call, Throwable t) {
+                    Toast.makeText(DataSaringActivity.this.getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
+                    Log.d("onResponse", t.toString());
                 }
-            }
+            });
+        }
+        else
+        {
+            API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+            Call<KulinerModel> call = api.cariKulinerbyAPI(namasaring);
+            call.enqueue(new Callback<KulinerModel>() {
+                @Override
+                public void onResponse(Call<KulinerModel> call, Response<KulinerModel> response) {
+                    Map<String, ListKuliner> data = response.body().getData();
 
-            @Override
-            public void onFailure(Call<KulinerModel> call, Throwable t) {
-                Toast.makeText(DataSaringActivity.this.getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("onResponse", t.toString());
-            }
-        });
+                    Log.w("Response", new Gson().toJson(response.body()));
+                    for (int i = nextPage; i <= nextPage+response.body().getJumlah_data()-1 ; i++) {
+                        Bundle bundle = getIntent().getExtras();
+                        Double longitude = bundle.getDouble("longitude");
+                        Double latitude = bundle.getDouble("latitude");
+                        Double radius = bundle.getDouble("radius");
 
+                        if(latitude<Double.parseDouble(data.get(String.valueOf(i)).getLatitude()))
+                        {
+                            Location startPoint=new Location("locationA");
+                            startPoint.setLatitude(Double.parseDouble(data.get(String.valueOf(i)).getLatitude()));
+                            startPoint.setLongitude(Double.parseDouble(data.get(String.valueOf(i)).getLongitude()));
+
+                            Location endPoint=new Location("locationB");
+                            endPoint.setLatitude(latitude);
+                            endPoint.setLongitude(longitude);
+                            double distance = startPoint.distanceTo(endPoint);
+
+                            if(distance <= radius)
+                            {
+                                list.add(data.get(String.valueOf(i)));
+                            }
+                        }
+                        else
+                        {
+                            Location startPoint=new Location("locationA");
+                            startPoint.setLatitude(latitude);
+                            startPoint.setLongitude(longitude);
+
+                            Location endPoint=new Location("locationB");
+                            endPoint.setLatitude(Double.parseDouble(data.get(String.valueOf(i)).getLatitude()));
+                            endPoint.setLongitude(Double.parseDouble(data.get(String.valueOf(i)).getLongitude()));
+                            double distance = startPoint.distanceTo(endPoint);
+
+                            if(distance <= radius)
+                            {
+                                list.add(data.get(String.valueOf(i)));
+                            }
+                        }
+                    }
+
+                    nextPage = response.body().getHalaman_selanjutnya();
+                    listView.setAdapter(new KulinerAdapter(DataSaringActivity.this, R.layout.kuliner_adapter, list));
+                    Toast.makeText(DataSaringActivity.this.getApplicationContext(), "Sukses", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+
+                    if(nextPage!=0)
+                    {
+                        loadmore();
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<KulinerModel> call, Throwable t) {
+                    Toast.makeText(DataSaringActivity.this.getApplicationContext(), t.toString(), Toast.LENGTH_SHORT).show();
+                    Log.d("onResponse", t.toString());
+                }
+            });
+        }
     }
 
 
@@ -202,7 +257,6 @@ public class DataSaringActivity extends AppCompatActivity {
                     Double longitude = bundle.getDouble("longitude");
                     Double latitude = bundle.getDouble("latitude");
                     Double radius = bundle.getDouble("radius");
-                    String namasaring = bundle.getString("namasaring");
                     if(latitude<Double.parseDouble(data.get(String.valueOf(i)).getLatitude()))
                     {
                         Location startPoint=new Location("locationA");
@@ -216,17 +270,7 @@ public class DataSaringActivity extends AppCompatActivity {
 
                         if(distance <= radius)
                         {
-                            if(namasaring.equals(""))
-                            {
-                                list.add(data.get(String.valueOf(i)));
-                            }
-                            else
-                            {
-                                if(data.get(String.valueOf(i)).getNama().equals(namasaring))
-                                {
-                                    list.add(data.get(String.valueOf(i)));
-                                }
-                            }
+                            list.add(data.get(String.valueOf(i)));
                         }
                     }
                     else
@@ -242,17 +286,7 @@ public class DataSaringActivity extends AppCompatActivity {
 
                         if(distance <= radius)
                         {
-                            if(namasaring.equals(""))
-                            {
-                                list.add(data.get(String.valueOf(i)));
-                            }
-                            else
-                            {
-                                if(data.get(String.valueOf(i)).getNama().equals(namasaring))
-                                {
-                                    list.add(data.get(String.valueOf(i)));
-                                }
-                            }
+                            list.add(data.get(String.valueOf(i)));
                         }
                     }
                 }
