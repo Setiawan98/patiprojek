@@ -59,11 +59,14 @@
                     android:src="@drawable/diet" />
 
                 <EditText
+                    android:id="@+id/pencarian"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="2dp"
-                    android:hint="Masukan kata kunci"
+                    android:hint="Masukkan nama Tempat Makan"
                     android:textSize="6pt" />
             </LinearLayout>
 
@@ -86,17 +89,14 @@
                 android:textSize="6pt" />
 
             <RadioGroup
+                android:id="@+id/radio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
                     <RadioButton
                         android:layout_weight="1"
+                        android:id="@+id/pick3"
+                        android:checked="true"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -106,23 +106,18 @@
 
                     <RadioButton
                         android:layout_weight="1"
+                        android:id="@+id/pick5"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:text="5 Km"
                         android:textColor="@color/grey"
                         android:textSize="6pt" />
-                </LinearLayout>
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
 
                     <RadioButton
                         android:layout_weight="1"
+                        android:id="@+id/pick8"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -132,13 +127,13 @@
 
                     <RadioButton
                         android:layout_weight="1"
+                        android:id="@+id/pick10"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:text="10 Km"
                         android:textColor="@color/grey"
                         android:textSize="6pt" />
-                </LinearLayout>
             </RadioGroup>
 
             <LinearLayout
@@ -155,7 +150,7 @@
                     android:gravity="center"
                     >
                     <Button
-
+                        android:id="@+id/refresh"
                         android:layout_marginRight="20dp"
                         android:layout_marginLeft="20dp"
                         android:layout_width="match_parent"
@@ -175,6 +170,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:background="@color/blue"
+                        android:id="@+id/terapkan"
                         android:text="TERAPKAN" />
 
                 </LinearLayout>

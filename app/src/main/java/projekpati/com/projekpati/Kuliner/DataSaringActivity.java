@@ -16,6 +16,8 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -33,12 +35,9 @@ import java.util.Map;
 public class DataSaringActivity extends AppCompatActivity {
     ListView listView;
     Integer nextPage = 1;
-    Integer CountShowData;
-    Integer beforePage;
     List<ListKuliner> list = new ArrayList<>();
     Toolbar toolbar;
     TextView title;
-    Boolean isFinised = true;
     ProgressDialog progressDialog;
 
     @Override
@@ -50,9 +49,31 @@ public class DataSaringActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listKuliner);
         setSupportActionBar(toolbar);
         title = toolbar.findViewById(R.id.title);
-
+        title.setTextColor(0xFFFFFFFF);
+        Bundle bundle = getIntent().getExtras();
+        Integer judul = bundle.getInt("SaringTitle");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
-        title.setText("Saring");
+        if(judul==3)
+        {
+            title.setText("Saring 3 Km");
+        }
+        else if(judul==5)
+        {
+            title.setText("Saring 5 Km");
+        }
+        else if(judul==8)
+        {
+            title.setText("Saring 8 Km");
+        }
+        else if(judul==10)
+        {
+            title.setText("Saring 10 Km");
+        }
+        else
+        {
+            title.setText("Saring");
+        }
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         progressDialog = new ProgressDialog(this);
@@ -69,33 +90,6 @@ public class DataSaringActivity extends AppCompatActivity {
             }
         });
 
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-                int threshold = 1;
-                int count = listView.getCount();
-
-                if (scrollState == SCROLL_STATE_IDLE) {
-                    if (listView.getLastVisiblePosition() >= count - threshold) {
-                        // Execute LoadMoreDataTask AsyncTask
-                        //Toast.makeText(MenuKuliner.this, String.valueOf(nextPage),Toast.LENGTH_SHORT).show();
-                        if (nextPage == 0) {
-                            Toast.makeText(DataSaringActivity.this, "No More Data", Toast.LENGTH_SHORT).show();
-                        } else {
-                            loadmore();
-                        }
-
-                    }
-                }
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
-
-            }
-        });
     }
 
 
@@ -110,11 +104,12 @@ public class DataSaringActivity extends AppCompatActivity {
                 Map<String, ListKuliner> data = response.body().getData();
 
                 Log.w("Response", new Gson().toJson(response.body()));
-                for (int i = 1; i <= response.body().getJumlah_data(); i++) {
+                for (int i = nextPage; i <= nextPage+response.body().getJumlah_data()-1 ; i++) {
                     Bundle bundle = getIntent().getExtras();
                     Double longitude = bundle.getDouble("longitude");
                     Double latitude = bundle.getDouble("latitude");
-
+                    Double radius = bundle.getDouble("radius");
+                    String namasaring = bundle.getString("namasaring");
                     if(latitude<Double.parseDouble(data.get(String.valueOf(i)).getLatitude()))
                     {
                         Location startPoint=new Location("locationA");
@@ -126,9 +121,19 @@ public class DataSaringActivity extends AppCompatActivity {
                         endPoint.setLongitude(longitude);
                         double distance = startPoint.distanceTo(endPoint);
 
-                        if(distance <= 500)
+                        if(distance <= radius)
                         {
-                            list.add(data.get(String.valueOf(i)));
+                            if(namasaring.equals(""))
+                            {
+                                list.add(data.get(String.valueOf(i)));
+                            }
+                            else
+                            {
+                                if(data.get(String.valueOf(i)).getNama().equals(namasaring))
+                                {
+                                    list.add(data.get(String.valueOf(i)));
+                                }
+                            }
                         }
                     }
                     else
@@ -142,9 +147,19 @@ public class DataSaringActivity extends AppCompatActivity {
                         endPoint.setLongitude(Double.parseDouble(data.get(String.valueOf(i)).getLongitude()));
                         double distance = startPoint.distanceTo(endPoint);
 
-                        if(distance <= 500)
+                        if(distance <= radius)
                         {
-                            list.add(data.get(String.valueOf(i)));
+                            if(namasaring.equals(""))
+                            {
+                                list.add(data.get(String.valueOf(i)));
+                            }
+                            else
+                            {
+                                if(data.get(String.valueOf(i)).getNama().equals(namasaring))
+                                {
+                                    list.add(data.get(String.valueOf(i)));
+                                }
+                            }
                         }
                     }
                 }
@@ -153,6 +168,12 @@ public class DataSaringActivity extends AppCompatActivity {
                 listView.setAdapter(new KulinerAdapter(DataSaringActivity.this, R.layout.kuliner_adapter, list));
                 Toast.makeText(DataSaringActivity.this.getApplicationContext(), "Sukses", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
+
+                if(nextPage!=0)
+                {
+                    loadmore();
+
+                }
             }
 
             @Override
@@ -166,8 +187,6 @@ public class DataSaringActivity extends AppCompatActivity {
 
 
     public void loadmore() {
-        CountShowData = (listView.getHeight() / 161) + 1;
-
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<KulinerModel> a = api.loadMoreKuliner(String.valueOf(nextPage));
         a.enqueue(new Callback<KulinerModel>() {
@@ -182,6 +201,8 @@ public class DataSaringActivity extends AppCompatActivity {
                     Bundle bundle = getIntent().getExtras();
                     Double longitude = bundle.getDouble("longitude");
                     Double latitude = bundle.getDouble("latitude");
+                    Double radius = bundle.getDouble("radius");
+                    String namasaring = bundle.getString("namasaring");
                     if(latitude<Double.parseDouble(data.get(String.valueOf(i)).getLatitude()))
                     {
                         Location startPoint=new Location("locationA");
@@ -193,9 +214,19 @@ public class DataSaringActivity extends AppCompatActivity {
                         endPoint.setLongitude(longitude);
                         double distance = startPoint.distanceTo(endPoint);
 
-                        if(distance <= 500)
+                        if(distance <= radius)
                         {
-                            list.add(data.get(String.valueOf(i)));
+                            if(namasaring.equals(""))
+                            {
+                                list.add(data.get(String.valueOf(i)));
+                            }
+                            else
+                            {
+                                if(data.get(String.valueOf(i)).getNama().equals(namasaring))
+                                {
+                                    list.add(data.get(String.valueOf(i)));
+                                }
+                            }
                         }
                     }
                     else
@@ -209,9 +240,19 @@ public class DataSaringActivity extends AppCompatActivity {
                         endPoint.setLongitude(Double.parseDouble(data.get(String.valueOf(i)).getLongitude()));
                         double distance = startPoint.distanceTo(endPoint);
 
-                        if(distance <= 500)
+                        if(distance <= radius)
                         {
-                            list.add(data.get(String.valueOf(i)));
+                            if(namasaring.equals(""))
+                            {
+                                list.add(data.get(String.valueOf(i)));
+                            }
+                            else
+                            {
+                                if(data.get(String.valueOf(i)).getNama().equals(namasaring))
+                                {
+                                    list.add(data.get(String.valueOf(i)));
+                                }
+                            }
                         }
                     }
                 }
@@ -220,9 +261,11 @@ public class DataSaringActivity extends AppCompatActivity {
                 listView.setAdapter(new KulinerAdapter(DataSaringActivity.this, R.layout.kuliner_adapter, list));
                 Toast.makeText(DataSaringActivity.this.getApplicationContext(), "Sukses", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
-                listView.setSelection(beforePage - CountShowData);
-                isFinised = true;
+                if(nextPage!=0)
+                {
+                    loadmore();
 
+                }
             }
 
             @Override
@@ -231,5 +274,22 @@ public class DataSaringActivity extends AppCompatActivity {
                 Log.d("onResponse", t.toString());
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.back_toolbar,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id==android.R.id.home)
+        {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
