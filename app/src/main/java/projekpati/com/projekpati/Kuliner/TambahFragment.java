@@ -57,6 +57,7 @@ import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.gson.Gson;
 import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
 import com.squareup.picasso.Picasso;
@@ -81,7 +82,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
     }
 
     GoogleMap mMap1, mMap2;
-    EditText eNama, ePemilik, eNomorTelp, eWebsite, eDeskripsi;
+    EditText eNama, ePemilik, eNomorTelp, eWebsite, eDeskripsi, eEmail;
     Button btnTambah, btnSetLocation;
     SupportMapFragment mapFragment;
     SupportMapFragment mapFragment1;
@@ -97,26 +98,96 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
     ScrollView form;
     LatLng location;
     Marker markerLoc;
+    LinearLayout layoutJam;
+    Button setJam;
+    int status=0;
+
+    EditText eJamMingguBuka,eMenitMingguBuka,eJamSeninBuka,eMenitSeninBuka,eJamSelasaBuka,eMenitselasaBuka,
+            eJamRabuBuka,eMenitRabuBuka,eJamKamisBuka,eMenitKamisBuka, eJamJumatBuka,eMenitJumatBuka,
+            eJamSabtuBuka,eMenitSabtuBuka;
+
+    EditText eJamMingguTutup,eMenitMingguTutup,eJamSeninTutup,eMenitSeninTutup,eJamSelasaTutup,eMenitselasaTutup,
+            eJamRabuTutup,eMenitRabuTutup,eJamKamisTutup,eMenitKamisTutup, eJamJumatTutup,eMenitJumatTutup,
+            eJamSabtuTutup,eMenitSabtuTutup;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tambah, container, false);
 
+        //editText
         eNama = view.findViewById(R.id.eNama);
-        ePemilik = view.findViewById(R.id.mAlamat);
+        ePemilik = view.findViewById(R.id.mPemilik);
         eNomorTelp = view.findViewById(R.id.mNomorTelp);
+        eEmail = view.findViewById(R.id.mEmail);
         eWebsite = view.findViewById(R.id.mWebsite);
         eDeskripsi = view.findViewById(R.id.mDeskripsi);
+
+        //editText Jam
+        eJamMingguBuka = view.findViewById(R.id.mJamMingguBuka);
+        eMenitMingguBuka = view.findViewById(R.id.mMenitMingguBuka);
+        eJamMingguTutup = view.findViewById(R.id.mJamMinggututup);
+        eMenitMingguTutup = view.findViewById(R.id.mMenitMingguTutup);
+
+        eJamSeninBuka = view.findViewById(R.id.mJamSeninBuka);
+        eMenitSeninBuka = view.findViewById(R.id.mMenitSeninBuka);
+        eJamSeninTutup = view.findViewById(R.id.mJamSenintutup);
+        eMenitSeninTutup = view.findViewById(R.id.mMenitSeninTutup);
+
+        eJamSelasaBuka = view.findViewById(R.id.mJamSelasaBuka);
+        eMenitselasaBuka = view.findViewById(R.id.mMenitSelasaBuka);
+        eJamSelasaTutup = view.findViewById(R.id.mJamSelasatutup);
+        eMenitselasaTutup = view.findViewById(R.id.mMenitSelasaTutup);
+
+        eJamRabuBuka = view.findViewById(R.id.mJamRabuBuka);
+        eMenitRabuBuka = view.findViewById(R.id.mMenitRabuBuka);
+        eJamRabuTutup = view.findViewById(R.id.mJamRabututup);
+        eMenitRabuTutup = view.findViewById(R.id.mMenitRabuTutup);
+
+        eJamKamisBuka = view.findViewById(R.id.mJamKamisBuka);
+        eMenitKamisBuka = view.findViewById(R.id.mMenitKamisBuka);
+        eJamKamisTutup = view.findViewById(R.id.mJamKamistutup);
+        eMenitKamisTutup = view.findViewById(R.id.mMenitKamisTutup);
+
+        eJamJumatBuka = view.findViewById(R.id.mJamJumatBuka);
+        eMenitJumatBuka = view.findViewById(R.id.mMenitJumatBuka);
+        eJamJumatTutup = view.findViewById(R.id.mJamJumattutup);
+        eMenitJumatTutup = view.findViewById(R.id.mMenitJumatTutup);
+
+        eJamSabtuBuka = view.findViewById(R.id.mJamSabtuBuka);
+        eMenitSabtuBuka = view.findViewById(R.id.mMenitSabtuBuka);
+        eJamSabtuTutup = view.findViewById(R.id.mJamSabtututup);
+        eMenitSabtuTutup = view.findViewById(R.id.mMenitSabtuTutup);
+
+
+        //Button
         btnSetLocation = view.findViewById(R.id.btnLocation);
         btnTambah = view.findViewById(R.id.btnTambah);
         setMap = view.findViewById(R.id.showMap);
         form = view.findViewById(R.id.form);
+        setJam = view.findViewById(R.id.btnSetJamBuka);
+        layoutJam = view.findViewById(R.id.layoutJam);
+
+        setJam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(status==0)
+                {
+                    layoutJam.setVisibility(View.VISIBLE);
+                    status=1;
+                }
+                else
+                {
+                    layoutJam.setVisibility(View.GONE);
+                    status=0;
+                }
+            }
+        });
 
         btnTambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addKuliner(eNama.getText().toString());
+                addKuliner();
             }
         });
 
@@ -127,7 +198,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
                 setMap.setVisibility(View.VISIBLE);
             }
         });
-         cardLocation = (CardView) view.findViewById(R.id.btnSetLocations);
+        cardLocation = (CardView) view.findViewById(R.id.btnSetLocations);
         simpanLocation = (Button) view.findViewById(R.id.btnSimpanLocation);
         simpanLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -272,18 +343,66 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
 
     }
 
-    public void addKuliner(String nama){
+    public void addKuliner(){
         //defining a progress dialog to show while signing up
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+
+        String nama = eNama.getText().toString();
+        String pemilik = ePemilik.getText().toString();
+        String telp = eNomorTelp.getText().toString();
+        String email = eEmail.getText().toString();
+        String website = eWebsite.getText().toString();
+        String deskripsi = eDeskripsi.getText().toString();
+        String latitude;
+        String longitude;
+        if(location==null)
+        {
+            latitude = null;
+            longitude =null;
+        }
+        else{
+            latitude = String.valueOf(location.latitude);
+            longitude = String.valueOf(location.longitude);
+        }
+
+        String hari_0 = eJamMingguBuka.getText().toString()+ ":"+ eMenitMingguBuka.getText().toString() + " - " +  eJamMingguTutup.getText().toString()+ ":"+ eMenitMingguTutup.getText().toString();
+        String hari_1 = eJamSeninBuka.getText().toString()+ ":"+ eMenitSeninBuka.getText().toString() + " - " +  eJamSeninTutup.getText().toString()+ ":"+ eMenitSeninTutup.getText().toString();
+        String hari_2 = eJamSelasaBuka.getText().toString()+ ":"+ eMenitselasaBuka.getText().toString() + " - " +  eJamSelasaTutup.getText().toString()+ ":"+ eMenitselasaTutup.getText().toString();
+        String hari_3 = eJamRabuBuka.getText().toString()+ ":"+ eMenitRabuBuka.getText().toString() + " - " +  eJamRabuTutup.getText().toString()+ ":"+ eMenitRabuTutup.getText().toString();
+        String hari_4 = eJamKamisBuka.getText().toString()+ ":"+ eMenitKamisBuka.getText().toString() + " - " +  eJamKamisTutup.getText().toString()+ ":"+ eMenitKamisTutup.getText().toString();
+        String hari_5 = eJamJumatBuka.getText().toString()+ ":"+ eMenitJumatBuka.getText().toString() + " - " +  eJamJumatTutup.getText().toString()+ ":"+ eMenitJumatTutup.getText().toString();
+        String hari_6 = eJamSabtuBuka.getText().toString()+ ":"+ eMenitSabtuBuka.getText().toString() + " - " +  eJamSabtuTutup.getText().toString()+ ":"+ eMenitSabtuTutup.getText().toString();
+
+        Log.d("nama",nama);
+        Log.d("pemilik",pemilik);
+        Log.d("telp",telp);
+        Log.d("email",email);
+        Log.d("website",website);
+        Log.d("deskripsi",deskripsi);
+        if(location!=null)
+        {
+            Log.d("latitude",latitude);
+            Log.d("longitude",longitude);
+        }
+        Log.d("hari_0",hari_0);
+        Log.d("hari_1",hari_1);
+        Log.d("hari_2",hari_2);
+        Log.d("hari_3",hari_3);
+        Log.d("hari_4",hari_4);
+        Log.d("hari_5",hari_5);
+        Log.d("hari_6",hari_6);
+
+
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<DetilKulinerBaru> call = api.addDataKuliner(nama);
+        Call<DetilKulinerBaru> call = api.addDataKuliner(nama,pemilik,telp,email,website,deskripsi,latitude,longitude,hari_0,hari_1,hari_2,hari_3,hari_4,hari_5,hari_6);
 
         call.enqueue(new Callback<DetilKulinerBaru>() {
             @Override
             public void onResponse(Call<DetilKulinerBaru> call, final Response<DetilKulinerBaru> response) {
                 Toast.makeText(getContext(),"Sukses", Toast.LENGTH_SHORT).show();
+                Log.w("Response", new Gson().toJson(response.body()));
                 progressDialog.dismiss();
 
             }

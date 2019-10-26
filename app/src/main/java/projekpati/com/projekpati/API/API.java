@@ -45,7 +45,22 @@ public interface API {
     @FormUrlEncoded
     @POST("kuliner/update?key=TechnoPhoriaIndonesia")
     Call<DetilKulinerBaru> addDataKuliner(
-            @Field("nama") String nama);
+            @Field("nama") String nama,
+             @Field("pemilik") String pemilik,
+             @Field("telp") String telp,
+             @Field("email") String email,
+             @Field("website") String website,
+             @Field("deskripsi") String deskripsi,
+             @Field("latitude") String latitude,
+             @Field("longitude") String longitude,
+             @Field("hari_0") String hari_0,
+             @Field("hari_1") String hari_1,
+             @Field("hari_2") String hari_2,
+             @Field("hari_3") String hari_3,
+             @Field("hari_4") String hari_4,
+             @Field("hari_5") String hari_5,
+             @Field("hari_6") String hari_6
+    );
 
 
 }
