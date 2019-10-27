@@ -5,6 +5,7 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
@@ -30,6 +31,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,11 +113,38 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
             eJamRabuTutup,eMenitRabuTutup,eJamKamisTutup,eMenitKamisTutup, eJamJumatTutup,eMenitJumatTutup,
             eJamSabtuTutup,eMenitSabtuTutup;
 
+    TextView btnLiburMinggu,btnLiburSenin,btnLiburSelasa,btnLiburRabu,btnLiburKamis,btnLiburJumat,btnLiburSabtu;
+    int sLiburMinggu =0;
+    int sLiburSenin =0;
+    int sLiburSelasa =0;
+    int sLiburRabu =0;
+    int sLiburKamis =0;
+    int sLiburJumat =0;
+    int sLiburSabtu =0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tambah, container, false);
 
+        init(view);
+
+        startLatLng = new LatLng(-6.7487,111.0379);
+        currentLatLng = startLatLng;
+
+
+        initMap();
+
+        setupAutoCompleteFragment();
+
+        // Inflate the layout for this fragment
+        return view;
+
+
+    }
+
+
+    public void init(View view){
         //editText
         eNama = view.findViewById(R.id.eNama);
         ePemilik = view.findViewById(R.id.mPemilik);
@@ -160,6 +190,9 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
         eMenitSabtuTutup = view.findViewById(R.id.mMenitSabtuTutup);
 
 
+
+
+
         //Button
         btnSetLocation = view.findViewById(R.id.btnLocation);
         btnTambah = view.findViewById(R.id.btnTambah);
@@ -167,6 +200,15 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
         form = view.findViewById(R.id.form);
         setJam = view.findViewById(R.id.btnSetJamBuka);
         layoutJam = view.findViewById(R.id.layoutJam);
+        cardLocation = (CardView) view.findViewById(R.id.btnSetLocations);
+        simpanLocation = (Button) view.findViewById(R.id.btnSimpanLocation);
+        btnLiburMinggu = (TextView) view.findViewById(R.id.btnLiburMinggu);
+        btnLiburSenin = (TextView) view.findViewById(R.id.btnLiburSenin);
+        btnLiburSelasa = (TextView) view.findViewById(R.id.btnLiburSelasa);
+        btnLiburRabu = (TextView) view.findViewById(R.id.btnLiburRabu);
+        btnLiburKamis = (TextView) view.findViewById(R.id.btnLiburKamis);
+        btnLiburJumat = (TextView) view.findViewById(R.id.btnLiburJumat);
+        btnLiburSabtu = (TextView) view.findViewById(R.id.btnLiburSabtu);
 
         setJam.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,9 +229,18 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
         btnTambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addKuliner();
+                if(eNama.getText().toString().equals(""))
+                {
+                    eNama.setBackgroundTintList(getResources().getColorStateList(R.color.red));
+                    eNama.setHintTextColor(getResources().getColor(R.color.red));
+                    Toast.makeText(getContext(),"*Nama kuliner tidak bole kosong",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    addKuliner();
+                }
             }
         });
+
 
         btnSetLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,8 +249,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
                 setMap.setVisibility(View.VISIBLE);
             }
         });
-        cardLocation = (CardView) view.findViewById(R.id.btnSetLocations);
-        simpanLocation = (Button) view.findViewById(R.id.btnSimpanLocation);
+
         simpanLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -221,18 +271,184 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
             public void onClick(View v) {
                 cardLocation.setVisibility(View.GONE);
                 simpanLocation.setVisibility(View.VISIBLE);
-               // Toast.makeText(getContext(),"clicked",Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getContext(),"clicked",Toast.LENGTH_SHORT).show();
                 Toast.makeText(getContext(), String.valueOf(currentLatLng.latitude),Toast.LENGTH_SHORT).show();
             }
         });
 
 
+        //set Button Libur
 
+        btnLiburMinggu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(sLiburMinggu==0)
+                {
+                    eJamMingguBuka.setEnabled(false);
+                    eMenitMingguBuka.setEnabled(false);
+                    eJamMingguTutup.setEnabled(false);
+                    eMenitMingguTutup.setEnabled(false);
+                    sLiburMinggu=1;
+                    btnLiburMinggu.setTextColor(getResources().getColor(R.color.red));
+                }
+                else{
+                    eJamMingguBuka.setEnabled(true);
+                    eMenitMingguBuka.setEnabled(true);
+                    eJamMingguTutup.setEnabled(true);
+                    eMenitMingguTutup.setEnabled(true);
+                    sLiburMinggu=0;
+                    btnLiburMinggu.setTextColor(getResources().getColor(R.color.black));
+                }
 
-        startLatLng = new LatLng(-6.7487,111.0379);
-        currentLatLng = startLatLng;
+            }
+        });
 
+        btnLiburSenin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(sLiburSenin==0)
+                {
+                    eJamSeninBuka.setEnabled(false);
+                    eMenitSeninBuka.setEnabled(false);
+                    eJamSeninTutup.setEnabled(false);
+                    eMenitSeninTutup.setEnabled(false);
+                    sLiburSenin=1;
+                    btnLiburSenin.setTextColor(getResources().getColor(R.color.red));
+                }
+                else{
+                    eJamSeninBuka.setEnabled(true);
+                    eMenitSeninBuka.setEnabled(true);
+                    eJamSeninTutup.setEnabled(true);
+                    eMenitSeninTutup.setEnabled(true);
+                    sLiburSenin=0;
+                    btnLiburSenin.setTextColor(getResources().getColor(R.color.black));
+                }
 
+            }
+        });
+
+        btnLiburSelasa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(sLiburSelasa==0)
+                {
+                    eJamSelasaBuka.setEnabled(false);
+                    eMenitselasaBuka.setEnabled(false);
+                    eJamSelasaTutup.setEnabled(false);
+                    eMenitselasaTutup.setEnabled(false);
+                    sLiburSelasa=1;
+                    btnLiburSelasa.setTextColor(getResources().getColor(R.color.red));
+                }
+                else{
+                    eJamSelasaBuka.setEnabled(true);
+                    eMenitselasaBuka.setEnabled(true);
+                    eJamSelasaTutup.setEnabled(true);
+                    eMenitselasaTutup.setEnabled(true);
+                    sLiburSelasa=0;
+                    btnLiburSelasa.setTextColor(getResources().getColor(R.color.black));
+                }
+
+            }
+        });
+
+        btnLiburRabu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(sLiburRabu==0)
+                {
+                    eJamRabuBuka.setEnabled(false);
+                    eMenitRabuBuka.setEnabled(false);
+                    eJamRabuTutup.setEnabled(false);
+                    eMenitRabuTutup.setEnabled(false);
+                    sLiburRabu=1;
+                    btnLiburRabu.setTextColor(getResources().getColor(R.color.red));
+                }
+                else{
+                    eJamRabuBuka.setEnabled(true);
+                    eMenitRabuBuka.setEnabled(true);
+                    eJamRabuTutup.setEnabled(true);
+                    eMenitRabuTutup.setEnabled(true);
+                    sLiburRabu=0;
+                    btnLiburRabu.setTextColor(getResources().getColor(R.color.black));
+                }
+
+            }
+        });
+
+        btnLiburKamis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(sLiburKamis==0)
+                {
+                    eJamKamisBuka.setEnabled(false);
+                    eMenitKamisBuka.setEnabled(false);
+                    eJamKamisTutup.setEnabled(false);
+                    eMenitKamisTutup.setEnabled(false);
+                    sLiburKamis=1;
+                    btnLiburKamis.setTextColor(getResources().getColor(R.color.red));
+                }
+                else{
+                    eJamKamisBuka.setEnabled(true);
+                    eMenitKamisBuka.setEnabled(true);
+                    eJamKamisTutup.setEnabled(true);
+                    eMenitKamisTutup.setEnabled(true);
+                    sLiburKamis=0;
+                    btnLiburKamis.setTextColor(getResources().getColor(R.color.black));
+                }
+
+            }
+        });
+
+        btnLiburJumat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(sLiburJumat==0)
+                {
+                    eJamJumatBuka.setEnabled(false);
+                    eMenitJumatBuka.setEnabled(false);
+                    eJamJumatTutup.setEnabled(false);
+                    eMenitJumatTutup.setEnabled(false);
+                    sLiburJumat=1;
+                    btnLiburJumat.setTextColor(getResources().getColor(R.color.red));
+                }
+                else{
+                    eJamJumatBuka.setEnabled(true);
+                    eMenitJumatBuka.setEnabled(true);
+                    eJamJumatTutup.setEnabled(true);
+                    eMenitJumatTutup.setEnabled(true);
+                    sLiburJumat=0;
+                    btnLiburJumat.setTextColor(getResources().getColor(R.color.black));
+                }
+
+            }
+        });
+        btnLiburSabtu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(sLiburSabtu==0)
+                {
+                    eJamSabtuBuka.setEnabled(false);
+                    eMenitSabtuBuka.setEnabled(false);
+                    eJamSabtuTutup.setEnabled(false);
+                    eMenitSabtuTutup.setEnabled(false);
+                    sLiburSabtu=1;
+                    btnLiburSabtu.setTextColor(getResources().getColor(R.color.red));
+                }
+                else{
+                    eJamSabtuBuka.setEnabled(true);
+                    eMenitSabtuBuka.setEnabled(true);
+                    eJamSabtuTutup.setEnabled(true);
+                    eMenitSabtuTutup.setEnabled(true);
+                    sLiburSabtu=0;
+                    btnLiburSabtu.setTextColor(getResources().getColor(R.color.black));
+                }
+
+            }
+        });
+    }
+
+    public void initMap()
+    {
         mapFragment1 = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map2);
         mapFragment1.getMapAsync(new OnMapReadyCallback() {
@@ -275,23 +491,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
             }
         });
 
-
-
-
-
-        setupAutoCompleteFragment();
-
-
-
-
-
-
-        // Inflate the layout for this fragment
-        return view;
-
-
     }
-
     private void setupAutoCompleteFragment() {
         String apikey = getString(R.string.api_key);
         if(!Places.isInitialized()){
@@ -367,13 +567,93 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
             longitude = String.valueOf(location.longitude);
         }
 
-        String hari_0 = eJamMingguBuka.getText().toString()+ ":"+ eMenitMingguBuka.getText().toString() + " - " +  eJamMingguTutup.getText().toString()+ ":"+ eMenitMingguTutup.getText().toString();
-        String hari_1 = eJamSeninBuka.getText().toString()+ ":"+ eMenitSeninBuka.getText().toString() + " - " +  eJamSeninTutup.getText().toString()+ ":"+ eMenitSeninTutup.getText().toString();
-        String hari_2 = eJamSelasaBuka.getText().toString()+ ":"+ eMenitselasaBuka.getText().toString() + " - " +  eJamSelasaTutup.getText().toString()+ ":"+ eMenitselasaTutup.getText().toString();
-        String hari_3 = eJamRabuBuka.getText().toString()+ ":"+ eMenitRabuBuka.getText().toString() + " - " +  eJamRabuTutup.getText().toString()+ ":"+ eMenitRabuTutup.getText().toString();
-        String hari_4 = eJamKamisBuka.getText().toString()+ ":"+ eMenitKamisBuka.getText().toString() + " - " +  eJamKamisTutup.getText().toString()+ ":"+ eMenitKamisTutup.getText().toString();
-        String hari_5 = eJamJumatBuka.getText().toString()+ ":"+ eMenitJumatBuka.getText().toString() + " - " +  eJamJumatTutup.getText().toString()+ ":"+ eMenitJumatTutup.getText().toString();
-        String hari_6 = eJamSabtuBuka.getText().toString()+ ":"+ eMenitSabtuBuka.getText().toString() + " - " +  eJamSabtuTutup.getText().toString()+ ":"+ eMenitSabtuTutup.getText().toString();
+        String hari_0;
+        if(eJamMingguBuka.getText().toString().equals("") || eMenitMingguBuka.getText().toString().equals("")
+                || eJamMingguTutup.getText().toString().equals("") || eMenitMingguTutup.getText().toString().equals("")
+                || sLiburMinggu==1)
+        {
+           hari_0=null;
+        }
+        else {
+
+            hari_0 = eJamMingguBuka.getText().toString()+ ":"+ eMenitMingguBuka.getText().toString() + " - " +
+                    eJamMingguTutup.getText().toString()+ ":"+ eMenitMingguTutup.getText().toString();
+        }
+        String hari_1;
+        if( eJamSeninBuka.getText().toString().equals("") || eMenitSeninBuka.getText().toString().equals("") ||
+                eJamSeninTutup.getText().toString().equals("") || eMenitSeninTutup.getText().toString().equals("")
+                || sLiburSenin==1)
+        {
+            hari_1=null;
+        }
+        else {
+
+           hari_1 = eJamSeninBuka.getText().toString()+ ":"+ eMenitSeninBuka.getText().toString() + " - " +
+                   eJamSeninTutup.getText().toString()+ ":"+ eMenitSeninTutup.getText().toString();
+        }
+
+        String hari_2;
+        if(eJamSelasaBuka.getText().toString().equals("") ||  eMenitselasaBuka.getText().toString().equals("") ||
+                eJamSelasaTutup.getText().toString().equals("") || eMenitselasaTutup.getText().toString().equals("")
+                || sLiburSelasa==1)
+        {
+            hari_2=null;
+        }
+        else {
+
+             hari_2 = eJamSelasaBuka.getText().toString()+ ":"+ eMenitselasaBuka.getText().toString() + " - " +
+                    eJamSelasaTutup.getText().toString()+ ":"+ eMenitselasaTutup.getText().toString();
+        }
+        String hari_3;
+        if(eJamRabuBuka.getText().toString().equals("") ||  eMenitRabuBuka.getText().toString().equals("") ||
+                eJamRabuTutup.getText().toString().equals("") ||  eMenitRabuTutup.getText().toString().equals("")
+                || sLiburRabu==1)
+        {
+            hari_3=null;
+        }
+        else {
+
+            hari_3 = eJamRabuBuka.getText().toString()+ ":"+ eMenitRabuBuka.getText().toString() + " - " +
+                eJamRabuTutup.getText().toString()+ ":"+ eMenitRabuTutup.getText().toString();
+        }
+
+        String hari_4;
+        if(eJamKamisBuka.getText().toString().equals("") || eMenitKamisBuka.getText().toString().equals("") ||
+                eJamKamisTutup.getText().toString().equals("") || eMenitKamisTutup.getText().toString().equals("")
+                || sLiburKamis==1)
+        {
+            hari_4=null;
+        }
+        else {
+
+            hari_4 = eJamKamisBuka.getText().toString()+ ":"+ eMenitKamisBuka.getText().toString() + " - " +
+                    eJamKamisTutup.getText().toString()+ ":"+ eMenitKamisTutup.getText().toString();
+        }
+        String hari_5;
+        if(eJamJumatBuka.getText().toString().equals("") || eMenitJumatBuka.getText().toString().equals("") ||
+                eJamJumatTutup.getText().toString().equals("") || eMenitJumatTutup.getText().toString().equals("")
+                || sLiburJumat==1)
+        {
+            hari_5=null;
+        }
+        else {
+
+            hari_5 =  eJamJumatBuka.getText().toString()+ ":"+ eMenitJumatBuka.getText().toString() + " - " +
+                    eJamJumatTutup.getText().toString()+ ":"+ eMenitJumatTutup.getText().toString();
+        }
+        String hari_6;
+        if(eJamSabtuBuka.getText().toString().equals("") || eMenitSabtuBuka.getText().toString().equals("") ||
+                eJamSabtuTutup.getText().toString().equals("") ||  eMenitSabtuTutup.getText().toString().equals("")
+                || sLiburSabtu==1)
+        {
+            hari_6=null;
+        }
+        else {
+
+            hari_6 =  eJamSabtuBuka.getText().toString()+ ":"+ eMenitSabtuBuka.getText().toString() + " - " +
+                    eJamSabtuTutup.getText().toString()+ ":"+ eMenitSabtuTutup.getText().toString();
+        }
+
 
         Log.d("nama",nama);
         Log.d("pemilik",pemilik);
@@ -386,13 +666,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
             Log.d("latitude",latitude);
             Log.d("longitude",longitude);
         }
-        Log.d("hari_0",hari_0);
-        Log.d("hari_1",hari_1);
-        Log.d("hari_2",hari_2);
-        Log.d("hari_3",hari_3);
-        Log.d("hari_4",hari_4);
-        Log.d("hari_5",hari_5);
-        Log.d("hari_6",hari_6);
+
 
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);

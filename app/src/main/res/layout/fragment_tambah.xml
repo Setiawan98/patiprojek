@@ -80,15 +80,16 @@
                         android:text="Nama tempat makan"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
+
                     <EditText
                         android:id="@+id/eNama"
-                        android:layout_marginTop="-20dp"
                         android:layout_width="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="20dp"
-                        android:textSize="6pt"
                         android:layout_height="50dp"
-                        android:hint="Masukan nama tempat makan Anda"/>
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="-20dp"
+                        android:layout_marginRight="20dp"
+                        android:hint="Masukan nama tempat makan Anda"
+                        android:textSize="6pt" />
 
                 </LinearLayout>
 
@@ -177,7 +178,7 @@
                     android:layout_height="20dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/ic_phone_black_24dp"/>
+                    android:src="@drawable/ic_email_black_24dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
@@ -327,7 +328,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <TextView
-                                android:layout_width="60dp"
+                                android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:text="Minggu"
                                 android:textColor="@color/black"
@@ -335,12 +336,13 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mJamMingguBuka"
-                                android:layout_width="50dp"
-                                android:layout_marginLeft="10dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="hh"/>
+                                android:hint="hh"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -350,25 +352,29 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mMenitMingguBuka"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="mm"/>
+                                android:hint="mm"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <View
-                                android:layout_width="15dp"
+                                android:layout_width="10dp"
                                 android:layout_height="2dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
                                 android:background="@color/grey"
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mJamMinggututup"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="hh"/>
+                                android:hint="hh"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -378,11 +384,23 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mMenitMingguTutup"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="mm"/>
+                                android:hint="mm"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
+
+                            <TextView
+                                android:id="@+id/btnLiburMinggu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:text="Libur"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold" />
+
 
                         </LinearLayout>
                         <LinearLayout
@@ -391,7 +409,7 @@
                             android:orientation="horizontal"
                             >
                             <TextView
-                                android:layout_width="60dp"
+                                android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:text="Senin"
                                 android:textColor="@color/black"
@@ -399,12 +417,13 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mJamSeninBuka"
-                                android:layout_width="50dp"
-                                android:layout_marginLeft="10dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="hh"/>
+                                android:hint="hh"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -414,25 +433,29 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mMenitSeninBuka"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="mm"/>
+                                android:hint="mm"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <View
-                                android:layout_width="15dp"
+                                android:layout_width="10dp"
                                 android:layout_height="2dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
                                 android:background="@color/grey"
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mJamSenintutup"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="hh"/>
+                                android:hint="hh"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -442,11 +465,22 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mMenitSeninTutup"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="mm"/>
+                                android:hint="mm"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
+                            <TextView
+                                android:id="@+id/btnLiburSenin"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:text="Libur"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
 
                         </LinearLayout>
                         <LinearLayout
@@ -455,7 +489,7 @@
                             android:orientation="horizontal"
                             >
                             <TextView
-                                android:layout_width="60dp"
+                                android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:text="Selasa"
                                 android:textColor="@color/black"
@@ -463,12 +497,13 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mJamSelasaBuka"
-                                android:layout_width="50dp"
-                                android:layout_marginLeft="10dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="hh"/>
+                                android:hint="hh"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -478,25 +513,29 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mMenitSelasaBuka"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="mm"/>
+                                android:hint="mm"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <View
-                                android:layout_width="15dp"
+                                android:layout_width="10dp"
                                 android:layout_height="2dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
                                 android:background="@color/grey"
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mJamSelasatutup"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="hh"/>
+                                android:hint="hh"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -506,11 +545,22 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mMenitSelasaTutup"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="mm"/>
+                                android:hint="mm"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
+                            <TextView
+                                android:id="@+id/btnLiburSelasa"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:text="Libur"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
 
                         </LinearLayout>
                         <LinearLayout
@@ -519,7 +569,7 @@
                             android:orientation="horizontal"
                             >
                             <TextView
-                                android:layout_width="60dp"
+                                android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:text="Rabu"
                                 android:textColor="@color/black"
@@ -527,12 +577,13 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mJamRabuBuka"
-                                android:layout_width="50dp"
-                                android:layout_marginLeft="10dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="hh"/>
+                                android:hint="hh"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -542,25 +593,31 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mMenitRabuBuka"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="mm"/>
+                                android:hint="mm"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <View
-                                android:layout_width="15dp"
+                                android:layout_width="10dp"
                                 android:layout_height="2dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
                                 android:background="@color/grey"
-                                android:layout_gravity="center_vertical"/>
+                                android:layout_gravity="center_vertical"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <EditText
                                 android:id="@+id/mJamRabututup"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="hh"/>
+                                android:hint="hh"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -570,11 +627,22 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mMenitRabuTutup"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="mm"/>
+                                android:hint="mm"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
+                            <TextView
+                                android:id="@+id/btnLiburRabu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:text="Libur"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
 
                         </LinearLayout>
                         <LinearLayout
@@ -583,7 +651,7 @@
                         android:orientation="horizontal"
                         >
                         <TextView
-                            android:layout_width="60dp"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:text="Kamis"
                             android:textColor="@color/black"
@@ -591,12 +659,13 @@
                             android:layout_gravity="center_vertical"/>
                         <EditText
                             android:id="@+id/mJamKamisBuka"
-                            android:layout_width="50dp"
-                            android:layout_marginLeft="10dp"
+                            android:layout_width="35dp"
                             android:textSize="6pt"
                             android:textAlignment="center"
                             android:layout_height="wrap_content"
-                            android:hint="hh"/>
+                            android:hint="hh"
+                            android:maxLength="2"
+                            android:digits="0123456789"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -606,25 +675,29 @@
                             android:layout_gravity="center_vertical"/>
                         <EditText
                             android:id="@+id/mMenitKamisBuka"
-                            android:layout_width="50dp"
+                            android:layout_width="35dp"
                             android:textSize="6pt"
                             android:textAlignment="center"
                             android:layout_height="wrap_content"
-                            android:hint="mm"/>
+                            android:hint="mm"
+                            android:maxLength="2"
+                            android:digits="0123456789"/>
                         <View
-                            android:layout_width="15dp"
+                            android:layout_width="10dp"
                             android:layout_height="2dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
                             android:background="@color/grey"
                             android:layout_gravity="center_vertical"/>
                         <EditText
                             android:id="@+id/mJamKamistutup"
-                            android:layout_width="50dp"
+                            android:layout_width="35dp"
                             android:textSize="6pt"
                             android:textAlignment="center"
                             android:layout_height="wrap_content"
-                            android:hint="hh"/>
+                            android:hint="hh"
+                            android:maxLength="2"
+                            android:digits="0123456789"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -634,11 +707,22 @@
                             android:layout_gravity="center_vertical"/>
                         <EditText
                             android:id="@+id/mMenitKamisTutup"
-                            android:layout_width="50dp"
+                            android:layout_width="35dp"
                             android:textSize="6pt"
                             android:textAlignment="center"
                             android:layout_height="wrap_content"
-                            android:hint="mm"/>
+                            android:hint="mm"
+                            android:maxLength="2"
+                            android:digits="0123456789"/>
+                            <TextView
+                                android:id="@+id/btnLiburKamis"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:text="Libur"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
 
                     </LinearLayout>
                         <LinearLayout
@@ -647,7 +731,7 @@
                             android:orientation="horizontal"
                             >
                             <TextView
-                                android:layout_width="60dp"
+                                android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:text="Jumat"
                                 android:textColor="@color/black"
@@ -655,12 +739,13 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mJamJumatBuka"
-                                android:layout_width="50dp"
-                                android:layout_marginLeft="10dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="hh"/>
+                                android:hint="hh"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -670,25 +755,29 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mMenitJumatBuka"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="mm"/>
+                                android:hint="mm"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <View
-                                android:layout_width="15dp"
+                                android:layout_width="10dp"
                                 android:layout_height="2dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
                                 android:background="@color/grey"
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mJamJumattutup"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="hh"/>
+                                android:hint="hh"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -698,11 +787,22 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mMenitJumatTutup"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="mm"/>
+                                android:hint="mm"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
+                            <TextView
+                                android:id="@+id/btnLiburJumat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:text="Libur"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
 
                         </LinearLayout>
                         <LinearLayout
@@ -711,7 +811,7 @@
                             android:orientation="horizontal"
                             >
                             <TextView
-                                android:layout_width="60dp"
+                                android:layout_width="50dp"
                                 android:layout_height="wrap_content"
                                 android:text="Sabtu"
                                 android:textColor="@color/black"
@@ -719,12 +819,13 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mJamSabtuBuka"
-                                android:layout_width="50dp"
-                                android:layout_marginLeft="10dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="hh"/>
+                                android:hint="hh"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -734,25 +835,29 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mMenitSabtuBuka"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="mm"/>
+                                android:hint="mm"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <View
-                                android:layout_width="15dp"
+                                android:layout_width="10dp"
                                 android:layout_height="2dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
                                 android:background="@color/grey"
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mJamSabtututup"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="hh"/>
+                                android:hint="hh"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -762,11 +867,22 @@
                                 android:layout_gravity="center_vertical"/>
                             <EditText
                                 android:id="@+id/mMenitSabtuTutup"
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:textSize="6pt"
                                 android:textAlignment="center"
                                 android:layout_height="wrap_content"
-                                android:hint="mm"/>
+                                android:hint="mm"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
+                            <TextView
+                                android:id="@+id/btnLiburSabtu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:text="Libur"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
 
                         </LinearLayout>
 
