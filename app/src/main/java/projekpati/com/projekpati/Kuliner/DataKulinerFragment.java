@@ -60,6 +60,7 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
     LinearLayout lp;
     MapView mapView;
     String apikey;
+    ProgressDialog progressDialog;
 
 
     public DataKulinerFragment() {
@@ -74,6 +75,9 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
         View view = inflater.inflate(R.layout.fragment_data_kuliner, container, false);
         listView = (ListView) view.findViewById(R.id.listKuliner);
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
         getAllKuliner();
         getAllData();
 
@@ -133,7 +137,6 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
                 nextPage = response.body().getHalaman_selanjutnya();
 
                 listView.setAdapter(new KulinerAdapter(getContext(), R.layout.kuliner_adapter, list));
-                Toast.makeText(getContext().getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -163,9 +166,7 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
         Log.d("Height: ", String.valueOf(CountShowData));
 
 
-        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<KulinerModel> call = api.loadMoreKuliner(String.valueOf(nextPage));
 
@@ -190,8 +191,6 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
                 KulinerAdapter adapter = new KulinerAdapter(getContext(), R.layout.kuliner_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
-                Toast.makeText(getContext().getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
                 listView.setSelection(beforePage-CountShowData);
 
 
@@ -199,7 +198,6 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
 
             @Override
             public void onFailure(Call<KulinerModel> call, Throwable t) {
-                progressDialog.dismiss();
                 Toast.makeText(getContext().getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
             }
@@ -248,6 +246,7 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
                 else {
 
                     loadMap();
+                    progressDialog.dismiss();
                 }
 
 
@@ -263,6 +262,7 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
     }
 
     public void loadmore(){
+
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<KulinerModel> a = api.loadMoreKuliner(String.valueOf(npLatn));
@@ -290,6 +290,7 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
                 else {
                     Log.w("List", new Gson().toJson((listLatn)));
                     loadMap();
+                    progressDialog.dismiss();
                 }
 
 

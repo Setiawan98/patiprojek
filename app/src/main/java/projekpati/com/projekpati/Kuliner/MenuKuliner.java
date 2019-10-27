@@ -110,9 +110,6 @@ public class MenuKuliner extends AppCompatActivity {
 
     public void getIconImage(){
         //defining a progress dialog to show while signing up
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<KulinerModel> call = api.tampilSemuaKuliner();
 
@@ -160,15 +157,12 @@ public class MenuKuliner extends AppCompatActivity {
                     }
                 }
 
-                Toast.makeText(MenuKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
 
             }
 
             @Override
             public void onFailure(Call<KulinerModel> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(MenuKuliner.this.getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
+
                 Log.d("onResponse", t.toString());
             }
         });
