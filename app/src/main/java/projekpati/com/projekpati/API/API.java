@@ -6,6 +6,7 @@ import projekpati.com.projekpati.Model.DetilKulinerModel;
 import projekpati.com.projekpati.Model.JenisKulinerLengkap;
 import projekpati.com.projekpati.Model.JenisMakananLengkap;
 import projekpati.com.projekpati.Model.KomentarLengkap;
+import projekpati.com.projekpati.Model.KomentarParent;
 import projekpati.com.projekpati.Model.KulinerModel;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -65,6 +66,17 @@ public interface API {
              @Field("hari_5") String hari_5,
              @Field("hari_6") String hari_6
     );
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=kuliner")
+    Call<KomentarParent> addKomentar(@Query("dataID") String data_id,
+                                     @Field("nama") String nama,
+                                     @Field("email") String email,
+                                     @Field("telp") String telp,
+                                     @Field("website") String website,
+                                     @Field("isi") String isi,
+                                     @Field("rating") String rating,
+                                     @Field("userID") String userID);
 
 
 }

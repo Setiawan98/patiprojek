@@ -22,9 +22,11 @@ package projekpati.com.projekpati.Kuliner;
         import android.view.MenuItem;
         import android.view.View;
         import android.widget.Button;
+        import android.widget.EditText;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
         import android.widget.ListView;
+        import android.widget.RatingBar;
         import android.widget.RelativeLayout;
         import android.widget.TextView;
         import android.widget.Toast;
@@ -47,7 +49,9 @@ public class DetilKuliner extends AppCompatActivity {
 
     TextView textNama, textAlamat, textTelepon, textDeskripsi, textEmail, textWebsite, textPemilik;
     TextView senin, selasa, rabu, kamis, jumat, sabtu, minggu;
-    Button btnDetil, btnJam;
+    EditText komentar;
+    RatingBar ratingstar;
+    Button btnDetil, btnJam, btnKomen;
     float lat;
     float longt;
     LinearLayout listKuliner;
@@ -89,7 +93,10 @@ public class DetilKuliner extends AppCompatActivity {
         listKuliner = findViewById(R.id.listKuliner);
         mImage = findViewById(R.id.mImage);
         btnMap = findViewById(R.id.btnMap);
-
+        komentar = findViewById(R.id.komentar);
+        btnKomen = findViewById(R.id.btnKomen);
+        ratingstar = findViewById(R.id.ratingstar);
+        ratingstar.setMax(5);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         title.setText("Detil Kuliner");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -179,13 +186,41 @@ public class DetilKuliner extends AppCompatActivity {
                 }
                 listKomentar();
 
-                //listKuliner.setAdapter(new KomentarAdapter(DetilKuliner.this, R.layout.komentar_adapter, list));
                 Toast.makeText(DetilKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<KomentarLengkap> call, Throwable t) {
 
+            }
+        });
+
+        btnKomen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Bundle bundle = getIntent().getExtras();
+                String id = bundle.getString("id_kuliner");
+                float hasil = ratingstar.getRating();
+                //String rate = String.valueOf(hasil);
+                String isi,nama=null,email=null,telp=null,website=null,userid=null;
+                isi = komentar.getText().toString();
+               // rate = rating.getText().toString();
+
+                API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+                Call<KomentarParent> call = api.addKomentar( id, nama, email, telp, website, isi, String.valueOf(hasil), userid);
+                call.enqueue(new Callback<KomentarParent>() {
+                    @Override
+                    public void onResponse(Call<KomentarParent> call, Response<KomentarParent> response) {
+                        Toast.makeText(DetilKuliner.this, "Sukses Berkomentar", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<KomentarParent> call, Throwable t) {
+                        Log.d("onResponse", t.toString());
+                    }
+                });
+                finish();
+                startActivity(getIntent());
             }
         });
 
