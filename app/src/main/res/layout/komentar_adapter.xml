@@ -4,9 +4,6 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="5dp"
-    app:cardElevation="5dp"
-    app:cardUseCompatPadding="true"
     android:id="@+id/adapterKomentar">
 
     <androidx.cardview.widget.CardView

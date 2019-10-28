@@ -347,12 +347,20 @@
                             android:text="Ulasan Kuliner"
                             android:textStyle="bold"/>
 
-                        <ListView
-                            android:id="@+id/listKuliner"
-                            android:layout_width="match_parent"
+<!--                        <ListView-->
+<!--                            android:id="@+id/listKuliner"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:focusable="true">-->
+<!--                        </ListView>-->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:focusable="true">
-                        </ListView>
+                            android:orientation="vertical"
+                            android:id="@+id/listKuliner">
+
+
+                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -364,7 +372,7 @@
             android:id="@+id/linearJam"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="invisible"
+            android:visibility="gone"
             android:background="@android:color/white">
 
             <androidx.cardview.widget.CardView

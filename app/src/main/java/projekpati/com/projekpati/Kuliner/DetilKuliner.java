@@ -7,6 +7,7 @@ package projekpati.com.projekpati.Kuliner;
         import projekpati.com.projekpati.Model.DetilKulinerModel;
         import projekpati.com.projekpati.Model.KomentarLengkap;
         import projekpati.com.projekpati.Model.KomentarParent;
+        import projekpati.com.projekpati.Model.ListKuliner;
         import projekpati.com.projekpati.R;
         import retrofit2.Call;
         import retrofit2.Callback;
@@ -16,6 +17,7 @@ package projekpati.com.projekpati.Kuliner;
         import android.net.Uri;
         import android.os.Bundle;
         import android.util.Log;
+        import android.view.LayoutInflater;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.view.View;
@@ -23,9 +25,14 @@ package projekpati.com.projekpati.Kuliner;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
         import android.widget.ListView;
+        import android.widget.RelativeLayout;
         import android.widget.TextView;
         import android.widget.Toast;
 
+        import com.google.android.gms.maps.CameraUpdateFactory;
+        import com.google.android.gms.maps.model.CameraPosition;
+        import com.google.android.gms.maps.model.LatLng;
+        import com.google.android.gms.maps.model.Marker;
         import com.google.gson.Gson;
         import com.squareup.picasso.Picasso;
 
@@ -43,7 +50,7 @@ public class DetilKuliner extends AppCompatActivity {
     Button btnDetil, btnJam;
     float lat;
     float longt;
-    ListView listKuliner;
+    LinearLayout listKuliner;
     ImageView mImage, btnMap;
     LinearLayout linearDetil, linearJam;
     List<KomentarParent> list = new ArrayList<>();
@@ -170,8 +177,9 @@ public class DetilKuliner extends AppCompatActivity {
                     }
                     i++;
                 }
+                listKomentar();
 
-                listKuliner.setAdapter(new KomentarAdapter(DetilKuliner.this, R.layout.komentar_adapter, list));
+                //listKuliner.setAdapter(new KomentarAdapter(DetilKuliner.this, R.layout.komentar_adapter, list));
                 Toast.makeText(DetilKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
             }
 
@@ -234,5 +242,39 @@ public class DetilKuliner extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void listKomentar()
+    {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        int size = list.size();
+        Log.d("size",String.valueOf(size));
+
+        for(int i =0;i<size;i++)
+        {
+            final KomentarParent kp = list.get(i);
+            Log.d("nama",kp.getKomentar_nama());
+
+            if(kp!=null)
+            {
+                Log.d("z","11");
+                RelativeLayout adapter = (RelativeLayout) inflater.inflate(R.layout.komentar_adapter,null);
+                //clickAbleColumn.setR
+                TextView txtNama = (TextView) adapter.findViewById(R.id.mNama);
+                TextView txtRating = (TextView) adapter.findViewById(R.id.mRating);
+                TextView txtKomentar = (TextView) adapter.findViewById(R.id.mKomentar);
+                URL url = null;
+
+                txtNama.setText(kp.getKomentar_nama());
+                txtRating.setText(kp.getKomentar_rating());
+                txtKomentar.setText(kp.getKomentar_isi());
+
+
+                listKuliner.addView(adapter);
+
+            }
+        }
+
     }
 }
