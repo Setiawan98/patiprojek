@@ -1,12 +1,13 @@
 package projekpati.com.projekpati.Model;
 
+import java.util.List;
 import java.util.Map;
 
 public class KomentarLengkap {
     String status, judul, key, waktu, icon;
-    Map<String,KomentarParent> komentar_parent;
+    List<KomentarParent> komentar_parent;
 
-    public KomentarLengkap(String status, String judul, String key, String waktu, String icon, Map<String, KomentarParent> komentar_parent) {
+    public KomentarLengkap(String status, String judul, String key, String waktu, String icon, List<KomentarParent> komentar_parent) {
         this.status = status;
         this.judul = judul;
         this.key = key;
@@ -55,11 +56,11 @@ public class KomentarLengkap {
         this.icon = icon;
     }
 
-    public Map<String, KomentarParent> getKomentar_parent() {
+    public List<KomentarParent> getKomentar_parent() {
         return komentar_parent;
     }
 
-    public void setKomentar_parent(Map<String, KomentarParent> komentar_parent) {
+    public void setKomentar_parent(List<KomentarParent> komentar_parent) {
         this.komentar_parent = komentar_parent;
     }
 }

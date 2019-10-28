@@ -170,20 +170,8 @@ public class DetilKuliner extends AppCompatActivity {
         call2.enqueue(new Callback<KomentarLengkap>() {
             @Override
             public void onResponse(Call<KomentarLengkap> call, Response<KomentarLengkap> response) {
-                Map<String, KomentarParent> data = response.body().getKomentar_parent();
+                list = response.body().getKomentar_parent();
 
-                Log.w("Komentar", new Gson().toJson(response.body()));
-                boolean hasNext = true;
-                int i=2;
-                while (hasNext == true)
-                {
-                    list.add(data.get(String.valueOf(i)));
-                    if(data.get(String.valueOf(i+1)) == null)
-                    {
-                        hasNext = false;
-                    }
-                    i++;
-                }
                 listKomentar();
 
                 Toast.makeText(DetilKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
@@ -295,15 +283,33 @@ public class DetilKuliner extends AppCompatActivity {
             {
                 RelativeLayout adapter = (RelativeLayout) inflater.inflate(R.layout.komentar_adapter,null);
                 TextView txtNama = (TextView) adapter.findViewById(R.id.mNama);
-                TextView txtRating = (TextView) adapter.findViewById(R.id.mRating);
                 TextView txtKomentar = (TextView) adapter.findViewById(R.id.mKomentar);
-                URL url = null;
+                RatingBar ratestar = adapter.findViewById(R.id.ratingstar);
+                ratestar.setMax(5);
 
                 txtNama.setText(kp.getKomentar_nama());
-                txtRating.setText(kp.getKomentar_rating());
                 txtKomentar.setText(kp.getKomentar_isi());
-
-
+                Float ratingbos = Float.parseFloat(kp.getKomentar_rating());
+                if(ratingbos == 1)
+                {
+                    ratestar.setRating(1);
+                }
+                else if(ratingbos == 2)
+                {
+                    ratestar.setRating(2);
+                }
+                else if(ratingbos == 3)
+                {
+                    ratestar.setRating(3);
+                }
+                else if(ratingbos == 4)
+                {
+                    ratestar.setRating(4);
+                }
+                else if(ratingbos == 5)
+                {
+                    ratestar.setRating(5);
+                }
                 listKuliner.addView(adapter);
 
             }
