@@ -258,9 +258,7 @@ public class DetilKuliner extends AppCompatActivity {
 
             if(kp!=null)
             {
-                Log.d("z","11");
                 RelativeLayout adapter = (RelativeLayout) inflater.inflate(R.layout.komentar_adapter,null);
-                //clickAbleColumn.setR
                 TextView txtNama = (TextView) adapter.findViewById(R.id.mNama);
                 TextView txtRating = (TextView) adapter.findViewById(R.id.mRating);
                 TextView txtKomentar = (TextView) adapter.findViewById(R.id.mKomentar);
