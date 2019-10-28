@@ -5,6 +5,7 @@ import projekpati.com.projekpati.Model.DetilKulinerBaru;
 import projekpati.com.projekpati.Model.DetilKulinerModel;
 import projekpati.com.projekpati.Model.JenisKulinerLengkap;
 import projekpati.com.projekpati.Model.JenisMakananLengkap;
+import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.KulinerModel;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -38,6 +39,9 @@ public interface API {
 
     @GET("kuliner/detail/{id}?key=TechnoPhoriaIndonesia")
     Call<DetilKulinerModel> detailKuliner(@Path("id") String id);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=kuliner")
+    Call<KomentarLengkap> getKomentar(@Query("dataID") String data_id);
 
     @GET("gkey")
     Call<APIKey> getAPIkey();

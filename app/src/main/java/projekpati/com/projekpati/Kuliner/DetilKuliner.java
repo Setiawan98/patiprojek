@@ -5,6 +5,8 @@ package projekpati.com.projekpati.Kuliner;
         import projekpati.com.projekpati.API.API;
         import projekpati.com.projekpati.API.RetrofitClientInstance;
         import projekpati.com.projekpati.Model.DetilKulinerModel;
+        import projekpati.com.projekpati.Model.KomentarLengkap;
+        import projekpati.com.projekpati.Model.KomentarParent;
         import projekpati.com.projekpati.R;
         import retrofit2.Call;
         import retrofit2.Callback;
@@ -20,14 +22,19 @@ package projekpati.com.projekpati.Kuliner;
         import android.widget.Button;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
+        import android.widget.ListView;
         import android.widget.TextView;
+        import android.widget.Toast;
 
         import com.google.gson.Gson;
         import com.squareup.picasso.Picasso;
 
         import java.net.MalformedURLException;
         import java.net.URL;
+        import java.util.ArrayList;
+        import java.util.List;
         import java.util.Locale;
+        import java.util.Map;
 
 public class DetilKuliner extends AppCompatActivity {
 
@@ -36,8 +43,10 @@ public class DetilKuliner extends AppCompatActivity {
     Button btnDetil, btnJam;
     float lat;
     float longt;
+    ListView listKuliner;
     ImageView mImage, btnMap;
     LinearLayout linearDetil, linearJam;
+    List<KomentarParent> list = new ArrayList<>();
     Toolbar toolbar;
     TextView title;
     LinearLayout ly;
@@ -70,7 +79,7 @@ public class DetilKuliner extends AppCompatActivity {
         textEmail = findViewById(R.id.mEmail);
         textWebsite = findViewById(R.id.mWebsite);
         textPemilik = findViewById(R.id.mPemilik);
-
+        listKuliner = findViewById(R.id.listKuliner);
         mImage = findViewById(R.id.mImage);
         btnMap = findViewById(R.id.btnMap);
 
@@ -139,6 +148,36 @@ public class DetilKuliner extends AppCompatActivity {
             @Override
             public void onFailure(Call<DetilKulinerModel> call, Throwable t) {
                 Log.e("OnFailureDetil", t.getMessage().toString());
+            }
+        });
+
+        API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<KomentarLengkap> call2 = api2.getKomentar(id);
+        call2.enqueue(new Callback<KomentarLengkap>() {
+            @Override
+            public void onResponse(Call<KomentarLengkap> call, Response<KomentarLengkap> response) {
+                Map<String, KomentarParent> data = response.body().getKomentar_parent();
+
+                Log.w("Komentar", new Gson().toJson(response.body()));
+                boolean hasNext = true;
+                int i=2;
+                while (hasNext == true)
+                {
+                    list.add(data.get(String.valueOf(i)));
+                    if(data.get(String.valueOf(i+1)) == null)
+                    {
+                        hasNext = false;
+                    }
+                    i++;
+                }
+
+                listKuliner.setAdapter(new KomentarAdapter(DetilKuliner.this, R.layout.komentar_adapter, list));
+                Toast.makeText(DetilKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<KomentarLengkap> call, Throwable t) {
+
             }
         });
 
