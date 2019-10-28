@@ -16,16 +16,19 @@ package projekpati.com.projekpati.Kuliner;
         import android.content.Intent;
         import android.net.Uri;
         import android.os.Bundle;
+        import android.os.Handler;
         import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.view.View;
+        import android.view.ViewGroup;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
         import android.widget.ListView;
+        import android.widget.ProgressBar;
         import android.widget.RatingBar;
         import android.widget.RelativeLayout;
         import android.widget.TextView;
@@ -58,9 +61,14 @@ public class DetilKuliner extends AppCompatActivity {
     ImageView mImage, btnMap;
     LinearLayout linearDetil, linearJam;
     List<KomentarParent> list = new ArrayList<>();
+    Map<String,List<KomentarParent>> responseChild;
+    List<KomentarParent> listChild = new ArrayList<>();
     Toolbar toolbar;
     TextView title;
     LinearLayout ly;
+    String id;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,82 +114,11 @@ public class DetilKuliner extends AppCompatActivity {
         linearJam.setVisibility(View.INVISIBLE);
 
         final Bundle bundle = getIntent().getExtras();
-        String id = bundle.getString("id_kuliner");
+        id = bundle.getString("id_kuliner");
 
-        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<DetilKulinerModel> call = api.detailKuliner(id);
+        getDataDetail();
 
-        call.enqueue(new Callback<DetilKulinerModel>() {
-            @Override
-            public void onResponse(Call<DetilKulinerModel> call, Response<DetilKulinerModel> response) {
-
-
-                Log.w("ResponseAsu", new Gson().toJson(response.body()));
-                textNama.setText(response.body().getData().getNama());
-                textAlamat.setText(response.body().getData().getAlamat());
-                textDeskripsi.setText(response.body().getData().getDeskripsi());
-                textEmail.setText(response.body().getData().getEmail());
-                textPemilik.setText(response.body().getData().getPemilik());
-                textWebsite.setText(response.body().getData().getWebsite());
-                textTelepon.setText(response.body().getData().getTelp());
-                senin.setText(response.body().getData().getHari_1());
-                selasa.setText(response.body().getData().getHari_2());
-                rabu.setText(response.body().getData().getHari_3());
-                kamis.setText(response.body().getData().getHari_4());
-                jumat.setText(response.body().getData().getHari_5());
-                sabtu.setText(response.body().getData().getHari_6());
-                minggu.setText(response.body().getData().getHari_0());
-                lat = Float.parseFloat(response.body().getData().getLatitude());
-                longt = Float.parseFloat(response.body().getData().getLongitude());
-
-                URL url = null;
-                if(response.body().getData().getFile().equals(""))
-                {
-                    //tidak terjadi perubahan apapun
-                }
-                else
-                {
-                    try {
-                       // LinearLayout ly = findViewById(R.id.konten);
-                        Integer width= ly.getWidth();
-                        Integer height =  width*65/100;
-                        Log.d("layout width",String.valueOf(width));
-                        Log.d("layout height",String.valueOf(height));
-                        url = new URL(response.body().getData().getFile());
-                        Picasso.with(getApplicationContext())
-                                .load(String.valueOf(url))
-                                .resize(width,height).noFade().into(mImage);
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                }
-                btnMap.bringToFront();
-
-            }
-
-            @Override
-            public void onFailure(Call<DetilKulinerModel> call, Throwable t) {
-                Log.e("OnFailureDetil", t.getMessage().toString());
-            }
-        });
-
-        API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<KomentarLengkap> call2 = api2.getKomentar(id);
-        call2.enqueue(new Callback<KomentarLengkap>() {
-            @Override
-            public void onResponse(Call<KomentarLengkap> call, Response<KomentarLengkap> response) {
-                list = response.body().getKomentar_parent();
-
-                listKomentar();
-
-                Toast.makeText(DetilKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<KomentarLengkap> call, Throwable t) {
-
-            }
-        });
+       getKomentar();
 
         btnKomen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -270,8 +207,9 @@ public class DetilKuliner extends AppCompatActivity {
 
     public void listKomentar()
     {
-        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        final LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         int size = list.size();
+       // int sizeChild=listChild.size();
         Log.d("size",String.valueOf(size));
 
         for(int i =0;i<size;i++)
@@ -281,10 +219,17 @@ public class DetilKuliner extends AppCompatActivity {
 
             if(kp!=null)
             {
-                RelativeLayout adapter = (RelativeLayout) inflater.inflate(R.layout.komentar_adapter,null);
+                final RelativeLayout adapter = (RelativeLayout) inflater.inflate(R.layout.komentar_adapter,null);
                 TextView txtNama = (TextView) adapter.findViewById(R.id.mNama);
                 TextView txtKomentar = (TextView) adapter.findViewById(R.id.mKomentar);
                 RatingBar ratestar = adapter.findViewById(R.id.ratingstar);
+                TextView btnBalas = adapter.findViewById(R.id.btnBalas);
+                Button btnBatal = adapter.findViewById(R.id.btnBatal);
+                Button btnKirim = adapter.findViewById(R.id.btnKirim);
+                final LinearLayout layoutChild = adapter.findViewById(R.id.listChild);
+                final EditText eKomenBalas = adapter.findViewById(R.id.eKomentar);
+                final RelativeLayout layoutBalas = adapter.findViewById(R.id.layoutBalas);
+
                 ratestar.setMax(5);
 
                 txtNama.setText(kp.getKomentar_nama());
@@ -310,10 +255,174 @@ public class DetilKuliner extends AppCompatActivity {
                 {
                     ratestar.setRating(5);
                 }
+
+                btnBalas.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        layoutBalas.setVisibility(View.VISIBLE);
+                    }
+                });
+                btnBatal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        layoutBalas.setVisibility(View.GONE);
+                    }
+                });
+
+                btnKirim.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final ProgressBar pg = adapter.findViewById(R.id.progress_bar);
+                        pg.setVisibility(View.VISIBLE);
+                        addBalas(kp.getData_id(), kp.getKomentar_nama(), kp.getKomentar_email(), kp.getKomentar_telp(),kp.getKomentar_website(), eKomenBalas.getText().toString(), kp.getKomentar_id(), null);
+                        final RelativeLayout adapterChild = (RelativeLayout) inflater.inflate(R.layout.komentarchild_adapter,null);
+                        TextView txtChildNama = (TextView) adapterChild.findViewById(R.id.mNama);
+                        TextView textChildKomentar = (TextView) adapterChild.findViewById(R.id.mKomentar);
+                        txtChildNama.setText(kp.getKomentar_nama());
+                        textChildKomentar.setText(eKomenBalas.getText().toString());
+                        layoutBalas.setBackgroundColor(getResources().getColor(R.color.progress));
+
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                layoutChild.addView(adapterChild);
+                                layoutChild.invalidate();
+                                layoutBalas.setVisibility(View.GONE);
+                                layoutBalas.setBackgroundColor(getResources().getColor(R.color.progress_after));
+                                pg.setVisibility(View.GONE);
+                            }
+                        },2000);
+
+                    }
+                });
+
                 listKuliner.addView(adapter);
 
+
+                if(responseChild.get(kp.getKomentar_id())!=null)
+                {
+                    List<KomentarParent> listChildKomentar = responseChild.get(kp.getKomentar_id());
+
+                    for(KomentarParent kc : listChildKomentar)
+                    {
+                        RelativeLayout adapterChild = (RelativeLayout) inflater.inflate(R.layout.komentarchild_adapter,null);
+                        TextView txtChildNama = (TextView) adapterChild.findViewById(R.id.mNama);
+                        TextView textChildKomentar = (TextView) adapterChild.findViewById(R.id.mKomentar);
+                        txtChildNama.setText(kc.getKomentar_nama());
+                        textChildKomentar.setText(kc.getKomentar_isi());
+                        layoutChild.addView(adapterChild);
+                    }
+                }
+
             }
+
+
         }
 
+    }
+
+    public void addBalas(String id, String nama, String email, String telp, String website, String isi, String parentID, String userid)
+    {
+
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<KomentarParent> call = api.addKomentarBalas( id, nama, email, telp, website, parentID, isi , userid);
+        call.enqueue(new Callback<KomentarParent>() {
+            @Override
+            public void onResponse(Call<KomentarParent> call, Response<KomentarParent> response) {
+                Toast.makeText(DetilKuliner.this, "Sukses Berkomentar", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<KomentarParent> call, Throwable t) {
+                Log.d("onResponse", t.toString());
+            }
+        });
+    }
+
+
+    public void getDataDetail(){
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<DetilKulinerModel> call = api.detailKuliner(id);
+
+        call.enqueue(new Callback<DetilKulinerModel>() {
+            @Override
+            public void onResponse(Call<DetilKulinerModel> call, Response<DetilKulinerModel> response) {
+
+
+                Log.w("ResponseAsu", new Gson().toJson(response.body()));
+                textNama.setText(response.body().getData().getNama());
+                textAlamat.setText(response.body().getData().getAlamat());
+                textDeskripsi.setText(response.body().getData().getDeskripsi());
+                textEmail.setText(response.body().getData().getEmail());
+                textPemilik.setText(response.body().getData().getPemilik());
+                textWebsite.setText(response.body().getData().getWebsite());
+                textTelepon.setText(response.body().getData().getTelp());
+                senin.setText(response.body().getData().getHari_1());
+                selasa.setText(response.body().getData().getHari_2());
+                rabu.setText(response.body().getData().getHari_3());
+                kamis.setText(response.body().getData().getHari_4());
+                jumat.setText(response.body().getData().getHari_5());
+                sabtu.setText(response.body().getData().getHari_6());
+                minggu.setText(response.body().getData().getHari_0());
+                lat = Float.parseFloat(response.body().getData().getLatitude());
+                longt = Float.parseFloat(response.body().getData().getLongitude());
+
+                URL url = null;
+                if(response.body().getData().getFile().equals(""))
+                {
+                    //tidak terjadi perubahan apapun
+                }
+                else
+                {
+                    try {
+                        // LinearLayout ly = findViewById(R.id.konten);
+                        Integer width= ly.getWidth();
+                        Integer height =  width*65/100;
+                        Log.d("layout width",String.valueOf(width));
+                        Log.d("layout height",String.valueOf(height));
+                        url = new URL(response.body().getData().getFile());
+                        Picasso.with(getApplicationContext())
+                                .load(String.valueOf(url))
+                                .resize(width,height).noFade().into(mImage);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                }
+                btnMap.bringToFront();
+
+            }
+
+            @Override
+            public void onFailure(Call<DetilKulinerModel> call, Throwable t) {
+                Log.e("OnFailureDetil", t.getMessage().toString());
+            }
+        });
+    }
+
+    public void getKomentar(){
+        Toast.makeText(DetilKuliner.this.getApplicationContext(),id, Toast.LENGTH_SHORT).show();
+        API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<KomentarLengkap> call2 = api2.getKomentar(id);
+        call2.enqueue(new Callback<KomentarLengkap>() {
+            @Override
+            public void onResponse(Call<KomentarLengkap> call, Response<KomentarLengkap> response) {
+                list = response.body().getKomentar_parent();
+                responseChild = response.body().getKomentar_child();
+
+                Log.w("Responselist", new Gson().toJson(response.body().getKomentar_parent()));
+                Log.w("Responsechild", new Gson().toJson(response.body().getKomentar_child()));
+               //listChild = response.body().getKomentar_child();
+
+                listKomentar();
+
+                Toast.makeText(DetilKuliner.this.getApplicationContext(),"Sukses", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<KomentarLengkap> call, Throwable t) {
+                //Toast.makeText(DetilKuliner.this.getApplicationContext(),t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

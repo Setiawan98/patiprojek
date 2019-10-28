@@ -78,5 +78,16 @@ public interface API {
                                      @Field("rating") String rating,
                                      @Field("userID") String userID);
 
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=kuliner")
+    Call<KomentarParent> addKomentarBalas(@Query("dataID") String data_id,
+                                     @Field("nama") String nama,
+                                     @Field("email") String email,
+                                     @Field("telp") String telp,
+                                     @Field("website") String website,
+                                     @Field("parentID") String parentID,
+                                     @Field("isi") String isi,
+                                     @Field("userID") String userID);
+
 
 }

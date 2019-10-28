@@ -6,14 +6,24 @@ import java.util.Map;
 public class KomentarLengkap {
     String status, judul, key, waktu, icon;
     List<KomentarParent> komentar_parent;
+    Map<String,List<KomentarParent>> komentar_child;
 
-    public KomentarLengkap(String status, String judul, String key, String waktu, String icon, List<KomentarParent> komentar_parent) {
+    public KomentarLengkap(String status, String judul, String key, String waktu, String icon, List<KomentarParent> komentar_parent, Map<String, List<KomentarParent>> komentar_child) {
         this.status = status;
         this.judul = judul;
         this.key = key;
         this.waktu = waktu;
         this.icon = icon;
         this.komentar_parent = komentar_parent;
+        this.komentar_child = komentar_child;
+    }
+
+    public Map<String, List<KomentarParent>> getKomentar_child() {
+        return komentar_child;
+    }
+
+    public void setKomentar_child(Map<String, List<KomentarParent>> komentar_child) {
+        this.komentar_child = komentar_child;
     }
 
     public String getStatus() {
