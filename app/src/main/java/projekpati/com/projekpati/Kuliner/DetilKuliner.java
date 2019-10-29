@@ -144,8 +144,47 @@ public class DetilKuliner extends AppCompatActivity {
                         Log.d("onResponse", t.toString());
                     }
                 });
-                finish();
-                startActivity(getIntent());
+//                finish();
+//                startActivity(getIntent());
+
+                final LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                final RelativeLayout adapter = (RelativeLayout) inflater.inflate(R.layout.komentar_adapter,null);
+                TextView txtNama = (TextView) adapter.findViewById(R.id.mNama);
+                TextView txtKomentar = (TextView) adapter.findViewById(R.id.mKomentar);
+                RatingBar ratestar = adapter.findViewById(R.id.ratingstar);
+                txtNama.setText(nama);
+                txtKomentar.setText(isi);
+                Float ratingbos = hasil;
+                if(ratingbos == 1)
+                {
+                    ratestar.setRating(1);
+                }
+                else if(ratingbos == 2)
+                {
+                    ratestar.setRating(2);
+                }
+                else if(ratingbos == 3)
+                {
+                    ratestar.setRating(3);
+                }
+                else if(ratingbos == 4)
+                {
+                    ratestar.setRating(4);
+                }
+                else if(ratingbos == 5)
+                {
+                    ratestar.setRating(5);
+                }
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        listKuliner.addView(adapter,0);
+                        listKuliner.invalidate();
+                    }
+                },2000);
+
             }
         });
 
@@ -211,8 +250,9 @@ public class DetilKuliner extends AppCompatActivity {
         int size = list.size();
        // int sizeChild=listChild.size();
         Log.d("size",String.valueOf(size));
+        int index=size-1;
 
-        for(int i =0;i<size;i++)
+        for(int i =size-1;i>=0;i--)
         {
             final KomentarParent kp = list.get(i);
             Log.d("nama",kp.getKomentar_nama());
