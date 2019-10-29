@@ -334,6 +334,7 @@
                                 android:textColor="@color/black"
                                 android:textSize="6pt"
                                 android:layout_gravity="center_vertical"/>
+
                             <EditText
                                 android:id="@+id/mJamMingguBuka"
                                 android:layout_width="35dp"

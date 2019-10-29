@@ -33,7 +33,8 @@
         <activity android:name=".Kuliner.TampilKulinerByJenis" />
         <activity android:name=".Kuliner.tampilFotoKuliner" />
         <activity android:name=".Kuliner.DetilKuliner" />
-        <activity android:name=".Kuliner.MenuKuliner" />
+        <activity android:name=".Kuliner.MenuKuliner"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
