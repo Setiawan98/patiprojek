@@ -288,8 +288,11 @@
                             android:src="@drawable/ic_directions_black_24dp" />
                     </LinearLayout>
 
+
+
                     <LinearLayout
-                        android:layout_marginTop="30dp"
+
+                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -310,27 +313,64 @@
                             android:stepSize="0.1"
                             android:isIndicator="false" />
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Komentar"/>
+                            android:orientation="vertical"
+                            android:layout_margin="10dp">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Komentar"/>
 
-                        <EditText
-                            android:id="@+id/komentar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Masukkan komentar anda"/>
+                            <EditText
+                                android:id="@+id/komentar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Masukkan komentar anda"/>
 
-                        <Button
+
+                        </LinearLayout>
+
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Submit Komentar"
-                            android:id="@+id/btnKomen"
                             android:layout_marginRight="20dp"
-                            android:layout_marginLeft="20dp"
-                            android:background="@color/green"/>
+                            android:layout_marginLeft="20dp">
+                           <TextView
+                               android:id="@+id/btnKomen"
+                               android:layout_width="match_parent"
+                               android:layout_height="50dp"
+                               android:text="Kirim"
+                               android:textSize="20dp"
+                               android:gravity="center_horizontal|center_vertical"
+                               android:textColor="@android:color/white"
+                               android:background="@color/colorPrimary"/>
+                            <LinearLayout
+                                android:visibility="gone"
+                                android:id="@+id/progress_bar"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:gravity="center"
+                                android:background="@color/colorPrimary">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"/>
+                                <ProgressBar
+                                    style="@style/Widget.AppCompat.ProgressBar"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:indeterminateDrawable="@drawable/progress" />
+
+                            </LinearLayout>
+
+
+
+                        </RelativeLayout>
+
 
                     </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_marginTop="30dp"

@@ -8,6 +8,7 @@ import projekpati.com.projekpati.Model.JenisMakananLengkap;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.KomentarParent;
 import projekpati.com.projekpati.Model.KulinerModel;
+import projekpati.com.projekpati.Model.postKomentar;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -68,19 +69,20 @@ public interface API {
     );
 
     @FormUrlEncoded
-    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=kuliner")
-    Call<KomentarParent> addKomentar(@Query("dataID") String data_id,
-                                     @Field("nama") String nama,
-                                     @Field("email") String email,
-                                     @Field("telp") String telp,
-                                     @Field("website") String website,
-                                     @Field("isi") String isi,
-                                     @Field("rating") String rating,
-                                     @Field("userID") String userID);
+    @POST("komentar/?key=TechnoPhoriaIndonesia")
+    Call<postKomentar> addKomentar(@Query("dataID") String data_id,
+                                   @Query("dataJenis") String dataJenis,
+                                   @Field("nama") String nama,
+                                   @Field("email") String email,
+                                   @Field("telp") String telp,
+                                   @Field("website") String website,
+                                   @Field("isi") String isi,
+                                   @Field("rating") String rating,
+                                   @Field("userID") String userID);
 
     @FormUrlEncoded
     @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=kuliner")
-    Call<KomentarParent> addKomentarBalas(@Query("dataID") String data_id,
+    Call<postKomentar> addKomentarBalas(@Query("dataID") String data_id,
                                      @Field("nama") String nama,
                                      @Field("email") String email,
                                      @Field("telp") String telp,

@@ -10,6 +10,7 @@ package projekpati.com.projekpati.Kuliner;
         import projekpati.com.projekpati.Model.KomentarLengkap;
         import projekpati.com.projekpati.Model.KomentarParent;
         import projekpati.com.projekpati.Model.ListKuliner;
+        import projekpati.com.projekpati.Model.postKomentar;
         import projekpati.com.projekpati.R;
         import retrofit2.Call;
         import retrofit2.Callback;
@@ -56,7 +57,8 @@ public class DetilKuliner extends AppCompatActivity {
     TextView senin, selasa, rabu, kamis, jumat, sabtu, minggu;
     EditText komentar;
     RatingBar ratingstar;
-    Button btnDetil, btnJam, btnKomen;
+    Button btnDetil, btnJam;
+    TextView btnKomen;
     ViewPager pager;
     float lat;
     float longt;
@@ -72,6 +74,7 @@ public class DetilKuliner extends AppCompatActivity {
     LinearLayout ly;
     String id;
     String parentID;
+    LinearLayout pbKomen;
 
 
 
@@ -110,6 +113,7 @@ public class DetilKuliner extends AppCompatActivity {
         btnKomen = findViewById(R.id.btnKomen);
         pager = findViewById(R.id.view_pager);
         ratingstar = findViewById(R.id.ratingstar);
+        pbKomen = findViewById(R.id.progress_bar);
         ratingstar.setMax(5);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         title.setText("Detil Kuliner");
@@ -143,18 +147,28 @@ public class DetilKuliner extends AppCompatActivity {
 
 
                 API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-                Call<KomentarParent> call = api.addKomentar( id, nama, email, telp, website, isi, String.valueOf(hasil), userid);
-                call.enqueue(new Callback<KomentarParent>() {
+                Call<postKomentar> call = api.addKomentar( id, "kuliner",nama, email, telp, website, isi, String.valueOf(hasil), userid);
+                call.enqueue(new Callback<postKomentar>() {
                     @Override
-                    public void onResponse(Call<KomentarParent> call, Response<KomentarParent> response) {
-                        Toast.makeText(DetilKuliner.this, "Sukses Berkomentar", Toast.LENGTH_SHORT).show();
-                        parentID= response.body().getKomentar_id();
-                        Log.d("parent",parentID);
-                        addViewKomentar(id,  nama, telp, email,  website,isi,response.body().getKomentar_id(), hasil);
+                    public void onResponse(Call<postKomentar> call, Response<postKomentar> response) {
+                        //Toast.makeText(DetilKuliner.this, "Sukses Berkomentar", Toast.LENGTH_SHORT).show();
+                        parentID= response.body().getDataid();
+                        addViewKomentar(id,  nama, telp, email,  website,isi,parentID, hasil);
+                        pbKomen.setVisibility(View.VISIBLE);
+                        btnKomen.setVisibility(View.GONE);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                pbKomen.setVisibility(View.GONE);
+                                btnKomen.setVisibility(View.VISIBLE);
+                            }
+                        },2000);
+
                     }
 
                     @Override
-                    public void onFailure(Call<KomentarParent> call, Throwable t) {
+                    public void onFailure(Call<postKomentar> call, Throwable t) {
                         Log.d("error", t.toString());
                     }
                 });
@@ -334,16 +348,17 @@ public class DetilKuliner extends AppCompatActivity {
     {
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<KomentarParent> call = api.addKomentarBalas( id, nama, email, telp, website, parentID, isi , userid);
-        call.enqueue(new Callback<KomentarParent>() {
+        Call<postKomentar> call = api.addKomentarBalas( id, nama, email, telp, website, parentID, isi , userid);
+        call.enqueue(new Callback<postKomentar>() {
             @Override
-            public void onResponse(Call<KomentarParent> call, Response<KomentarParent> response) {
-                Toast.makeText(DetilKuliner.this, "Sukses Berkomentar", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<postKomentar> call, Response<postKomentar> response) {
+                //Toast.makeText(DetilKuliner.this, "Sukses Berkomentar", Toast.LENGTH_SHORT).show();
+
 
             }
 
             @Override
-            public void onFailure(Call<KomentarParent> call, Throwable t) {
+            public void onFailure(Call<postKomentar> call, Throwable t) {
                 Log.d("onResponse", t.toString());
             }
         });
