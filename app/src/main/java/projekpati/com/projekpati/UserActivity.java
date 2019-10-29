@@ -63,7 +63,7 @@ public class UserActivity extends AppCompatActivity {
             String personId = acct.getId();
             Uri personPhoto = acct.getPhotoUrl();
 
-            Picasso.with(getApplicationContext())
+            Picasso.get()
                     .load(String.valueOf(personPhoto)).noFade().into(imageView);
             name.setText(personName);
             email.setText(personEmail);

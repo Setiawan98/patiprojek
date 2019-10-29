@@ -44,7 +44,7 @@ dependencies {
     implementation 'com.commit451:PhotoView:1.2.4'
 
     //picasso
-    implementation 'com.squareup.picasso:picasso:2.3.3'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 
     implementation 'androidx.cardview:cardview:1.0.0'

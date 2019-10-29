@@ -2,9 +2,11 @@ package projekpati.com.projekpati.Kuliner;
 
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.appcompat.widget.Toolbar;
+        import androidx.viewpager.widget.ViewPager;
         import projekpati.com.projekpati.API.API;
         import projekpati.com.projekpati.API.RetrofitClientInstance;
         import projekpati.com.projekpati.Model.DetilKulinerModel;
+        import projekpati.com.projekpati.Model.GambarDetil;
         import projekpati.com.projekpati.Model.KomentarLengkap;
         import projekpati.com.projekpati.Model.KomentarParent;
         import projekpati.com.projekpati.Model.ListKuliner;
@@ -55,12 +57,14 @@ public class DetilKuliner extends AppCompatActivity {
     EditText komentar;
     RatingBar ratingstar;
     Button btnDetil, btnJam, btnKomen;
+    ViewPager pager;
     float lat;
     float longt;
     LinearLayout listKuliner;
     ImageView mImage, btnMap;
     LinearLayout linearDetil, linearJam;
     List<KomentarParent> list = new ArrayList<>();
+    List<GambarDetil> gambarList = new ArrayList<>();
     Map<String,List<KomentarParent>> responseChild;
     List<KomentarParent> listChild = new ArrayList<>();
     Toolbar toolbar;
@@ -100,10 +104,11 @@ public class DetilKuliner extends AppCompatActivity {
         textWebsite = findViewById(R.id.mWebsite);
         textPemilik = findViewById(R.id.mPemilik);
         listKuliner = findViewById(R.id.listKuliner);
-        mImage = findViewById(R.id.mImage);
+     //   mImage = findViewById(R.id.mImage);
         btnMap = findViewById(R.id.btnMap);
         komentar = findViewById(R.id.komentar);
         btnKomen = findViewById(R.id.btnKomen);
+        pager = findViewById(R.id.view_pager);
         ratingstar = findViewById(R.id.ratingstar);
         ratingstar.setMax(5);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
@@ -128,12 +133,14 @@ public class DetilKuliner extends AppCompatActivity {
             public void onClick(View v) {
                 final Bundle bundle = getIntent().getExtras();
                 final String id = bundle.getString("id_kuliner");
-                float hasil = ratingstar.getRating();
+                final float hasil = ratingstar.getRating();
                 //String rate = String.valueOf(hasil);
                 final String isi,nama=null,email=null,telp=null,website=null,userid=null;
 
                 isi = komentar.getText().toString();
                // rate = rating.getText().toString();
+
+
 
                 API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
                 Call<KomentarParent> call = api.addKomentar( id, nama, email, telp, website, isi, String.valueOf(hasil), userid);
@@ -142,100 +149,17 @@ public class DetilKuliner extends AppCompatActivity {
                     public void onResponse(Call<KomentarParent> call, Response<KomentarParent> response) {
                         Toast.makeText(DetilKuliner.this, "Sukses Berkomentar", Toast.LENGTH_SHORT).show();
                         parentID= response.body().getKomentar_id();
+                        Log.d("parent",parentID);
+                        addViewKomentar(id,  nama, telp, email,  website,isi,response.body().getKomentar_id(), hasil);
                     }
 
                     @Override
                     public void onFailure(Call<KomentarParent> call, Throwable t) {
-                        Log.d("onResponse", t.toString());
+                        Log.d("error", t.toString());
                     }
                 });
-//                finish();
-//                startActivity(getIntent());
+//
 
-                final LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-                final RelativeLayout adapter = (RelativeLayout) inflater.inflate(R.layout.komentar_adapter,null);
-                TextView txtNama = (TextView) adapter.findViewById(R.id.mNama);
-                TextView txtKomentar = (TextView) adapter.findViewById(R.id.mKomentar);
-                RatingBar ratestar = adapter.findViewById(R.id.ratingstar);
-                Button btnBatal = adapter.findViewById(R.id.btnBatal);
-                Button btnKirim = adapter.findViewById(R.id.btnKirim);
-                TextView btnBalas = adapter.findViewById(R.id.btnBalas);
-                final LinearLayout layoutChild = adapter.findViewById(R.id.listChild);
-                final EditText eKomenBalas = adapter.findViewById(R.id.eKomentar);
-                final RelativeLayout layoutBalas = adapter.findViewById(R.id.layoutBalas);
-                txtNama.setText(nama);
-                txtKomentar.setText(isi);
-                ratestar.setMax(5);
-                Float ratingbos = hasil;
-                if(ratingbos == 1)
-                {
-                    ratestar.setRating(1);
-                }
-                else if(ratingbos == 2)
-                {
-                    ratestar.setRating(2);
-                }
-                else if(ratingbos == 3)
-                {
-                    ratestar.setRating(3);
-                }
-                else if(ratingbos == 4)
-                {
-                    ratestar.setRating(4);
-                }
-                else if(ratingbos == 5)
-                {
-                    ratestar.setRating(5);
-                }
-                btnBalas.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        layoutBalas.setVisibility(View.VISIBLE);
-                    }
-                });
-                btnBatal.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        layoutBalas.setVisibility(View.GONE);
-                    }
-                });
-
-                btnKirim.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        final ProgressBar pg = adapter.findViewById(R.id.progress_bar);
-                        pg.setVisibility(View.VISIBLE);
-                        addBalas(id, nama, email, telp,website, eKomenBalas.getText().toString(), parentID, null);
-                        final RelativeLayout adapterChild = (RelativeLayout) inflater.inflate(R.layout.komentarchild_adapter,null);
-                        TextView txtChildNama = (TextView) adapterChild.findViewById(R.id.mNama);
-                        TextView textChildKomentar = (TextView) adapterChild.findViewById(R.id.mKomentar);
-                        txtChildNama.setText(nama);
-                        textChildKomentar.setText(eKomenBalas.getText().toString());
-                        layoutBalas.setBackgroundColor(getResources().getColor(R.color.progress));
-
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                layoutChild.addView(adapterChild);
-                                layoutChild.invalidate();
-                                layoutBalas.setVisibility(View.GONE);
-                                layoutBalas.setBackgroundColor(getResources().getColor(R.color.progress_after));
-                                pg.setVisibility(View.GONE);
-                            }
-                        },2000);
-
-                    }
-                });
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        listKuliner.addView(adapter,0);
-                        listKuliner.invalidate();
-                    }
-                },2000);
 
             }
         });
@@ -251,14 +175,6 @@ public class DetilKuliner extends AppCompatActivity {
             }
         });
 
-        mImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetilKuliner.this,tampilFotoKuliner.class);
-                intent.putExtra("id_kuliner",bundle.getString("id_kuliner"));
-                startActivity(intent);
-            }
-        });
 
         btnJam.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -423,6 +339,7 @@ public class DetilKuliner extends AppCompatActivity {
             @Override
             public void onResponse(Call<KomentarParent> call, Response<KomentarParent> response) {
                 Toast.makeText(DetilKuliner.this, "Sukses Berkomentar", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -460,27 +377,32 @@ public class DetilKuliner extends AppCompatActivity {
                 lat = Float.parseFloat(response.body().getData().getLatitude());
                 longt = Float.parseFloat(response.body().getData().getLongitude());
 
-                URL url = null;
-                if(response.body().getData().getFile().equals(""))
+
+                gambarList = response.body().getData().getGambar();
+                String[] stringArray;
+
+                if(gambarList.size() == 0)
                 {
-                    //tidak terjadi perubahan apapun
+                    stringArray = new String[gambarList.size()+1];
+                    stringArray[0] = response.body().getIcon();
+
                 }
                 else
                 {
-                    try {
-                        // LinearLayout ly = findViewById(R.id.konten);
-                        Integer width= ly.getWidth();
-                        Integer height =  width*65/100;
-                        Log.d("layout width",String.valueOf(width));
-                        Log.d("layout height",String.valueOf(height));
-                        url = new URL(response.body().getData().getFile());
-                        Picasso.with(getApplicationContext())
-                                .load(String.valueOf(url))
-                                .resize(width,height).noFade().into(mImage);
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
+                    stringArray = new String[gambarList.size()];
+
+                    for(int i=0 ; i<gambarList.size() ; i++)
+                    {
+                        stringArray[i] = gambarList.get(i).getFile_kuliner_img();
                     }
+
+
+
                 }
+                ViewPagerAdapter adapter = new ViewPagerAdapter(DetilKuliner.this,stringArray);
+                pager.setAdapter(adapter);
+
+
                 btnMap.bringToFront();
 
             }
@@ -516,5 +438,94 @@ public class DetilKuliner extends AppCompatActivity {
                 //Toast.makeText(DetilKuliner.this.getApplicationContext(),t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    public void addViewKomentar(final String id, final String nama, final String telp, final String email, final String website, String isi, final String pID, Float hasil){
+        final LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        final RelativeLayout adapter = (RelativeLayout) inflater.inflate(R.layout.komentar_adapter,null);
+        TextView txtNama = (TextView) adapter.findViewById(R.id.mNama);
+        TextView txtKomentar = (TextView) adapter.findViewById(R.id.mKomentar);
+        RatingBar ratestar = adapter.findViewById(R.id.ratingstar);
+        Button btnBatal = adapter.findViewById(R.id.btnBatal);
+        Button btnKirim = adapter.findViewById(R.id.btnKirim);
+        TextView btnBalas = adapter.findViewById(R.id.btnBalas);
+        final LinearLayout layoutChild = adapter.findViewById(R.id.listChild);
+        final EditText eKomenBalas = adapter.findViewById(R.id.eKomentar);
+        final RelativeLayout layoutBalas = adapter.findViewById(R.id.layoutBalas);
+        txtNama.setText(nama);
+        txtKomentar.setText(isi);
+        ratestar.setMax(5);
+        Float ratingbos = hasil;
+        if(ratingbos == 1)
+        {
+            ratestar.setRating(1);
+        }
+        else if(ratingbos == 2)
+        {
+            ratestar.setRating(2);
+        }
+        else if(ratingbos == 3)
+        {
+            ratestar.setRating(3);
+        }
+        else if(ratingbos == 4)
+        {
+            ratestar.setRating(4);
+        }
+        else if(ratingbos == 5)
+        {
+            ratestar.setRating(5);
+        }
+        btnBalas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layoutBalas.setVisibility(View.VISIBLE);
+            }
+        });
+        btnBatal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layoutBalas.setVisibility(View.GONE);
+            }
+        });
+
+        btnKirim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final ProgressBar pg = adapter.findViewById(R.id.progress_bar);
+                pg.setVisibility(View.VISIBLE);
+                addBalas(id, nama, email, telp,website, eKomenBalas.getText().toString(), pID, null);
+                final RelativeLayout adapterChild = (RelativeLayout) inflater.inflate(R.layout.komentarchild_adapter,null);
+                TextView txtChildNama = (TextView) adapterChild.findViewById(R.id.mNama);
+                TextView textChildKomentar = (TextView) adapterChild.findViewById(R.id.mKomentar);
+                txtChildNama.setText(nama);
+                textChildKomentar.setText(eKomenBalas.getText().toString());
+                layoutBalas.setBackgroundColor(getResources().getColor(R.color.progress));
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        layoutChild.addView(adapterChild);
+                        layoutChild.invalidate();
+                        layoutBalas.setVisibility(View.GONE);
+                        layoutBalas.setBackgroundColor(getResources().getColor(R.color.progress_after));
+                        pg.setVisibility(View.GONE);
+                    }
+                },2000);
+
+            }
+        });
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                listKuliner.addView(adapter,0);
+                listKuliner.invalidate();
+            }
+        },2000);
+
     }
 }

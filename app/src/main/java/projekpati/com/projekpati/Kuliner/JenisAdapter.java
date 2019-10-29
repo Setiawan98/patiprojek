@@ -45,7 +45,7 @@ public class JenisAdapter  extends ArrayAdapter<JenisKuliner> {
         {
             try {
                 url = new URL(kuliner.get(pos).getIcon());
-                Picasso.with(getContext())
+                Picasso.get()
                         .load(String.valueOf(url))
                         .resize(150,100).noFade().into(mImage);
             } catch (MalformedURLException e) {

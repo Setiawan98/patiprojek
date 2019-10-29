@@ -1,9 +1,12 @@
 package projekpati.com.projekpati.Model;
 
+import java.util.List;
+
 public class DetilKulinerBaru {
     String id, nama, pemilik, telp, email, website, deskripsi, situs_sumber, tipe_sumber, latitude, longitude, alamat, tipe, file, file_small, publish, hari_0, hari_1, hari_2, hari_3, hari_4, hari_5, hari_6;
+    List<GambarDetil> gambar;
 
-    public DetilKulinerBaru(String id, String nama, String pemilik, String telp, String email, String website, String deskripsi, String situs_sumber, String tipe_sumber, String latitude, String longitude, String alamat, String tipe, String file, String file_small, String publish, String hari_0, String hari_1, String hari_2, String hari_3, String hari_4, String hari_5, String hari_6) {
+    public DetilKulinerBaru(String id, String nama, String pemilik, String telp, String email, String website, String deskripsi, String situs_sumber, String tipe_sumber, String latitude, String longitude, String alamat, String tipe, String file, String file_small, String publish, String hari_0, String hari_1, String hari_2, String hari_3, String hari_4, String hari_5, String hari_6, List<GambarDetil> gambar) {
         this.id = id;
         this.nama = nama;
         this.pemilik = pemilik;
@@ -27,6 +30,7 @@ public class DetilKulinerBaru {
         this.hari_4 = hari_4;
         this.hari_5 = hari_5;
         this.hari_6 = hari_6;
+        this.gambar = gambar;
     }
 
     public String getId() {
@@ -211,5 +215,13 @@ public class DetilKulinerBaru {
 
     public void setHari_6(String hari_6) {
         this.hari_6 = hari_6;
+    }
+
+    public List<GambarDetil> getGambar() {
+        return gambar;
+    }
+
+    public void setGambar(List<GambarDetil> gambar) {
+        this.gambar = gambar;
     }
 }

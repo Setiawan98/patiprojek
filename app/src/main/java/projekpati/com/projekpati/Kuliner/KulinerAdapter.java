@@ -66,7 +66,7 @@ public class KulinerAdapter extends ArrayAdapter<ListKuliner> {
         {
             try {
                 url = new URL(kuliner.get(pos).getFile_small());
-                Picasso.with(getContext())
+                Picasso.get()
                         .load(String.valueOf(url))
                         .resize(150,100).noFade().into(imageView);
             } catch (MalformedURLException e) {

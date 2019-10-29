@@ -245,7 +245,7 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
                 {
                     try {
                         url = new URL(lk.getFile_small());
-                        Picasso.with(DetailMap.this)
+                        Picasso.get()
                                 .load(String.valueOf(url))
                                 .resize(156,108).noFade().into(thumbnailImage);
                     } catch (MalformedURLException e) {

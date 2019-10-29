@@ -130,9 +130,10 @@ public class MenuKuliner extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onBitmapFailed(Drawable errorDrawable) {
+                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
 
                     }
+
 
                     @Override
                     public void onPrepareLoad(Drawable placeHolderDrawable) {
@@ -149,7 +150,7 @@ public class MenuKuliner extends AppCompatActivity {
                 {
                     try {
                         url = new URL(response.body().getIcon());
-                        Picasso.with(toolbar.getContext())
+                        Picasso.get()
                                 .load(String.valueOf(url))
                                 .into(target);
                     } catch (MalformedURLException e) {
