@@ -67,6 +67,7 @@ public class DetilKuliner extends AppCompatActivity {
     TextView title;
     LinearLayout ly;
     String id;
+    String parentID;
 
 
 
@@ -120,14 +121,17 @@ public class DetilKuliner extends AppCompatActivity {
 
        getKomentar();
 
+
+
         btnKomen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Bundle bundle = getIntent().getExtras();
-                String id = bundle.getString("id_kuliner");
+                final String id = bundle.getString("id_kuliner");
                 float hasil = ratingstar.getRating();
                 //String rate = String.valueOf(hasil);
-                String isi,nama=null,email=null,telp=null,website=null,userid=null;
+                final String isi,nama=null,email=null,telp=null,website=null,userid=null;
+
                 isi = komentar.getText().toString();
                // rate = rating.getText().toString();
 
@@ -137,6 +141,7 @@ public class DetilKuliner extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<KomentarParent> call, Response<KomentarParent> response) {
                         Toast.makeText(DetilKuliner.this, "Sukses Berkomentar", Toast.LENGTH_SHORT).show();
+                        parentID= response.body().getKomentar_id();
                     }
 
                     @Override
@@ -152,8 +157,15 @@ public class DetilKuliner extends AppCompatActivity {
                 TextView txtNama = (TextView) adapter.findViewById(R.id.mNama);
                 TextView txtKomentar = (TextView) adapter.findViewById(R.id.mKomentar);
                 RatingBar ratestar = adapter.findViewById(R.id.ratingstar);
+                Button btnBatal = adapter.findViewById(R.id.btnBatal);
+                Button btnKirim = adapter.findViewById(R.id.btnKirim);
+                TextView btnBalas = adapter.findViewById(R.id.btnBalas);
+                final LinearLayout layoutChild = adapter.findViewById(R.id.listChild);
+                final EditText eKomenBalas = adapter.findViewById(R.id.eKomentar);
+                final RelativeLayout layoutBalas = adapter.findViewById(R.id.layoutBalas);
                 txtNama.setText(nama);
                 txtKomentar.setText(isi);
+                ratestar.setMax(5);
                 Float ratingbos = hasil;
                 if(ratingbos == 1)
                 {
@@ -175,6 +187,46 @@ public class DetilKuliner extends AppCompatActivity {
                 {
                     ratestar.setRating(5);
                 }
+                btnBalas.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        layoutBalas.setVisibility(View.VISIBLE);
+                    }
+                });
+                btnBatal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        layoutBalas.setVisibility(View.GONE);
+                    }
+                });
+
+                btnKirim.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final ProgressBar pg = adapter.findViewById(R.id.progress_bar);
+                        pg.setVisibility(View.VISIBLE);
+                        addBalas(id, nama, email, telp,website, eKomenBalas.getText().toString(), parentID, null);
+                        final RelativeLayout adapterChild = (RelativeLayout) inflater.inflate(R.layout.komentarchild_adapter,null);
+                        TextView txtChildNama = (TextView) adapterChild.findViewById(R.id.mNama);
+                        TextView textChildKomentar = (TextView) adapterChild.findViewById(R.id.mKomentar);
+                        txtChildNama.setText(nama);
+                        textChildKomentar.setText(eKomenBalas.getText().toString());
+                        layoutBalas.setBackgroundColor(getResources().getColor(R.color.progress));
+
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                layoutChild.addView(adapterChild);
+                                layoutChild.invalidate();
+                                layoutBalas.setVisibility(View.GONE);
+                                layoutBalas.setBackgroundColor(getResources().getColor(R.color.progress_after));
+                                pg.setVisibility(View.GONE);
+                            }
+                        },2000);
+
+                    }
+                });
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
