@@ -298,7 +298,9 @@ public class DetilKuliner extends AppCompatActivity {
                         final RelativeLayout adapterChild = (RelativeLayout) inflater.inflate(R.layout.komentarchild_adapter,null);
                         TextView txtChildNama = (TextView) adapterChild.findViewById(R.id.mNama);
                         TextView textChildKomentar = (TextView) adapterChild.findViewById(R.id.mKomentar);
+                        TextView textChildWaktu = adapterChild.findViewById(R.id.mWaktu);
                         txtChildNama.setText(kp.getKomentar_nama());
+                        textChildWaktu.setText(kp.getKomentar_waktu());
                         textChildKomentar.setText(eKomenBalas.getText().toString());
                         layoutBalas.setBackgroundColor(getResources().getColor(R.color.progress));
 
@@ -329,6 +331,8 @@ public class DetilKuliner extends AppCompatActivity {
                         RelativeLayout adapterChild = (RelativeLayout) inflater.inflate(R.layout.komentarchild_adapter,null);
                         TextView txtChildNama = (TextView) adapterChild.findViewById(R.id.mNama);
                         TextView textChildKomentar = (TextView) adapterChild.findViewById(R.id.mKomentar);
+                        TextView textChildWaktu = adapterChild.findViewById(R.id.mWaktu);
+                        textChildWaktu.setText(kc.getKomentar_waktu());
                         txtChildNama.setText(kc.getKomentar_nama());
                         textChildKomentar.setText(kc.getKomentar_isi());
                         layoutChild.addView(adapterChild);
