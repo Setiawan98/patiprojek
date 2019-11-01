@@ -63,16 +63,31 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/white"
                     android:orientation="vertical">
-
-                    <androidx.viewpager.widget.ViewPager
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        android:clickable="true"
-                        android:id="@+id/view_pager"/>
+                        android:layout_height="310dp">
 
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/view_pager"
+                            android:layout_width="380dp"
+                            android:layout_height="296dp"
+                            android:clickable="true" />
+
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tabDots"
+                            android:layout_alignParentBottom="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:tabPaddingStart="5dp"
+                            app:tabPaddingEnd="5dp"
+                            app:tabBackground="@drawable/tab_selector"
+                            app:tabGravity="center"
+                            app:tabIndicatorHeight="0dp"/>
+                    </RelativeLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
+                        android:layout_marginTop="-15dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <TextView
@@ -91,10 +106,10 @@
                             android:orientation="horizontal"
                             android:layout_marginTop="3dp">
                             <TextView
+                                android:id="@+id/refnama"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="right"
-                                android:text="Kuliner"
                                 android:layout_marginLeft="15dp"
                                 android:ellipsize="end"
                                 android:paddingRight="5dp"
@@ -113,22 +128,53 @@
                                 android:textSize="6pt"
                                 android:textStyle="bold" />
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="15dp"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/star"/>
+                            <TextView
+                                android:layout_marginLeft="7dp"
+                                android:textSize="7pt"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:layout_width="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/ratingsum"/>
+                            <TextView
+                                android:layout_marginLeft="5dp"
+                                android:textSize="7pt"
+                                android:textColor="@color/black"
+                                android:layout_width="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/ratingpeople"/>
+                        </LinearLayout>
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/black"
                         android:layout_marginLeft="15dp"
                         android:text="Deskripsi"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/black"
                         android:layout_marginLeft="15dp"
                         android:id="@+id/mDeskripsi"/>
 
 
                     <LinearLayout
+                        android:layout_marginTop="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -150,7 +196,7 @@
                             <TextView
                                 android:id="@+id/mPemilik"
                                 android:paddingRight="20dp"
-                                android:textSize="5pt"
+                                android:textSize="7pt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"/>
@@ -171,7 +217,7 @@
                             <TextView
                                 android:id="@+id/mTelpon"
                                 android:paddingRight="20dp"
-                                android:textSize="5pt"
+                                android:textSize="7pt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"/>
@@ -193,17 +239,11 @@
                             <TextView
                                 android:id="@+id/mEmail"
                                 android:paddingRight="20dp"
-                                android:textSize="5pt"
+                                android:textSize="7pt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"/>
                         </LinearLayout>
-
-                        <View
-                            android:layout_width="fill_parent"
-                            android:layout_marginLeft="30dp"
-                            android:layout_height="1dp"
-                            android:background="#535353" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -221,7 +261,7 @@
                             <TextView
                                 android:id="@+id/mWebsite"
                                 android:paddingRight="20dp"
-                                android:textSize="5pt"
+                                android:textSize="7pt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"/>
@@ -243,7 +283,7 @@
                             <TextView
                                 android:id="@+id/mAlamat"
                                 android:paddingRight="20dp"
-                                android:textSize="5pt"
+                                android:textSize="7pt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@android:color/black"/>
@@ -253,46 +293,71 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_marginBottom="5dp"
                         android:orientation="horizontal"
                         android:weightSum="8">
 
                         <LinearLayout
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:id="@+id/buttonJam"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/green"
+                            android:layout_marginRight="10dp"
                             android:layout_weight="4"
-                            android:text="Lihat Jam Buka"
-                            android:background="@color/green"/>
+                            android:weightSum="4"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_weight="2"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:clickable="true"
+                                android:src="@drawable/clock" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_weight="2"
+                                android:layout_gravity="center"
+                                android:layout_height="wrap_content"
+                                android:text="Jam Buka"/>
+                        </LinearLayout>
+
                         <LinearLayout
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                        <ImageView
                             android:id="@+id/btnMap"
-                            android:layout_weight="1"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_alignEnd="@+id/mImage"
-                            android:layout_alignBottom="@+id/mImage"
-                            android:layout_gravity="right"
-                            android:layout_marginEnd="10dp"
-                            android:clickable="true"
-                            android:layout_marginBottom="20dp"
-                            android:src="@drawable/ic_directions_black_24dp" />
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/quantum_bluegrey700"
+                            android:layout_weight="4"
+                            android:weightSum="4"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_weight="2"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:clickable="true"
+                                android:src="@drawable/google" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_weight="2"
+                                android:layout_gravity="center"
+                                android:layout_height="wrap_content"
+                                android:text="Arah Lokasi"/>
+                        </LinearLayout>
+
                     </LinearLayout>
 
 
 
                     <LinearLayout
 
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="30dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">

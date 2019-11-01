@@ -41,6 +41,7 @@ package projekpati.com.projekpati.Kuliner;
         import com.google.android.gms.maps.model.CameraPosition;
         import com.google.android.gms.maps.model.LatLng;
         import com.google.android.gms.maps.model.Marker;
+        import com.google.android.material.tabs.TabLayout;
         import com.google.gson.Gson;
         import com.squareup.picasso.Picasso;
 
@@ -53,23 +54,23 @@ package projekpati.com.projekpati.Kuliner;
 
 public class DetilKuliner extends AppCompatActivity {
 
-    TextView textNama, textAlamat, textTelepon, textDeskripsi, textEmail, textWebsite, textPemilik;
+    TextView textNama, textAlamat, textTelepon, textDeskripsi, textEmail, textWebsite, textPemilik, refnama, ratingsum, ratingpeople;
     TextView senin, selasa, rabu, kamis, jumat, sabtu, minggu;
     EditText komentar;
     RatingBar ratingstar;
-    Button btnDetil, btnJam;
+    Button btnDetil;
+    LinearLayout btnJam, btnMap;
     TextView btnKomen;
     ViewPager pager;
     float lat;
     float longt;
     LinearLayout listKuliner;
-    ImageView mImage, btnMap;
     LinearLayout linearDetil, linearJam;
     List<KomentarParent> list = new ArrayList<>();
     List<GambarDetil> gambarList = new ArrayList<>();
     Map<String,List<KomentarParent>> responseChild;
-    List<KomentarParent> listChild = new ArrayList<>();
     Toolbar toolbar;
+    TabLayout tabLayout;
     TextView title;
     LinearLayout ly;
     String id;
@@ -89,6 +90,9 @@ public class DetilKuliner extends AppCompatActivity {
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
         linearDetil = findViewById(R.id.linearDetil);
+        ratingpeople = findViewById(R.id.ratingpeople);
+        ratingsum = findViewById(R.id.ratingsum);
+        refnama = findViewById(R.id.refnama);
         linearJam = findViewById(R.id.linearJam);
         senin = findViewById(R.id.mSenin);
         selasa = findViewById(R.id.mSelasa);
@@ -103,11 +107,12 @@ public class DetilKuliner extends AppCompatActivity {
         textAlamat = findViewById(R.id.mAlamat);
         textTelepon = findViewById(R.id.mTelpon);
         textDeskripsi = findViewById(R.id.mDeskripsi);
+        tabLayout = findViewById(R.id.tabDots);
+
         textEmail = findViewById(R.id.mEmail);
         textWebsite = findViewById(R.id.mWebsite);
         textPemilik = findViewById(R.id.mPemilik);
         listKuliner = findViewById(R.id.listKuliner);
-     //   mImage = findViewById(R.id.mImage);
         btnMap = findViewById(R.id.btnMap);
         komentar = findViewById(R.id.komentar);
         btnKomen = findViewById(R.id.btnKomen);
@@ -138,13 +143,8 @@ public class DetilKuliner extends AppCompatActivity {
                 final Bundle bundle = getIntent().getExtras();
                 final String id = bundle.getString("id_kuliner");
                 final float hasil = ratingstar.getRating();
-                //String rate = String.valueOf(hasil);
-                final String isi,nama=null,email=null,telp=null,website=null,userid=null;
-
+                final String isi,waktu=null, nama=null,email=null,telp=null,website=null,userid=null;
                 isi = komentar.getText().toString();
-               // rate = rating.getText().toString();
-
-
 
                 API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
                 Call<postKomentar> call = api.addKomentar( id, "kuliner",nama, email, telp, website, isi, String.valueOf(hasil), userid);
@@ -153,7 +153,7 @@ public class DetilKuliner extends AppCompatActivity {
                     public void onResponse(Call<postKomentar> call, Response<postKomentar> response) {
                         //Toast.makeText(DetilKuliner.this, "Sukses Berkomentar", Toast.LENGTH_SHORT).show();
                         parentID= response.body().getDataid();
-                        addViewKomentar(id,  nama, telp, email,  website,isi,parentID, hasil);
+                        addViewKomentar(id,  nama, waktu,  telp, email,  website,isi,parentID, hasil);
                         pbKomen.setVisibility(View.VISIBLE);
                         btnKomen.setVisibility(View.GONE);
                         Handler handler = new Handler();
@@ -172,8 +172,6 @@ public class DetilKuliner extends AppCompatActivity {
                         Log.d("error", t.toString());
                     }
                 });
-//
-
 
             }
         });
@@ -230,7 +228,6 @@ public class DetilKuliner extends AppCompatActivity {
     {
         final LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         int size = list.size();
-       // int sizeChild=listChild.size();
         Log.d("size",String.valueOf(size));
         int index=size-1;
 
@@ -244,6 +241,7 @@ public class DetilKuliner extends AppCompatActivity {
                 final RelativeLayout adapter = (RelativeLayout) inflater.inflate(R.layout.komentar_adapter,null);
                 TextView txtNama = (TextView) adapter.findViewById(R.id.mNama);
                 TextView txtKomentar = (TextView) adapter.findViewById(R.id.mKomentar);
+                TextView txtWaktu = adapter.findViewById(R.id.mWaktu);
                 RatingBar ratestar = adapter.findViewById(R.id.ratingstar);
                 TextView btnBalas = adapter.findViewById(R.id.btnBalas);
                 Button btnBatal = adapter.findViewById(R.id.btnBatal);
@@ -253,7 +251,7 @@ public class DetilKuliner extends AppCompatActivity {
                 final RelativeLayout layoutBalas = adapter.findViewById(R.id.layoutBalas);
 
                 ratestar.setMax(5);
-
+                txtWaktu.setText(kp.getKomentar_waktu());
                 txtNama.setText(kp.getKomentar_nama());
                 txtKomentar.setText(kp.getKomentar_isi());
                 Float ratingbos = Float.parseFloat(kp.getKomentar_rating());
@@ -352,9 +350,6 @@ public class DetilKuliner extends AppCompatActivity {
         call.enqueue(new Callback<postKomentar>() {
             @Override
             public void onResponse(Call<postKomentar> call, Response<postKomentar> response) {
-                //Toast.makeText(DetilKuliner.this, "Sukses Berkomentar", Toast.LENGTH_SHORT).show();
-
-
             }
 
             @Override
@@ -375,6 +370,10 @@ public class DetilKuliner extends AppCompatActivity {
 
 
                 Log.w("ResponseAsu", new Gson().toJson(response.body()));
+                refnama.setText(response.body().getData().getRef_kuliner_nama());
+                ratingsum.setText(response.body().getData().getRating());
+                String tampung = response.body().getData().getRating_jumlah();
+                ratingpeople.setText(String.format("(%s orang)", tampung));
                 textNama.setText(response.body().getData().getNama());
                 textAlamat.setText(response.body().getData().getAlamat());
                 textDeskripsi.setText(response.body().getData().getDeskripsi());
@@ -416,7 +415,7 @@ public class DetilKuliner extends AppCompatActivity {
                 }
                 ViewPagerAdapter adapter = new ViewPagerAdapter(DetilKuliner.this,stringArray);
                 pager.setAdapter(adapter);
-
+                tabLayout.setupWithViewPager(pager, true);
 
                 btnMap.bringToFront();
 
@@ -456,11 +455,12 @@ public class DetilKuliner extends AppCompatActivity {
     }
 
 
-    public void addViewKomentar(final String id, final String nama, final String telp, final String email, final String website, String isi, final String pID, Float hasil){
+    public void addViewKomentar(final String id, final String nama, final String waktu, final String telp, final String email, final String website, String isi, final String pID, Float hasil){
         final LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         final RelativeLayout adapter = (RelativeLayout) inflater.inflate(R.layout.komentar_adapter,null);
         TextView txtNama = (TextView) adapter.findViewById(R.id.mNama);
         TextView txtKomentar = (TextView) adapter.findViewById(R.id.mKomentar);
+        TextView txtWaktu = adapter.findViewById(R.id.mWaktu);
         RatingBar ratestar = adapter.findViewById(R.id.ratingstar);
         Button btnBatal = adapter.findViewById(R.id.btnBatal);
         Button btnKirim = adapter.findViewById(R.id.btnKirim);
@@ -470,6 +470,7 @@ public class DetilKuliner extends AppCompatActivity {
         final RelativeLayout layoutBalas = adapter.findViewById(R.id.layoutBalas);
         txtNama.setText(nama);
         txtKomentar.setText(isi);
+        txtWaktu.setText(waktu);
         ratestar.setMax(5);
         Float ratingbos = hasil;
         if(ratingbos == 1)
