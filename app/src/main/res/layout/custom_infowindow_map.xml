@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:id="@+id/infoAdapter">
+    <TextView
+        android:id="@+id/infoName"
+        android:background="@color/red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="warung makan lele gorng"
+        android:maxLines="1"
+        android:padding="1dp"
+        android:textColor="@android:color/white"
+        android:ellipsize="end"
+        android:textAlignment="center"
+        android:textSize="10dp"
+        android:maxWidth="80dp"/>
+    <ImageView
+        android:paddingTop="3dp"
+        android:id="@+id/marker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_location_on_black_24dp" />
+
+</LinearLayout>

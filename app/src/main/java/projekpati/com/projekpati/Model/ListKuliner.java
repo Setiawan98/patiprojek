@@ -11,11 +11,10 @@ import java.io.Serializable;
 public class ListKuliner implements Parcelable {
     String id, nama, pemilik, telp, email, website, deskripsi, alamat, tipe, file, file_small, hari_ini, jam_buka, situs_sumber,tipe_sumber,latitude,longitude;
     Integer nomor;
+    String ref_kuliner_nama;
 
 
-
-
-    public ListKuliner(String id, String nama, String pemilik, String telp, String email, String website, String deskripsi, String alamat, String tipe, String file, String file_small, String hari_ini, String jam_buka, String situs_sumber, String tipe_sumber, String latitude, String longitude, Integer nomor) {
+    public ListKuliner(String id, String nama, String pemilik, String telp, String email, String website, String deskripsi, String alamat, String tipe, String file, String file_small, String hari_ini, String jam_buka, String situs_sumber, String tipe_sumber, String latitude, String longitude, Integer nomor, String ref_kuliner_nama) {
         this.id = id;
         this.nama = nama;
         this.pemilik = pemilik;
@@ -34,7 +33,7 @@ public class ListKuliner implements Parcelable {
         this.latitude = latitude;
         this.longitude = longitude;
         this.nomor = nomor;
-
+        this.ref_kuliner_nama = ref_kuliner_nama;
     }
 
     protected ListKuliner(Parcel in) {
@@ -55,6 +54,7 @@ public class ListKuliner implements Parcelable {
         tipe_sumber = in.readString();
         latitude = in.readString();
         longitude = in.readString();
+        ref_kuliner_nama = in.readString();
         if (in.readByte() == 0) {
             nomor = null;
         } else {
@@ -82,6 +82,7 @@ public class ListKuliner implements Parcelable {
         dest.writeString(tipe_sumber);
         dest.writeString(latitude);
         dest.writeString(longitude);
+        dest.writeString(ref_kuliner_nama);
         if (nomor == null) {
             dest.writeByte((byte) 0);
         } else {
@@ -177,6 +178,10 @@ public class ListKuliner implements Parcelable {
 
     public String getLongitude() {
         return longitude;
+    }
+
+    public String getRef_kuliner_nama() {
+        return ref_kuliner_nama;
     }
 
 }

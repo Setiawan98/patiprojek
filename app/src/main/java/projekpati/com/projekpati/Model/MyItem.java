@@ -8,11 +8,13 @@ public class MyItem implements ClusterItem {
     private final LatLng mPosition;
     private String mTitle;
     private String mSnippet;
+    private  String mjenis;
 
-    public MyItem(double lat, double lng, String title, String snippet) {
+    public MyItem(double lat, double lng, String title, String snippet, String jenis) {
         this.mPosition = new LatLng(lat,lng);
         mTitle = title;
         mSnippet = snippet;
+        mjenis =jenis;
     }
 
     public MyItem(double lat, double lng) {
@@ -30,5 +32,9 @@ public class MyItem implements ClusterItem {
 
     public String getSnippet() {
         return mSnippet;
+    }
+
+    public String getMjenis() {
+        return mjenis;
     }
 }

@@ -229,8 +229,14 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
                 {
 
                     listLatn.add(data.get(String.valueOf(i)));
+                    if(data.get(String.valueOf(i)).getRef_kuliner_nama()!=null)
+                    {
+                        Log.d("ref: ",data.get(String.valueOf(i)).getRef_kuliner_nama());
+                    }
+
 
                 }
+
                 Log.w("List", new Gson().toJson((listLatn)));
                 npLatn = response.body().getHalaman_selanjutnya();
 
@@ -273,11 +279,15 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
                 Map<String, ListKuliner> data = response.body().getData();
 
 
-                Log.w("Response", new Gson().toJson(response.body()));
+                Log.w("Responseyow", new Gson().toJson(response.body()));
                 for (int i = npLatn; i <= npLatn+response.body().getJumlah_data()-1; i++)
                 {
 
-                        listLatn.add(data.get(String.valueOf(i)));
+                    listLatn.add(data.get(String.valueOf(i)));
+                    if(data.get(String.valueOf(i)).getRef_kuliner_nama()!=null)
+                    {
+                        Log.d("ref: ",data.get(String.valueOf(i)).getRef_kuliner_nama());
+                    }
 
                 }
                 // beforePage=nextPage;

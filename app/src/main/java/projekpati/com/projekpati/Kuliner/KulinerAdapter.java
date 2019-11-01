@@ -83,7 +83,6 @@ public class KulinerAdapter extends ArrayAdapter<ListKuliner> {
         }
 
 
-
         return rowView;
     }
 

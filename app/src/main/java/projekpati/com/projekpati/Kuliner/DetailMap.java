@@ -39,6 +39,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import projekpati.com.projekpati.CustomInfoWindowGoogleMaps;
 import projekpati.com.projekpati.Model.ListKuliner;
 import projekpati.com.projekpati.Model.MyItem;
 import projekpati.com.projekpati.R;
@@ -56,6 +57,7 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
     Marker beforeShow;
     Marker beforeClickLayout;
     private ClusterManager<MyItem> mClusterManager;
+    CustomClusterRenderer renderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +109,7 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
         mMap.setOnMarkerClickListener(mClusterManager);
         mMap.setOnInfoWindowClickListener(mClusterManager);
 
-        final CustomClusterRenderer renderer = new CustomClusterRenderer(this, mMap, mClusterManager);
+        renderer = new CustomClusterRenderer(this, mMap, mClusterManager);
         googleMap.setOnMarkerClickListener(mClusterManager);
         mClusterManager.setRenderer(renderer);
 
@@ -119,16 +121,17 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
             }
         });
 
+        mClusterManager.getMarkerCollection()
+                .setOnInfoWindowAdapter(new CustomInfoWindowGoogleMaps(LayoutInflater.from(this)));
+
+        mMap.setInfoWindowAdapter(mClusterManager.getMarkerManager());
+
 
         mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MyItem>() {
             @Override
             public boolean onClusterItemClick(MyItem myItem) {
-                if(beforeShow!=null)
-                {
-                    beforeShow.hideInfoWindow();
-                }
-                renderer.getMarker(myItem).showInfoWindow();
-                Log.d("aaa",renderer.getMarker(myItem).getTitle());
+
+
                 for(int i = 0;i<listLatn.size();i++)
                 {
 
@@ -141,34 +144,15 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
                     }
 
                 }
-                beforeShow = renderer.getMarker(myItem);
                 return true;
             }
         });
 
 
+
         addItems();
         mClusterManager.cluster();
 
-
-
-//        CameraPosition googlePlex = CameraPosition.builder()
-//                .target(new LatLng(-6.7487,111.0379))
-//                .zoom(15)
-//                .bearing(0)
-//                .build();
-//
-//        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex),100,null);
-//
-//        for(ListKuliner lk : listLatn)
-//        {
-//            Log.d("masuk","a");
-//            googleMap.addMarker(new MarkerOptions()
-//                    .position(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
-//                    .title(lk.getNama())
-//                    .snippet(lk.getAlamat())
-//                    .icon(bitmapDescriptor(this,R.drawable.ic_location_on_black_24dp)));
-//        }
 
         listKuliner();
 
@@ -253,23 +237,29 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
                     }
                 }
                 titleText.setText(lk.getNama());
-                titleJenis.setText((lk.getTipe()));
-                if(lk.getTipe().equals("Cafe"))
-                {
-                    titleJenis.setTextColor(getResources().getColor(R.color.blue));
+                titleJenis.setText((lk.getRef_kuliner_nama()));
+                if(lk.getRef_kuliner_nama()!=null) {
+                    Log.d("ref 2",lk.getRef_kuliner_nama());
+                    if(lk.getRef_kuliner_nama().equals("Oleh Oleh"))
+                    {
+                        titleJenis.setTextColor(getResources().getColor(R.color.blue));
+                    }
+                    else  if(lk.getRef_kuliner_nama().equals("PKL"))
+                    {
+                        titleJenis.setTextColor(getResources().getColor(R.color.green));
+                    }
+                    else  if(lk.getRef_kuliner_nama().equals("Restoran"))
+                    {
+                        titleJenis.setTextColor(getResources().getColor(R.color.yellow));
+                    }
+                    else  if(lk.getRef_kuliner_nama().equals("Warung"))
+                    {
+                        titleJenis.setTextColor(getResources().getColor(R.color.red));
+                    }
+
                 }
-                else  if(lk.getTipe().equals("PKL"))
-                {
-                    titleJenis.setTextColor(getResources().getColor(R.color.green));
-                }
-                else  if(lk.getTipe().equals("Restoran"))
-                {
-                    titleJenis.setTextColor(getResources().getColor(R.color.yellow));
-                }
-                else  if(lk.getTipe().equals("Warung"))
-                {
-                    titleJenis.setTextColor(getResources().getColor(R.color.red));
-                }
+
+
 
                 loadlLayout.addView(clickAbleColumn);
                 if(i==size-1)
@@ -344,7 +334,7 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
 
         for(ListKuliner lk : listLatn) {
 
-            MyItem offsetItem = new MyItem(Double.parseDouble(lk.getLatitude()),Double.parseDouble(lk.getLongitude()),lk.getNama(),lk.getAlamat());
+            MyItem offsetItem = new MyItem(Double.parseDouble(lk.getLatitude()),Double.parseDouble(lk.getLongitude()),lk.getNama(),lk.getAlamat(),lk.getRef_kuliner_nama());
             mClusterManager.addItem(offsetItem);
         }
 

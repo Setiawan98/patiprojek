@@ -85,6 +85,7 @@ public class DetilKuliner extends AppCompatActivity {
         setContentView(R.layout.activity_detil_kuliner);
 
         toolbar = (Toolbar) findViewById(R.id.kulinerToolbar);
+
         ly = findViewById(R.id.konten);
         setSupportActionBar(toolbar);
         title = toolbar.findViewById(R.id.title);
@@ -374,6 +375,7 @@ public class DetilKuliner extends AppCompatActivity {
 
 
                 Log.w("ResponseAsu", new Gson().toJson(response.body()));
+                title.setText(response.body().getJudul());
                 refnama.setText(response.body().getData().getRef_kuliner_nama());
                 ratingsum.setText(response.body().getData().getRating());
                 String tampung = response.body().getData().getRating_jumlah();

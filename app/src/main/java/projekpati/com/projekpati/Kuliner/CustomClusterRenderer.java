@@ -3,8 +3,13 @@ package projekpati.com.projekpati.Kuliner;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
@@ -31,10 +36,60 @@ public class CustomClusterRenderer extends DefaultClusterRenderer<MyItem> {
         this.context = context;
     }
 
+
+
     @Override
     protected void onBeforeClusterItemRendered(MyItem item, MarkerOptions markerOptions) {
-        final BitmapDescriptor markerDescriptor = bitmapDescriptor(context, R.drawable.ic_location_on_black_24dp);
-        markerOptions.icon(markerDescriptor).title(item.getTitle()).snippet(item.getSnippet());
+        IconGenerator ig = new IconGenerator(context);
+        View marker = View.inflate(context,R.layout.custom_infowindow_map,null);
+        TextView name = marker.findViewById(R.id.infoName);
+        ImageView mark = marker.findViewById(R.id.marker);
+        name.setText(item.getTitle());
+        if(item.getMjenis()!=null) {
+
+            if(item.getMjenis().equals("Oleh Oleh"))
+            {
+                name.setBackgroundResource(R.color.blue);
+                mark.setColorFilter(ContextCompat.getColor(context,R.color.blue), PorterDuff.Mode.SRC_IN);
+            }
+            else  if(item.getMjenis().equals("PKL"))
+            {
+                name.setBackgroundResource(R.color.green);
+                mark.setColorFilter(ContextCompat.getColor(context,R.color.green), PorterDuff.Mode.SRC_IN);
+            }
+            else  if(item.getMjenis().equals("Restoran"))
+            {
+                name.setBackgroundResource(R.color.yellow);
+                mark.setColorFilter(ContextCompat.getColor(context,R.color.yellow), PorterDuff.Mode.SRC_IN);
+            }
+            else  if(item.getMjenis().equals("Warung"))
+            {
+                name.setBackgroundResource(R.color.red);
+                mark.setColorFilter(ContextCompat.getColor(context,R.color.red), PorterDuff.Mode.SRC_IN);
+            }
+        }
+
+        ig.setContentView(marker);
+        ig.setBackground(null);
+        Bitmap iconMarker = ig.makeIcon();
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(iconMarker));
+
+
+
+
+//        final BitmapDescriptor markerDescriptor = bitmapDescriptor(context, R.drawable.ic_location_on_black_24dp);
+//        markerOptions.icon(markerDescriptor).title(item.getTitle());
+//
+//       Log.d("location",String.valueOf(item.getPosition().latitude));
+////       if(item.getPosition()!=null)
+////       {
+////           Log.d("masuk1",item.getTitle());
+////           Marker marker =
+////           marker.showInfoWindow();
+////       }
+//
+//            //getMarker(item).showInfoWindow();
+
 
     }
 
@@ -62,7 +117,7 @@ public class CustomClusterRenderer extends DefaultClusterRenderer<MyItem> {
 
     @Override
     protected boolean shouldRenderAsCluster(Cluster<MyItem> cluster) {
-        return cluster.getSize() >=3;
+        return cluster.getSize() >=4;
     }
 
 
