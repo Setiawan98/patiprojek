@@ -7,7 +7,7 @@
     android:id="@+id/infoAdapter">
     <TextView
         android:id="@+id/infoName"
-        android:background="@color/red"
+        android:background="@color/orange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="warung makan lele gorng"
@@ -23,6 +23,7 @@
         android:id="@+id/marker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_location_on_black_24dp" />
+        android:src="@drawable/ic_location_on_black_24dp"
+        android:tint="@color/orange"/>
 
 </LinearLayout>

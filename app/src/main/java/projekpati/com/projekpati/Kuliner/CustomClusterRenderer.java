@@ -67,6 +67,11 @@ public class CustomClusterRenderer extends DefaultClusterRenderer<MyItem> {
                 name.setBackgroundResource(R.color.red);
                 mark.setColorFilter(ContextCompat.getColor(context,R.color.red), PorterDuff.Mode.SRC_IN);
             }
+            else  if(item.getMjenis().equals("Cafe"))
+            {
+                name.setBackgroundResource(R.color.purple);
+                mark.setColorFilter(ContextCompat.getColor(context,R.color.purple), PorterDuff.Mode.SRC_IN);
+            }
         }
 
         ig.setContentView(marker);

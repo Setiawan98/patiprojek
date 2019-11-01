@@ -57,4 +57,5 @@
     <color name="greysoft">#B6B6B6</color>
     <color name="progress">#E6C2C2C2</color>
     <color name="progress_after">#ffffff</color>
+    <color name="purple">#673AB7</color>
 </resources>

@@ -256,6 +256,10 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
                     {
                         titleJenis.setTextColor(getResources().getColor(R.color.red));
                     }
+                    else  if(lk.getRef_kuliner_nama().equals("Cafe"))
+                    {
+                        titleJenis.setTextColor(getResources().getColor(R.color.purple));
+                    }
 
                 }
 
