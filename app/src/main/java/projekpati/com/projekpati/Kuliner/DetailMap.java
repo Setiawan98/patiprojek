@@ -220,6 +220,7 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
                 ImageView thumbnailImage = (ImageView) clickAbleColumn.findViewById(R.id.thubnail_image);
                 TextView titleText = (TextView) clickAbleColumn.findViewById(R.id.textThumbnail);
                 TextView titleJenis = (TextView) clickAbleColumn.findViewById(R.id.textJenis);
+                TextView btnDetail = (TextView) clickAbleColumn.findViewById(R.id.btnDetail);
                 URL url = null;
                 if(lk.getFile_small().equals(""))
                 {
@@ -273,6 +274,14 @@ public class DetailMap extends AppCompatActivity implements OnMapReadyCallback {
                     beforeClick = layout;
 
                 }
+                btnDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DetailMap.this,DetilKuliner.class);
+                        intent.putExtra("id_kuliner",lk.getId());
+                        startActivity(intent);
+                    }
+                });
 
 
                 clickAbleColumn.setOnClickListener(new View.OnClickListener() {

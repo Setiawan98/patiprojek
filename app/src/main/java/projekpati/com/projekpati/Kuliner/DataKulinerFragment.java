@@ -30,6 +30,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,6 +42,7 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
@@ -61,6 +63,7 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
     MapView mapView;
     String apikey;
     ProgressDialog progressDialog;
+    int Status=0;
 
 
     public DataKulinerFragment() {
@@ -100,7 +103,11 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
                         }
                         else
                         {
-                            loadMoreData();
+                            if(Status==0)
+                            {
+                                loadMoreData();
+                            }
+
                         }
 
                     }
@@ -161,6 +168,7 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
     public void loadMoreData(){
         //defining a progress dialog to show while signing up
 
+        Status=1;
         CountShowData = (listView.getHeight()/161);
         Log.d("Height: ", String.valueOf(listView.getHeight()));
         Log.d("Height: ", String.valueOf(CountShowData));
@@ -192,7 +200,7 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);
-
+                Status=0;
 
             }
 
@@ -319,6 +327,35 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
+        googleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Override
+            public View getInfoWindow(Marker marker) {
+
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+
+                View view = getLayoutInflater().inflate(R.layout.infowindowmap,null);
+                TextView name = view.findViewById(R.id.mNama);
+                TextView alamat = view.findViewById(R.id.mAlamat);
+                name.setText(marker.getTitle());
+                alamat.setText(marker.getSnippet());
+                return view;
+            }
+        });
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                String id = (String) marker.getTag();
+                Intent intent = new Intent(getContext(),DetilKuliner.class);
+                intent.putExtra("id_kuliner",id);
+                startActivity(intent);
+
+
+            }
+        });
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -346,11 +383,13 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
         for(ListKuliner lk : listLatn)
         {
             Log.d("masuk","a");
-            googleMap.addMarker(new MarkerOptions()
+            Marker marker = googleMap.addMarker(new MarkerOptions()
                     .position(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
                     .title(lk.getNama())
                     .snippet(lk.getAlamat())
                     .icon(bitmapDescriptor(getContext(),R.drawable.ic_location_on_black_24dp)));
+            String id= lk.getId();
+            marker.setTag(id);
         }
 
 //        googleMap.addMarker(new MarkerOptions()

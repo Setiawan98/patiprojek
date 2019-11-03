@@ -50,6 +50,19 @@
                     android:text="Cafe"
                     android:textColor="@color/blue"/>
 
+                <TextView
+                    android:id="@+id/btnDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Detail"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textSize="6pt"
+                    android:gravity="right|bottom"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp"
+                   />
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
