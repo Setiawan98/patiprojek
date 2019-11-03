@@ -91,6 +91,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
         // Required empty public constructor
     }
 
+    String[] items_value;
     GoogleMap mMap1, mMap2;
     EditText eNama, ePemilik, eNomorTelp, eWebsite, eDeskripsi, eEmail;
     Button btnTambah, btnSetLocation;
@@ -543,9 +544,11 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
 
                 String[] stringArray;
                 stringArray = new String[response.body().getJumlah_data()];
+                items_value = new String[response.body().getJumlah_data()];
                 for (int i = 1; i <= response.body().getJumlah_data(); i++)
                 {
                     stringArray[i-1] = data.get(String.valueOf(i)).getNama();
+                    items_value[i-1] = data.get(String.valueOf(i)).getId();
                 }
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, stringArray);
@@ -688,6 +691,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
                     eJamSabtuTutup.getText().toString()+ ":"+ eMenitSabtuTutup.getText().toString();
         }
 
+       String value = items_value[mRefNama.getSelectedItemPosition()];
 
         Log.d("nama",nama);
         Log.d("pemilik",pemilik);
@@ -705,7 +709,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
 
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<DetilKulinerBaru> call = api.addDataKuliner(nama,pemilik,telp,email,website,deskripsi,latitude,longitude,hari_0,hari_1,hari_2,hari_3,hari_4,hari_5,hari_6,mRefNama.getSelectedItem().toString());
+        Call<DetilKulinerBaru> call = api.addDataKuliner(nama,pemilik,telp,email,website,deskripsi,latitude,longitude,hari_0,hari_1,hari_2,hari_3,hari_4,hari_5,hari_6,value);
 
         call.enqueue(new Callback<DetilKulinerBaru>() {
             @Override

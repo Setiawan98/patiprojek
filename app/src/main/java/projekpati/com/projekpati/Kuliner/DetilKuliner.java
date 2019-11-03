@@ -26,6 +26,7 @@ package projekpati.com.projekpati.Kuliner;
         import android.view.MenuItem;
         import android.view.View;
         import android.view.Menu;
+        import android.view.ViewGroup;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ImageView;
@@ -195,6 +196,7 @@ public class DetilKuliner extends AppCompatActivity {
                 linearJam.setVisibility(View.VISIBLE);
             }
         });
+
 
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
