@@ -2,6 +2,7 @@ package projekpati.com.projekpati.Kuliner;
 
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.appcompat.widget.Toolbar;
+        import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
         import androidx.viewpager.widget.ViewPager;
         import projekpati.com.projekpati.API.API;
         import projekpati.com.projekpati.API.RetrofitClientInstance;
@@ -24,6 +25,7 @@ package projekpati.com.projekpati.Kuliner;
         import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.MenuItem;
+        import android.view.MotionEvent;
         import android.view.View;
         import android.view.Menu;
         import android.view.ViewGroup;
@@ -71,6 +73,7 @@ public class DetilKuliner extends AppCompatActivity {
     String id;
     String parentID;
     LinearLayout pbKomen;
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
 
@@ -134,6 +137,40 @@ public class DetilKuliner extends AppCompatActivity {
         getDataDetail();
 
        getKomentar();
+
+       swipeRefreshLayout = findViewById(R.id.swipe);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                finish();
+                startActivity(getIntent());
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                },3000);
+            }
+        });
+
+
+        pager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                swipeRefreshLayout.setEnabled(false);
+                switch (event.getAction()){
+
+                    case MotionEvent.ACTION_UP:
+                        swipeRefreshLayout.setEnabled(true);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                        swipeRefreshLayout.setEnabled(true);
+                        break;
+
+                }
+                return false;
+            }
+        });
 
 
 
