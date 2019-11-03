@@ -62,22 +62,30 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="7dp">
+
                 <ImageView
                     android:id="@+id/iconJam"
                     android:layout_width="20dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/iconjam"
-                    android:layout_marginRight="10dp">
-                </ImageView>
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/iconjam"/>
                 <TextView
                     android:id="@+id/mJamBuka"
                     android:paddingRight="20dp"
                     android:textSize="5pt"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"/>
+                <TextView
+                    android:id="@+id/mRefNama"
+                    android:paddingRight="15dp"
+                    android:textSize="5pt"
+                    android:gravity="right"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"/>
             </LinearLayout>

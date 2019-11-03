@@ -23,6 +23,8 @@ import androidx.fragment.app.Fragment;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.DetilKulinerBaru;
+import projekpati.com.projekpati.Model.JenisKuliner;
+import projekpati.com.projekpati.Model.JenisKulinerLengkap;
 import projekpati.com.projekpati.Model.KulinerModel;
 import projekpati.com.projekpati.Model.ListKuliner;
 import projekpati.com.projekpati.Model.MyItem;
@@ -37,11 +39,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,7 +73,9 @@ import com.squareup.picasso.Target;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import static android.content.Context.LOCATION_SERVICE;
@@ -104,7 +111,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
     LinearLayout layoutJam;
     Button setJam;
     int status=0;
-
+    Spinner mRefNama;
     EditText eJamMingguBuka,eMenitMingguBuka,eJamSeninBuka,eMenitSeninBuka,eJamSelasaBuka,eMenitselasaBuka,
             eJamRabuBuka,eMenitRabuBuka,eJamKamisBuka,eMenitKamisBuka, eJamJumatBuka,eMenitJumatBuka,
             eJamSabtuBuka,eMenitSabtuBuka;
@@ -128,13 +135,11 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
         View view = inflater.inflate(R.layout.fragment_tambah, container, false);
 
         init(view);
-
+        setSpinner();
         startLatLng = new LatLng(-6.7487,111.0379);
         currentLatLng = startLatLng;
 
-
         initMap();
-
         setupAutoCompleteFragment();
 
         // Inflate the layout for this fragment
@@ -190,7 +195,8 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
         eMenitSabtuTutup = view.findViewById(R.id.mMenitSabtuTutup);
 
 
-
+        //Spinner
+        mRefNama = view.findViewById(R.id.mRefNama);
 
 
         //Button
@@ -525,6 +531,34 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
     }
 
 
+    public void setSpinner()
+    {
+        API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<JenisKulinerLengkap> call2 = api2.tampilSemuaJenis();
+
+        call2.enqueue(new Callback<JenisKulinerLengkap>() {
+            @Override
+            public void onResponse(Call<JenisKulinerLengkap> call, Response<JenisKulinerLengkap> response) {
+                Map<String, JenisKuliner> data = response.body().getData();
+
+                String[] stringArray;
+                stringArray = new String[response.body().getJumlah_data()];
+                for (int i = 1; i <= response.body().getJumlah_data(); i++)
+                {
+                    stringArray[i-1] = data.get(String.valueOf(i)).getNama();
+                }
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, stringArray);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                mRefNama.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<JenisKulinerLengkap> call, Throwable t) {
+
+            }
+        });
+    }
 
     private BitmapDescriptor bitmapDescriptor(Context context, int vectorID)
     {
@@ -661,6 +695,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
         Log.d("email",email);
         Log.d("website",website);
         Log.d("deskripsi",deskripsi);
+        Log.d("cobain", mRefNama.getSelectedItem().toString());
         if(location!=null)
         {
             Log.d("latitude",latitude);
@@ -670,7 +705,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
 
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<DetilKulinerBaru> call = api.addDataKuliner(nama,pemilik,telp,email,website,deskripsi,latitude,longitude,hari_0,hari_1,hari_2,hari_3,hari_4,hari_5,hari_6);
+        Call<DetilKulinerBaru> call = api.addDataKuliner(nama,pemilik,telp,email,website,deskripsi,latitude,longitude,hari_0,hari_1,hari_2,hari_3,hari_4,hari_5,hari_6,mRefNama.getSelectedItem().toString());
 
         call.enqueue(new Callback<DetilKulinerBaru>() {
             @Override

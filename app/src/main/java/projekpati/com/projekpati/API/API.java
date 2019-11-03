@@ -65,7 +65,8 @@ public interface API {
              @Field("hari_3") String hari_3,
              @Field("hari_4") String hari_4,
              @Field("hari_5") String hari_5,
-             @Field("hari_6") String hari_6
+             @Field("hari_6") String hari_6,
+            @Field("ref_kuliner_id") String ref_kuliner_id
     );
 
     @FormUrlEncoded

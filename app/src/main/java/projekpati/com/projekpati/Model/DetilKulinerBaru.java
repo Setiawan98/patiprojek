@@ -5,8 +5,9 @@ import java.util.List;
 public class DetilKulinerBaru {
     String id, ref_kuliner_nama, rating, rating_jumlah, nama, pemilik, telp, email, website, deskripsi, situs_sumber, tipe_sumber, latitude, longitude, alamat, tipe, file, file_small, publish, hari_0, hari_1, hari_2, hari_3, hari_4, hari_5, hari_6;
     List<GambarDetil> gambar;
+    List<MenuDaftar> makanan;
 
-    public DetilKulinerBaru(String id, String ref_kuliner_nama, String rating, String rating_jumlah, String nama, String pemilik, String telp, String email, String website, String deskripsi, String situs_sumber, String tipe_sumber, String latitude, String longitude, String alamat, String tipe, String file, String file_small, String publish, String hari_0, String hari_1, String hari_2, String hari_3, String hari_4, String hari_5, String hari_6, List<GambarDetil> gambar) {
+    public DetilKulinerBaru(String id, String ref_kuliner_nama, String rating, String rating_jumlah, String nama, String pemilik, String telp, String email, String website, String deskripsi, String situs_sumber, String tipe_sumber, String latitude, String longitude, String alamat, String tipe, String file, String file_small, String publish, String hari_0, String hari_1, String hari_2, String hari_3, String hari_4, String hari_5, String hari_6, List<GambarDetil> gambar, List<MenuDaftar> makanan) {
         this.id = id;
         this.ref_kuliner_nama = ref_kuliner_nama;
         this.rating = rating;
@@ -34,6 +35,7 @@ public class DetilKulinerBaru {
         this.hari_5 = hari_5;
         this.hari_6 = hari_6;
         this.gambar = gambar;
+        this.makanan = makanan;
     }
 
     public String getRef_kuliner_nama() {
@@ -250,5 +252,13 @@ public class DetilKulinerBaru {
 
     public void setGambar(List<GambarDetil> gambar) {
         this.gambar = gambar;
+    }
+
+    public List<MenuDaftar> getMakanan() {
+        return makanan;
+    }
+
+    public void setMakanan(List<MenuDaftar> makanan) {
+        this.makanan = makanan;
     }
 }

@@ -5,11 +5,12 @@ package projekpati.com.projekpati.Kuliner;
         import androidx.viewpager.widget.ViewPager;
         import projekpati.com.projekpati.API.API;
         import projekpati.com.projekpati.API.RetrofitClientInstance;
+        import projekpati.com.projekpati.Model.DetilKulinerBaru;
         import projekpati.com.projekpati.Model.DetilKulinerModel;
         import projekpati.com.projekpati.Model.GambarDetil;
         import projekpati.com.projekpati.Model.KomentarLengkap;
         import projekpati.com.projekpati.Model.KomentarParent;
-        import projekpati.com.projekpati.Model.ListKuliner;
+        import projekpati.com.projekpati.Model.MenuDaftar;
         import projekpati.com.projekpati.Model.postKomentar;
         import projekpati.com.projekpati.R;
         import retrofit2.Call;
@@ -22,31 +23,22 @@ package projekpati.com.projekpati.Kuliner;
         import android.os.Handler;
         import android.util.Log;
         import android.view.LayoutInflater;
-        import android.view.Menu;
         import android.view.MenuItem;
         import android.view.View;
-        import android.view.ViewGroup;
+        import android.view.Menu;
         import android.widget.Button;
         import android.widget.EditText;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
-        import android.widget.ListView;
         import android.widget.ProgressBar;
         import android.widget.RatingBar;
         import android.widget.RelativeLayout;
         import android.widget.TextView;
         import android.widget.Toast;
 
-        import com.google.android.gms.maps.CameraUpdateFactory;
-        import com.google.android.gms.maps.model.CameraPosition;
-        import com.google.android.gms.maps.model.LatLng;
-        import com.google.android.gms.maps.model.Marker;
         import com.google.android.material.tabs.TabLayout;
         import com.google.gson.Gson;
-        import com.squareup.picasso.Picasso;
 
-        import java.net.MalformedURLException;
-        import java.net.URL;
         import java.util.ArrayList;
         import java.util.List;
         import java.util.Locale;
@@ -60,13 +52,15 @@ public class DetilKuliner extends AppCompatActivity {
     RatingBar ratingstar;
     Button btnDetil;
     LinearLayout btnJam, btnMap;
+    ImageView btnMenu;
     TextView btnKomen;
     ViewPager pager;
     float lat;
     float longt;
-    LinearLayout listKuliner;
-    LinearLayout linearDetil, linearJam;
+    LinearLayout listKuliner, listMenu;
+    LinearLayout linearDetil, linearJam, linearMenu;
     List<KomentarParent> list = new ArrayList<>();
+    List<DetilKulinerBaru> Menu = new ArrayList<>();
     List<GambarDetil> gambarList = new ArrayList<>();
     Map<String,List<KomentarParent>> responseChild;
     Toolbar toolbar;
@@ -91,7 +85,10 @@ public class DetilKuliner extends AppCompatActivity {
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
         linearDetil = findViewById(R.id.linearDetil);
+        btnMenu = findViewById(R.id.btnMenu);
+        linearMenu = findViewById(R.id.linearMenu);
         ratingpeople = findViewById(R.id.ratingpeople);
+        listMenu = findViewById(R.id.listKulinerMenu);
         ratingsum = findViewById(R.id.ratingsum);
         refnama = findViewById(R.id.refnama);
         linearJam = findViewById(R.id.linearJam);
@@ -127,7 +124,8 @@ public class DetilKuliner extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         linearDetil.setVisibility(View.VISIBLE);
-        linearJam.setVisibility(View.INVISIBLE);
+        linearJam.setVisibility(View.GONE);
+        linearMenu.setVisibility(View.GONE);
 
         final Bundle bundle = getIntent().getExtras();
         id = bundle.getString("id_kuliner");
@@ -192,15 +190,54 @@ public class DetilKuliner extends AppCompatActivity {
         btnJam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                linearDetil.setVisibility(View.INVISIBLE);
+                linearDetil.setVisibility(View.GONE);
+                linearMenu.setVisibility(View.GONE);
                 linearJam.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btnMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                linearDetil.setVisibility(View.GONE);
+                linearMenu.setVisibility(View.VISIBLE);
+                linearJam.setVisibility(View.GONE);
+                API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+                Call<DetilKulinerModel> call = api.detailKuliner(id);
+                call.enqueue(new Callback<DetilKulinerModel>() {
+                    @Override
+                    public void onResponse(Call<DetilKulinerModel> call, Response<DetilKulinerModel> response) {
+                        final LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+                        int size = response.body().getData().getMakanan().size();
+                        Log.d("size",String.valueOf(size));
+                        for(int i=0; i <size ; i++)
+                        {
+                                final LinearLayout adapter = (LinearLayout) inflater.inflate(R.layout.daftar_menu_adapter,null);
+                                TextView txtNama = adapter.findViewById(R.id.mNama);
+                                TextView txtHarga = adapter.findViewById(R.id.mHarga);
+                                TextView txtDeskripsi = adapter.findViewById(R.id.mDeskripsi);
+                                txtNama.setText(response.body().getData().getMakanan().get(i).getNama());
+                                txtHarga.setText(response.body().getData().getMakanan().get(i).getHarga());
+                                txtDeskripsi.setText(response.body().getData().getMakanan().get(i).getDeskripsi());
+
+                                listMenu.addView(adapter);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<DetilKulinerModel> call, Throwable t) {
+
+                    }
+                });
             }
         });
 
         btnDetil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                linearJam.setVisibility(View.INVISIBLE);
+                linearJam.setVisibility(View.GONE);
+                linearMenu.setVisibility(View.GONE);
                 linearDetil.setVisibility(View.VISIBLE);
             }
         });
@@ -377,7 +414,7 @@ public class DetilKuliner extends AppCompatActivity {
                 Log.w("ResponseAsu", new Gson().toJson(response.body()));
                 title.setText(response.body().getJudul());
                 refnama.setText(response.body().getData().getRef_kuliner_nama());
-                ratingsum.setText(response.body().getData().getRating());
+                ratingsum.setText(String.format("%s/5",response.body().getData().getRating()));
                 String tampung = response.body().getData().getRating_jumlah();
                 ratingpeople.setText(String.format("(%s orang)", tampung));
                 textNama.setText(response.body().getData().getNama());

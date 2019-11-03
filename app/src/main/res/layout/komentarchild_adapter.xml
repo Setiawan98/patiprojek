@@ -26,16 +26,19 @@
                 android:layout_height="wrap_content"
                 android:text="NAMA"
                 android:textColor="@android:color/black"
-                android:textSize="17dp"
+                android:textSize="8pt"
                 android:id="@+id/mNama"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="7pt"
                 android:id="@+id/mWaktu"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/mKomentar"/>
+                android:textSize="8pt"
+                android:id="@+id/mKomentar"
+                android:paddingLeft="3dp"/>
 
         </LinearLayout>
 
