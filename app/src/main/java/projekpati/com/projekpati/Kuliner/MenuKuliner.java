@@ -7,29 +7,38 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.LoginActivity;
@@ -49,6 +58,7 @@ public class MenuKuliner extends AppCompatActivity {
     Toolbar toolbar;
     TextView title;
     ImageView iconView;
+    Integer status =0;
 
 
     @Override
@@ -69,35 +79,75 @@ public class MenuKuliner extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.menuKuliner);
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.menuKuliner);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
 
                 if(id==R.id.beranda){
-                    DataKulinerFragment first = new DataKulinerFragment();
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.fragment, first).commit();
+                        final DataKulinerFragment first = new DataKulinerFragment();
+                        openFragment(first);
+                        //status =1;
+                        bottomNavigationView.setEnabled(false);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomNavigationView.setEnabled(true);
+                            }
+                        },5000);
+
                 }
                 else if(id==R.id.kategori){
-                    KategoriFragment second = new KategoriFragment();
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.fragment, second).commit();
+
+                        KategoriFragment second = new KategoriFragment();
+                        openFragment(second);
+                        bottomNavigationView.setEnabled(false);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                bottomNavigationView.setEnabled(true);
+                            }
+                        },3000);
+
                 }
                 else if(id==R.id.tambah){
-                    TambahFragment third = new TambahFragment();
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.fragment, third).commit();
+
+                        TambahFragment third = new TambahFragment();
+                        openFragment(third);
+                        bottomNavigationView.setEnabled(false);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                status =0;
+                                bottomNavigationView.setEnabled(true);
+                            }
+                        },3000);
+
                 }
                 else if(id==R.id.saring){
-                    SaringFragment fouth = new SaringFragment();
-                    FragmentManager fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.fragment, fouth).commit();
+
+                        SaringFragment fouth = new SaringFragment();
+                        openFragment(fouth);
+                        bottomNavigationView.setEnabled(false);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                status =0;
+                                bottomNavigationView.setEnabled(true);
+                            }
+                        },3000);
+
                 }
                 else if(id==R.id.dataku){
-                    Intent intent = new Intent(MenuKuliner.this, LoginActivity.class);
-                    startActivity(intent);
+
+                        Intent intent = new Intent(MenuKuliner.this, LoginActivity.class);
+                        startActivity(intent);
+
                 }
                 return true;
             }
@@ -117,46 +167,21 @@ public class MenuKuliner extends AppCompatActivity {
             @Override
             public void onResponse(Call<KulinerModel> call, final Response<KulinerModel> response) {
                 Map<String, ListKuliner> data = response.body().getData();
+                try {
+                    URL url = new URL(response.body().getIcon());
+                    Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                    Bitmap scaled = Bitmap.createScaledBitmap(bmp,80,80,true);
+                    BitmapDrawable icon = new BitmapDrawable(toolbar.getResources(),scaled);
+                    iconView.setImageDrawable(icon);
+                    title.setText("Kuliner");
+                    //BitmapDescriptor icon =  BitmapDescriptorFactory.fromBitmap(scaled);
 
-
-                Target target = new Target() {
-                    @Override
-                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                        Bitmap b = Bitmap.createScaledBitmap(bitmap,80,80,false);
-                        BitmapDrawable icon = new BitmapDrawable(toolbar.getResources(),b);
-                        iconView.setImageDrawable(icon);
-                        title.setText("Kuliner");
-
-                    }
-
-                    @Override
-                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-
-                    }
-
-
-                    @Override
-                    public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-                    }
-                };
-
-                URL url = null;
-                if(response.body().getIcon().equals(""))
-                {
-                    //tidak terjadi perubahan apapun
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                else
-                {
-                    try {
-                        url = new URL(response.body().getIcon());
-                        Picasso.get()
-                                .load(String.valueOf(url))
-                                .into(target);
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    }
-                }
+                
 
 
             }
@@ -194,5 +219,14 @@ public class MenuKuliner extends AppCompatActivity {
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void openFragment (final Fragment fragment)
+    {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

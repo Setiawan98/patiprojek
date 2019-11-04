@@ -11,10 +11,10 @@ import java.io.Serializable;
 public class ListKuliner implements Parcelable {
     String id, nama, pemilik, telp, email, website, deskripsi, alamat, tipe, file, file_small, hari_ini, jam_buka, situs_sumber,tipe_sumber,latitude,longitude;
     Integer nomor;
-    String ref_kuliner_nama;
+    String ref_kuliner_nama,ref_kuliner_icon;
 
 
-    public ListKuliner(String id, String nama, String pemilik, String telp, String email, String website, String deskripsi, String alamat, String tipe, String file, String file_small, String hari_ini, String jam_buka, String situs_sumber, String tipe_sumber, String latitude, String longitude, Integer nomor, String ref_kuliner_nama) {
+    public ListKuliner(String id, String nama, String pemilik, String telp, String email, String website, String deskripsi, String alamat, String tipe, String file, String file_small, String hari_ini, String jam_buka, String situs_sumber, String tipe_sumber, String latitude, String longitude, Integer nomor, String ref_kuliner_nama, String ref_kuliner_icon) {
         this.id = id;
         this.nama = nama;
         this.pemilik = pemilik;
@@ -34,6 +34,7 @@ public class ListKuliner implements Parcelable {
         this.longitude = longitude;
         this.nomor = nomor;
         this.ref_kuliner_nama = ref_kuliner_nama;
+        this.ref_kuliner_icon = ref_kuliner_icon;
     }
 
     protected ListKuliner(Parcel in) {
@@ -55,6 +56,7 @@ public class ListKuliner implements Parcelable {
         latitude = in.readString();
         longitude = in.readString();
         ref_kuliner_nama = in.readString();
+        ref_kuliner_icon = in.readString();
         if (in.readByte() == 0) {
             nomor = null;
         } else {
@@ -83,6 +85,7 @@ public class ListKuliner implements Parcelable {
         dest.writeString(latitude);
         dest.writeString(longitude);
         dest.writeString(ref_kuliner_nama);
+        dest.writeString(ref_kuliner_icon);
         if (nomor == null) {
             dest.writeByte((byte) 0);
         } else {
@@ -184,4 +187,7 @@ public class ListKuliner implements Parcelable {
         return ref_kuliner_nama;
     }
 
+    public String getRef_kuliner_icon() {
+        return ref_kuliner_icon;
+    }
 }

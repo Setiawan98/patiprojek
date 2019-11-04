@@ -5,12 +5,15 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientApiKey;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
@@ -22,6 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +50,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +71,7 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
     String apikey;
     ProgressDialog progressDialog;
     int Status=0;
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
     public DataKulinerFragment() {
@@ -77,6 +85,20 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_data_kuliner, container, false);
         listView = (ListView) view.findViewById(R.id.listKuliner);
+        swipeRefreshLayout = view.findViewById(R.id.swipe);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getActivity().finish();
+                startActivity(getActivity().getIntent());
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                },3000);
+            }
+        });
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
@@ -133,7 +155,6 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
             @Override
             public void onResponse(Call<KulinerModel> call, final Response<KulinerModel> response) {
                 Map<String, ListKuliner> data = response.body().getData();
-
 
 
                 Log.w("Response", new Gson().toJson(response.body()));
@@ -260,7 +281,7 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
                 else {
 
                     loadMap();
-                    progressDialog.dismiss();
+
                 }
 
 
@@ -308,7 +329,7 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
                 else {
                     Log.w("List", new Gson().toJson((listLatn)));
                     loadMap();
-                    progressDialog.dismiss();
+
                 }
 
 
@@ -383,14 +404,40 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
         for(ListKuliner lk : listLatn)
         {
             Log.d("masuk","a");
+            BitmapDescriptor icon = null;
+            if(lk.getRef_kuliner_icon().equals(""))
+            {
+                Drawable vectorDrawable = ContextCompat.getDrawable(getContext(),R.drawable.ic_location_on_black_24dp);
+                vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight());
+                Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight(),Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmap);
+                vectorDrawable.draw(canvas);
+                icon = BitmapDescriptorFactory.fromBitmap(bitmap);
+            }
+            else {
+                try {
+                    URL url = new URL(lk.getRef_kuliner_icon());
+                    Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                    Bitmap scaled = Bitmap.createScaledBitmap(bmp,50,50,true);
+                    icon =  BitmapDescriptorFactory.fromBitmap(scaled);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
             Marker marker = googleMap.addMarker(new MarkerOptions()
                     .position(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
                     .title(lk.getNama())
                     .snippet(lk.getAlamat())
-                    .icon(bitmapDescriptor(getContext(),R.drawable.ic_location_on_black_24dp)));
+                    .icon(icon));
+
             String id= lk.getId();
             marker.setTag(id);
         }
+
+        progressDialog.dismiss();
 
 //        googleMap.addMarker(new MarkerOptions()
 //                .position(new LatLng(48.8584,2.2945))
@@ -398,6 +445,10 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
 //                .snippet("d")
 //                .icon(bitmapDescriptor(getContext(),R.drawable.ic_location_on_black_24dp)));
 
+    }
+
+    private BitmapDescriptor bitmapDescriptor(BitmapDescriptor icon) {
+        return null;
     }
 
     private BitmapDescriptor bitmapDescriptor(Context context, int vectorID)
