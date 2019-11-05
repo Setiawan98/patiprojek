@@ -181,7 +181,7 @@ public class MenuKuliner extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                
+
 
 
             }

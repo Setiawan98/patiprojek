@@ -142,8 +142,11 @@ public class DetilKuliner extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+
                 finish();
+                overridePendingTransition(0,0);
                 startActivity(getIntent());
+                overridePendingTransition(0,0);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

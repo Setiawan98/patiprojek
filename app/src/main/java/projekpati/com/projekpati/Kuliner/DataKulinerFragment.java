@@ -90,7 +90,10 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
             @Override
             public void onRefresh() {
                 getActivity().finish();
+                getActivity().overridePendingTransition(0,0);
                 startActivity(getActivity().getIntent());
+                getActivity().overridePendingTransition(0,0);
+
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
