@@ -28,6 +28,7 @@ import retrofit2.Response;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -102,7 +103,23 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
                 },3000);
             }
         });
-
+//        listView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                swipeRefreshLayout.setEnabled(false);
+//                switch (event.getAction()){
+//
+//                    case MotionEvent.ACTION_UP:
+//                        swipeRefreshLayout.setEnabled(true);
+//                        break;
+//                    case MotionEvent.ACTION_CANCEL:
+//                        swipeRefreshLayout.setEnabled(true);
+//                        break;
+//
+//                }
+//                return false;
+//            }
+//        });
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
@@ -141,7 +158,10 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
+                if(listView.getChildAt(0)!=null)
+                {
+                    swipeRefreshLayout.setEnabled(listView.getFirstVisiblePosition() ==0 && listView.getChildAt(0).getTop() ==0);
+                }
 
             }
         });
