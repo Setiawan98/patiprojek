@@ -9,28 +9,45 @@ import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.Kuliner.MenuKuliner;
 
 public class MainActivity extends AppCompatActivity {
 
     private LinearLayout kulinerLayout;
     private DrawerLayout dl;
+    ScrollView scroll;
     Toolbar toolbar;
     Integer icon=1;
+    private MyViewPagerAdapter myViewPagerAdapter;
     LinearLayout menuicon;
     private PrefManager prefManager;
     private ActionBarDrawerToggle abdt;
-
+    private ViewPager viewPager;
+    private LinearLayout dotsLayout;
+    private TextView[] dots;
+    private int[] layouts;
 
 
     @Override
@@ -38,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dl= (DrawerLayout) findViewById(R.id.dl);
+        scroll = findViewById(R.id.scrollview);
         menuicon = findViewById(R.id.menuicon);
         toolbar = findViewById(R.id.myToolbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
@@ -46,6 +64,24 @@ public class MainActivity extends AppCompatActivity {
 
         dl.addDrawerListener(abdt);
         abdt.syncState();
+
+        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
+
+        // layout xml slide 1 sampai 4
+        // add few more layouts if you want
+        layouts = new int[]{
+                R.layout.home_slider_1,
+                R.layout.home_slider_2,
+                R.layout.home_slider_3};
+
+        // tombol dots (lingkaran kecil perpindahan slide)
+        addBottomDots(1);
+
+        myViewPagerAdapter = new MainActivity.MyViewPagerAdapter();
+        viewPager.setAdapter(myViewPagerAdapter);
+        viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
+        viewPager.setCurrentItem(1);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.myToolbar);
         setSupportActionBar(toolbar);
@@ -72,12 +108,12 @@ public class MainActivity extends AppCompatActivity {
                 else if(id==R.id.mMenuIcon){
                     if(icon==1)
                     {
-                        menuicon.setVisibility(View.INVISIBLE);
+                        scroll.setVisibility(View.GONE);
                         icon=0;
                     }
                     else
                     {
-                        menuicon.setVisibility(View.VISIBLE);
+                        scroll.setVisibility(View.VISIBLE);
                         icon=1;
                     }
                 }
@@ -91,8 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Tentang Kami Clicked",Toast.LENGTH_SHORT).show();
                 }
                 else if(id==R.id.mMasukDaftar){
-                    Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(MainActivity.this, "Login dalam proses",Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
@@ -129,6 +164,84 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Izin Lokasi diberikan", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private void addBottomDots(int currentPage) {
+        dots = new TextView[layouts.length];
+
+        int[] colorsActive = getResources().getIntArray(R.array.array_dot_active);
+        int[] colorsInactive = getResources().getIntArray(R.array.array_dot_inactive);
+
+        dotsLayout.removeAllViews();
+        for (int i = 0; i < dots.length; i++) {
+            dots[i] = new TextView(this);
+            dots[i].setText(Html.fromHtml("&#8226;"));
+            dots[i].setTextSize(35);
+            dots[i].setTextColor(colorsInactive[currentPage]);
+            dotsLayout.addView(dots[i]);
+        }
+
+        if (dots.length > 0)
+            dots[currentPage].setTextColor(colorsActive[currentPage]);
+    }
+
+    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
+
+        @Override
+        public void onPageSelected(int position) {
+            addBottomDots(position);
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+
+        }
+    };
+
+    /**
+     * Making notification bar transparent
+     */
+
+    /**
+     * View pager adapter
+     */
+    public class MyViewPagerAdapter extends PagerAdapter {
+        private LayoutInflater layoutInflater;
+
+        public MyViewPagerAdapter() {
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            View view = layoutInflater.inflate(layouts[position], container, false);
+            container.addView(view);
+
+            return view;
+        }
+
+        @Override
+        public int getCount() {
+            return layouts.length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object obj) {
+            return view == obj;
+        }
+
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            View view = (View) object;
+            container.removeView(view);
+        }
     }
 
     @Override

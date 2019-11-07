@@ -11,6 +11,7 @@
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="22" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Kuliner.DataSaringActivity"></activity>
+        <activity android:name=".Kuliner.DataSaringActivity" />
         <activity android:name=".UserActivity" />
         <activity android:name=".Kuliner.TampilJenisMakanan" />
         <activity android:name=".LoginActivity" />
@@ -37,8 +38,9 @@
         <activity android:name=".Kuliner.CariKuliner" />
         <activity android:name=".Kuliner.TampilKulinerByJenis" />
         <activity android:name=".Kuliner.DetilKuliner" />
-        <activity android:name=".Kuliner.MenuKuliner"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".Kuliner.MenuKuliner"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

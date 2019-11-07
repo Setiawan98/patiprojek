@@ -86,7 +86,7 @@ public class MenuKuliner extends AppCompatActivity {
                 int id = menuItem.getItemId();
 
                 if(id==R.id.beranda){
-                        final DataKulinerFragment first = new DataKulinerFragment();
+                        DataKulinerFragment first = new DataKulinerFragment();
                         openFragment(first);
                         //status =1;
                         bottomNavigationView.setEnabled(false);
@@ -110,7 +110,7 @@ public class MenuKuliner extends AppCompatActivity {
                             public void run() {
                                 bottomNavigationView.setEnabled(true);
                             }
-                        },3000);
+                        },5000);
 
                 }
                 else if(id==R.id.tambah){
@@ -125,7 +125,7 @@ public class MenuKuliner extends AppCompatActivity {
                                 status =0;
                                 bottomNavigationView.setEnabled(true);
                             }
-                        },3000);
+                        },5000);
 
                 }
                 else if(id==R.id.saring){
@@ -140,13 +140,12 @@ public class MenuKuliner extends AppCompatActivity {
                                 status =0;
                                 bottomNavigationView.setEnabled(true);
                             }
-                        },3000);
+                        },5000);
 
                 }
                 else if(id==R.id.dataku){
 
-                        Intent intent = new Intent(MenuKuliner.this, LoginActivity.class);
-                        startActivity(intent);
+                    Toast.makeText(MenuKuliner.this, "Login dalam proses",Toast.LENGTH_SHORT).show();
 
                 }
                 return true;
@@ -226,7 +225,8 @@ public class MenuKuliner extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment, fragment);
-        fragmentTransaction.addToBackStack(null);
+        //fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.disallowAddToBackStack();
         fragmentTransaction.commit();
     }
 }

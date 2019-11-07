@@ -281,10 +281,6 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
                 {
 
                     listLatn.add(data.get(String.valueOf(i)));
-                    if(data.get(String.valueOf(i)).getRef_kuliner_nama()!=null)
-                    {
-                        Log.d("ref: ",data.get(String.valueOf(i)).getRef_kuliner_nama());
-                    }
 
 
                 }

@@ -1,746 +1,773 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.drawerlayout.widget.DrawerLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/backgroundberanda"
-    android:orientation="vertical"
-    android:id="@+id/dl">
+    android:layout_height="match_parent">
 
 
-    <LinearLayout
+
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity">
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/myToolbar"
-            android:background="@color/toolbar"
-            android:elevation="10dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:navigationIcon="@drawable/ic_menu_black_24dp"/>
+        android:id="@+id/dl">
 
-        <ScrollView
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
+            android:orientation="vertical"
+            tools:context=".MainActivity">
+            <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:id="@+id/menuicon"
-                android:visibility="visible"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:id="@+id/myToolbar"
+                android:background="@color/toolbar"
+                android:elevation="10dp"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:navigationIcon="@drawable/ic_menu_black_24dp"/>
 
-            <LinearLayout
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-
+                android:layout_height="match_parent">
                 <LinearLayout
+                    android:id="@+id/layoutDots"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="@dimen/dots_height"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/dots_margin_bottom"
+                    android:gravity="center"
+                    android:orientation="horizontal"></LinearLayout>
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:id="@+id/scrollview"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_gravity="center"
-                        android:layout_width="150dp"
-                        android:layout_height="100dp"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="10dp"
-                        app:cardUseCompatPadding="true">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:textAlignment="center"
-                            android:layout_marginLeft="36dp"
-                            android:textSize="7pt"
-                            android:text="Kuliner"
-                            android:textColor="@android:color/black" />
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="-70dp"
-                        android:background="@drawable/card_view_shadow"
-                        app:cardCornerRadius="5dp"
-                        app:cardElevation="10dp"
-                        app:cardUseCompatPadding="true">
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:id="@+id/menuicon"
+                        android:visibility="visible"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
+                            android:layout_height="match_parent"
                             android:orientation="vertical">
 
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:weightSum="4">
+                                android:layout_marginTop="5dp"
+                                android:orientation="vertical">
 
-                                <LinearLayout
-                                    android:id="@+id/kulinerLinear"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="110dp"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/linear_layout_shadow"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"
-                                        android:layout_marginTop="5dp"
-                                        android:background="@drawable/cerclebackgroundyello"
-                                        android:padding="10dp"
-                                        android:src="@drawable/ic_kuliner" />
-
+                                <androidx.cardview.widget.CardView
+                                    android:layout_gravity="center"
+                                    android:layout_width="150dp"
+                                    android:layout_height="100dp"
+                                    app:cardCornerRadius="15dp"
+                                    app:cardElevation="10dp"
+                                    app:cardUseCompatPadding="true">
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="5dp"
+                                        android:textAlignment="center"
+                                        android:layout_marginLeft="36dp"
+                                        android:textSize="7pt"
                                         android:text="Kuliner"
                                         android:textColor="@android:color/black" />
+                                </androidx.cardview.widget.CardView>
 
-                                </LinearLayout>
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="-70dp"
+                                    android:background="@drawable/card_view_shadow"
+                                    app:cardCornerRadius="5dp"
+                                    app:cardElevation="10dp"
+                                    app:cardUseCompatPadding="true">
 
-                                <LinearLayout
-                                    android:id="@+id/wisataLinear"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="110dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/linear_layout_shadow"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"
-                                        android:layout_marginTop="5dp"
-                                        android:background="@drawable/cerclebackgroundyello"
-                                        android:padding="10dp"
-                                        android:src="@drawable/ic_wisata" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:text="Wisata"
-                                        android:textColor="@android:color/black" />
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginRight="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:orientation="vertical">
 
-                                </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:weightSum="4">
 
-                                <LinearLayout
-                                    android:id="@+id/hotelLinear"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="110dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/linear_layout_shadow"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
+                                            <LinearLayout
+                                                android:id="@+id/kulinerLinear"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginLeft="10dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
 
-                                    <ImageView
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"
-                                        android:layout_marginTop="5dp"
-                                        android:background="@drawable/cerclebackgroundyello"
-                                        android:padding="10dp"
-                                        android:src="@drawable/ic_hotel" />
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:background="@drawable/cerclebackgroundyello"
+                                                    android:padding="10dp"
+                                                    android:src="@drawable/ic_kuliner" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:text="Hotel"
-                                        android:textColor="@android:color/black" />
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Kuliner"
+                                                    android:textColor="@android:color/black" />
 
-                                </LinearLayout>
+                                            </LinearLayout>
 
-                                <LinearLayout
-                                    android:id="@+id/guideLinear"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="110dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginRight="10dp"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/linear_layout_shadow"
-                                    android:gravity="center"
-                                    android:orientation="vertical">
+                                            <LinearLayout
+                                                android:id="@+id/wisataLinear"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
 
-                                    <ImageView
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"
-                                        android:layout_marginTop="5dp"
-                                        android:background="@drawable/cerclebackgroundyello"
-                                        android:padding="10dp"
-                                        android:src="@drawable/ic_guide" />
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:background="@drawable/cerclebackgroundyello"
+                                                    android:padding="10dp"
+                                                    android:src="@drawable/ic_wisata" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:text="Guide"
-                                        android:textColor="@android:color/black" />
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Wisata"
+                                                    android:textColor="@android:color/black" />
 
-                                </LinearLayout>
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/hotelLinear"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:background="@drawable/cerclebackgroundyello"
+                                                    android:padding="10dp"
+                                                    android:src="@drawable/ic_hotel" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Hotel"
+                                                    android:textColor="@android:color/black" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/guideLinear"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginRight="10dp"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:background="@drawable/cerclebackgroundyello"
+                                                    android:padding="10dp"
+                                                    android:src="@drawable/ic_guide" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Guide"
+                                                    android:textColor="@android:color/black" />
+
+                                            </LinearLayout>
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="10dp"
+                                            android:layout_marginBottom="10dp"
+                                            android:orientation="horizontal"
+                                            android:weightSum="4">
+
+                                            <LinearLayout
+                                                android:id="@+id/spbulinear"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginLeft="10dp"
+                                                android:layout_weight="2"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:background="@drawable/cerclebackgroundyello"
+                                                    android:padding="10dp"
+                                                    android:src="@drawable/ic_hotel" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="SPBU"
+                                                    android:textColor="@android:color/black" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/beritaLinear"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:layout_marginRight="10dp"
+                                                android:layout_weight="2"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:background="@drawable/cerclebackgroundyello"
+                                                    android:padding="10dp"
+                                                    android:src="@drawable/ic_hotel" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Berita"
+                                                    android:textColor="@android:color/black" />
+
+                                            </LinearLayout>
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+
                             </LinearLayout>
 
-                            <LinearLayout
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="-20dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_gravity="center"
+                                android:layout_width="150dp"
+                                android:layout_height="100dp"
+                                app:cardCornerRadius="15dp"
+                                app:cardElevation="10dp"
+                                app:cardUseCompatPadding="true">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginLeft="36dp"
+                                    android:textSize="7pt"
+                                    android:text="Kuliner"
+                                    android:textColor="@android:color/black" />
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="horizontal"
-                                android:weightSum="4">
+                                android:layout_marginTop="-70dp"
+                                app:cardCornerRadius="5dp"
+                                app:cardElevation="10dp"
+                                app:cardUseCompatPadding="true">
 
                                 <LinearLayout
-                                    android:id="@+id/spbulinear"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="110dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
-                                    android:layout_weight="2"
-                                    android:background="@drawable/linear_layout_shadow"
-                                    android:gravity="center"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginBottom="10dp"
                                     android:orientation="vertical">
 
-                                    <ImageView
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"
-                                        android:layout_marginTop="5dp"
-                                        android:background="@drawable/cerclebackgroundyello"
-                                        android:padding="10dp"
-                                        android:src="@drawable/ic_hotel" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:text="SPBU"
-                                        android:textColor="@android:color/black" />
+                                        android:weightSum="4"
+                                        android:layout_marginTop="10dp"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:id="@+id/x"
+                                            android:layout_width="75dp"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:background="@drawable/cerclebackgroundyello"
+                                                android:padding="10dp"
+                                                android:src="@drawable/ic_guide" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="xxxxx"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/y2"
+                                            android:layout_width="75dp"
+                                            android:layout_weight="1"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:background="@drawable/cerclebackgroundyello"
+                                                android:padding="10dp"
+                                                android:src="@drawable/ic_guide" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="xxxxx"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/y3"
+                                            android:layout_width="75dp"
+                                            android:layout_height="110dp"
+                                            android:layout_weight="1"
+                                            android:layout_marginLeft="5dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:background="@drawable/cerclebackgroundyello"
+                                                android:padding="10dp"
+                                                android:src="@drawable/ic_guide" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="xxxxx"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/y7"
+                                            android:layout_width="75dp"
+                                            android:layout_marginRight="10dp"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:background="@drawable/cerclebackgroundyello"
+                                                android:padding="10dp"
+                                                android:src="@drawable/ic_guide" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="xxxxx"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:weightSum="4"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:id="@+id/y4"
+                                            android:layout_width="75dp"
+                                            android:layout_weight="2"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_height="110dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:background="@drawable/cerclebackgroundyello"
+                                                android:padding="10dp"
+                                                android:src="@drawable/ic_guide" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="xxxxx"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/y5"
+                                            android:layout_width="75dp"
+                                            android:layout_weight="2"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_marginRight="10dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:background="@drawable/cerclebackgroundyello"
+                                                android:padding="10dp"
+                                                android:src="@drawable/ic_guide" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="xxxxx"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-20dp"
+                            android:orientation="vertical">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_gravity="center"
+                                android:layout_width="150dp"
+                                android:layout_height="100dp"
+                                app:cardCornerRadius="15dp"
+                                app:cardElevation="10dp"
+                                app:cardUseCompatPadding="true">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginLeft="36dp"
+                                    android:textSize="7pt"
+                                    android:text="Kuliner"
+                                    android:textColor="@android:color/black" />
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardCornerRadius="5dp"
+                                android:layout_marginTop="-70dp"
+                                app:cardElevation="10dp"
+                                app:cardUseCompatPadding="true">
 
                                 <LinearLayout
-                                    android:id="@+id/beritaLinear"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="110dp"
-                                    android:layout_marginLeft="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginTop="10dp"
                                     android:layout_marginRight="10dp"
-                                    android:layout_weight="2"
-                                    android:background="@drawable/linear_layout_shadow"
-                                    android:gravity="center"
+                                    android:layout_marginBottom="10dp"
                                     android:orientation="vertical">
 
-                                    <ImageView
-                                        android:layout_width="60dp"
-                                        android:layout_height="60dp"
-                                        android:layout_marginTop="5dp"
-                                        android:background="@drawable/cerclebackgroundyello"
-                                        android:padding="10dp"
-                                        android:src="@drawable/ic_hotel" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="5dp"
-                                        android:text="Berita"
-                                        android:textColor="@android:color/black" />
+                                        android:weightSum="4"
+                                        android:layout_marginTop="10dp"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:id="@+id/y"
+                                            android:layout_width="75dp"
+                                            android:layout_weight="1"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_height="110dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:background="@drawable/cerclebackgroundyello"
+                                                android:padding="10dp"
+                                                android:src="@drawable/ic_wisata" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="xxxxx"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/x2"
+                                            android:layout_width="75dp"
+                                            android:layout_weight="1"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:background="@drawable/cerclebackgroundyello"
+                                                android:padding="10dp"
+                                                android:src="@drawable/ic_wisata" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="xxxxx"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/x3"
+                                            android:layout_weight="1"
+                                            android:layout_width="75dp"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:background="@drawable/cerclebackgroundyello"
+                                                android:padding="10dp"
+                                                android:src="@drawable/ic_wisata" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="xxxxx"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/x7"
+                                            android:layout_weight="1"
+                                            android:layout_width="75dp"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_marginRight="10dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:background="@drawable/cerclebackgroundyello"
+                                                android:padding="10dp"
+                                                android:src="@drawable/ic_wisata" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="xxxxx"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:weightSum="4"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:id="@+id/x4"
+                                            android:layout_weight="2"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_width="75dp"
+                                            android:layout_height="110dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:background="@drawable/cerclebackgroundyello"
+                                                android:padding="10dp"
+                                                android:src="@drawable/ic_wisata" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="xxxxx"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/x5"
+                                            android:layout_weight="2"
+                                            android:layout_width="75dp"
+                                            android:layout_marginRight="10dp"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:background="@drawable/cerclebackgroundyello"
+                                                android:padding="10dp"
+                                                android:src="@drawable/ic_wisata" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="xxxxx"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
 
                                 </LinearLayout>
-                            </LinearLayout>
-
+                            </androidx.cardview.widget.CardView>
                         </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="-20dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_gravity="center"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="10dp"
-                    app:cardUseCompatPadding="true">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="36dp"
-                        android:textSize="7pt"
-                        android:text="Kuliner"
-                        android:textColor="@android:color/black" />
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="-70dp"
-                    app:cardCornerRadius="5dp"
-                    app:cardElevation="10dp"
-                    app:cardUseCompatPadding="true">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:weightSum="4"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:id="@+id/x"
-                                android:layout_width="75dp"
-                                android:layout_height="110dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_weight="1"
-                                android:background="@drawable/linear_layout_shadow"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@drawable/cerclebackgroundyello"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_guide" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="xxxxx"
-                                    android:textColor="@android:color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/y2"
-                                android:layout_width="75dp"
-                                android:layout_weight="1"
-                                android:layout_height="110dp"
-                                android:layout_marginLeft="5dp"
-                                android:background="@drawable/linear_layout_shadow"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@drawable/cerclebackgroundyello"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_guide" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="xxxxx"
-                                    android:textColor="@android:color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/y3"
-                                android:layout_width="75dp"
-                                android:layout_height="110dp"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="5dp"
-                                android:background="@drawable/linear_layout_shadow"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@drawable/cerclebackgroundyello"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_guide" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="xxxxx"
-                                    android:textColor="@android:color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/y7"
-                                android:layout_width="75dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_height="110dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_weight="1"
-                                android:background="@drawable/linear_layout_shadow"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@drawable/cerclebackgroundyello"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_guide" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="xxxxx"
-                                    android:textColor="@android:color/black" />
-
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:weightSum="4"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:id="@+id/y4"
-                                android:layout_width="75dp"
-                                android:layout_weight="2"
-                                android:layout_marginLeft="10dp"
-                                android:layout_height="110dp"
-                                android:background="@drawable/linear_layout_shadow"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@drawable/cerclebackgroundyello"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_guide" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="xxxxx"
-                                    android:textColor="@android:color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/y5"
-                                android:layout_width="75dp"
-                                android:layout_weight="2"
-                                android:layout_height="110dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="10dp"
-                                android:background="@drawable/linear_layout_shadow"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@drawable/cerclebackgroundyello"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_guide" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="xxxxx"
-                                    android:textColor="@android:color/black" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
+                </ScrollView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-20dp"
-                android:orientation="vertical">
+            </RelativeLayout>
 
-                <androidx.cardview.widget.CardView
-                    android:layout_gravity="center"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="10dp"
-                    app:cardUseCompatPadding="true">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="36dp"
-                        android:textSize="7pt"
-                        android:text="Kuliner"
-                        android:textColor="@android:color/black" />
-                </androidx.cardview.widget.CardView>
+        </LinearLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/nav_view"
+            android:layout_gravity="start"
+            app:headerLayout="@layout/navigation_header"
+            app:menu="@menu/nav_menu">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="5dp"
-                    android:layout_marginTop="-70dp"
-                    app:cardElevation="10dp"
-                    app:cardUseCompatPadding="true">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:weightSum="4"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:id="@+id/y"
-                                android:layout_width="75dp"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="10dp"
-                                android:layout_height="110dp"
-                                android:background="@drawable/linear_layout_shadow"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@drawable/cerclebackgroundyello"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_wisata" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="xxxxx"
-                                    android:textColor="@android:color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/x2"
-                                android:layout_width="75dp"
-                                android:layout_weight="1"
-                                android:layout_height="110dp"
-                                android:layout_marginLeft="5dp"
-                                android:background="@drawable/linear_layout_shadow"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@drawable/cerclebackgroundyello"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_wisata" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="xxxxx"
-                                    android:textColor="@android:color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/x3"
-                                android:layout_weight="1"
-                                android:layout_width="75dp"
-                                android:layout_height="110dp"
-                                android:layout_marginLeft="5dp"
-                                android:background="@drawable/linear_layout_shadow"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@drawable/cerclebackgroundyello"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_wisata" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="xxxxx"
-                                    android:textColor="@android:color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/x7"
-                                android:layout_weight="1"
-                                android:layout_width="75dp"
-                                android:layout_height="110dp"
-                                android:layout_marginLeft="5dp"
-                                android:layout_marginRight="10dp"
-                                android:background="@drawable/linear_layout_shadow"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@drawable/cerclebackgroundyello"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_wisata" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="xxxxx"
-                                    android:textColor="@android:color/black" />
-
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:weightSum="4"
-                            android:orientation="horizontal">
-
-                            <LinearLayout
-                                android:id="@+id/x4"
-                                android:layout_weight="2"
-                                android:layout_marginLeft="10dp"
-                                android:layout_width="75dp"
-                                android:layout_height="110dp"
-                                android:background="@drawable/linear_layout_shadow"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@drawable/cerclebackgroundyello"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_wisata" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="xxxxx"
-                                    android:textColor="@android:color/black" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/x5"
-                                android:layout_weight="2"
-                                android:layout_width="75dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_height="110dp"
-                                android:layout_marginLeft="5dp"
-                                android:background="@drawable/linear_layout_shadow"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
-                                    android:layout_marginTop="5dp"
-                                    android:background="@drawable/cerclebackgroundyello"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_wisata" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:text="xxxxx"
-                                    android:textColor="@android:color/black" />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/nav_view"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/navigation_header"
-        app:menu="@menu/nav_menu">
-
-    </com.google.android.material.navigation.NavigationView>
+        </com.google.android.material.navigation.NavigationView>
 
 
-</androidx.drawerlayout.widget.DrawerLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</RelativeLayout>
