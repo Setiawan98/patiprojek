@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Tukang.TambahTukangFragment"
+    tools:context=".Pariwisata.TambahPariwisataFragment"
     android:orientation="vertical">
     <ScrollView
         android:id="@+id/form"
@@ -34,7 +34,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Foto tempat tukang"
+                        android:text="Foto tempat pariwisata"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
                     <Button
@@ -77,7 +77,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Nama tempat tukang"
+                        android:text="Nama tempat wisata"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
 
@@ -88,7 +88,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="-20dp"
                         android:layout_marginRight="20dp"
-                        android:hint="Masukan nama tempat tukang Anda"
+                        android:hint="Masukan nama tempat wisata Anda"
                         android:textSize="6pt" />
 
                 </LinearLayout>
@@ -202,7 +202,7 @@
                         android:layout_marginLeft="5dp"
                         android:textSize="6pt"
                         android:layout_height="50dp"
-                        android:hint="Masukan Website tempat tukang Anda"/>
+                        android:hint="Masukan Website tempat wisata Anda"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -228,7 +228,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Tentang tempat tukang"
+                        android:text="Tentang tempat wisata"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
                     <EditText
@@ -239,7 +239,7 @@
                         android:textSize="6pt"
                         android:layout_height="50dp"
                         android:id="@+id/mDeskripsi"
-                        android:hint="Masukan deskripsi tempat tukang Anda"/>
+                        android:hint="Masukan deskripsi tempat wisata Anda"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -265,7 +265,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Tipe Tukang"
+                        android:text="Tipe Wisata"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
 

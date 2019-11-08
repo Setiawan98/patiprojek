@@ -42,7 +42,9 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Tukang.DetailMapTukang"/>
         <activity android:name=".Tukang.DataSaringTukangActivity" />
-
+        <activity android:name=".Pariwisata.DetilPariwisata"></activity>
+        <activity android:name=".Pariwisata.CariPariwisata" />
+        <activity android:name=".Pariwisata.TampilPariwisataByJenis" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/api_key" />
@@ -52,7 +54,8 @@
         <activity android:name=".Pendidikan.TampilPendidikanByJenis" />
         <activity android:name=".Kuliner.DetilKuliner" />
 
-        <activity android:name=".Pariwisata.MenuPariwisata" />
+        <activity android:name=".Pariwisata.MenuPariwisata"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Pariwisata.DetilMapPariwisata" />
         <activity android:name=".Pariwisata.DataSaringPariwisataActivity" />
         <activity

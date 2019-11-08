@@ -99,33 +99,33 @@ public class MenuPariwisata extends AppCompatActivity {
                 }
                 else if(id==R.id.kategori){
 
-//                    KategoriTukangFragment second = new KategoriTukangFragment();
-//                    openFragment(second);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
-//
-//                    Toast.makeText(MenuTukang.this, "Clicked",Toast.LENGTH_SHORT).show();
+                    KategoriPariwisataFragment second = new KategoriPariwisataFragment();
+                    openFragment(second);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
+
+                    Toast.makeText(MenuPariwisata.this, "Clicked",Toast.LENGTH_SHORT).show();
                 }
                 else if(id==R.id.tambah){
 
-//                    TambahPendidikanFragment third = new TambahPendidikanFragment();
-//                    openFragment(third);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            status =0;
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
-//                    Toast.makeText(MenuPendidikan.this, "Clicked",Toast.LENGTH_SHORT).show();
+                    TambahPariwisataFragment third = new TambahPariwisataFragment();
+                    openFragment(third);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            status =0;
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
+                    Toast.makeText(MenuPariwisata.this, "Clicked",Toast.LENGTH_SHORT).show();
 
                 }
                 else if(id==R.id.saring){
@@ -209,14 +209,15 @@ public class MenuPariwisata extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-//            Intent intent = new Intent(MenuTukang.this, CariTukang.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MenuPariwisata.this, CariPariwisata.class);
+            startActivity(intent);
 
         }
         else if(id==android.R.id.home)
         {
-//            Intent i = new Intent(MenuTukang.this, MainActivity.class);
-//            startActivity(i);
+            Intent i = new Intent(MenuPariwisata.this, MainActivity.class);
+            startActivity(i);
+
         }
         return super.onOptionsItemSelected(item);
     }

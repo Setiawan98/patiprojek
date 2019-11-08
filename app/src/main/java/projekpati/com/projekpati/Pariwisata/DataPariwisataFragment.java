@@ -183,14 +183,14 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
             }
         });
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getContext(), DetilPendidikan.class);
-//                intent.putExtra("id_pendidikan",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), DetilPariwisata.class);
+                intent.putExtra("id_pariwisata",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     public void loadMoreData(){
@@ -239,14 +239,14 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
             }
         });
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getContext(),DetilPendidikan.class);
-//                intent.putExtra("id_pendidikan",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(),DetilPariwisata.class);
+                intent.putExtra("id_pariwisata",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
 

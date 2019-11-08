@@ -7,6 +7,8 @@ import projekpati.com.projekpati.Model.Kuliner.JenisKulinerLengkap;
 import projekpati.com.projekpati.Model.Kuliner.JenisMakananLengkap;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.Kuliner.KulinerModel;
+import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataBaru;
+import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataModel;
 import projekpati.com.projekpati.Model.Pariwisata.JenisPariwisataLengkap;
 import projekpati.com.projekpati.Model.Pariwisata.PariwisataModel;
 import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanBaru;
@@ -209,9 +211,10 @@ public interface API {
             @Field("hari_5") String hari_5,
             @Field("hari_6") String hari_6,
             @Field("user_id") String user_id,
-            @Field("ref_tukang_id") String ref_kuliner_id
+            @Field("ref_tukang_id") String ref_tukang_id
     );
-    //Tukang
+
+    //Pariwisata
     @GET("pariwisata/data/?key=TechnoPhoriaIndonesia")
     Call<PariwisataModel> tampilSemuaPariwisata();
 
@@ -221,6 +224,47 @@ public interface API {
     @GET("pariwisata/jenis?key=TechnoPhoriaIndonesia")
     Call<JenisPariwisataLengkap> tampilJenisPariwisata();
 
+    @GET("pariwisata/data?key=TechnoPhoriaIndonesia")
+    Call<PariwisataModel> cariPariwisataByJenis(@Query("IDJenis") String keyword);
+
     @GET("pariwisata/data/?key=TechnoPhoriaIndonesia")
     Call<PariwisataModel> cariPariwisatabyAPI(@Query("cari") String keyword);
+
+    @GET("pariwisata/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilPariwisataModel> detailPariwisata(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=pariwisata")
+    Call<postKomentar> addKomentarBalasPariwisata(@Query("dataID") String data_id,
+                                              @Field("nama") String nama,
+                                              @Field("email") String email,
+                                              @Field("telp") String telp,
+                                              @Field("website") String website,
+                                              @Field("parentID") String parentID,
+                                              @Field("isi") String isi,
+                                              @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=pariwisata")
+    Call<KomentarLengkap> getKomentarPariwisata(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("pariwisata/update?key=TechnoPhoriaIndonesia")
+    Call<DetilPariwisataBaru> addDataPariwisata(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("hari_0") String hari_0,
+            @Field("hari_1") String hari_1,
+            @Field("hari_2") String hari_2,
+            @Field("hari_3") String hari_3,
+            @Field("hari_4") String hari_4,
+            @Field("hari_5") String hari_5,
+            @Field("hari_6") String hari_6,
+            @Field("user_id") String user_id,
+            @Field("ref_pariwisata_id") String ref_pariwisata_id
+    );
 }
