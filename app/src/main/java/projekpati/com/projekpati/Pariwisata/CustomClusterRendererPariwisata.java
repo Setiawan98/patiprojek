@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.Pendidikan;
+package projekpati.com.projekpati.Pariwisata;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -23,11 +23,11 @@ import com.google.maps.android.ui.IconGenerator;
 import projekpati.com.projekpati.Model.MyItem;
 import projekpati.com.projekpati.R;
 
-public class CustomClusterRenderPendidikan extends DefaultClusterRenderer<MyItem> {
+public class CustomClusterRendererPariwisata extends DefaultClusterRenderer<MyItem> {
     private final IconGenerator iconGenerator;
     private final Context context;
 
-    public CustomClusterRenderPendidikan(Context context, GoogleMap map, ClusterManager<MyItem> clusterManager) {
+    public CustomClusterRendererPariwisata(Context context, GoogleMap map, ClusterManager<MyItem> clusterManager) {
         super(context, map, clusterManager);
         iconGenerator = new IconGenerator(context.getApplicationContext());
         this.context = context;
@@ -42,34 +42,34 @@ public class CustomClusterRenderPendidikan extends DefaultClusterRenderer<MyItem
         TextView name = marker.findViewById(R.id.infoName);
         ImageView mark = marker.findViewById(R.id.marker);
         name.setText(item.getTitle());
-        if(item.getMjenis()!=null) {
-
-            if(item.getMjenis().equals("Universitas"))
-            {
-                name.setBackgroundResource(R.color.blue);
-                mark.setColorFilter(ContextCompat.getColor(context,R.color.blue), PorterDuff.Mode.SRC_IN);
-            }
-            else  if(item.getMjenis().equals("SMA/SMK"))
-            {
-                name.setBackgroundResource(R.color.green);
-                mark.setColorFilter(ContextCompat.getColor(context,R.color.green), PorterDuff.Mode.SRC_IN);
-            }
-            else  if(item.getMjenis().equals("SMP"))
-            {
-                name.setBackgroundResource(R.color.yellow);
-                mark.setColorFilter(ContextCompat.getColor(context,R.color.yellow), PorterDuff.Mode.SRC_IN);
-            }
-            else  if(item.getMjenis().equals("SD"))
-            {
-                name.setBackgroundResource(R.color.red);
-                mark.setColorFilter(ContextCompat.getColor(context,R.color.red), PorterDuff.Mode.SRC_IN);
-            }
-            else  if(item.getMjenis().equals("SLB"))
-            {
-                name.setBackgroundResource(R.color.purple);
-                mark.setColorFilter(ContextCompat.getColor(context,R.color.purple), PorterDuff.Mode.SRC_IN);
-            }
-        }
+//        if(item.getMjenis()!=null) {
+//
+//            if(item.getMjenis().equals("Universitas"))
+//            {
+//                name.setBackgroundResource(R.color.blue);
+//                mark.setColorFilter(ContextCompat.getColor(context,R.color.blue), PorterDuff.Mode.SRC_IN);
+//            }
+//            else  if(item.getMjenis().equals("SMA/SMK"))
+//            {
+//                name.setBackgroundResource(R.color.green);
+//                mark.setColorFilter(ContextCompat.getColor(context,R.color.green), PorterDuff.Mode.SRC_IN);
+//            }
+//            else  if(item.getMjenis().equals("SMP"))
+//            {
+//                name.setBackgroundResource(R.color.yellow);
+//                mark.setColorFilter(ContextCompat.getColor(context,R.color.yellow), PorterDuff.Mode.SRC_IN);
+//            }
+//            else  if(item.getMjenis().equals("SD"))
+//            {
+//                name.setBackgroundResource(R.color.red);
+//                mark.setColorFilter(ContextCompat.getColor(context,R.color.red), PorterDuff.Mode.SRC_IN);
+//            }
+//            else  if(item.getMjenis().equals("SLB"))
+//            {
+//                name.setBackgroundResource(R.color.purple);
+//                mark.setColorFilter(ContextCompat.getColor(context,R.color.purple), PorterDuff.Mode.SRC_IN);
+//            }
+//        }
 
         ig.setContentView(marker);
         ig.setBackground(null);

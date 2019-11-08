@@ -379,7 +379,7 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                Intent i = new Intent(getContext(), DetilMapPendidikan.class);
+                Intent i = new Intent(getContext(), DetilMapPariwisata.class);
                 Bundle bundle = new Bundle();
 
                 // bundle.putParcelableArrayList("list",listLatn);

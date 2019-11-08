@@ -53,6 +53,7 @@ s
         <activity android:name=".Kuliner.DetilKuliner" />
 
         <activity android:name=".Pariwisata.MenuPariwisata" />
+        <activity android:name=".Pariwisata.DetilMapPariwisata" />
         <activity
             android:name=".Pendidikan.MenuPendidikan"
             android:windowSoftInputMode="adjustPan" />
