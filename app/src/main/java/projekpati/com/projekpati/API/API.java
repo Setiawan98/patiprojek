@@ -8,6 +8,8 @@ import projekpati.com.projekpati.Model.JenisMakananLengkap;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.KomentarParent;
 import projekpati.com.projekpati.Model.KulinerModel;
+import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanModel;
+import projekpati.com.projekpati.Model.Pendidikan.JenisPendidikanLengkap;
 import projekpati.com.projekpati.Model.Pendidikan.PendidikanModel;
 import projekpati.com.projekpati.Model.postKomentar;
 import retrofit2.Call;
@@ -104,5 +106,29 @@ public interface API {
     @GET("pendidikan/data/{id}?key=TechnoPhoriaIndonesia")
     Call<PendidikanModel> loadMorePendidikan(@Path("id") String id);
 
+    @GET("pendidikan/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisPendidikanLengkap> tampilSemuaTingkat();
 
+    @GET("pendidikan/data?key=TechnoPhoriaIndonesia")
+    Call<PendidikanModel> cariPendidikanByJenis(@Query("IDJenis") String keyword);
+
+    @GET("pendidikan/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilPendidikanModel> detailPendidikan(@Path("id") String id);
+
+    @GET("pendidikan/data?key=TechnoPhoriaIndonesia")
+    Call<PendidikanModel> cariPendidikanByApi(@Query("cari") String keyword);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=pendidikan")
+    Call<postKomentar> addKomentarBalasPendidikan(@Query("dataID") String data_id,
+                                        @Field("nama") String nama,
+                                        @Field("email") String email,
+                                        @Field("telp") String telp,
+                                        @Field("website") String website,
+                                        @Field("parentID") String parentID,
+                                        @Field("isi") String isi,
+                                        @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=pendidikan")
+    Call<KomentarLengkap> getKomentarPendidikan(@Query("dataID") String data_id);
 }

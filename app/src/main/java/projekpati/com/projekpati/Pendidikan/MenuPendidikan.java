@@ -84,32 +84,32 @@ public class MenuPendidikan extends AppCompatActivity {
                 int id = menuItem.getItemId();
 
                 if(id==R.id.beranda){
-//                    DataKulinerFragment first = new DataKulinerFragment();
-//                    openFragment(first);
-//                    //status =1;
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
+                    DataPendidikanFragment first = new DataPendidikanFragment();
+                    openFragment(first);
+                    //status =1;
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
                     Toast.makeText(MenuPendidikan.this, "Clicked",Toast.LENGTH_SHORT).show();
 
                 }
                 else if(id==R.id.kategori){
 
-//                    KategoriFragment second = new KategoriFragment();
-//                    openFragment(second);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
+                    KategoriPendidikanFragment second = new KategoriPendidikanFragment();
+                    openFragment(second);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
 
                     Toast.makeText(MenuPendidikan.this, "Clicked",Toast.LENGTH_SHORT).show();
                 }
@@ -211,8 +211,8 @@ public class MenuPendidikan extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-//            Intent intent = new Intent(MenuPendidikan.this, CariKuliner.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MenuPendidikan.this, CariPendidikan.class);
+            startActivity(intent);
 
         }
         else if(id==android.R.id.home)
