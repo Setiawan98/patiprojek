@@ -101,4 +101,8 @@ public interface API {
     Call<PendidikanModel> tampilSemuaPendidikan();
 
 
+    @GET("pendidikan/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<PendidikanModel> loadMorePendidikan(@Path("id") String id);
+
+
 }

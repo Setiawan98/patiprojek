@@ -154,9 +154,9 @@ public class MenuPendidikan extends AppCompatActivity {
             }
         });
 
-//        DataKulinerFragment first = new DataKulinerFragment();
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        fragmentManager.beginTransaction().replace(R.id.fragment, first).commit();
+        DataPendidikanFragment first = new DataPendidikanFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment, first).commit();
     }
 
     public void getIconImage(){
