@@ -11,6 +11,7 @@ import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanBaru;
 import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanModel;
 import projekpati.com.projekpati.Model.Pendidikan.JenisPendidikanLengkap;
 import projekpati.com.projekpati.Model.Pendidikan.PendidikanModel;
+import projekpati.com.projekpati.Model.Tukang.TukangModel;
 import projekpati.com.projekpati.Model.postKomentar;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -150,4 +151,9 @@ public interface API {
             @Field("user_id") String user_id,
             @Field("ref_pendidikan_id") String ref_pendidikan_id
     );
+
+
+    //Tukang
+    @GET("tukang/data/?key=TechnoPhoriaIndonesia")
+    Call<TukangModel> tampilSemuaTukang();
 }

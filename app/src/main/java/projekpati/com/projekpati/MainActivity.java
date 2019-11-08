@@ -33,6 +33,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.Kuliner.MenuKuliner;
 import projekpati.com.projekpati.Pendidikan.MenuPendidikan;
+import projekpati.com.projekpati.Tukang.MenuTukang;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -155,7 +156,8 @@ public class MainActivity extends AppCompatActivity {
         tukangLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(MainActivity.this, MenuTukang.class);
+                startActivity(i);
             }
         });
 

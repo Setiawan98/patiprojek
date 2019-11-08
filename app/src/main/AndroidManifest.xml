@@ -34,6 +34,7 @@
 
         <activity android:name=".Kuliner.DetailMap" />
         <activity android:name=".Pendidikan.DetilMapPendidikan" />
+        <activity android:name=".Tukang.MenuTukang"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
