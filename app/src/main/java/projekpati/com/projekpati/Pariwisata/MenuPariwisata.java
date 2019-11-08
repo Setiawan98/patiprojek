@@ -130,17 +130,17 @@ public class MenuPariwisata extends AppCompatActivity {
                 }
                 else if(id==R.id.saring){
 
-//                    SaringTukangFragment fouth = new SaringTukangFragment();
-//                    openFragment(fouth);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            status =0;
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
+                    SaringPariwisataFragment fouth = new SaringPariwisataFragment();
+                    openFragment(fouth);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            status =0;
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
 
                 }
                 else if(id==R.id.dataku){
