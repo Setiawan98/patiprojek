@@ -21,6 +21,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".Kuliner.DataSaringActivity" />
+        <activity android:name=".Pendidikan.DataSaringPendidikanActivity" />
         <activity android:name=".UserActivity" />
         <activity android:name=".Kuliner.TampilJenisMakanan" />
         <activity android:name=".LoginActivity" />
