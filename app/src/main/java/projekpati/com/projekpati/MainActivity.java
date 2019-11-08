@@ -32,10 +32,12 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.Kuliner.MenuKuliner;
+import projekpati.com.projekpati.Pendidikan.MenuPendidikan;
 
 public class MainActivity extends AppCompatActivity {
 
     private LinearLayout kulinerLayout;
+    private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
     ScrollView scroll;
     Toolbar toolbar;
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dl= (DrawerLayout) findViewById(R.id.dl);
-        scroll = findViewById(R.id.scrollview);
+        scroll = findViewById(R.id.scroll);
         menuicon = findViewById(R.id.menuicon);
         toolbar = findViewById(R.id.myToolbar);
         toolbar.setTitleTextColor(0xFFFFFFFF);
@@ -138,6 +140,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MenuKuliner.class);
+                startActivity(i);
+            }
+        });
+        pendidikanLayout =  findViewById(R.id.wisataLinear);
+        pendidikanLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuPendidikan.class);
                 startActivity(i);
             }
         });

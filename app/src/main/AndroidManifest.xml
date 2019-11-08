@@ -39,6 +39,9 @@
         <activity android:name=".Kuliner.TampilKulinerByJenis" />
         <activity android:name=".Kuliner.DetilKuliner" />
         <activity
+            android:name=".Pendidikan.MenuPendidikan"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
             android:name=".Kuliner.MenuKuliner"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".WelcomeActivity">

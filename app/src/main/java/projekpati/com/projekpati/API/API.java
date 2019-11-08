@@ -8,6 +8,7 @@ import projekpati.com.projekpati.Model.JenisMakananLengkap;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.KomentarParent;
 import projekpati.com.projekpati.Model.KulinerModel;
+import projekpati.com.projekpati.Model.Pendidikan.PendidikanModel;
 import projekpati.com.projekpati.Model.postKomentar;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -91,6 +92,13 @@ public interface API {
                                      @Field("parentID") String parentID,
                                      @Field("isi") String isi,
                                      @Field("userID") String userID);
+
+
+
+
+    ///Pendidikan
+    @GET("pendidikan/data/?key=TechnoPhoriaIndonesia")
+    Call<PendidikanModel> tampilSemuaPendidikan();
 
 
 }
