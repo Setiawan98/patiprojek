@@ -84,34 +84,34 @@ public class MenuTukang extends AppCompatActivity {
                 int id = menuItem.getItemId();
 
                 if(id==R.id.beranda){
-//                    DataPendidikanFragment first = new DataPendidikanFragment();
-//                    openFragment(first);
-//                    //status =1;
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
-//                    Toast.makeText(MenuPendidikan.this, "Clicked",Toast.LENGTH_SHORT).show();
+                    DataTukangFragment first = new DataTukangFragment();
+                    openFragment(first);
+                    //status =1;
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
+                    Toast.makeText(MenuTukang.this, "Clicked",Toast.LENGTH_SHORT).show();
 
                 }
                 else if(id==R.id.kategori){
 
-                    KategoriPendidikanFragment second = new KategoriPendidikanFragment();
-//                    openFragment(second);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
-//
-//                    Toast.makeText(MenuPendidikan.this, "Clicked",Toast.LENGTH_SHORT).show();
+                    KategoriTukangFragment second = new KategoriTukangFragment();
+                    openFragment(second);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
+
+                    Toast.makeText(MenuTukang.this, "Clicked",Toast.LENGTH_SHORT).show();
                 }
                 else if(id==R.id.tambah){
 
@@ -210,14 +210,14 @@ public class MenuTukang extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-//            Intent intent = new Intent(MenuPendidikan.this, CariPendidikan.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MenuTukang.this, CariTukang.class);
+            startActivity(intent);
 
         }
         else if(id==android.R.id.home)
         {
-//            Intent i = new Intent(MenuPendidikan.this, MainActivity.class);
-//            startActivity(i);
+            Intent i = new Intent(MenuTukang.this, MainActivity.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -11,6 +11,7 @@ import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanBaru;
 import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanModel;
 import projekpati.com.projekpati.Model.Pendidikan.JenisPendidikanLengkap;
 import projekpati.com.projekpati.Model.Pendidikan.PendidikanModel;
+import projekpati.com.projekpati.Model.Tukang.JenisTukangLengkap;
 import projekpati.com.projekpati.Model.Tukang.TukangModel;
 import projekpati.com.projekpati.Model.postKomentar;
 import retrofit2.Call;
@@ -159,4 +160,13 @@ public interface API {
 
     @GET("tukang/data/{id}?key=TechnoPhoriaIndonesia")
     Call<TukangModel> loadMoreTukang(@Path("id") String id);
+
+    @GET("tukang/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisTukangLengkap> tampilJenisTukang();
+
+    @GET("tukang/data?key=TechnoPhoriaIndonesia")
+    Call<TukangModel> cariTukangByJenis(@Query("IDJenis") String keyword);
+
+    @GET("tukang/data/?key=TechnoPhoriaIndonesia")
+    Call<TukangModel> cariTukangbyAPI(@Query("cari") String keyword);
 }

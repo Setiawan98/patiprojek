@@ -130,9 +130,7 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:background="@drawable/cerclebackgroundyello"
-                                                    android:padding="10dp"
-                                                    android:src="@drawable/ic_kuliner" />
+                                                    android:src="@drawable/iconkuliner" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
@@ -158,9 +156,7 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:background="@drawable/cerclebackgroundyello"
-                                                    android:padding="10dp"
-                                                    android:src="@drawable/ic_wisata" />
+                                                    android:src="@drawable/iconpendidikan" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
@@ -186,9 +182,7 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:background="@drawable/cerclebackgroundyello"
-                                                    android:padding="10dp"
-                                                    android:src="@drawable/ic_hotel" />
+                                                    android:src="@drawable/icontukang" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"

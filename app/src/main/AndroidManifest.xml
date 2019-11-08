@@ -32,6 +32,10 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
+
+
+        <activity android:name=".Tukang.CariTukang"></activity>
+        <activity android:name=".Tukang.TampilTukangByJenis" />
         <activity android:name=".Kuliner.DetailMap" />
         <activity android:name=".Pendidikan.DetilMapPendidikan" />
         <activity android:name=".Tukang.MenuTukang"/>
