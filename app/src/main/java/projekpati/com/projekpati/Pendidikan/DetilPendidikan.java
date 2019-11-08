@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -97,6 +98,7 @@ public class DetilPendidikan extends AppCompatActivity {
 
         final Bundle bundle = getIntent().getExtras();
         id = bundle.getString("id_pendidikan");
+        Log.d("idwoy",id);
 
         getDataDetail();
 
@@ -117,6 +119,24 @@ public class DetilPendidikan extends AppCompatActivity {
                         swipeRefreshLayout.setRefreshing(false);
                     }
                 },3000);
+            }
+        });
+
+        pager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                swipeRefreshLayout.setEnabled(false);
+                switch (event.getAction()){
+
+                    case MotionEvent.ACTION_UP:
+                        swipeRefreshLayout.setEnabled(true);
+                        break;
+                    case MotionEvent.ACTION_CANCEL:
+                        swipeRefreshLayout.setEnabled(true);
+                        break;
+
+                }
+                return false;
             }
         });
 

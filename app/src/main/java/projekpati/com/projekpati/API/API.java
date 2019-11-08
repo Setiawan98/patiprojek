@@ -131,4 +131,7 @@ public interface API {
 
     @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=pendidikan")
     Call<KomentarLengkap> getKomentarPendidikan(@Query("dataID") String data_id);
+
+    @GET("pendidikan/data/?key=TechnoPhoriaIndonesia")
+    Call<PendidikanModel> cariPendidikanbyAPI(@Query("cari") String keyword);
 }

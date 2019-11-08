@@ -367,10 +367,11 @@ public class DataPendidikanFragment extends Fragment implements OnMapReadyCallba
         googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
-//                String id = (String) marker.getTag();
-//                Intent intent = new Intent(getContext(),DetilKuliner.class);
-//                intent.putExtra("id_kuliner",id);
-//                startActivity(intent);
+                String id = (String) marker.getTag();
+                Intent intent = new Intent(getContext(),DetilPendidikan.class);
+                intent.putExtra("id_pendidikan",id);
+                Log.d("idwoy1",id);
+                startActivity(intent);
 
 
             }

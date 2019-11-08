@@ -284,9 +284,9 @@ public class DetilMapPendidikan extends AppCompatActivity implements OnMapReadyC
                 btnDetail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        Intent intent = new Intent(DetilMapPendidikan.this, DetilKuliner.class);
-//                        intent.putExtra("id_kuliner",lk.getId());
-//                        startActivity(intent);
+                        Intent intent = new Intent(DetilMapPendidikan.this, DetilPendidikan.class);
+                        intent.putExtra("id_pendidikan",lk.getId());
+                        startActivity(intent);
                     }
                 });
 
