@@ -62,12 +62,12 @@ public class DetilMapPendidikan extends AppCompatActivity implements OnMapReadyC
     Marker beforeShow;
     Marker beforeClickLayout;
     private ClusterManager<MyItem> mClusterManager;
-    CustomClusterRenderer renderer;
+    CustomClusterRenderPendidikan renderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_map);
+        setContentView(R.layout.activity_detil_map_pendidikan);
 
         Toolbar toolbar;
 
@@ -114,7 +114,7 @@ public class DetilMapPendidikan extends AppCompatActivity implements OnMapReadyC
         mMap.setOnMarkerClickListener(mClusterManager);
         mMap.setOnInfoWindowClickListener(mClusterManager);
 
-        renderer = new CustomClusterRenderer(this, mMap, mClusterManager);
+        renderer = new CustomClusterRenderPendidikan(this, mMap, mClusterManager);
         googleMap.setOnMarkerClickListener(mClusterManager);
         mClusterManager.setRenderer(renderer);
 
@@ -226,6 +226,7 @@ public class DetilMapPendidikan extends AppCompatActivity implements OnMapReadyC
                 TextView titleText = (TextView) clickAbleColumn.findViewById(R.id.textThumbnail);
                 TextView titleJenis = (TextView) clickAbleColumn.findViewById(R.id.textJenis);
                 TextView btnDetail = (TextView) clickAbleColumn.findViewById(R.id.btnDetail);
+
                 URL url = null;
                 if(lk.getFile_small().equals(""))
                 {
@@ -243,31 +244,32 @@ public class DetilMapPendidikan extends AppCompatActivity implements OnMapReadyC
                     }
                 }
                 titleText.setText(lk.getNama());
-//                titleJenis.setText((lk.getRef_kuliner_nama()));
-//                if(lk.getRef_kuliner_nama()!=null) {
-//                    Log.d("ref 2",lk.getRef_kuliner_nama());
-//                    if(lk.getRef_kuliner_nama().equals("Oleh Oleh"))
-//                    {
-//                        titleJenis.setTextColor(getResources().getColor(R.color.blue));
-//                    }
-//                    else  if(lk.getRef_kuliner_nama().equals("PKL"))
-//                    {
-//                        titleJenis.setTextColor(getResources().getColor(R.color.green));
-//                    }
-//                    else  if(lk.getRef_kuliner_nama().equals("Restoran"))
-//                    {
-//                        titleJenis.setTextColor(getResources().getColor(R.color.yellow));
-//                    }
-//                    else  if(lk.getRef_kuliner_nama().equals("Warung"))
-//                    {
-//                        titleJenis.setTextColor(getResources().getColor(R.color.red));
-//                    }
-//                    else  if(lk.getRef_kuliner_nama().equals("Cafe"))
-//                    {
-//                        titleJenis.setTextColor(getResources().getColor(R.color.purple));
-//                    }
-//
-//                }
+                titleJenis.setText(lk.getRef_pendidikan_nama());
+                if(lk.getRef_pendidikan_nama()!=null) {
+
+                    if(lk.getRef_pendidikan_nama().equals("Universitas"))
+                    {
+                        titleJenis.setTextColor(getResources().getColor(R.color.blue));
+
+                    }
+                    else  if(lk.getRef_pendidikan_nama().equals("SMA/SMK"))
+                    {
+                        titleJenis.setTextColor(getResources().getColor(R.color.green));
+                    }
+                    else  if(lk.getRef_pendidikan_nama().equals("SMP"))
+                    {
+                        titleJenis.setTextColor(getResources().getColor(R.color.yellow));
+                    }
+                    else  if(lk.getRef_pendidikan_nama().equals("SD"))
+                    {
+                        titleJenis.setTextColor(getResources().getColor(R.color.red));
+                    }
+                    else  if(lk.getRef_pendidikan_nama().equals("SLB"))
+                    {
+                        titleJenis.setTextColor(getResources().getColor(R.color.purple));
+                    }
+
+                }
 
 
 
@@ -352,7 +354,7 @@ public class DetilMapPendidikan extends AppCompatActivity implements OnMapReadyC
 
         for(ListPendidikan lk : listLatn) {
 
-            MyItem offsetItem = new MyItem(Double.parseDouble(lk.getLatitude()),Double.parseDouble(lk.getLongitude()),lk.getNama(),lk.getAlamat());
+            MyItem offsetItem = new MyItem(Double.parseDouble(lk.getLatitude()),Double.parseDouble(lk.getLongitude()),lk.getNama(),lk.getAlamat(),lk.getRef_pendidikan_nama());
             mClusterManager.addItem(offsetItem);
         }
 

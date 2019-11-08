@@ -30,6 +30,7 @@
             android:required="false" />
 
         <activity android:name=".Kuliner.DetailMap" />
+        <activity android:name=".Pendidikan.DetilMapPendidikan" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

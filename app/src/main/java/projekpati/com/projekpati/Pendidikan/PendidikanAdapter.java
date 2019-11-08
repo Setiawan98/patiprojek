@@ -65,7 +65,7 @@ public class PendidikanAdapter extends ArrayAdapter<ListPendidikan> {
         textNama.setText(pendidikan.get(pos).getNama());
         textAlamat.setText(pendidikan.get(pos).getAlamat());
 //        textJam.setText(kuliner.get(pos).getJam_buka());
-//        textRef.setText(kuliner.get(pos).getRef_kuliner_nama());
+        textRef.setText(pendidikan.get(pos).getRef_pendidikan_nama());
         if(textJam.getText().equals(""))
         {
             iconJam.setVisibility(View.INVISIBLE);

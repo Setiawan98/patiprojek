@@ -4,11 +4,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class ListPendidikan implements Parcelable {
-    String id, nama, telp, email, website, alamat, tipe, rating_jumlah, rating, file, file_small, latitude,longitude;
+    String id, nama, telp, email, website, alamat, tipe, rating_jumlah, rating, file, file_small, latitude, longitude;
     Integer nomor;
-    String ref_pendidikan_icon;
+    String ref_pendidikan_icon,  ref_pendidikan_nama, ref_pendidikan_warna;
 
-    public ListPendidikan(String id, String nama, String telp, String email, String website, String alamat, String tipe, String rating_jumlah, String rating, String file, String file_small, String latitude, String longitude, Integer nomor, String ref_pendidikan_icon) {
+    public ListPendidikan(String id, String nama, String telp, String email, String website, String alamat, String tipe, String rating_jumlah, String rating, String file, String file_small, String latitude, String longitude, Integer nomor, String ref_pendidikan_icon, String ref_pendidikan_nama, String ref_pendidikan_warna) {
         this.id = id;
         this.nama = nama;
         this.telp = telp;
@@ -24,6 +24,8 @@ public class ListPendidikan implements Parcelable {
         this.longitude = longitude;
         this.nomor = nomor;
         this.ref_pendidikan_icon = ref_pendidikan_icon;
+        this.ref_pendidikan_nama = ref_pendidikan_nama;
+        this.ref_pendidikan_warna = ref_pendidikan_warna;
     }
 
     protected ListPendidikan(Parcel in) {
@@ -46,6 +48,39 @@ public class ListPendidikan implements Parcelable {
             nomor = in.readInt();
         }
         ref_pendidikan_icon = in.readString();
+        ref_pendidikan_nama = in.readString();
+        ref_pendidikan_warna = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(nama);
+        dest.writeString(telp);
+        dest.writeString(email);
+        dest.writeString(website);
+        dest.writeString(alamat);
+        dest.writeString(tipe);
+        dest.writeString(rating_jumlah);
+        dest.writeString(rating);
+        dest.writeString(file);
+        dest.writeString(file_small);
+        dest.writeString(latitude);
+        dest.writeString(longitude);
+        if (nomor == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(nomor);
+        }
+        dest.writeString(ref_pendidikan_icon);
+        dest.writeString(ref_pendidikan_nama);
+        dest.writeString(ref_pendidikan_warna);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<ListPendidikan> CREATOR = new Creator<ListPendidikan>() {
@@ -120,32 +155,11 @@ public class ListPendidikan implements Parcelable {
         return ref_pendidikan_icon;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public String getRef_pendidikan_nama() {
+        return ref_pendidikan_nama;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(nama);
-        dest.writeString(telp);
-        dest.writeString(email);
-        dest.writeString(website);
-        dest.writeString(alamat);
-        dest.writeString(tipe);
-        dest.writeString(rating_jumlah);
-        dest.writeString(rating);
-        dest.writeString(file);
-        dest.writeString(file_small);
-        dest.writeString(latitude);
-        dest.writeString(longitude);
-        if (nomor == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(nomor);
-        }
-        dest.writeString(ref_pendidikan_icon);
+    public String getRef_pendidikan_warna() {
+        return ref_pendidikan_warna;
     }
 }
