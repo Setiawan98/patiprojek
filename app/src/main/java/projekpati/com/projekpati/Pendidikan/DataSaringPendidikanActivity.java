@@ -84,9 +84,9 @@ public class DataSaringPendidikanActivity  extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(DataSaringPendidikanActivity.this, DetilKuliner.class);
-//                intent.putExtra("id_kuliner", list.get(position).getId());
-//                startActivity(intent);
+                Intent intent = new Intent(DataSaringPendidikanActivity.this, DetilPendidikan.class);
+                intent.putExtra("id_pendidikan", list.get(position).getId());
+                startActivity(intent);
             }
         });
 

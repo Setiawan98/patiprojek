@@ -40,6 +40,7 @@
         <activity android:name=".Pendidikan.DetilMapPendidikan" />
         <activity android:name=".Tukang.MenuTukang"/>
         <activity android:name=".Tukang.DetailMapTukang"/>
+        <activity android:name=".Tukang.DataSaringTukangActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
