@@ -156,4 +156,7 @@ public interface API {
     //Tukang
     @GET("tukang/data/?key=TechnoPhoriaIndonesia")
     Call<TukangModel> tampilSemuaTukang();
+
+    @GET("tukang/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<TukangModel> loadMoreTukang(@Path("id") String id);
 }

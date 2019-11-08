@@ -6,9 +6,10 @@ import android.os.Parcelable;
 public class ListTukang implements Parcelable {
     String id, nama, telp, email, website, alamat, tipe, rating_jumlah, rating, file, file_small, latitude, longitude;
     Integer nomor;
-    String ref_pendidikan_icon, ref_pendidikan_nama, ref_pendidikan_warna, hari_ini, jam_buka;
+    String ref_tukang_icon, ref_tukang_nama, ref_tukang_warna, hari_ini, jam_buka;
 
-    public ListTukang(String id, String nama, String telp, String email, String website, String alamat, String tipe, String rating_jumlah, String rating, String file, String file_small, String latitude, String longitude, Integer nomor, String ref_pendidikan_icon, String ref_pendidikan_nama, String ref_pendidikan_warna, String hari_ini, String jam_buka) {
+
+    public ListTukang(String id, String nama, String telp, String email, String website, String alamat, String tipe, String rating_jumlah, String rating, String file, String file_small, String latitude, String longitude, Integer nomor, String ref_tukang_icon, String ref_tukang_nama, String ref_tukang_warna, String hari_ini, String jam_buka) {
         this.id = id;
         this.nama = nama;
         this.telp = telp;
@@ -23,9 +24,9 @@ public class ListTukang implements Parcelable {
         this.latitude = latitude;
         this.longitude = longitude;
         this.nomor = nomor;
-        this.ref_pendidikan_icon = ref_pendidikan_icon;
-        this.ref_pendidikan_nama = ref_pendidikan_nama;
-        this.ref_pendidikan_warna = ref_pendidikan_warna;
+        this.ref_tukang_icon = ref_tukang_icon;
+        this.ref_tukang_nama = ref_tukang_nama;
+        this.ref_tukang_warna = ref_tukang_warna;
         this.hari_ini = hari_ini;
         this.jam_buka = jam_buka;
     }
@@ -49,9 +50,9 @@ public class ListTukang implements Parcelable {
         } else {
             nomor = in.readInt();
         }
-        ref_pendidikan_icon = in.readString();
-        ref_pendidikan_nama = in.readString();
-        ref_pendidikan_warna = in.readString();
+        ref_tukang_icon = in.readString();
+        ref_tukang_nama = in.readString();
+        ref_tukang_warna = in.readString();
         hari_ini = in.readString();
         jam_buka = in.readString();
     }
@@ -77,9 +78,9 @@ public class ListTukang implements Parcelable {
             dest.writeByte((byte) 1);
             dest.writeInt(nomor);
         }
-        dest.writeString(ref_pendidikan_icon);
-        dest.writeString(ref_pendidikan_nama);
-        dest.writeString(ref_pendidikan_warna);
+        dest.writeString(ref_tukang_icon);
+        dest.writeString(ref_tukang_nama);
+        dest.writeString(ref_tukang_warna);
         dest.writeString(hari_ini);
         dest.writeString(jam_buka);
     }
@@ -157,16 +158,16 @@ public class ListTukang implements Parcelable {
         return nomor;
     }
 
-    public String getRef_pendidikan_icon() {
-        return ref_pendidikan_icon;
+    public String getRef_tukang_icon() {
+        return ref_tukang_icon;
     }
 
-    public String getRef_pendidikan_nama() {
-        return ref_pendidikan_nama;
+    public String getRef_tukang_nama() {
+        return ref_tukang_nama;
     }
 
-    public String getRef_pendidikan_warna() {
-        return ref_pendidikan_warna;
+    public String getRef_tukang_warna() {
+        return ref_tukang_warna;
     }
 
     public String getHari_ini() {

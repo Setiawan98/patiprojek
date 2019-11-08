@@ -153,9 +153,9 @@ public class MenuTukang extends AppCompatActivity {
             }
         });
 
-//        DataPendidikanFragment first = new DataPendidikanFragment();
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        fragmentManager.beginTransaction().replace(R.id.fragment, first).commit();
+        DataTukangFragment first = new DataTukangFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment, first).commit();
     }
 
     public void getIconImage(){
