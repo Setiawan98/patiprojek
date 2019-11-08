@@ -7,6 +7,7 @@ import projekpati.com.projekpati.Model.Kuliner.JenisKulinerLengkap;
 import projekpati.com.projekpati.Model.Kuliner.JenisMakananLengkap;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.Kuliner.KulinerModel;
+import projekpati.com.projekpati.Model.Pariwisata.JenisPariwisataLengkap;
 import projekpati.com.projekpati.Model.Pariwisata.PariwisataModel;
 import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanBaru;
 import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanModel;
@@ -216,4 +217,10 @@ public interface API {
 
     @GET("pariwisata/data/{id}?key=TechnoPhoriaIndonesia")
     Call<PariwisataModel> loadMorePariwisata(@Path("id") String id);
+
+    @GET("pariwisata/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisPariwisataLengkap> tampilJenisPariwisata();
+
+    @GET("pariwisata/data/?key=TechnoPhoriaIndonesia")
+    Call<PariwisataModel> cariPariwisatabyAPI(@Query("cari") String keyword);
 }
