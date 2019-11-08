@@ -364,18 +364,18 @@ public class DataTukangFragment extends Fragment implements OnMapReadyCallback {
                 return view;
             }
         });
-//        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-//            @Override
-//            public void onInfoWindowClick(Marker marker) {
-//                String id = (String) marker.getTag();
-//                Intent intent = new Intent(getContext(),DetilPendidikan.class);
-//                intent.putExtra("id_pendidikan",id);
-//                Log.d("idwoy1",id);
-//                startActivity(intent);
-//
-//
-//            }
-//        });
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                String id = (String) marker.getTag();
+                Intent intent = new Intent(getContext(),DetilTukang.class);
+                intent.putExtra("id_tukang",id);
+                Log.d("idwoy1",id);
+                startActivity(intent);
+
+
+            }
+        });
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {

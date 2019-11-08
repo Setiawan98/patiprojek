@@ -281,14 +281,14 @@ public class DetailMapTukang extends AppCompatActivity implements OnMapReadyCall
                     beforeClick = layout;
 
                 }
-//                btnDetail.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(DetailMapTukang.this, .class);
-//                        intent.putExtra("id_pendidikan",lk.getId());
-//                        startActivity(intent);
-//                    }
-//                });
+                btnDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DetailMapTukang.this, DetilTukang.class);
+                        intent.putExtra("id_tukang",lk.getId());
+                        startActivity(intent);
+                    }
+                });
 
 
                 clickAbleColumn.setOnClickListener(new View.OnClickListener() {
