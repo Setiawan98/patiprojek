@@ -7,6 +7,7 @@ import projekpati.com.projekpati.Model.Kuliner.JenisKulinerLengkap;
 import projekpati.com.projekpati.Model.Kuliner.JenisMakananLengkap;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.Kuliner.KulinerModel;
+import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanBaru;
 import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanModel;
 import projekpati.com.projekpati.Model.Pendidikan.JenisPendidikanLengkap;
 import projekpati.com.projekpati.Model.Pendidikan.PendidikanModel;
@@ -135,4 +136,18 @@ public interface API {
 
     @GET("pendidikan/data/?key=TechnoPhoriaIndonesia")
     Call<PendidikanModel> cariPendidikanbyAPI(@Query("cari") String keyword);
+
+    @FormUrlEncoded
+    @POST("pendidikan/update?key=TechnoPhoriaIndonesia")
+    Call<DetilPendidikanBaru> addDataPendidikan(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_pendidikan_id") String ref_pendidikan_id
+    );
 }

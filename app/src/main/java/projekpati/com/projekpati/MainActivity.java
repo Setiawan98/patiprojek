@@ -36,7 +36,7 @@ import projekpati.com.projekpati.Pendidikan.MenuPendidikan;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout kulinerLayout;
+    private LinearLayout kulinerLayout,tukangLayout;
     private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
     ScrollView scroll;
@@ -151,7 +151,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        tukangLayout = findViewById(R.id.tukangLinear);
+        tukangLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
 
         // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(this,

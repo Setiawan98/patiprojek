@@ -106,18 +106,18 @@ public class MenuPendidikan extends AppCompatActivity {
                     Toast.makeText(MenuPendidikan.this, "Clicked",Toast.LENGTH_SHORT).show();
                 }
                 else if(id==R.id.tambah){
-//
-//                    TambahFragment third = new TambahFragment();
-//                    openFragment(third);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            status =0;
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
+
+                    TambahPendidikanFragment third = new TambahPendidikanFragment();
+                    openFragment(third);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            status =0;
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
                     Toast.makeText(MenuPendidikan.this, "Clicked",Toast.LENGTH_SHORT).show();
 
                 }
