@@ -33,7 +33,7 @@
             android:required="false" />
 
 
-
+        <activity android:name=".Tukang.DetilTukang"></activity>
         <activity android:name=".Tukang.CariTukang"></activity>
         <activity android:name=".Tukang.TampilTukangByJenis" />
         <activity android:name=".Kuliner.DetailMap" />

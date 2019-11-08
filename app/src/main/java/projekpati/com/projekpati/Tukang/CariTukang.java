@@ -125,14 +125,14 @@ public class CariTukang extends AppCompatActivity {
                     }
                 });
 
-//                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                        Intent intent = new Intent(CariTukang.this,DetilPendidikan.class);
-//                        intent.putExtra("id_tukang",list.get(position).getId());
-//                        startActivity(intent);
-//                    }
-//                });
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(CariTukang.this,DetilTukang.class);
+                        intent.putExtra("id_tukang",list.get(position).getId());
+                        startActivity(intent);
+                    }
+                });
             }
         });
     }
@@ -162,14 +162,14 @@ public class CariTukang extends AppCompatActivity {
             }
         });
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(CariTukang.this,DetilPendidikan.class);
-//                intent.putExtra("id_tukang",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(CariTukang.this,DetilTukang.class);
+                intent.putExtra("id_tukang",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     public static void hideSoftKeyboard(Activity activity) {
@@ -230,13 +230,13 @@ public class CariTukang extends AppCompatActivity {
             }
         });
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(CariTukang.this,DetilPendidikan.class);
-//                intent.putExtra("id_kuliner",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(CariTukang.this,DetilTukang.class);
+                intent.putExtra("id_tukang",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 }

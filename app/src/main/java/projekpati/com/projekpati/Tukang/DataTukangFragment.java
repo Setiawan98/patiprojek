@@ -183,14 +183,14 @@ public class DataTukangFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getContext(), DetilPendidikan.class);
-//                intent.putExtra("id_pendidikan",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), DetilTukang.class);
+                intent.putExtra("id_tukang",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     public void loadMoreData(){
@@ -238,15 +238,15 @@ public class DataTukangFragment extends Fragment implements OnMapReadyCallback {
                 Log.d("onResponse", t.toString());
             }
         });
-//
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getContext(),DetilPendidikan.class);
-//                intent.putExtra("id_pendidikan",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(),DetilTukang.class);
+                intent.putExtra("id_tukang",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
 

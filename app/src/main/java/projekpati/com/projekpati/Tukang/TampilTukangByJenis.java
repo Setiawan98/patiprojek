@@ -63,14 +63,14 @@ public class TampilTukangByJenis extends AppCompatActivity {
 
         getAllData();
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(TampilPendidikanByJenis.this,DetilPendidikan.class);
-//                intent.putExtra("id_pendidikan",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(TampilTukangByJenis.this,DetilTukang.class);
+                intent.putExtra("id_tukang",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
