@@ -15,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -46,13 +47,12 @@ public class MainActivity extends AppCompatActivity {
     Integer icon=1;
     private MyViewPagerAdapter myViewPagerAdapter;
     LinearLayout menuicon;
-    private PrefManager prefManager;
     private ActionBarDrawerToggle abdt;
     private ViewPager viewPager;
     private LinearLayout dotsLayout;
     private TextView[] dots;
     private int[] layouts;
-
+    public static boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -276,5 +276,24 @@ public class MainActivity extends AppCompatActivity {
         return abdt.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
+    public void onBackPressed() {
 
+        if (doubleBackToExitPressedOnce) {
+            moveTaskToBack(true);
+            this.finishAffinity();
+            System.exit(1);
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Double Click for Exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
 }

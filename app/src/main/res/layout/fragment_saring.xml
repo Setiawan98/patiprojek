@@ -52,11 +52,11 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/diet" />
+                    android:src="@drawable/iconkuliner" />
 
                 <EditText
                     android:id="@+id/pencarian"

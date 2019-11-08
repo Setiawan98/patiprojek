@@ -115,18 +115,18 @@ public class MenuTukang extends AppCompatActivity {
                 }
                 else if(id==R.id.tambah){
 
-//                    TambahPendidikanFragment third = new TambahPendidikanFragment();
-//                    openFragment(third);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            status =0;
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
-//                    Toast.makeText(MenuPendidikan.this, "Clicked",Toast.LENGTH_SHORT).show();
+                    TambahTukangFragment third = new TambahTukangFragment();
+                    openFragment(third);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            status =0;
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
+                    Toast.makeText(MenuTukang.this, "Clicked",Toast.LENGTH_SHORT).show();
 
                 }
                 else if(id==R.id.saring){

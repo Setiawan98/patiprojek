@@ -38,7 +38,8 @@
         <activity android:name=".Tukang.TampilTukangByJenis" />
         <activity android:name=".Kuliner.DetailMap" />
         <activity android:name=".Pendidikan.DetilMapPendidikan" />
-        <activity android:name=".Tukang.MenuTukang"/>
+        <activity android:name=".Tukang.MenuTukang"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Tukang.DetailMapTukang"/>
         <activity android:name=".Tukang.DataSaringTukangActivity" />
 

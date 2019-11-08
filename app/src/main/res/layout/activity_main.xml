@@ -209,15 +209,13 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:background="@drawable/cerclebackgroundyello"
-                                                    android:padding="10dp"
-                                                    android:src="@drawable/ic_guide" />
+                                                    android:src="@drawable/iconpariwisata" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="5dp"
-                                                    android:text="Guide"
+                                                    android:text="Pariwisata"
                                                     android:textColor="@android:color/black" />
 
                                             </LinearLayout>
