@@ -45,11 +45,13 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/api_key" />
-
+s
         <activity android:name=".Kuliner.CariKuliner" />
         <activity android:name=".Kuliner.TampilKulinerByJenis" />
         <activity android:name=".Pendidikan.TampilPendidikanByJenis" />
         <activity android:name=".Kuliner.DetilKuliner" />
+
+        <activity android:name=".Pariwisata.MenuPariwisata" />
         <activity
             android:name=".Pendidikan.MenuPendidikan"
             android:windowSoftInputMode="adjustPan" />
@@ -64,6 +66,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+
     </application>
 
 </manifest>

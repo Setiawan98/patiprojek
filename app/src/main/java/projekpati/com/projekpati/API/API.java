@@ -7,6 +7,7 @@ import projekpati.com.projekpati.Model.Kuliner.JenisKulinerLengkap;
 import projekpati.com.projekpati.Model.Kuliner.JenisMakananLengkap;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.Kuliner.KulinerModel;
+import projekpati.com.projekpati.Model.Pariwisata.PariwisataModel;
 import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanBaru;
 import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanModel;
 import projekpati.com.projekpati.Model.Pendidikan.JenisPendidikanLengkap;
@@ -187,4 +188,12 @@ public interface API {
 
     @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=tukang")
     Call<KomentarLengkap> getKomentarTukang(@Query("dataID") String data_id);
+
+
+    //Tukang
+    @GET("pariwisata/data/?key=TechnoPhoriaIndonesia")
+    Call<PariwisataModel> tampilSemuaPariwisata();
+
+    @GET("pariwisata/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<PariwisataModel> loadMorePariwisata(@Path("id") String id);
 }
