@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.Model;
+package projekpati.com.projekpati.Model.Kuliner;
 
 public class JenisMakanan {
     String id, nama, icon;

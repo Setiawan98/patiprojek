@@ -33,15 +33,7 @@ import java.util.Map;
 
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.Kuliner.CariKuliner;
-import projekpati.com.projekpati.Kuliner.DataKulinerFragment;
-import projekpati.com.projekpati.Kuliner.KategoriFragment;
-import projekpati.com.projekpati.Kuliner.MenuKuliner;
-import projekpati.com.projekpati.Kuliner.SaringFragment;
-import projekpati.com.projekpati.Kuliner.TambahFragment;
 import projekpati.com.projekpati.MainActivity;
-import projekpati.com.projekpati.Model.KulinerModel;
-import projekpati.com.projekpati.Model.ListKuliner;
 import projekpati.com.projekpati.Model.Pendidikan.ListPendidikan;
 import projekpati.com.projekpati.Model.Pendidikan.PendidikanModel;
 import projekpati.com.projekpati.R;

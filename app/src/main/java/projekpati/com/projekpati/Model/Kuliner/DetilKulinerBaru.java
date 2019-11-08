@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.Model;
+package projekpati.com.projekpati.Model.Kuliner;
 
 import java.util.List;
 

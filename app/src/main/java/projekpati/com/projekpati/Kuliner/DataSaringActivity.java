@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.Model.KulinerModel;
-import projekpati.com.projekpati.Model.ListKuliner;
+import projekpati.com.projekpati.Model.Kuliner.KulinerModel;
+import projekpati.com.projekpati.Model.Kuliner.ListKuliner;
 import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -19,14 +19,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.maps.android.SphericalUtil;
 
 import java.util.ArrayList;
 import java.util.List;

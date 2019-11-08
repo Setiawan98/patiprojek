@@ -40,7 +40,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import projekpati.com.projekpati.CustomInfoWindowGoogleMaps;
-import projekpati.com.projekpati.Model.ListKuliner;
+import projekpati.com.projekpati.Model.Kuliner.ListKuliner;
 import projekpati.com.projekpati.Model.MyItem;
 import projekpati.com.projekpati.R;
 

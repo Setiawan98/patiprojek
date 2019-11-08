@@ -1,9 +1,5 @@
-package projekpati.com.projekpati.Model;
+package projekpati.com.projekpati.Model.Kuliner;
 
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class KulinerModel {

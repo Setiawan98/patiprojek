@@ -1,19 +1,17 @@
-package projekpati.com.projekpati.Model;
+package projekpati.com.projekpati.Model.Kuliner;
 
-import java.util.Map;
-
-public class JenisMakananLengkap {
+public class DetilKulinerModel {
     String status, judul, key, waktu, icon;
-    Integer jumlah_data;
-    Map<String,JenisMakanan> data;
+    DetilKulinerBaru data;
 
-    public JenisMakananLengkap(String status, String judul, String key, String waktu, String icon, Integer jumlah_data, Map<String, JenisMakanan> data) {
+
+    public DetilKulinerModel(String status, String judul, String key, String waktu, String icon, DetilKulinerBaru data) {
         this.status = status;
         this.judul = judul;
         this.key = key;
         this.waktu = waktu;
         this.icon = icon;
-        this.jumlah_data = jumlah_data;
+
         this.data = data;
     }
 
@@ -37,11 +35,13 @@ public class JenisMakananLengkap {
         return icon;
     }
 
-    public Integer getJumlah_data() {
-        return jumlah_data;
-    }
 
-    public Map<String, JenisMakanan> getData() {
+//    public ListKuliner getData() {
+//        return data;
+//    }
+
+
+    public DetilKulinerBaru getData() {
         return data;
     }
 }

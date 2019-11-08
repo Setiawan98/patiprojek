@@ -1,33 +1,20 @@
 package projekpati.com.projekpati.Kuliner;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import androidx.annotation.NonNull;
-import androidx.core.graphics.PathParser;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-import javax.xml.transform.Result;
-
-import projekpati.com.projekpati.Model.KulinerModel;
-import projekpati.com.projekpati.Model.ListKuliner;
+import projekpati.com.projekpati.Model.Kuliner.ListKuliner;
 import projekpati.com.projekpati.R;
 
 public class KulinerAdapter extends ArrayAdapter<ListKuliner> {

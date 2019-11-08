@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.Model;
+package projekpati.com.projekpati.Model.Kuliner;
 
 public class GambarDetil {
     String file_kuliner_id, file_kuliner_img;

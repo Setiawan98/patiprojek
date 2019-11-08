@@ -14,7 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-import projekpati.com.projekpati.Model.JenisKuliner;
+import projekpati.com.projekpati.Model.Kuliner.JenisKuliner;
 import projekpati.com.projekpati.R;
 
 public class JenisAdapter  extends ArrayAdapter<JenisKuliner> {

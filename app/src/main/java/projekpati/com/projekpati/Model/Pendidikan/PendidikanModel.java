@@ -2,8 +2,6 @@ package projekpati.com.projekpati.Model.Pendidikan;
 
 import java.util.Map;
 
-import projekpati.com.projekpati.Model.ListKuliner;
-
 public class PendidikanModel {
     String status, judul, key, waktu, icon;
     Integer jumlah_data, halaman_selanjutnya;

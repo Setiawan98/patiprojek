@@ -1,13 +1,12 @@
 package projekpati.com.projekpati.API;
 
 import projekpati.com.projekpati.Model.APIKey;
-import projekpati.com.projekpati.Model.DetilKulinerBaru;
-import projekpati.com.projekpati.Model.DetilKulinerModel;
-import projekpati.com.projekpati.Model.JenisKulinerLengkap;
-import projekpati.com.projekpati.Model.JenisMakananLengkap;
+import projekpati.com.projekpati.Model.Kuliner.DetilKulinerBaru;
+import projekpati.com.projekpati.Model.Kuliner.DetilKulinerModel;
+import projekpati.com.projekpati.Model.Kuliner.JenisKulinerLengkap;
+import projekpati.com.projekpati.Model.Kuliner.JenisMakananLengkap;
 import projekpati.com.projekpati.Model.KomentarLengkap;
-import projekpati.com.projekpati.Model.KomentarParent;
-import projekpati.com.projekpati.Model.KulinerModel;
+import projekpati.com.projekpati.Model.Kuliner.KulinerModel;
 import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanModel;
 import projekpati.com.projekpati.Model.Pendidikan.JenisPendidikanLengkap;
 import projekpati.com.projekpati.Model.Pendidikan.PendidikanModel;
@@ -21,6 +20,8 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface API {
+
+    //Kuliner
     @GET("kuliner/data/?key=TechnoPhoriaIndonesia")
     Call<KulinerModel> tampilSemuaKuliner();
 

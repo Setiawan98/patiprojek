@@ -40,11 +40,6 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import projekpati.com.projekpati.CustomInfoWindowGoogleMaps;
-import projekpati.com.projekpati.Kuliner.CustomClusterRenderer;
-import projekpati.com.projekpati.Kuliner.DetailMap;
-import projekpati.com.projekpati.Kuliner.DetilKuliner;
-import projekpati.com.projekpati.Kuliner.MenuKuliner;
-import projekpati.com.projekpati.Model.ListKuliner;
 import projekpati.com.projekpati.Model.MyItem;
 import projekpati.com.projekpati.Model.Pendidikan.ListPendidikan;
 import projekpati.com.projekpati.R;

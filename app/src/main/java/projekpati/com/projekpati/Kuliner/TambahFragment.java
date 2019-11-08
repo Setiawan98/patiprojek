@@ -1,14 +1,10 @@
 package projekpati.com.projekpati.Kuliner;
 
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
@@ -22,24 +18,18 @@ import androidx.fragment.app.Fragment;
 
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.Model.DetilKulinerBaru;
-import projekpati.com.projekpati.Model.JenisKuliner;
-import projekpati.com.projekpati.Model.JenisKulinerLengkap;
-import projekpati.com.projekpati.Model.KulinerModel;
-import projekpati.com.projekpati.Model.ListKuliner;
-import projekpati.com.projekpati.Model.MyItem;
+import projekpati.com.projekpati.Model.Kuliner.DetilKulinerBaru;
+import projekpati.com.projekpati.Model.Kuliner.JenisKuliner;
+import projekpati.com.projekpati.Model.Kuliner.JenisKulinerLengkap;
 import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -66,19 +56,9 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.gson.Gson;
-import com.google.maps.android.clustering.Cluster;
-import com.google.maps.android.clustering.ClusterManager;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
-
-import static android.content.Context.LOCATION_SERVICE;
 
 
 /**
