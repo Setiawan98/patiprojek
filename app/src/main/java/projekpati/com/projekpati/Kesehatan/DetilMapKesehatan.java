@@ -281,14 +281,14 @@ public class DetilMapKesehatan extends AppCompatActivity implements OnMapReadyCa
                     beforeClick = layout;
 
                 }
-//                btnDetail.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(DetailMapTukang.this, DetilTukang.class);
-//                        intent.putExtra("id_tukang",lk.getId());
-//                        startActivity(intent);
-//                    }
-//                });
+                btnDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DetilMapKesehatan.this, DetilKesehatan.class);
+                        intent.putExtra("id_kesehatan",lk.getId());
+                        startActivity(intent);
+                    }
+                });
 
 
                 clickAbleColumn.setOnClickListener(new View.OnClickListener() {
