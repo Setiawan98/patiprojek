@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.Pariwisata;
+package projekpati.com.projekpati.Kesehatan;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -48,8 +48,9 @@ import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientApiKey;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.APIKey;
-import projekpati.com.projekpati.Model.Pariwisata.ListPariwisata;
-import projekpati.com.projekpati.Model.Pariwisata.PariwisataModel;
+import projekpati.com.projekpati.Model.Kesehatan.KesehatanModel;
+import projekpati.com.projekpati.Model.Kesehatan.ListKesehatan;
+import projekpati.com.projekpati.Model.Kuliner.KulinerModel;
 import projekpati.com.projekpati.Model.Pendidikan.ListPendidikan;
 import projekpati.com.projekpati.Model.Pendidikan.PendidikanModel;
 import projekpati.com.projekpati.Pendidikan.DetilMapPendidikan;
@@ -60,13 +61,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DataPariwisataFragment extends Fragment implements OnMapReadyCallback {
+public class DataKesehatanFragment extends Fragment implements OnMapReadyCallback {
     ListView listView;
     Integer CountShowData;
     Integer nextPage;
     Integer npLatn=1;
-    List<ListPariwisata> list = new ArrayList<>();
-    ArrayList<ListPariwisata> listLatn = new ArrayList<ListPariwisata>();
+    List<ListKesehatan> list = new ArrayList<>();
+    ArrayList<ListKesehatan> listLatn = new ArrayList<ListKesehatan>();
     LinearLayout lp;
     MapView mapView;
     String apikey;
@@ -75,7 +76,7 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
     SwipeRefreshLayout swipeRefreshLayout;
 
 
-    public DataPariwisataFragment() {
+    public DataKesehatanFragment() {
         // Required empty public constructor
     }
 
@@ -84,8 +85,8 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_data_pariwisata, container, false);
-        listView = (ListView) view.findViewById(R.id.listPariwisata);
+        View view = inflater.inflate(R.layout.fragment_data_kesehatan, container, false);
+        listView = (ListView) view.findViewById(R.id.listKesehatan);
         swipeRefreshLayout = view.findViewById(R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -107,7 +108,7 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        getAllPendidkan();
+        getAllKesehatan();
         getAllData();
 
 
@@ -153,15 +154,15 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
     }
 
 
-    public void getAllPendidkan(){
+    public void getAllKesehatan(){
         //defining a progress dialog to show while signing up
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<PariwisataModel> call = api.tampilSemuaPariwisata();
+        Call<KesehatanModel> call = api.tampilSemuaKesehatan();
 
-        call.enqueue(new Callback<PariwisataModel>() {
+        call.enqueue(new Callback<KesehatanModel>() {
             @Override
-            public void onResponse(Call<PariwisataModel> call, final Response<PariwisataModel> response) {
-                Map<String, ListPariwisata> data = response.body().getData();
+            public void onResponse(Call<KesehatanModel> call, final Response<KesehatanModel> response) {
+                Map<String, ListKesehatan> data = response.body().getData();
 
 
                 Log.w("Response", new Gson().toJson(response.body()));
@@ -171,26 +172,26 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
                 }
                 nextPage = response.body().getHalaman_selanjutnya();
 
-                listView.setAdapter(new PariwisataAdapter(getContext(), R.layout.pariwisata_adapter, list));
+                listView.setAdapter(new KesehatanAdapter(getContext(), R.layout.kesehatan_adapter, list));
 
 
             }
 
             @Override
-            public void onFailure(Call<PariwisataModel> call, Throwable t) {
+            public void onFailure(Call<KesehatanModel> call, Throwable t) {
                 Toast.makeText(getContext().getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), DetilPariwisata.class);
-                intent.putExtra("id_pariwisata",list.get(position).getId());
-                startActivity(intent);
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(getContext(), DetilPendidikan.class);
+//                intent.putExtra("id_pendidikan",list.get(position).getId());
+//                startActivity(intent);
+//            }
+//        });
     }
 
     public void loadMoreData(){
@@ -204,12 +205,12 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
 
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<PariwisataModel> call = api.loadMorePariwisata(String.valueOf(nextPage));
+        Call<KesehatanModel> call = api.loadMoreKesehatan(String.valueOf(nextPage));
 
-        call.enqueue(new Callback<PariwisataModel>() {
+        call.enqueue(new Callback<KesehatanModel>() {
             @Override
-            public void onResponse(Call<PariwisataModel> call, final Response<PariwisataModel> response) {
-                Map<String, ListPariwisata> data = response.body().getData();
+            public void onResponse(Call<KesehatanModel> call, final Response<KesehatanModel> response) {
+                Map<String, ListKesehatan> data = response.body().getData();
                 Integer beforePage = nextPage;
 
                 Log.w("ResponseLoad", new Gson().toJson(response.body()));
@@ -224,7 +225,7 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
                 Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
 
 
-                PariwisataAdapter adapter = new PariwisataAdapter(getContext(), R.layout.pariwisata_adapter, list);
+                KesehatanAdapter adapter = new KesehatanAdapter(getContext(), R.layout.kesehatan_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);
@@ -233,32 +234,32 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
             }
 
             @Override
-            public void onFailure(Call<PariwisataModel> call, Throwable t) {
+            public void onFailure(Call<KesehatanModel> call, Throwable t) {
                 Toast.makeText(getContext().getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(),DetilPariwisata.class);
-                intent.putExtra("id_pariwisata",list.get(position).getId());
-                startActivity(intent);
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(getContext(),DetilPendidikan.class);
+//                intent.putExtra("id_pendidikan",list.get(position).getId());
+//                startActivity(intent);
+//            }
+//        });
     }
 
 
     public void getAllData(){
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<PariwisataModel> call = api.tampilSemuaPariwisata();
+        Call<KesehatanModel> call = api.tampilSemuaKesehatan();
 
-        call.enqueue(new Callback<PariwisataModel>() {
+        call.enqueue(new Callback<KesehatanModel>() {
             @Override
-            public void onResponse(Call<PariwisataModel> call, final Response<PariwisataModel> response) {
-                Map<String, ListPariwisata> data = response.body().getData();
+            public void onResponse(Call<KesehatanModel> call, final Response<KesehatanModel> response) {
+                Map<String, ListKesehatan> data = response.body().getData();
 
                 Log.w("Responsepend", new Gson().toJson(response.body()));
                 for (int i = npLatn; i <= npLatn+response.body().getJumlah_data()-1; i++)
@@ -286,7 +287,7 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
             }
 
             @Override
-            public void onFailure(Call<PariwisataModel> call, Throwable t) {
+            public void onFailure(Call<KesehatanModel> call, Throwable t) {
                 Toast.makeText(getContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
             }
@@ -298,12 +299,12 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
 
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<PariwisataModel> a = api.loadMorePariwisata(String.valueOf(npLatn));
-        a.enqueue(new Callback<PariwisataModel>() {
+        Call<KesehatanModel> a = api.loadMoreKesehatan(String.valueOf(npLatn));
+        a.enqueue(new Callback<KesehatanModel>() {
 
             @Override
-            public void onResponse(Call<PariwisataModel> call, final Response<PariwisataModel> response) {
-                Map<String, ListPariwisata> data = response.body().getData();
+            public void onResponse(Call<KesehatanModel> call, final Response<KesehatanModel> response) {
+                Map<String, ListKesehatan> data = response.body().getData();
 
 
                 Log.w("Responsepend", new Gson().toJson(response.body()));
@@ -334,7 +335,7 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
             }
 
             @Override
-            public void onFailure(Call<PariwisataModel> call, Throwable t) {
+            public void onFailure(Call<KesehatanModel> call, Throwable t) {
                 Toast.makeText(getContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
             }
@@ -364,22 +365,22 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
                 return view;
             }
         });
-        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                String id = (String) marker.getTag();
-                Intent intent = new Intent(getContext(),DetilPariwisata.class);
-                intent.putExtra("id_pariwisata",id);
-                Log.d("idwoy1",id);
-                startActivity(intent);
-
-
-            }
-        });
+//        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+//            @Override
+//            public void onInfoWindowClick(Marker marker) {
+//                String id = (String) marker.getTag();
+//                Intent intent = new Intent(getContext(),DetilPendidikan.class);
+//                intent.putExtra("id_pendidikan",id);
+//                Log.d("idwoy1",id);
+//                startActivity(intent);
+//
+//
+//            }
+//        });
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                Intent i = new Intent(getContext(), DetilMapPariwisata.class);
+                Intent i = new Intent(getContext(), DetilMapPendidikan.class);
                 Bundle bundle = new Bundle();
 
                 // bundle.putParcelableArrayList("list",listLatn);
@@ -400,11 +401,11 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
 
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex),100,null);
 
-        for(ListPariwisata lp : listLatn)
+        for(ListKesehatan lp : listLatn)
         {
             Log.d("masuk","a");
-            BitmapDescriptor icon = null;
-//            if(lp.getRef_pariwisata_icon().equals(""))
+             BitmapDescriptor icon = null;
+//            if(lp.getRef_kesehatan_icon().equals(""))
 //            {
                 Drawable vectorDrawable = ContextCompat.getDrawable(getContext(),R.drawable.ic_location_on_black_24dp);
                 vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight());
@@ -415,7 +416,7 @@ public class DataPariwisataFragment extends Fragment implements OnMapReadyCallba
 //            }
 //            else {
 //                try {
-//                    URL url = new URL(lp.getRef_pariwisata_icon());
+//                    URL url = new URL(lp.getRef_kesehatan_icon());
 //                    Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
 //                    Bitmap scaled = Bitmap.createScaledBitmap(bmp,50,50,true);
 //                    icon =  BitmapDescriptorFactory.fromBitmap(scaled);

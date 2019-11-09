@@ -230,7 +230,7 @@
                                             android:weightSum="4">
 
                                             <LinearLayout
-                                                android:id="@+id/spbulinear"
+                                                android:id="@+id/kesehatanLinear"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="110dp"
                                                 android:layout_marginLeft="10dp"

@@ -281,14 +281,14 @@ public class DetilMapPariwisata extends AppCompatActivity implements OnMapReadyC
                     beforeClick = layout;
 
                 }
-//                btnDetail.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(DetilMapPariwisata.this, DetilPendidikan.class);
-//                        intent.putExtra("id_pariwisata",lk.getId());
-//                        startActivity(intent);
-//                    }
-//                });
+                btnDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DetilMapPariwisata.this, DetilPariwisata.class);
+                        intent.putExtra("id_pariwisata",lk.getId());
+                        startActivity(intent);
+                    }
+                });
 
 
                 clickAbleColumn.setOnClickListener(new View.OnClickListener() {
