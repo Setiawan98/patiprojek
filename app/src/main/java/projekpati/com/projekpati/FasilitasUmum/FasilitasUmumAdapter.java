@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.Pariwisata;
+package projekpati.com.projekpati.FasilitasUmum;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,19 +14,19 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-import projekpati.com.projekpati.Model.Pariwisata.ListPariwisata;
-import projekpati.com.projekpati.Model.Pendidikan.ListPendidikan;
+import projekpati.com.projekpati.Model.FasilitasUmum.ListFasilitasUmum;
+import projekpati.com.projekpati.Model.Kesehatan.ListKesehatan;
 import projekpati.com.projekpati.R;
 
-public class PariwisataAdapter extends ArrayAdapter<ListPariwisata> {
+public class FasilitasUmumAdapter extends ArrayAdapter<ListFasilitasUmum> {
 
     private Context context;
-    private List<ListPariwisata> pariwisata;
+    private List<ListFasilitasUmum> fasilitasUmum;
 
-    public PariwisataAdapter(Context context, int resource, List<ListPariwisata> objects) {
+    public FasilitasUmumAdapter(Context context, int resource, List<ListFasilitasUmum> objects) {
         super(context,resource,objects);
         this.context = context;
-        this.pariwisata = objects;
+        this.fasilitasUmum = objects;
     }
 
 
@@ -35,7 +35,7 @@ public class PariwisataAdapter extends ArrayAdapter<ListPariwisata> {
     public View getView(final int pos, View convertView, final ViewGroup parent){
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView = inflater.inflate(R.layout.pariwisata_adapter, parent, false);
+        final View rowView = inflater.inflate(R.layout.kesehatan_adapter, parent, false);
 
         ImageView imageView = (ImageView) rowView.findViewById(R.id.mImage);
         TextView textNama = (TextView) rowView.findViewById(R.id.mNama);
@@ -47,14 +47,14 @@ public class PariwisataAdapter extends ArrayAdapter<ListPariwisata> {
 
 
         URL url = null;
-        if(pariwisata.get(pos).getFile_small().equals(""))
+        if(fasilitasUmum.get(pos).getFile_small().equals(""))
         {
             //tidak terjadi perubahan apapun
         }
         else
         {
             try {
-                url = new URL(pariwisata.get(pos).getFile_small());
+                url = new URL(fasilitasUmum.get(pos).getFile_small());
                 Picasso.get()
                         .load(String.valueOf(url))
                         .resize(150,100).noFade().into(imageView);
@@ -63,10 +63,10 @@ public class PariwisataAdapter extends ArrayAdapter<ListPariwisata> {
             }
         }
 
-        textNama.setText(pariwisata.get(pos).getNama());
-        textAlamat.setText(pariwisata.get(pos).getAlamat());
-        textJam.setText(pariwisata.get(pos).getJam_buka());
-        textRef.setText(pariwisata.get(pos).getRef_pariwisata_nama());
+        textNama.setText(fasilitasUmum.get(pos).getNama());
+        textAlamat.setText(fasilitasUmum.get(pos).getAlamat());
+       // textJam.setText(fasilitasUmum.get(pos).getJam_buka());
+        textRef.setText(fasilitasUmum.get(pos).getRef_lain_lain_nama());
         if(textJam.getText().equals(""))
         {
             iconJam.setVisibility(View.INVISIBLE);
@@ -78,4 +78,3 @@ public class PariwisataAdapter extends ArrayAdapter<ListPariwisata> {
 
 
 }
-

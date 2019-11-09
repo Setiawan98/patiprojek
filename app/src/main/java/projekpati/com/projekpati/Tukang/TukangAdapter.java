@@ -35,7 +35,7 @@ public class TukangAdapter extends ArrayAdapter<ListTukang> {
     public View getView(final int pos, View convertView, final ViewGroup parent){
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView = inflater.inflate(R.layout.pendidikan_adapter, parent, false);
+        final View rowView = inflater.inflate(R.layout.tukang_adapter, parent, false);
 
         ImageView imageView = (ImageView) rowView.findViewById(R.id.mImage);
         TextView textNama = (TextView) rowView.findViewById(R.id.mNama);
