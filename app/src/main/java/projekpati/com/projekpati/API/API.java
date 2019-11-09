@@ -1,6 +1,7 @@
 package projekpati.com.projekpati.API;
 
 import projekpati.com.projekpati.Model.APIKey;
+import projekpati.com.projekpati.Model.Kesehatan.JenisKesehatanLengkap;
 import projekpati.com.projekpati.Model.Kesehatan.KesehatanModel;
 import projekpati.com.projekpati.Model.Kuliner.DetilKulinerBaru;
 import projekpati.com.projekpati.Model.Kuliner.DetilKulinerModel;
@@ -269,11 +270,21 @@ public interface API {
             @Field("ref_pariwisata_id") String ref_pariwisata_id
     );
 
-    //Pariwisata
+    //Kesehatan
     @GET("kesehatan/data/?key=TechnoPhoriaIndonesia")
     Call<KesehatanModel> tampilSemuaKesehatan();
 
     @GET("kesehatan/data/{id}?key=TechnoPhoriaIndonesia")
     Call<KesehatanModel> loadMoreKesehatan(@Path("id") String id);
+
+    @GET("kesehatan/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisKesehatanLengkap> tampilJenisKesehatan();
+
+    @GET("kesehatan/data?key=TechnoPhoriaIndonesia")
+    Call<KesehatanModel> cariKesehatanByJenis(@Query("IDJenis") String keyword);
+
+    @GET("kesehatan/data/?key=TechnoPhoriaIndonesia")
+    Call<KesehatanModel> cariKesehatanbyAPI(@Query("cari") String keyword);
+
 
 }

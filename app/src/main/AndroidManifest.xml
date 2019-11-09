@@ -53,7 +53,7 @@
         <activity android:name=".Kuliner.TampilKulinerByJenis" />
         <activity android:name=".Pendidikan.TampilPendidikanByJenis" />
         <activity android:name=".Kuliner.DetilKuliner" />
-
+        <activity android:name=".Kesehatan.TampilKesehatanByJenis"></activity>
         <activity android:name=".Pariwisata.MenuPariwisata"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Pariwisata.DetilMapPariwisata" />
