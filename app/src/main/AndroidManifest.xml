@@ -61,6 +61,7 @@
 
         <activity android:name=".Kesehatan.MenuKesehatan"
             android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".Kesehatan.DetilMapKesehatan" />
         <activity
             android:name=".Pendidikan.MenuPendidikan"
             android:windowSoftInputMode="adjustPan" />

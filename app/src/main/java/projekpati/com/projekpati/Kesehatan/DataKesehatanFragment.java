@@ -50,13 +50,8 @@ import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.APIKey;
 import projekpati.com.projekpati.Model.Kesehatan.KesehatanModel;
 import projekpati.com.projekpati.Model.Kesehatan.ListKesehatan;
-import projekpati.com.projekpati.Model.Kuliner.KulinerModel;
-import projekpati.com.projekpati.Model.Pendidikan.ListPendidikan;
-import projekpati.com.projekpati.Model.Pendidikan.PendidikanModel;
-import projekpati.com.projekpati.Pendidikan.DetilMapPendidikan;
-import projekpati.com.projekpati.Pendidikan.DetilPendidikan;
-import projekpati.com.projekpati.Pendidikan.PendidikanAdapter;
 import projekpati.com.projekpati.R;
+import projekpati.com.projekpati.Tukang.DetailMapTukang;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -380,7 +375,7 @@ public class DataKesehatanFragment extends Fragment implements OnMapReadyCallbac
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                Intent i = new Intent(getContext(), DetilMapPendidikan.class);
+                Intent i = new Intent(getContext(), DetilMapKesehatan.class);
                 Bundle bundle = new Bundle();
 
                 // bundle.putParcelableArrayList("list",listLatn);
