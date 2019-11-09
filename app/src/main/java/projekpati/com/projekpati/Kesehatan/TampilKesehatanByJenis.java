@@ -63,14 +63,14 @@ public class TampilKesehatanByJenis extends AppCompatActivity {
 
         getAllData();
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(TampilKesehatanByJenis.this,DetilTukang.class);
-//                intent.putExtra("id_kesehatan",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(TampilKesehatanByJenis.this,DetilKesehatan.class);
+                intent.putExtra("id_kesehatan",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
