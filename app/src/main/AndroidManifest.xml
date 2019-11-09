@@ -58,7 +58,7 @@
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Pariwisata.DetilMapPariwisata" />
         <activity android:name=".Pariwisata.DataSaringPariwisataActivity" />
-
+        <activity android:name=".Kesehatan.CariKesehatan"></activity>
         <activity android:name=".Kesehatan.MenuKesehatan"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Kesehatan.DetilMapKesehatan" />

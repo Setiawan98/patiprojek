@@ -210,8 +210,8 @@ public class MenuKesehatan extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-//            Intent intent = new Intent(MenuPendidikan.this, CariPendidikan.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MenuKesehatan.this, CariKesehatan.class);
+            startActivity(intent);
 
         }
         else if(id==android.R.id.home)
