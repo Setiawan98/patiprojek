@@ -115,18 +115,18 @@ public class MenuKesehatan extends AppCompatActivity {
                 }
                 else if(id==R.id.tambah){
 
-//                    TambahPendidikanFragment third = new TambahPendidikanFragment();
-//                    openFragment(third);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            status =0;
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
-//                    Toast.makeText(MenuPendidikan.this, "Clicked",Toast.LENGTH_SHORT).show();
+                    TambahKesehatanFragment third = new TambahKesehatanFragment();
+                    openFragment(third);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            status =0;
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
+                    Toast.makeText(MenuKesehatan.this, "Clicked",Toast.LENGTH_SHORT).show();
 
                 }
                 else if(id==R.id.saring){
@@ -216,8 +216,8 @@ public class MenuKesehatan extends AppCompatActivity {
         }
         else if(id==android.R.id.home)
         {
-//            Intent i = new Intent(MenuPendidikan.this, MainActivity.class);
-//            startActivity(i);
+            Intent i = new Intent(MenuKesehatan.this, MainActivity.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

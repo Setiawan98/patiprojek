@@ -1,6 +1,7 @@
 package projekpati.com.projekpati.API;
 
 import projekpati.com.projekpati.Model.APIKey;
+import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanBaru;
 import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanModel;
 import projekpati.com.projekpati.Model.Kesehatan.JenisKesehatanLengkap;
 import projekpati.com.projekpati.Model.Kesehatan.KesehatanModel;
@@ -303,5 +304,26 @@ public interface API {
 
     @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=kesehatan")
     Call<KomentarLengkap> getKomentarKesehatan(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("kesehatan/update?key=TechnoPhoriaIndonesia")
+    Call<DetilKesehatanBaru> addDataKesehatan(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("hari_0") String hari_0,
+            @Field("hari_1") String hari_1,
+            @Field("hari_2") String hari_2,
+            @Field("hari_3") String hari_3,
+            @Field("hari_4") String hari_4,
+            @Field("hari_5") String hari_5,
+            @Field("hari_6") String hari_6,
+            @Field("user_id") String user_id,
+            @Field("ref_kesehatan_id") String ref_kesehatan_id
+    );
 
 }
