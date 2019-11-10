@@ -34,6 +34,7 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import projekpati.com.projekpati.Bank.MenuBank;
 import projekpati.com.projekpati.FasilitasUmum.MenuFasilitasUmum;
 import projekpati.com.projekpati.Kesehatan.MenuKesehatan;
 import projekpati.com.projekpati.Kuliner.MenuKuliner;
@@ -43,7 +44,7 @@ import projekpati.com.projekpati.Tukang.MenuTukang;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout kulinerLayout,tukangLayout, pariwisataLayout,kesehatanLayout,fasilitasUmumLayout;
+    private LinearLayout kulinerLayout,tukangLayout, pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout;
     private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
     ScrollView scroll;
@@ -187,6 +188,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MenuFasilitasUmum.class);
+                startActivity(i);
+            }
+        });
+
+        bankLayout = findViewById(R.id.bankLinear);
+        bankLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuBank.class);
                 startActivity(i);
             }
         });

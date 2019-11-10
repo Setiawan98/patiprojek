@@ -373,7 +373,7 @@ public class DataBankFragment extends Fragment implements OnMapReadyCallback {
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                Intent i = new Intent(getContext(), DetilMapKesehatan.class);
+                Intent i = new Intent(getContext(), DetilMapBank.class);
                 Bundle bundle = new Bundle();
 
                 // bundle.putParcelableArrayList("list",listLatn);
