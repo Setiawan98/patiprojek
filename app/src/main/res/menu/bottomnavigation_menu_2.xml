@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/beranda"
+        android:title="@string/beranda"
+        android:icon="@drawable/ic_home_black_24dp"/>
+
+    <item
+        android:id="@+id/tambah"
+        android:title="@string/Tambah"
+        android:icon="@drawable/ic_add_box_black_24dp"/>
+    <item
+        android:id="@+id/saring"
+        android:title="@string/Saring"
+        android:icon="@drawable/ic_filter_list_black_24dp"/>
+
+    <item
+        android:id="@+id/dataku"
+        android:title="@string/dataku"
+        android:icon="@drawable/ic_person_black_24dp"/>
+
+</menu>

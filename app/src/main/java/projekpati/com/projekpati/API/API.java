@@ -1,6 +1,8 @@
 package projekpati.com.projekpati.API;
 
+import projekpati.com.projekpati.Bank.BankAdapter;
 import projekpati.com.projekpati.Model.APIKey;
+import projekpati.com.projekpati.Model.Bank.BankModel;
 import projekpati.com.projekpati.Model.FasilitasUmum.FasilitasUmumModel;
 import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanBaru;
 import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanModel;
@@ -342,6 +344,14 @@ public interface API {
 
     @GET("lain_lain/data/?key=TechnoPhoriaIndonesia")
     Call<FasilitasUmumModel> cariFasilitasUmumbyAPI(@Query("cari") String keyword);
+
+    //Fasilitas Umum
+    @GET("bank/data/?key=TechnoPhoriaIndonesia")
+    Call<BankModel> tampilSemuaBank();
+
+    @GET("bank/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<BankModel> loadMoreBank(@Path("id") String id);
+
 
 
 }

@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.FasilitasUmum;
+package projekpati.com.projekpati.Bank;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,23 +31,20 @@ import java.util.Map;
 
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.Kesehatan.DataKesehatanFragment;
-import projekpati.com.projekpati.Kesehatan.KategoriKesehatanFragment;
-import projekpati.com.projekpati.Kesehatan.MenuKesehatan;
-import projekpati.com.projekpati.Kesehatan.SaringKesehatanFragment;
+import projekpati.com.projekpati.FasilitasUmum.DataFasilitasUmumFragment;
+import projekpati.com.projekpati.Model.Bank.BankModel;
+import projekpati.com.projekpati.Model.Bank.ListBank;
 import projekpati.com.projekpati.Model.FasilitasUmum.FasilitasUmumModel;
 import projekpati.com.projekpati.Model.FasilitasUmum.ListFasilitasUmum;
-import projekpati.com.projekpati.Model.Kesehatan.KesehatanModel;
-import projekpati.com.projekpati.Model.Kesehatan.ListKesehatan;
 import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MenuFasilitasUmum extends AppCompatActivity {
+public class MenuBank extends AppCompatActivity {
     ListView listView;
     EditText cari;
-    List<ListFasilitasUmum> list = new ArrayList<>();
+    List<ListBank> list = new ArrayList<>();
     Toolbar toolbar;
     TextView title;
     ImageView iconView;
@@ -58,9 +54,9 @@ public class MenuFasilitasUmum extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_fasilitas_umum);
+        setContentView(R.layout.activity_menu_bank);
 
-        toolbar = (Toolbar) findViewById(R.id.fasilitasUmumToolbar);
+        toolbar = (Toolbar) findViewById(R.id.bankToolbar);
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
         iconView = toolbar.findViewById(R.id.icon);
@@ -73,14 +69,14 @@ public class MenuFasilitasUmum extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        final BottomNavigationView bottomNavigationView = findViewById(R.id.menuFasilitasUmum);
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.menuBank);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
 
                 if(id==R.id.beranda){
-                    DataFasilitasUmumFragment first = new DataFasilitasUmumFragment();
+                    DataBankFragment first = new DataBankFragment();
                     openFragment(first);
                     //status =1;
                     bottomNavigationView.setEnabled(false);
@@ -148,7 +144,7 @@ public class MenuFasilitasUmum extends AppCompatActivity {
             }
         });
 
-        DataFasilitasUmumFragment first = new DataFasilitasUmumFragment();
+        DataBankFragment first = new DataBankFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment, first).commit();
     }
@@ -156,15 +152,14 @@ public class MenuFasilitasUmum extends AppCompatActivity {
     public void getIconImage(){
         //defining a progress dialog to show while signing up
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<FasilitasUmumModel> call = api.tampilSemuaFasilitasUmum();
+        Call<BankModel> call = api.tampilSemuaBank();
 
-        call.enqueue(new Callback<FasilitasUmumModel>() {
+        call.enqueue(new Callback<BankModel>() {
             @Override
-            public void onResponse(Call<FasilitasUmumModel> call, final Response<FasilitasUmumModel> response) {
-                Map<String, ListFasilitasUmum> data = response.body().getData();
+            public void onResponse(Call<BankModel> call, final Response<BankModel> response) {
+                Map<String, ListBank> data = response.body().getData();
                 Log.d("iconnn",response.body().getIcon());
-                title.setText("Fasilitas Umum");
-
+                title.setText("Bank");
 
 //                try {
 //                    URL url = new URL(response.body().getIcon());
@@ -186,7 +181,7 @@ public class MenuFasilitasUmum extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<FasilitasUmumModel> call, Throwable t) {
+            public void onFailure(Call<BankModel> call, Throwable t) {
 
                 Log.d("onResponse", t.toString());
             }

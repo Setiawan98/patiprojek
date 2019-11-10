@@ -338,7 +338,7 @@
                                         android:orientation="horizontal">
 
                                         <LinearLayout
-                                            android:id="@+id/x"
+                                            android:id="@+id/bankLinear"
                                             android:layout_width="75dp"
                                             android:layout_height="110dp"
                                             android:layout_marginLeft="10dp"

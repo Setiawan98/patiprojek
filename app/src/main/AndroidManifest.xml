@@ -77,6 +77,10 @@
         <activity
             android:name=".FasilitasUmum.MenuFasilitasUmum"
             android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".Bank.MenuBank"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
