@@ -104,18 +104,17 @@ public class MenuHotel extends AppCompatActivity {
 
                 }
                 else if(id==R.id.saring){
-//
-//                    SaringKesehatanFragment fouth = new SaringKesehatanFragment();
-//                    openFragment(fouth);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            status =0;
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
+                    SaringHotelFragment fouth = new SaringHotelFragment();
+                    openFragment(fouth);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            status =0;
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
 
                 }
                 else if(id==R.id.dataku){

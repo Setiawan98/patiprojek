@@ -20,7 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Bank.DataSaringBankActivity"></activity>
+        <activity android:name=".Koperasi.DataSaringKoperasiActivity"></activity>
+        <activity android:name=".Hotel.DataSaringHotelActivity" />
+        <activity android:name=".bioskop.DataSaringBioskopActivity" />
+        <activity android:name=".Bank.DataSaringBankActivity" />
         <activity android:name=".Koperasi.DetilKoperasi" />
         <activity android:name=".Hotel.DetilHotel" />
         <activity android:name=".bioskop.DetilBioskop" />

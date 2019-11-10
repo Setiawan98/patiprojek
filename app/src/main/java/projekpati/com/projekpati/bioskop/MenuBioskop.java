@@ -98,17 +98,17 @@ public class MenuBioskop extends AppCompatActivity {
                 }
                 else if(id==R.id.saring){
 //
-//                    SaringKesehatanFragment fouth = new SaringKesehatanFragment();
-//                    openFragment(fouth);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            status =0;
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
+                    SaringBioskopFragment fouth = new SaringBioskopFragment();
+                    openFragment(fouth);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            status =0;
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
 
                 }
                 else if(id==R.id.dataku){
