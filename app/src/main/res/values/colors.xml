@@ -5,7 +5,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="white">#99F3EEEE</color>
     <color name="whiteback">#99FFFFFF</color>
-
+    <color name="transparan">#00FFFFFF</color>
 
     <!-- Screens background color-->
     <color name="bg_screen1">#800000</color>
