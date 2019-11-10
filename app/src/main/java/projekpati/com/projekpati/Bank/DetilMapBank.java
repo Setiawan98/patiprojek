@@ -281,14 +281,14 @@ public class DetilMapBank extends AppCompatActivity implements OnMapReadyCallbac
                     beforeClick = layout;
 
                 }
-//                btnDetail.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(DetilMapBioskop.this, DetilKesehatan.class);
-//                        intent.putExtra("id_kesehatan",lk.getId());
-//                        startActivity(intent);
-//                    }
-//                });
+                btnDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DetilMapBank.this, DetilBank.class);
+                        intent.putExtra("id_bank",lk.getId());
+                        startActivity(intent);
+                    }
+                });
 
 
                 clickAbleColumn.setOnClickListener(new View.OnClickListener() {

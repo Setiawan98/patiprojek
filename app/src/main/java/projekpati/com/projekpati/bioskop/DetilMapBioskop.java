@@ -276,14 +276,14 @@ public class DetilMapBioskop extends AppCompatActivity implements OnMapReadyCall
                     beforeClick = layout;
 
                 }
-//                btnDetail.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(DetilMapBioskop.this, DetilKesehatan.class);
-//                        intent.putExtra("id_kesehatan",lk.getId());
-//                        startActivity(intent);
-//                    }
-//                });
+                btnDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DetilMapBioskop.this, DetilBioskop.class);
+                        intent.putExtra("id_bioskop",lk.getId());
+                        startActivity(intent);
+                    }
+                });
 
 
                 clickAbleColumn.setOnClickListener(new View.OnClickListener() {

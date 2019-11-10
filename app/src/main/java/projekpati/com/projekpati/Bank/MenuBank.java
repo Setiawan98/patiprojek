@@ -1,5 +1,6 @@
 package projekpati.com.projekpati.Bank;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -32,6 +33,7 @@ import java.util.Map;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.FasilitasUmum.DataFasilitasUmumFragment;
+import projekpati.com.projekpati.MainActivity;
 import projekpati.com.projekpati.Model.Bank.BankModel;
 import projekpati.com.projekpati.Model.Bank.ListBank;
 import projekpati.com.projekpati.Model.FasilitasUmum.FasilitasUmumModel;
@@ -89,50 +91,34 @@ public class MenuBank extends AppCompatActivity {
                     },5000);
 
                 }
-                else if(id==R.id.kategori){
-
-//                    KategoriKesehatanFragment second = new KategoriKesehatanFragment();
-//                    openFragment(second);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
-//
-//                    Toast.makeText(MenuKesehatan.this, "Clicked",Toast.LENGTH_SHORT).show();
-                }
                 else if(id==R.id.tambah){
 
-//                    TambahPendidikanFragment third = new TambahPendidikanFragment();
-//                    openFragment(third);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            status =0;
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
-//                    Toast.makeText(MenuPendidikan.this, "Clicked",Toast.LENGTH_SHORT).show();
+                    TambahBankFragment third = new TambahBankFragment();
+                    openFragment(third);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            status =0;
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
 
                 }
                 else if(id==R.id.saring){
 //
-//                    SaringKesehatanFragment fouth = new SaringKesehatanFragment();
-//                    openFragment(fouth);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            status =0;
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
+                    SaringBankFragment fouth = new SaringBankFragment();
+                    openFragment(fouth);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            status =0;
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
 
                 }
                 else if(id==R.id.dataku){
@@ -203,14 +189,14 @@ public class MenuBank extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-//            Intent intent = new Intent(MenuPendidikan.this, CariPendidikan.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MenuBank.this, CariBank.class);
+            startActivity(intent);
 
         }
         else if(id==android.R.id.home)
         {
-//            Intent i = new Intent(MenuPendidikan.this, MainActivity.class);
-//            startActivity(i);
+            Intent i = new Intent(MenuBank.this, MainActivity.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

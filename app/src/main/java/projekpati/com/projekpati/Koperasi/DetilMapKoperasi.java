@@ -279,14 +279,14 @@ public class DetilMapKoperasi extends AppCompatActivity implements OnMapReadyCal
                     beforeClick = layout;
 
                 }
-//                btnDetail.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(DetilMapKoperasi.this, DetilKesehatan.class);
-//                        intent.putExtra("id_kesehatan",lk.getId());
-//                        startActivity(intent);
-//                    }
-//                });
+                btnDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DetilMapKoperasi.this, DetilKoperasi.class);
+                        intent.putExtra("id_koperasi",lk.getId());
+                        startActivity(intent);
+                    }
+                });
 
 
                 clickAbleColumn.setOnClickListener(new View.OnClickListener() {

@@ -1,5 +1,9 @@
 package projekpati.com.projekpati.Hotel;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -19,12 +23,16 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
+import projekpati.com.projekpati.MainActivity;
 import projekpati.com.projekpati.Model.Hotel.HotelModel;
 import projekpati.com.projekpati.Model.Hotel.ListHotel;
 import projekpati.com.projekpati.R;
@@ -80,35 +88,19 @@ public class MenuHotel extends AppCompatActivity {
                     },5000);
 
                 }
-                else if(id==R.id.kategori){
-
-//                    KategoriKesehatanFragment second = new KategoriKesehatanFragment();
-//                    openFragment(second);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
-//
-//                    Toast.makeText(MenuKesehatan.this, "Clicked",Toast.LENGTH_SHORT).show();
-                }
                 else if(id==R.id.tambah){
 
-//                    TambahPendidikanFragment third = new TambahPendidikanFragment();
-//                    openFragment(third);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            status =0;
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
-//                    Toast.makeText(MenuPendidikan.this, "Clicked",Toast.LENGTH_SHORT).show();
+                    TambahHotelFragment third = new TambahHotelFragment();
+                    openFragment(third);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            status =0;
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
 
                 }
                 else if(id==R.id.saring){
@@ -152,23 +144,20 @@ public class MenuHotel extends AppCompatActivity {
                 Log.d("iconnn",response.body().getIcon());
                 title.setText("Hotel");
 
-//                try {
-//                    URL url = new URL(response.body().getIcon());
-//                    Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-//                    Bitmap scaled = Bitmap.createScaledBitmap(bmp,80,80,true);
-//                    BitmapDrawable icon = new BitmapDrawable(toolbar.getResources(),scaled);
-//                    iconView.setImageDrawable(icon);
-//
-//                    //BitmapDescriptor icon =  BitmapDescriptorFactory.fromBitmap(scaled);
-//
-//                } catch (MalformedURLException e) {
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    URL url = new URL(response.body().getIcon());
+                    Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                    Bitmap scaled = Bitmap.createScaledBitmap(bmp,80,80,true);
+                    BitmapDrawable icon = new BitmapDrawable(toolbar.getResources(),scaled);
+                    iconView.setImageDrawable(icon);
 
+                    //BitmapDescriptor icon =  BitmapDescriptorFactory.fromBitmap(scaled);
 
-
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -194,14 +183,14 @@ public class MenuHotel extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-//            Intent intent = new Intent(MenuPendidikan.this, CariPendidikan.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MenuHotel.this, CariHotel.class);
+            startActivity(intent);
 
         }
         else if(id==android.R.id.home)
         {
-//            Intent i = new Intent(MenuPendidikan.this, MainActivity.class);
-//            startActivity(i);
+            Intent i = new Intent(MenuHotel.this, MainActivity.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

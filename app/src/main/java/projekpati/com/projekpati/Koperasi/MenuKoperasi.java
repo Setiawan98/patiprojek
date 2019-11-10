@@ -1,5 +1,6 @@
 package projekpati.com.projekpati.Koperasi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -26,6 +27,7 @@ import java.util.Map;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Koperasi.DataKoperasiFragment;
+import projekpati.com.projekpati.MainActivity;
 import projekpati.com.projekpati.Model.Koperasi.KoperasiModel;
 import projekpati.com.projekpati.Model.Koperasi.ListKoperasi;
 import projekpati.com.projekpati.R;
@@ -81,35 +83,19 @@ public class MenuKoperasi extends AppCompatActivity {
                     },5000);
 
                 }
-                else if(id==R.id.kategori){
-
-//                    KategoriKesehatanFragment second = new KategoriKesehatanFragment();
-//                    openFragment(second);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
-//
-//                    Toast.makeText(MenuKesehatan.this, "Clicked",Toast.LENGTH_SHORT).show();
-                }
                 else if(id==R.id.tambah){
 
-//                    TambahPendidikanFragment third = new TambahPendidikanFragment();
-//                    openFragment(third);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            status =0;
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
-//                    Toast.makeText(MenuPendidikan.this, "Clicked",Toast.LENGTH_SHORT).show();
+                    TambahKoperasiFragment third = new TambahKoperasiFragment();
+                    openFragment(third);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            status =0;
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
 
                 }
                 else if(id==R.id.saring){
@@ -195,14 +181,14 @@ public class MenuKoperasi extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-//            Intent intent = new Intent(MenuPendidikan.this, CariPendidikan.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MenuKoperasi.this, CariKoperasi.class);
+            startActivity(intent);
 
         }
         else if(id==android.R.id.home)
         {
-//            Intent i = new Intent(MenuPendidikan.this, MainActivity.class);
-//            startActivity(i);
+            Intent i = new Intent(MenuKoperasi.this, MainActivity.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }

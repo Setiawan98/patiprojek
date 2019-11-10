@@ -278,14 +278,14 @@ public class DetilMapHotel extends AppCompatActivity implements OnMapReadyCallba
                     beforeClick = layout;
 
                 }
-//                btnDetail.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(DetilMapHotel.this, DetilKesehatan.class);
-//                        intent.putExtra("id_kesehatan",lk.getId());
-//                        startActivity(intent);
-//                    }
-//                });
+                btnDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DetilMapHotel.this, DetilHotel.class);
+                        intent.putExtra("id_hotel",lk.getId());
+                        startActivity(intent);
+                    }
+                });
 
 
                 clickAbleColumn.setOnClickListener(new View.OnClickListener() {

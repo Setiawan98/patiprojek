@@ -101,7 +101,6 @@ public class CariPariwisata extends AppCompatActivity {
         buttonImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideSoftKeyboard(CariPariwisata.this);
                 API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
                 Call<PariwisataModel> call = api.cariPariwisatabyAPI(textCari.getText().toString());
                 call.enqueue(new Callback<PariwisataModel>() {

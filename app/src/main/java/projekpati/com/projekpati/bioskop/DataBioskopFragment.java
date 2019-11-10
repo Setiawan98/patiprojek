@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -174,14 +175,14 @@ public class DataBioskopFragment extends Fragment implements OnMapReadyCallback 
             }
         });
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getContext(), DetilPendidikan.class);
-//                intent.putExtra("id_pendidikan",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), DetilBioskop.class);
+                intent.putExtra("id_bioskop",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     public void loadMoreData(){
@@ -230,14 +231,14 @@ public class DataBioskopFragment extends Fragment implements OnMapReadyCallback 
             }
         });
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getContext(),DetilPendidikan.class);
-//                intent.putExtra("id_pendidikan",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(),DetilBioskop.class);
+                intent.putExtra("id_bioskop",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -355,18 +356,18 @@ public class DataBioskopFragment extends Fragment implements OnMapReadyCallback 
                 return view;
             }
         });
-//        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-//            @Override
-//            public void onInfoWindowClick(Marker marker) {
-//                String id = (String) marker.getTag();
-//                Intent intent = new Intent(getContext(),DetilPendidikan.class);
-//                intent.putExtra("id_pendidikan",id);
-//                Log.d("idwoy1",id);
-//                startActivity(intent);
-//
-//
-//            }
-//        });
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                String id = (String) marker.getTag();
+                Intent intent = new Intent(getContext(),DetilBioskop.class);
+                intent.putExtra("id_bioskop",id);
+                Log.d("idwoy1",id);
+                startActivity(intent);
+
+
+            }
+        });
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {

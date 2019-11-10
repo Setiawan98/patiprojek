@@ -3,13 +3,21 @@ package projekpati.com.projekpati.API;
 import projekpati.com.projekpati.Bank.BankAdapter;
 import projekpati.com.projekpati.Model.APIKey;
 import projekpati.com.projekpati.Model.Bank.BankModel;
+import projekpati.com.projekpati.Model.Bank.DetilBankBaru;
+import projekpati.com.projekpati.Model.Bank.DetilBankModel;
 import projekpati.com.projekpati.Model.Bioskop.BioskopModel;
+import projekpati.com.projekpati.Model.Bioskop.DetilBioskopBaru;
+import projekpati.com.projekpati.Model.Bioskop.DetilBioskopModel;
 import projekpati.com.projekpati.Model.FasilitasUmum.FasilitasUmumModel;
+import projekpati.com.projekpati.Model.Hotel.DetilHotelBaru;
+import projekpati.com.projekpati.Model.Hotel.DetilHotelModel;
 import projekpati.com.projekpati.Model.Hotel.HotelModel;
 import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanBaru;
 import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanModel;
 import projekpati.com.projekpati.Model.Kesehatan.JenisKesehatanLengkap;
 import projekpati.com.projekpati.Model.Kesehatan.KesehatanModel;
+import projekpati.com.projekpati.Model.Koperasi.DetilKoperasiBaru;
+import projekpati.com.projekpati.Model.Koperasi.DetilKoperasiModel;
 import projekpati.com.projekpati.Model.Koperasi.KoperasiModel;
 import projekpati.com.projekpati.Model.Kuliner.DetilKulinerBaru;
 import projekpati.com.projekpati.Model.Kuliner.DetilKulinerModel;
@@ -355,12 +363,80 @@ public interface API {
     @GET("bank/data/{id}?key=TechnoPhoriaIndonesia")
     Call<BankModel> loadMoreBank(@Path("id") String id);
 
+    @GET("bank/data/?key=TechnoPhoriaIndonesia")
+    Call<BankModel> cariBankbyAPI(@Query("cari") String keyword);
+
+    @GET("bank/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilBankModel> detailBank(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=bank")
+    Call<postKomentar> addKomentarBalasBank(@Query("dataID") String data_id,
+                                                 @Field("nama") String nama,
+                                                 @Field("email") String email,
+                                                 @Field("telp") String telp,
+                                                 @Field("website") String website,
+                                                 @Field("parentID") String parentID,
+                                                 @Field("isi") String isi,
+                                                 @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=bank")
+    Call<KomentarLengkap> getKomentarBank(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("bank/update?key=TechnoPhoriaIndonesia")
+    Call<DetilBankBaru> addDataBank(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_bank_id") String ref_bank_id
+    );
+
     //Bioskop
     @GET("bioskop/data/?key=TechnoPhoriaIndonesia")
     Call<BioskopModel> tampilSemuaBioskop();
 
     @GET("bioskop/data/{id}?key=TechnoPhoriaIndonesia")
     Call<BioskopModel> loadMoreBioskop(@Path("id") String id);
+
+    @GET("bioskop/data/?key=TechnoPhoriaIndonesia")
+    Call<BioskopModel> cariBioskopbyAPI(@Query("cari") String keyword);
+
+    @GET("bioskop/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilBioskopModel> detailBioskop(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=bioskop")
+    Call<postKomentar> addKomentarBalasBioskop(@Query("dataID") String data_id,
+                                            @Field("nama") String nama,
+                                            @Field("email") String email,
+                                            @Field("telp") String telp,
+                                            @Field("website") String website,
+                                            @Field("parentID") String parentID,
+                                            @Field("isi") String isi,
+                                            @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=bioskop")
+    Call<KomentarLengkap> getKomentarBioskop(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("bioskop/update?key=TechnoPhoriaIndonesia")
+    Call<DetilBioskopBaru> addDataBioskop(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_bioskop_id") String ref_bioskop_id
+    );
 
     //Hotel
     @GET("hotel/data/?key=TechnoPhoriaIndonesia")
@@ -369,6 +445,40 @@ public interface API {
     @GET("hotel/data/{id}?key=TechnoPhoriaIndonesia")
     Call<HotelModel> loadMoreHotel(@Path("id") String id);
 
+    @GET("hotel/data/?key=TechnoPhoriaIndonesia")
+    Call<HotelModel> cariHotelbyAPI(@Query("cari") String keyword);
+
+    @GET("hotel/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilHotelModel> detailHotel(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=hotel")
+    Call<postKomentar> addKomentarBalasHotel(@Query("dataID") String data_id,
+                                            @Field("nama") String nama,
+                                            @Field("email") String email,
+                                            @Field("telp") String telp,
+                                            @Field("website") String website,
+                                            @Field("parentID") String parentID,
+                                            @Field("isi") String isi,
+                                            @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=hotel")
+    Call<KomentarLengkap> getKomentarHotel(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("hotel/update?key=TechnoPhoriaIndonesia")
+    Call<DetilHotelBaru> addDataHotel(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_hotel_id") String ref_hotel_id
+    );
+
     //Koperasi
     @GET("koperasi/data/?key=TechnoPhoriaIndonesia")
     Call<KoperasiModel> tampilSemuaKoperasi();
@@ -376,6 +486,38 @@ public interface API {
     @GET("koperasi/data/{id}?key=TechnoPhoriaIndonesia")
     Call<KoperasiModel> loadMoreKoperasi(@Path("id") String id);
 
+    @GET("koperasi/data/?key=TechnoPhoriaIndonesia")
+    Call<KoperasiModel> cariKoperasibyAPI(@Query("cari") String keyword);
 
+    @GET("koperasi/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilKoperasiModel> detailKoperasi(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=koperasi")
+    Call<postKomentar> addKomentarBalasKoperasi(@Query("dataID") String data_id,
+                                            @Field("nama") String nama,
+                                            @Field("email") String email,
+                                            @Field("telp") String telp,
+                                            @Field("website") String website,
+                                            @Field("parentID") String parentID,
+                                            @Field("isi") String isi,
+                                            @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=koperasi")
+    Call<KomentarLengkap> getKomentarKoperasi(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("koperasi/update?key=TechnoPhoriaIndonesia")
+    Call<DetilKoperasiBaru> addDataKoperasi(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_koperasi_id") String ref_koperasi_id
+    );
 
 }

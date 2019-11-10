@@ -101,7 +101,6 @@ public class CariKesehatan extends AppCompatActivity {
         buttonImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideSoftKeyboard(CariKesehatan.this);
                 API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
                 Call<KesehatanModel> call = api.cariKesehatanbyAPI(textCari.getText().toString());
                 call.enqueue(new Callback<KesehatanModel>() {

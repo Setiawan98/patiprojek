@@ -269,15 +269,13 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:background="@drawable/cerclebackgroundyello"
-                                                    android:padding="10dp"
-                                                    android:src="@drawable/ic_hotel" />
+                                                    android:src="@drawable/iconmakan" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="5dp"
-                                                    android:text="Berita"
+                                                    android:text="Lain-lain"
                                                     android:textColor="@android:color/black" />
 
                                             </LinearLayout>
@@ -298,7 +296,7 @@
 
                             <androidx.cardview.widget.CardView
                                 android:layout_gravity="center"
-                                android:layout_width="150dp"
+                                android:layout_width="180dp"
                                 android:layout_height="100dp"
                                 app:cardCornerRadius="15dp"
                                 app:cardElevation="10dp"
@@ -307,9 +305,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="36dp"
                                     android:textSize="7pt"
-                                    android:text="Kuliner"
+                                    android:layout_marginLeft="30dp"
+                                    android:text="Fasilitas Umum"
                                     android:textColor="@android:color/black" />
                             </androidx.cardview.widget.CardView>
 
@@ -351,9 +349,7 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:background="@drawable/cerclebackgroundyello"
-                                                android:padding="10dp"
-                                                android:src="@drawable/ic_guide" />
+                                                android:src="@drawable/iconmakan" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -378,15 +374,13 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:background="@drawable/cerclebackgroundyello"
-                                                android:padding="10dp"
-                                                android:src="@drawable/ic_guide" />
+                                                android:src="@drawable/iconmakan" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="bioskop"
+                                                android:text="Bioskop"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>
@@ -405,9 +399,7 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:background="@drawable/cerclebackgroundyello"
-                                                android:padding="10dp"
-                                                android:src="@drawable/ic_guide" />
+                                                android:src="@drawable/iconhotel" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -433,9 +425,7 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:background="@drawable/cerclebackgroundyello"
-                                                android:padding="10dp"
-                                                android:src="@drawable/ic_guide" />
+                                                android:src="@drawable/iconmakan" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"

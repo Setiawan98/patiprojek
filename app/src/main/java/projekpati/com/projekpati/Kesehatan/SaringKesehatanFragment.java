@@ -155,7 +155,7 @@ public class SaringKesehatanFragment extends Fragment {
                 pick8.setChecked(false);
                 pick10.setChecked(false);
                 cari.setText("");
-                cari.setHint("Masukkan nama Tempat Makan");
+                cari.setHint("Masukkan nama Tempat Kesehatan");
             }
         });
 

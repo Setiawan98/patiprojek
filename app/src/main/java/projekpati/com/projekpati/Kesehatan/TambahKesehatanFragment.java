@@ -216,7 +216,7 @@ public class TambahKesehatanFragment extends Fragment implements OnMapReadyCallb
                 {
                     eNama.setBackgroundTintList(getResources().getColorStateList(R.color.red));
                     eNama.setHintTextColor(getResources().getColor(R.color.red));
-                    Toast.makeText(getContext(),"*Nama kuliner tidak bole kosong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"*Nama Kesehatan tidak bole kosong",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     addKuliner();

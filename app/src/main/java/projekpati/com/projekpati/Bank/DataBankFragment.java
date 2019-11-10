@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -177,14 +178,14 @@ public class DataBankFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getContext(), DetilPendidikan.class);
-//                intent.putExtra("id_pendidikan",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), DetilBank.class);
+                intent.putExtra("id_bank",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
     public void loadMoreData(){
@@ -233,14 +234,14 @@ public class DataBankFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getContext(),DetilPendidikan.class);
-//                intent.putExtra("id_pendidikan",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(),DetilBank.class);
+                intent.putExtra("id_bank",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -358,18 +359,18 @@ public class DataBankFragment extends Fragment implements OnMapReadyCallback {
                 return view;
             }
         });
-//        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-//            @Override
-//            public void onInfoWindowClick(Marker marker) {
-//                String id = (String) marker.getTag();
-//                Intent intent = new Intent(getContext(),DetilPendidikan.class);
-//                intent.putExtra("id_pendidikan",id);
-//                Log.d("idwoy1",id);
-//                startActivity(intent);
-//
-//
-//            }
-//        });
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                String id = (String) marker.getTag();
+                Intent intent = new Intent(getContext(),DetilBank.class);
+                intent.putExtra("id_bank",id);
+                Log.d("idwoy1",id);
+                startActivity(intent);
+
+
+            }
+        });
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {

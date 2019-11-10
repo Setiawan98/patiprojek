@@ -20,7 +20,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Kesehatan.DetilKesehatan"></activity>
+        <activity android:name=".Bank.DataSaringBankActivity"></activity>
+        <activity android:name=".Koperasi.DetilKoperasi" />
+        <activity android:name=".Hotel.DetilHotel" />
+        <activity android:name=".bioskop.DetilBioskop" />
+        <activity android:name=".Bank.DetilBank" />
+        <activity android:name=".Koperasi.CariKoperasi" />
+        <activity android:name=".Hotel.CariHotel" />
+        <activity android:name=".bioskop.CariBioskop" />
+        <activity android:name=".Kesehatan.DetilKesehatan" />
         <activity android:name=".Pendidikan.CariPendidikan" />
         <activity android:name=".Pendidikan.DetilPendidikan" />
         <activity android:name=".Kuliner.DataSaringActivity" />
@@ -60,6 +68,7 @@
             android:name=".Pariwisata.MenuPariwisata"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Pariwisata.DetilMapPariwisata" />
+        <activity android:name=".Bank.CariBank" />
         <activity android:name=".Pariwisata.DataSaringPariwisataActivity" />
         <activity android:name=".Kesehatan.CariKesehatan" />
         <activity
@@ -73,35 +82,25 @@
         <activity
             android:name=".Kuliner.MenuKuliner"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".FasilitasUmum.MenuFasilitasUmum"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".Bank.MenuBank"
             android:windowSoftInputMode="adjustPan" />
-
-        <activity android:name=".Bank.DetilMapBank"/>
-
+        <activity android:name=".Bank.DetilMapBank" />
         <activity
             android:name=".bioskop.MenuBioskop"
             android:windowSoftInputMode="adjustPan" />
-
-        <activity android:name=".bioskop.DetilMapBioskop"/>
-
-
+        <activity android:name=".bioskop.DetilMapBioskop" />
         <activity
             android:name=".Hotel.MenuHotel"
             android:windowSoftInputMode="adjustPan" />
-
-        <activity android:name=".Hotel.DetilMapHotel"/>
-
+        <activity android:name=".Hotel.DetilMapHotel" />
         <activity
             android:name=".Koperasi.MenuKoperasi"
             android:windowSoftInputMode="adjustPan" />
-
-        <activity android:name=".Koperasi.DetilMapKoperasi"/>
+        <activity android:name=".Koperasi.DetilMapKoperasi" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
