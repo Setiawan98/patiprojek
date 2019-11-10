@@ -3,11 +3,14 @@ package projekpati.com.projekpati.API;
 import projekpati.com.projekpati.Bank.BankAdapter;
 import projekpati.com.projekpati.Model.APIKey;
 import projekpati.com.projekpati.Model.Bank.BankModel;
+import projekpati.com.projekpati.Model.Bioskop.BioskopModel;
 import projekpati.com.projekpati.Model.FasilitasUmum.FasilitasUmumModel;
+import projekpati.com.projekpati.Model.Hotel.HotelModel;
 import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanBaru;
 import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanModel;
 import projekpati.com.projekpati.Model.Kesehatan.JenisKesehatanLengkap;
 import projekpati.com.projekpati.Model.Kesehatan.KesehatanModel;
+import projekpati.com.projekpati.Model.Koperasi.KoperasiModel;
 import projekpati.com.projekpati.Model.Kuliner.DetilKulinerBaru;
 import projekpati.com.projekpati.Model.Kuliner.DetilKulinerModel;
 import projekpati.com.projekpati.Model.Kuliner.JenisKulinerLengkap;
@@ -345,12 +348,33 @@ public interface API {
     @GET("lain_lain/data/?key=TechnoPhoriaIndonesia")
     Call<FasilitasUmumModel> cariFasilitasUmumbyAPI(@Query("cari") String keyword);
 
-    //Fasilitas Umum
+    //Bank
     @GET("bank/data/?key=TechnoPhoriaIndonesia")
     Call<BankModel> tampilSemuaBank();
 
     @GET("bank/data/{id}?key=TechnoPhoriaIndonesia")
     Call<BankModel> loadMoreBank(@Path("id") String id);
+
+    //Bioskop
+    @GET("bioskop/data/?key=TechnoPhoriaIndonesia")
+    Call<BioskopModel> tampilSemuaBioskop();
+
+    @GET("bioskop/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<BioskopModel> loadMoreBioskop(@Path("id") String id);
+
+    //Hotel
+    @GET("hotel/data/?key=TechnoPhoriaIndonesia")
+    Call<HotelModel> tampilSemuaHotel();
+
+    @GET("hotel/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<HotelModel> loadMoreHotel(@Path("id") String id);
+
+    //Koperasi
+    @GET("koperasi/data/?key=TechnoPhoriaIndonesia")
+    Call<KoperasiModel> tampilSemuaKoperasi();
+
+    @GET("koperasi/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<KoperasiModel> loadMoreKoperasi(@Path("id") String id);
 
 
 

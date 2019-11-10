@@ -36,15 +36,18 @@ import androidx.viewpager.widget.ViewPager;
 
 import projekpati.com.projekpati.Bank.MenuBank;
 import projekpati.com.projekpati.FasilitasUmum.MenuFasilitasUmum;
+import projekpati.com.projekpati.Hotel.MenuHotel;
 import projekpati.com.projekpati.Kesehatan.MenuKesehatan;
+import projekpati.com.projekpati.Koperasi.MenuKoperasi;
 import projekpati.com.projekpati.Kuliner.MenuKuliner;
 import projekpati.com.projekpati.Pariwisata.MenuPariwisata;
 import projekpati.com.projekpati.Pendidikan.MenuPendidikan;
 import projekpati.com.projekpati.Tukang.MenuTukang;
+import projekpati.com.projekpati.bioskop.MenuBioskop;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout kulinerLayout,tukangLayout, pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout;
+    private LinearLayout kulinerLayout,tukangLayout, pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout, biosopLayout, hotelLayput, koperasiLayout;
     private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
     ScrollView scroll;
@@ -197,6 +200,33 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MenuBank.class);
+                startActivity(i);
+            }
+        });
+
+        biosopLayout = findViewById(R.id.bioskopLinear);
+        biosopLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuBioskop.class);
+                startActivity(i);
+            }
+        });
+
+        hotelLayput = findViewById(R.id.hotelLinear);
+        hotelLayput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuHotel.class);
+                startActivity(i);
+            }
+        });
+
+        koperasiLayout = findViewById(R.id.koperasiLinear);
+        koperasiLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuKoperasi.class);
                 startActivity(i);
             }
         });

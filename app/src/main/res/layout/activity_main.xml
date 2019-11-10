@@ -359,16 +359,43 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="xxxxx"
+                                                android:text="Bank"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/y2"
+                                            android:id="@+id/bioskopLinear"
                                             android:layout_width="75dp"
                                             android:layout_weight="1"
                                             android:layout_height="110dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:background="@drawable/cerclebackgroundyello"
+                                                android:padding="10dp"
+                                                android:src="@drawable/ic_guide" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="bioskop"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/hotelLinear"
+                                            android:layout_width="75dp"
+                                            android:layout_height="110dp"
+                                            android:layout_weight="1"
                                             android:layout_marginLeft="5dp"
                                             android:background="@drawable/linear_layout_shadow"
                                             android:gravity="center"
@@ -392,34 +419,7 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/y3"
-                                            android:layout_width="75dp"
-                                            android:layout_height="110dp"
-                                            android:layout_weight="1"
-                                            android:layout_marginLeft="5dp"
-                                            android:background="@drawable/linear_layout_shadow"
-                                            android:gravity="center"
-                                            android:orientation="vertical">
-
-                                            <ImageView
-                                                android:layout_width="60dp"
-                                                android:layout_height="60dp"
-                                                android:layout_marginTop="5dp"
-                                                android:background="@drawable/cerclebackgroundyello"
-                                                android:padding="10dp"
-                                                android:src="@drawable/ic_guide" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:text="xxxxx"
-                                                android:textColor="@android:color/black" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:id="@+id/y7"
+                                            android:id="@+id/koperasiLinear"
                                             android:layout_width="75dp"
                                             android:layout_marginRight="10dp"
                                             android:layout_height="110dp"

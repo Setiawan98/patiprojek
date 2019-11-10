@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.Bank;
+package projekpati.com.projekpati.Hotel;
 
 import android.content.Context;
 import android.content.Intent;
@@ -40,18 +40,15 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import projekpati.com.projekpati.CustomInfoWindowGoogleMaps;
-import projekpati.com.projekpati.Kesehatan.CustomClusterRendererKesehatan;
-import projekpati.com.projekpati.Kesehatan.DetilKesehatan;
-import projekpati.com.projekpati.Kesehatan.DetilMapKesehatan;
-import projekpati.com.projekpati.Kesehatan.MenuKesehatan;
-import projekpati.com.projekpati.Model.Bank.ListBank;
-import projekpati.com.projekpati.Model.Kesehatan.ListKesehatan;
+import projekpati.com.projekpati.Model.Hotel.ListHotel;
 import projekpati.com.projekpati.Model.MyItem;
 import projekpati.com.projekpati.R;
+import projekpati.com.projekpati.Hotel.CustomClusterRendererHotel;
+import projekpati.com.projekpati.Hotel.DetilMapHotel;
 
-public class DetilMapBank extends AppCompatActivity implements OnMapReadyCallback {
+public class DetilMapHotel extends AppCompatActivity implements OnMapReadyCallback {
 
-    ArrayList<ListBank> listLatn;
+    ArrayList<ListHotel> listLatn;
     LinearLayout loadlLayout;
     View beforeClick;
     SupportMapFragment mapFragment;
@@ -62,16 +59,16 @@ public class DetilMapBank extends AppCompatActivity implements OnMapReadyCallbac
     Marker beforeShow;
     Marker beforeClickLayout;
     private ClusterManager<MyItem> mClusterManager;
-    CustomClusterRendererBank renderer;
+    CustomClusterRendererHotel renderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detil_map_bank);
+        setContentView(R.layout.activity_detil_map_hotel);
 
         Toolbar toolbar;
 
-        toolbar = (Toolbar) findViewById(R.id.bankToolbar);
+        toolbar = (Toolbar) findViewById(R.id.hotelToolbar);
         loadlLayout = (LinearLayout) findViewById(R.id.loadLayout);
         horizontalScrollView = (HorizontalScrollView) findViewById(R.id.Horizontalscroll) ;
         title = toolbar.findViewById(R.id.title);
@@ -114,14 +111,14 @@ public class DetilMapBank extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMarkerClickListener(mClusterManager);
         mMap.setOnInfoWindowClickListener(mClusterManager);
 
-        renderer = new CustomClusterRendererBank(this, mMap, mClusterManager);
+        renderer = new CustomClusterRendererHotel(this, mMap, mClusterManager);
         googleMap.setOnMarkerClickListener(mClusterManager);
         mClusterManager.setRenderer(renderer);
 
         mClusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<MyItem>() {
             @Override
             public boolean onClusterClick(Cluster<MyItem> cluster) {
-                Toast.makeText(DetilMapBank.this,"cluster Cliced", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetilMapHotel.this,"cluster Cliced", Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -159,7 +156,7 @@ public class DetilMapBank extends AppCompatActivity implements OnMapReadyCallbac
         mClusterManager.cluster();
 
 
-        listBank();
+        listHotel();
 
     }
 
@@ -187,7 +184,7 @@ public class DetilMapBank extends AppCompatActivity implements OnMapReadyCallbac
 
         if(id==android.R.id.home)
         {
-            Intent i = new Intent(DetilMapBank.this, MenuBank.class);
+            Intent i = new Intent(DetilMapHotel.this, MenuHotel.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);
@@ -204,7 +201,7 @@ public class DetilMapBank extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
-    public void listBank()
+    public void listHotel()
     {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         int size = listLatn.size();
@@ -214,7 +211,7 @@ public class DetilMapBank extends AppCompatActivity implements OnMapReadyCallbac
 
         for(int i =0;i<size;i++)
         {
-            final ListBank lk = listLatn.get(i);
+            final ListHotel lk = listLatn.get(i);
             Log.d("nama",lk.getNama());
 
             if(lk!=null)
@@ -244,7 +241,7 @@ public class DetilMapBank extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 }
                 titleText.setText(lk.getNama());
-                titleJenis.setText(lk.getRef_bank_nama());
+                titleJenis.setText(lk.getRef_hotel_nama());
                 //titleJenis.setTextColor(getResources().getColor(R.color.blue));
 //                if(lk.getRef_tukang_nama()!=null) {
 //
@@ -284,7 +281,7 @@ public class DetilMapBank extends AppCompatActivity implements OnMapReadyCallbac
 //                btnDetail.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
-//                        Intent intent = new Intent(DetilMapBioskop.this, DetilKesehatan.class);
+//                        Intent intent = new Intent(DetilMapHotel.this, DetilKesehatan.class);
 //                        intent.putExtra("id_kesehatan",lk.getId());
 //                        startActivity(intent);
 //                    }
@@ -352,9 +349,9 @@ public class DetilMapBank extends AppCompatActivity implements OnMapReadyCallbac
 
     private void addItems(){
 
-        for(ListBank lk : listLatn) {
+        for(ListHotel lk : listLatn) {
 
-            MyItem offsetItem = new MyItem(Double.parseDouble(lk.getLatitude()),Double.parseDouble(lk.getLongitude()),lk.getNama(),lk.getAlamat(),lk.getRef_bank_nama());
+            MyItem offsetItem = new MyItem(Double.parseDouble(lk.getLatitude()),Double.parseDouble(lk.getLongitude()),lk.getNama(),lk.getAlamat(),lk.getRef_hotel_nama());
             mClusterManager.addItem(offsetItem);
         }
 
