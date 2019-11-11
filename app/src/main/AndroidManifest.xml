@@ -20,7 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Salon.DataSaringSalonActivity"></activity>
+        <activity android:name=".Spbu.DataSaringSpbuActivity"></activity>
+        <activity android:name=".Spbu.DetilSpbu" />
+        <activity android:name=".Spbu.CariSpbu" />
+        <activity android:name=".Spbu.DetilMapSpbu" />
+        <activity android:name=".Spbu.MenuSpbu" />
+        <activity android:name=".Salon.DataSaringSalonActivity" />
         <activity android:name=".Salon.DetilSalon" />
         <activity android:name=".Salon.CariSalon" />
         <activity android:name=".Salon.DetilMapSalon" />

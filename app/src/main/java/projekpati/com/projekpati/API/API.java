@@ -42,6 +42,9 @@ import projekpati.com.projekpati.Model.Polisi.PolisiModel;
 import projekpati.com.projekpati.Model.Salon.DetilSalonBaru;
 import projekpati.com.projekpati.Model.Salon.DetilSalonModel;
 import projekpati.com.projekpati.Model.Salon.SalonModel;
+import projekpati.com.projekpati.Model.Spbu.DetilSpbuBaru;
+import projekpati.com.projekpati.Model.Spbu.DetilSpbuModel;
+import projekpati.com.projekpati.Model.Spbu.SpbuModel;
 import projekpati.com.projekpati.Model.Tukang.DetilTukangBaru;
 import projekpati.com.projekpati.Model.Tukang.DetilTukangModel;
 import projekpati.com.projekpati.Model.Tukang.JenisTukangLengkap;
@@ -652,5 +655,47 @@ public interface API {
             @Field("longitude") String longitude,
             @Field("user_id") String user_id,
             @Field("ref_salon_id") String ref_salon_id
+    );
+
+    //SPBU
+
+    @GET("spbu/data/?key=TechnoPhoriaIndonesia")
+    Call<SpbuModel> tampilSemuaSpbu();
+
+    @GET("spbu/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<SpbuModel> loadMoreSpbu(@Path("id") String id);
+
+    @GET("spbu/data/?key=TechnoPhoriaIndonesia")
+    Call<SpbuModel> cariSpbubyAPI(@Query("cari") String keyword);
+
+    @GET("spbu/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilSpbuModel> detailSpbu(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=spbu")
+    Call<postKomentar> addKomentarBalasSpbu(@Query("dataID") String data_id,
+                                             @Field("nama") String nama,
+                                             @Field("email") String email,
+                                             @Field("telp") String telp,
+                                             @Field("website") String website,
+                                             @Field("parentID") String parentID,
+                                             @Field("isi") String isi,
+                                             @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=spbu")
+    Call<KomentarLengkap> getKomentarSpbu(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("spbu/update?key=TechnoPhoriaIndonesia")
+    Call<DetilSpbuBaru> addDataSpbu(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_spbu_id") String ref_spbu_id
     );
 }
