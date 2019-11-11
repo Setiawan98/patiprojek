@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Salon.DetilSalon"></activity>
+        <activity android:name=".Salon.DataSaringSalonActivity"></activity>
+        <activity android:name=".Salon.DetilSalon" />
         <activity android:name=".Salon.CariSalon" />
         <activity android:name=".Salon.DetilMapSalon" />
         <activity android:name=".Salon.MenuSalon" />
