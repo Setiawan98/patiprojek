@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="6"
                 android:layout_height="50dp"
-                android:hint="Cari Tukang disini" />
+                android:hint="Cari Koperasi disini" />
 
             <ImageView
                 android:layout_width="25dp"

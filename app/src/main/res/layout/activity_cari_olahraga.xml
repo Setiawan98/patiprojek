@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundberanda"
     android:orientation="vertical"
-    tools:context=".bioskop.CariBioskop">
+    tools:context=".Olahraga.CariOlahraga">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="6"
                 android:layout_height="50dp"
-                android:hint="Cari Bioskop disini" />
+                android:hint="Cari Olahraga disini" />
 
             <ImageView
                 android:layout_width="25dp"
@@ -62,7 +62,7 @@
             android:layout_alignTop="@id/kulinerToolbar">
 
             <ListView
-                android:id="@+id/listBioskop"
+                android:id="@+id/listOlahraga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true">

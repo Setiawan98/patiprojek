@@ -25,6 +25,9 @@ import projekpati.com.projekpati.Model.Kuliner.JenisKulinerLengkap;
 import projekpati.com.projekpati.Model.Kuliner.JenisMakananLengkap;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.Kuliner.KulinerModel;
+import projekpati.com.projekpati.Model.Olahraga.DetilOlahragaBaru;
+import projekpati.com.projekpati.Model.Olahraga.DetilOlahragaModel;
+import projekpati.com.projekpati.Model.Olahraga.OlahragaModel;
 import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataBaru;
 import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataModel;
 import projekpati.com.projekpati.Model.Pariwisata.JenisPariwisataLengkap;
@@ -520,4 +523,44 @@ public interface API {
             @Field("ref_koperasi_id") String ref_koperasi_id
     );
 
+    //Olahraga
+    @GET("olahraga/data/?key=TechnoPhoriaIndonesia")
+    Call<OlahragaModel> tampilSemuaOlahraga();
+
+    @GET("olahraga/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<OlahragaModel> loadMoreOlahraga(@Path("id") String id);
+
+    @GET("olahraga/data/?key=TechnoPhoriaIndonesia")
+    Call<OlahragaModel> cariOlahragabyAPI(@Query("cari") String keyword);
+
+    @GET("olahraga/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilOlahragaModel> detailOlahraga(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=olahraga")
+    Call<postKomentar> addKomentarBalasOlahraga(@Query("dataID") String data_id,
+                                                @Field("nama") String nama,
+                                                @Field("email") String email,
+                                                @Field("telp") String telp,
+                                                @Field("website") String website,
+                                                @Field("parentID") String parentID,
+                                                @Field("isi") String isi,
+                                                @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=olahraga")
+    Call<KomentarLengkap> getKomentarOlahraga(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("olahraga/update?key=TechnoPhoriaIndonesia")
+    Call<DetilOlahragaBaru> addDataOlahraga(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_olahraga_id") String ref_olahraga_id
+    );
 }
