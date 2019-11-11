@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundberanda"
+    android:orientation="vertical"
+    tools:context=".Polisi.CariPolisi">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="8"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/imageBack"
+                android:src="@drawable/arrowyow"/>
+
+            <EditText
+                android:id="@+id/cari"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:layout_width="wrap_content"
+                android:layout_weight="6"
+                android:layout_height="50dp"
+                android:hint="Cari Kantor Polisi disini" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:id="@+id/imageCari"
+                android:src="@drawable/backyow"/>
+
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="10dp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_alignTop="@id/kulinerToolbar">
+
+            <ListView
+                android:id="@+id/listPolisi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true">
+            </ListView>
+
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+
+
+</LinearLayout>
