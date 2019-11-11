@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.Polisi;
+package projekpati.com.projekpati.Salon;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-import projekpati.com.projekpati.Model.Polisi.ListPolisi;
+import projekpati.com.projekpati.Model.Salon.ListSalon;
 import projekpati.com.projekpati.R;
 
-public class PolisiAdapter extends ArrayAdapter<ListPolisi> {
+public class SalonAdapter extends ArrayAdapter<ListSalon> {
     private Context context;
-    private List<ListPolisi> polisi;
+    private List<ListSalon> salon;
 
-    public PolisiAdapter(Context context, int resource, List<ListPolisi> objects) {
+    public SalonAdapter(Context context, int resource, List<ListSalon> objects) {
         super(context,resource,objects);
         this.context = context;
-        this.polisi = objects;
+        this.salon = objects;
     }
 
 
@@ -33,7 +33,7 @@ public class PolisiAdapter extends ArrayAdapter<ListPolisi> {
     public View getView(final int pos, View convertView, final ViewGroup parent){
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView = inflater.inflate(R.layout.polisi_adapter, parent, false);
+        final View rowView = inflater.inflate(R.layout.salon_adapter, parent, false);
 
         ImageView imageView = (ImageView) rowView.findViewById(R.id.mImage);
         TextView textNama = (TextView) rowView.findViewById(R.id.mNama);
@@ -45,14 +45,14 @@ public class PolisiAdapter extends ArrayAdapter<ListPolisi> {
 
 
         URL url = null;
-        if(polisi.get(pos).getFile_small().equals(""))
+        if(salon.get(pos).getFile_small().equals(""))
         {
             //tidak terjadi perubahan apapun
         }
         else
         {
             try {
-                url = new URL(polisi.get(pos).getFile_small());
+                url = new URL(salon.get(pos).getFile_small());
                 Picasso.get()
                         .load(String.valueOf(url))
                         .resize(150,100).noFade().into(imageView);
@@ -61,10 +61,10 @@ public class PolisiAdapter extends ArrayAdapter<ListPolisi> {
             }
         }
 
-        textNama.setText(polisi.get(pos).getNama());
-        textAlamat.setText(polisi.get(pos).getAlamat());
+        textNama.setText(salon.get(pos).getNama());
+        textAlamat.setText(salon.get(pos).getAlamat());
         // textJam.setText(fasilitasUmum.get(pos).getJam_buka());
-        textRef.setText(polisi.get(pos).getRef_polisi_nama());
+        textRef.setText(salon.get(pos).getRef_salon_nama());
         if(textJam.getText().equals(""))
         {
             iconJam.setVisibility(View.INVISIBLE);
@@ -73,6 +73,4 @@ public class PolisiAdapter extends ArrayAdapter<ListPolisi> {
 
         return rowView;
     }
-
-
 }

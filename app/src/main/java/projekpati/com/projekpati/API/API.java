@@ -39,6 +39,9 @@ import projekpati.com.projekpati.Model.Pendidikan.PendidikanModel;
 import projekpati.com.projekpati.Model.Polisi.DetilPolisiBaru;
 import projekpati.com.projekpati.Model.Polisi.DetilPolisiModel;
 import projekpati.com.projekpati.Model.Polisi.PolisiModel;
+import projekpati.com.projekpati.Model.Salon.DetilSalonBaru;
+import projekpati.com.projekpati.Model.Salon.DetilSalonModel;
+import projekpati.com.projekpati.Model.Salon.SalonModel;
 import projekpati.com.projekpati.Model.Tukang.DetilTukangBaru;
 import projekpati.com.projekpati.Model.Tukang.DetilTukangModel;
 import projekpati.com.projekpati.Model.Tukang.JenisTukangLengkap;
@@ -606,5 +609,48 @@ public interface API {
             @Field("longitude") String longitude,
             @Field("user_id") String user_id,
             @Field("ref_polisi_id") String ref_polisi_id
+    );
+
+
+    //Salon
+
+    @GET("salon/data/?key=TechnoPhoriaIndonesia")
+    Call<SalonModel> tampilSemuaSalon();
+
+    @GET("salon/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<SalonModel> loadMoreSalon(@Path("id") String id);
+
+    @GET("salon/data/?key=TechnoPhoriaIndonesia")
+    Call<SalonModel> cariSalonbyAPI(@Query("cari") String keyword);
+
+    @GET("salon/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilSalonModel> detailSalon(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=salon")
+    Call<postKomentar> addKomentarBalasSalon(@Query("dataID") String data_id,
+                                              @Field("nama") String nama,
+                                              @Field("email") String email,
+                                              @Field("telp") String telp,
+                                              @Field("website") String website,
+                                              @Field("parentID") String parentID,
+                                              @Field("isi") String isi,
+                                              @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=salon")
+    Call<KomentarLengkap> getKomentarSalon(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("salon/update?key=TechnoPhoriaIndonesia")
+    Call<DetilSalonBaru> addDataSalon(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_salon_id") String ref_salon_id
     );
 }

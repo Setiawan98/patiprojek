@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.Polisi;
+package projekpati.com.projekpati.Salon;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,14 +9,17 @@ import androidx.fragment.app.FragmentTransaction;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.MainActivity;
-import projekpati.com.projekpati.Model.Polisi.ListPolisi;
-import projekpati.com.projekpati.Model.Polisi.PolisiModel;
+import projekpati.com.projekpati.Model.Salon.ListSalon;
+import projekpati.com.projekpati.Model.Salon.SalonModel;
 import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -29,14 +32,17 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MenuPolisi extends AppCompatActivity {
+public class MenuSalon extends AppCompatActivity {
     ListView listView;
     EditText cari;
-    List<ListPolisi> list = new ArrayList<>();
+    List<ListSalon> list = new ArrayList<>();
     Toolbar toolbar;
     TextView title;
     ImageView iconView;
@@ -44,9 +50,9 @@ public class MenuPolisi extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_polisi);
+        setContentView(R.layout.activity_menu_salon);
 
-        toolbar = (Toolbar) findViewById(R.id.polisiToolbar);
+        toolbar = (Toolbar) findViewById(R.id.salonToolbar);
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
         iconView = toolbar.findViewById(R.id.icon);
@@ -59,14 +65,14 @@ public class MenuPolisi extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        final BottomNavigationView bottomNavigationView = findViewById(R.id.menuPolisi);
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.menuSalon);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
 
                 if(id==R.id.beranda){
-                    DataPolisiFragment first = new DataPolisiFragment();
+                    DataSalonFragment first = new DataSalonFragment();
                     openFragment(first);
                     //status =1;
                     bottomNavigationView.setEnabled(false);
@@ -81,43 +87,44 @@ public class MenuPolisi extends AppCompatActivity {
                 }
                 else if(id==R.id.tambah){
 
-                    TambahPolisiFragment third = new TambahPolisiFragment();
-                    openFragment(third);
-                    bottomNavigationView.setEnabled(false);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            status =0;
-                            bottomNavigationView.setEnabled(true);
-                        }
-                    },5000);
+//                    TambahBankFragment third = new TambahBankFragment();
+//                    openFragment(third);
+//                    bottomNavigationView.setEnabled(false);
+//                    Handler handler = new Handler();
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            status =0;
+//                            bottomNavigationView.setEnabled(true);
+//                        }
+//                    },5000);
 
                 }
                 else if(id==R.id.saring){
-                    SaringPolisiFragment fouth = new SaringPolisiFragment();
-                    openFragment(fouth);
-                    bottomNavigationView.setEnabled(false);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            status =0;
-                            bottomNavigationView.setEnabled(true);
-                        }
-                    },5000);
+//
+//                    SaringBankFragment fouth = new SaringBankFragment();
+//                    openFragment(fouth);
+//                    bottomNavigationView.setEnabled(false);
+//                    Handler handler = new Handler();
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            status =0;
+//                            bottomNavigationView.setEnabled(true);
+//                        }
+//                    },5000);
 
                 }
                 else if(id==R.id.dataku){
 
-//                    Toast.makeText(MenuPendidikan.this, "Login dalam proses",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MenuPendidikan.this, "Login dalam proses",Toast.LENGTH_SHORT).show();
 
                 }
                 return true;
             }
         });
 
-        DataPolisiFragment first = new DataPolisiFragment();
+        DataSalonFragment first = new DataSalonFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment, first).commit();
     }
@@ -125,36 +132,36 @@ public class MenuPolisi extends AppCompatActivity {
     public void getIconImage(){
         //defining a progress dialog to show while signing up
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<PolisiModel> call = api.tampilSemuaPolisi();
+        Call<SalonModel> call = api.tampilSemuaSalon();
 
-        call.enqueue(new Callback<PolisiModel>() {
+        call.enqueue(new Callback<SalonModel>() {
             @Override
-            public void onResponse(Call<PolisiModel> call, final Response<PolisiModel> response) {
-                Map<String, ListPolisi> data = response.body().getData();
+            public void onResponse(Call<SalonModel> call, final Response<SalonModel> response) {
+                Map<String, ListSalon> data = response.body().getData();
                 Log.d("iconnn",response.body().getIcon());
-                title.setText("Polisi");
+                title.setText("Salon");
 
-//                try {
-//                    URL url = new URL(response.body().getIcon());
-//                    Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-//                    Bitmap scaled = Bitmap.createScaledBitmap(bmp,80,80,true);
-//                    BitmapDrawable icon = new BitmapDrawable(toolbar.getResources(),scaled);
-//                    iconView.setImageDrawable(icon);
-//
-//                    //BitmapDescriptor icon =  BitmapDescriptorFactory.fromBitmap(scaled);
-//
-//                } catch (MalformedURLException e) {
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    URL url = new URL(response.body().getIcon());
+                    Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                    Bitmap scaled = Bitmap.createScaledBitmap(bmp,80,80,true);
+                    BitmapDrawable icon = new BitmapDrawable(toolbar.getResources(),scaled);
+                    iconView.setImageDrawable(icon);
+
+                    //BitmapDescriptor icon =  BitmapDescriptorFactory.fromBitmap(scaled);
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
 
 
             }
 
             @Override
-            public void onFailure(Call<PolisiModel> call, Throwable t) {
+            public void onFailure(Call<SalonModel> call, Throwable t) {
 
                 Log.d("onResponse", t.toString());
             }
@@ -176,13 +183,13 @@ public class MenuPolisi extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-            Intent intent = new Intent(MenuPolisi.this, CariPolisi.class);
-            startActivity(intent);
+//            Intent intent = new Intent(MenuSalon.this, CariBank.class);
+//            startActivity(intent);
 
         }
         else if(id==android.R.id.home)
         {
-            Intent i = new Intent(MenuPolisi.this, MainActivity.class);
+            Intent i = new Intent(MenuSalon.this, MainActivity.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);

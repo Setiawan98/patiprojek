@@ -20,7 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Polisi.CariPolisi"></activity>
+        <activity android:name=".Salon.MenuSalon"></activity>
+        <activity android:name=".Polisi.DataSaringPolisiActivity" />
+        <activity android:name=".Polisi.DetilPolisi" />
+        <activity android:name=".Polisi.CariPolisi" />
         <activity android:name=".Polisi.DetilMapPolisi" />
         <activity android:name=".Polisi.MenuPolisi" />
         <activity android:name=".Olahraga.DataSaringOlahragaActivity" />

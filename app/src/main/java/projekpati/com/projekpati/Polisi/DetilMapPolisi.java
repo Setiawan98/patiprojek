@@ -270,14 +270,14 @@ public class DetilMapPolisi extends AppCompatActivity implements OnMapReadyCallb
                     beforeClick = layout;
 
                 }
-//                btnDetail.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(DetilMapPolisi.this, DetilPolisi.class);
-//                        intent.putExtra("id_polisi",lk.getId());
-//                        startActivity(intent);
-//                    }
-//                });
+                btnDetail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DetilMapPolisi.this, DetilPolisi.class);
+                        intent.putExtra("id_polisi",lk.getId());
+                        startActivity(intent);
+                    }
+                });
 
 
                 clickAbleColumn.setOnClickListener(new View.OnClickListener() {

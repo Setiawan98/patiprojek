@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.Polisi;
+package projekpati.com.projekpati.Salon;
 
 
 import android.app.ProgressDialog;
@@ -46,8 +46,8 @@ import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientApiKey;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.APIKey;
-import projekpati.com.projekpati.Model.Polisi.ListPolisi;
-import projekpati.com.projekpati.Model.Polisi.PolisiModel;
+import projekpati.com.projekpati.Model.Salon.ListSalon;
+import projekpati.com.projekpati.Model.Salon.SalonModel;
 import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,13 +56,13 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
+public class DataSalonFragment extends Fragment implements OnMapReadyCallback {
     ListView listView;
     Integer CountShowData;
     Integer nextPage;
     Integer npLatn=1;
-    List<ListPolisi> list = new ArrayList<>();
-    ArrayList<ListPolisi> listLatn = new ArrayList<ListPolisi>();
+    List<ListSalon> list = new ArrayList<>();
+    ArrayList<ListSalon> listLatn = new ArrayList<ListSalon>();
     LinearLayout lp;
     MapView mapView;
     String apikey;
@@ -70,7 +70,7 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
     int Status=0;
     SwipeRefreshLayout swipeRefreshLayout;
 
-    public DataPolisiFragment() {
+    public DataSalonFragment() {
         // Required empty public constructor
     }
 
@@ -79,8 +79,8 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_data_polisi, container, false);
-        listView = (ListView) view.findViewById(R.id.listPolisi);
+        View view = inflater.inflate(R.layout.fragment_data_salon, container, false);
+        listView = (ListView) view.findViewById(R.id.listSalon);
         swipeRefreshLayout = view.findViewById(R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -150,12 +150,12 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
     public void getAllBank(){
         //defining a progress dialog to show while signing up
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<PolisiModel> call = api.tampilSemuaPolisi();
+        Call<SalonModel> call = api.tampilSemuaSalon();
 
-        call.enqueue(new Callback<PolisiModel>() {
+        call.enqueue(new Callback<SalonModel>() {
             @Override
-            public void onResponse(Call<PolisiModel> call, final Response<PolisiModel> response) {
-                Map<String, ListPolisi> data = response.body().getData();
+            public void onResponse(Call<SalonModel> call, final Response<SalonModel> response) {
+                Map<String, ListSalon> data = response.body().getData();
 
 
                 Log.w("Response", new Gson().toJson(response.body()));
@@ -165,26 +165,26 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
                 }
                 nextPage = response.body().getHalaman_selanjutnya();
 
-                listView.setAdapter(new PolisiAdapter(getContext(), R.layout.polisi_adapter, list));
+                listView.setAdapter(new SalonAdapter(getContext(), R.layout.salon_adapter, list));
 
 
             }
 
             @Override
-            public void onFailure(Call<PolisiModel> call, Throwable t) {
+            public void onFailure(Call<SalonModel> call, Throwable t) {
                 Toast.makeText(getContext().getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), DetilPolisi.class);
-                intent.putExtra("id_polisi",list.get(position).getId());
-                startActivity(intent);
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(getContext(), DetilSalon.class);
+//                intent.putExtra("id_salon",list.get(position).getId());
+//                startActivity(intent);
+//            }
+//        });
     }
 
     public void loadMoreData(){
@@ -198,12 +198,12 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
 
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<PolisiModel> call = api.loadMorePolisi(String.valueOf(nextPage));
+        Call<SalonModel> call = api.loadMoreSalon(String.valueOf(nextPage));
 
-        call.enqueue(new Callback<PolisiModel>() {
+        call.enqueue(new Callback<SalonModel>() {
             @Override
-            public void onResponse(Call<PolisiModel> call, final Response<PolisiModel> response) {
-                Map<String, ListPolisi> data = response.body().getData();
+            public void onResponse(Call<SalonModel> call, final Response<SalonModel> response) {
+                Map<String, ListSalon> data = response.body().getData();
                 Integer beforePage = nextPage;
 
                 Log.w("ResponseLoad", new Gson().toJson(response.body()));
@@ -218,7 +218,7 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
                 Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
 
 
-                PolisiAdapter adapter = new PolisiAdapter(getContext(), R.layout.fasilitas_umum_adapter, list);
+                SalonAdapter adapter = new SalonAdapter(getContext(), R.layout.fasilitas_umum_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);
@@ -227,32 +227,32 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
             }
 
             @Override
-            public void onFailure(Call<PolisiModel> call, Throwable t) {
+            public void onFailure(Call<SalonModel> call, Throwable t) {
                 Toast.makeText(getContext().getApplicationContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(),DetilPolisi.class);
-                intent.putExtra("id_polisi",list.get(position).getId());
-                startActivity(intent);
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(getContext(),DetilSalon.class);
+//                intent.putExtra("id_salon",list.get(position).getId());
+//                startActivity(intent);
+//            }
+//        });
     }
 
 
     public void getAllData(){
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<PolisiModel> call = api.tampilSemuaPolisi();
+        Call<SalonModel> call = api.tampilSemuaSalon();
 
-        call.enqueue(new Callback<PolisiModel>() {
+        call.enqueue(new Callback<SalonModel>() {
             @Override
-            public void onResponse(Call<PolisiModel> call, final Response<PolisiModel> response) {
-                Map<String, ListPolisi> data = response.body().getData();
+            public void onResponse(Call<SalonModel> call, final Response<SalonModel> response) {
+                Map<String, ListSalon> data = response.body().getData();
 
                 Log.w("Responsepend", new Gson().toJson(response.body()));
                 for (int i = npLatn; i <= npLatn+response.body().getJumlah_data()-1; i++)
@@ -280,7 +280,7 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
             }
 
             @Override
-            public void onFailure(Call<PolisiModel> call, Throwable t) {
+            public void onFailure(Call<SalonModel> call, Throwable t) {
                 Toast.makeText(getContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
             }
@@ -292,12 +292,12 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
 
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<PolisiModel> a = api.loadMorePolisi(String.valueOf(npLatn));
-        a.enqueue(new Callback<PolisiModel>() {
+        Call<SalonModel> a = api.loadMoreSalon(String.valueOf(npLatn));
+        a.enqueue(new Callback<SalonModel>() {
 
             @Override
-            public void onResponse(Call<PolisiModel> call, final Response<PolisiModel> response) {
-                Map<String, ListPolisi> data = response.body().getData();
+            public void onResponse(Call<SalonModel> call, final Response<SalonModel> response) {
+                Map<String, ListSalon> data = response.body().getData();
 
 
                 Log.w("Responsepend", new Gson().toJson(response.body()));
@@ -328,7 +328,7 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
             }
 
             @Override
-            public void onFailure(Call<PolisiModel> call, Throwable t) {
+            public void onFailure(Call<SalonModel> call, Throwable t) {
                 Toast.makeText(getContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
             }
@@ -358,30 +358,30 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
                 return view;
             }
         });
-        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                String id = (String) marker.getTag();
-                Intent intent = new Intent(getContext(),DetilPolisi.class);
-                intent.putExtra("id_polisi",id);
-                Log.d("idwoy1",id);
-                startActivity(intent);
-
-
-            }
-        });
-        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                Intent i = new Intent(getContext(), DetilMapPolisi.class);
-                Bundle bundle = new Bundle();
-
-                // bundle.putParcelableArrayList("list",listLatn);
-
-                i.putParcelableArrayListExtra("list",listLatn);
-                startActivity(i);
-            }
-        });
+//        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+//            @Override
+//            public void onInfoWindowClick(Marker marker) {
+//                String id = (String) marker.getTag();
+//                Intent intent = new Intent(getContext(),DetilSalon.class);
+//                intent.putExtra("id_salon",id);
+//                Log.d("idwoy1",id);
+//                startActivity(intent);
+//
+//
+//            }
+//        });
+//        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+//            @Override
+//            public void onMapClick(LatLng latLng) {
+//                Intent i = new Intent(getContext(), DetilMapSalon.class);
+//                Bundle bundle = new Bundle();
+//
+//                // bundle.putParcelableArrayList("list",listLatn);
+//
+//                i.putParcelableArrayListExtra("list",listLatn);
+//                startActivity(i);
+//            }
+//        });
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         googleMap.clear();
@@ -394,7 +394,7 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
 
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(googlePlex),100,null);
 
-        for(ListPolisi lp : listLatn)
+        for(ListSalon lp : listLatn)
         {
             Log.d("masuk","a");
             BitmapDescriptor icon = null;
@@ -485,5 +485,4 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
         });
 
     }
-
 }
