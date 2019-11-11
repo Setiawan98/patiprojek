@@ -183,8 +183,8 @@ public class MenuSalon extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-//            Intent intent = new Intent(MenuSalon.this, CariBank.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MenuSalon.this, CariSalon.class);
+            startActivity(intent);
 
         }
         else if(id==android.R.id.home)
