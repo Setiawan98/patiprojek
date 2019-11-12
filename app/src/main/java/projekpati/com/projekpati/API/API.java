@@ -5,6 +5,7 @@ import projekpati.com.projekpati.Model.APIKey;
 import projekpati.com.projekpati.Model.Bank.BankModel;
 import projekpati.com.projekpati.Model.Bank.DetilBankBaru;
 import projekpati.com.projekpati.Model.Bank.DetilBankModel;
+import projekpati.com.projekpati.Model.Bank.JenisBankLengkap;
 import projekpati.com.projekpati.Model.Bioskop.BioskopModel;
 import projekpati.com.projekpati.Model.Bioskop.DetilBioskopBaru;
 import projekpati.com.projekpati.Model.Bioskop.DetilBioskopModel;
@@ -378,6 +379,12 @@ public interface API {
 
     @GET("bank/data/{id}?key=TechnoPhoriaIndonesia")
     Call<BankModel> loadMoreBank(@Path("id") String id);
+
+    @GET("bank/data?key=TechnoPhoriaIndonesia")
+    Call<BankModel> cariBankByJenis(@Query("IDJenis") String keyword);
+
+    @GET("bank/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisBankLengkap> tampilJenisBank();
 
     @GET("bank/data/?key=TechnoPhoriaIndonesia")
     Call<BankModel> cariBankbyAPI(@Query("cari") String keyword);

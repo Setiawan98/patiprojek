@@ -66,5 +66,5 @@
         app:itemTextColor="@drawable/state_bnve"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottomnavigation_menu_2" />
+        app:menu="@menu/bottomnavigation_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

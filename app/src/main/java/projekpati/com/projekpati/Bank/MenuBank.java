@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,8 @@ import java.util.Map;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.FasilitasUmum.DataFasilitasUmumFragment;
+import projekpati.com.projekpati.Kesehatan.KategoriKesehatanFragment;
+import projekpati.com.projekpati.Kesehatan.MenuKesehatan;
 import projekpati.com.projekpati.MainActivity;
 import projekpati.com.projekpati.Model.Bank.BankModel;
 import projekpati.com.projekpati.Model.Bank.ListBank;
@@ -90,6 +93,20 @@ public class MenuBank extends AppCompatActivity {
                         }
                     },5000);
 
+                }
+                else if(id==R.id.kategori){
+
+                    KategoriBankFragment second = new KategoriBankFragment();
+                    openFragment(second);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
+                    
                 }
                 else if(id==R.id.tambah){
 
