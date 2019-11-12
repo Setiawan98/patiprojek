@@ -83,6 +83,20 @@ public class MenuKoperasi extends AppCompatActivity {
                     },5000);
 
                 }
+                else if(id==R.id.kategori){
+
+                    KategoriKoperasiFragment second = new KategoriKoperasiFragment();
+                    openFragment(second);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
+
+                }
                 else if(id==R.id.tambah){
 
                     TambahKoperasiFragment third = new TambahKoperasiFragment();

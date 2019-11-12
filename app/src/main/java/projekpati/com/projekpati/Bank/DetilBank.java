@@ -46,7 +46,7 @@ import java.util.Map;
 
 public class DetilBank extends AppCompatActivity {
 
-    TextView textNama, textAlamat, textTelepon, textDeskripsi, textEmail, textWebsite, ratingsum, ratingpeople;
+    TextView textNama, textAlamat, textTelepon, textDeskripsi, textEmail, refnama, textWebsite, ratingsum, ratingpeople;
     TextView senin, selasa, rabu, kamis, jumat, sabtu, minggu;
     EditText komentar;
     RatingBar ratingstar;
@@ -77,6 +77,7 @@ public class DetilBank extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.bankToolbar);
 
+        refnama = findViewById(R.id.refnama);
         ly = findViewById(R.id.konten);
         setSupportActionBar(toolbar);
         title = toolbar.findViewById(R.id.title);
@@ -401,6 +402,7 @@ public class DetilBank extends AppCompatActivity {
 
                 Log.w("ResponseAsu", new Gson().toJson(response.body()));
                 title.setText(response.body().getJudul());
+                refnama.setText(response.body().getData().getRef_bank_nama());
                 ratingsum.setText(String.format("%s/5",response.body().getData().getRating()));
                 String tampung = response.body().getData().getRating_jumlah();
                 ratingpeople.setText(String.format("(%s orang)", tampung));

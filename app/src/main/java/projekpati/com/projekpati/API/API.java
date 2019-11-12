@@ -9,16 +9,19 @@ import projekpati.com.projekpati.Model.Bank.JenisBankLengkap;
 import projekpati.com.projekpati.Model.Bioskop.BioskopModel;
 import projekpati.com.projekpati.Model.Bioskop.DetilBioskopBaru;
 import projekpati.com.projekpati.Model.Bioskop.DetilBioskopModel;
+import projekpati.com.projekpati.Model.Bioskop.JenisBioskopLengkap;
 import projekpati.com.projekpati.Model.FasilitasUmum.FasilitasUmumModel;
 import projekpati.com.projekpati.Model.Hotel.DetilHotelBaru;
 import projekpati.com.projekpati.Model.Hotel.DetilHotelModel;
 import projekpati.com.projekpati.Model.Hotel.HotelModel;
+import projekpati.com.projekpati.Model.Hotel.JenisHotelLengkap;
 import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanBaru;
 import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanModel;
 import projekpati.com.projekpati.Model.Kesehatan.JenisKesehatanLengkap;
 import projekpati.com.projekpati.Model.Kesehatan.KesehatanModel;
 import projekpati.com.projekpati.Model.Koperasi.DetilKoperasiBaru;
 import projekpati.com.projekpati.Model.Koperasi.DetilKoperasiModel;
+import projekpati.com.projekpati.Model.Koperasi.JenisKoperasiLengkap;
 import projekpati.com.projekpati.Model.Koperasi.KoperasiModel;
 import projekpati.com.projekpati.Model.Kuliner.DetilKulinerBaru;
 import projekpati.com.projekpati.Model.Kuliner.DetilKulinerModel;
@@ -461,6 +464,12 @@ public interface API {
             @Field("ref_bioskop_id") String ref_bioskop_id
     );
 
+    @GET("bioskop/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisBioskopLengkap> tampilJenisBioskop();
+
+    @GET("bioskop/data?key=TechnoPhoriaIndonesia")
+    Call<BioskopModel> cariBioskopByJenis(@Query("IDJenis") String keyword);
+
     //Hotel
     @GET("hotel/data/?key=TechnoPhoriaIndonesia")
     Call<HotelModel> tampilSemuaHotel();
@@ -502,6 +511,12 @@ public interface API {
             @Field("ref_hotel_id") String ref_hotel_id
     );
 
+    @GET("hotel/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisHotelLengkap> tampilJenisHotel();
+
+    @GET("hotel/data?key=TechnoPhoriaIndonesia")
+    Call<HotelModel> cariHotelByJenis(@Query("IDJenis") String keyword);
+
     //Koperasi
     @GET("koperasi/data/?key=TechnoPhoriaIndonesia")
     Call<KoperasiModel> tampilSemuaKoperasi();
@@ -542,6 +557,12 @@ public interface API {
             @Field("user_id") String user_id,
             @Field("ref_koperasi_id") String ref_koperasi_id
     );
+
+    @GET("koperasi/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisKoperasiLengkap> tampilJenisKoperasi();
+
+    @GET("koperasi/data?key=TechnoPhoriaIndonesia")
+    Call<KoperasiModel> cariKoperasiByJenis(@Query("IDJenis") String keyword);
 
     //Olahraga
     @GET("olahraga/data/?key=TechnoPhoriaIndonesia")

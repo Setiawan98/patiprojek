@@ -36,6 +36,7 @@ import projekpati.com.projekpati.MainActivity;
 import projekpati.com.projekpati.Model.Hotel.HotelModel;
 import projekpati.com.projekpati.Model.Hotel.ListHotel;
 import projekpati.com.projekpati.R;
+import projekpati.com.projekpati.Salon.KategoriSalonFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -78,6 +79,20 @@ public class MenuHotel extends AppCompatActivity {
                     DataHotelFragment first = new DataHotelFragment();
                     openFragment(first);
                     //status =1;
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
+
+                }
+                else if(id==R.id.kategori){
+
+                    KategoriHotelFragment second = new KategoriHotelFragment();
+                    openFragment(second);
                     bottomNavigationView.setEnabled(false);
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {

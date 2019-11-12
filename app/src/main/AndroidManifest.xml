@@ -20,7 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Spbu.TampilSpbuByJenis"></activity>
+        <activity android:name=".Koperasi.TampilKoperasiByJenis"></activity>
+        <activity android:name=".bioskop.TampilBioskopByJenis" />
+        <activity android:name=".Hotel.TampilHotelByJenis" />
+        <activity android:name=".Spbu.TampilSpbuByJenis" />
         <activity android:name=".Salon.TampilSalonByJenis" />
         <activity android:name=".Polisi.TampilPolisiByJenis" />
         <activity android:name=".Olahraga.TampilOlahragaByJenis" />
@@ -52,6 +55,7 @@
         <activity android:name=".Hotel.DetilHotel" />
         <activity android:name=".bioskop.DetilBioskop" />
         <activity android:name=".Bank.DetilBank" />
+        <activity android:name=".Bank.TampilBankByJenis" />
         <activity android:name=".Koperasi.CariKoperasi" />
         <activity android:name=".Hotel.CariHotel" />
         <activity android:name=".bioskop.CariBioskop" />

@@ -50,6 +50,8 @@ import java.util.Map;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.Bank.DetilBankBaru;
+import projekpati.com.projekpati.Model.Bank.JenisBank;
+import projekpati.com.projekpati.Model.Bank.JenisBankLengkap;
 import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanBaru;
 import projekpati.com.projekpati.R;
 import retrofit2.Call;
@@ -80,6 +82,7 @@ public class TambahBankFragment extends Fragment implements OnMapReadyCallback, 
     RelativeLayout setMap;
     ScrollView form;
     LatLng location;
+    Spinner mRefNama;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,6 +91,7 @@ public class TambahBankFragment extends Fragment implements OnMapReadyCallback, 
         View view = inflater.inflate(R.layout.fragment_tambah_bank, container, false);
 
         init(view);
+        setSpinner();
         startLatLng = new LatLng(-6.7487,111.0379);
         currentLatLng = startLatLng;
 
@@ -99,6 +103,9 @@ public class TambahBankFragment extends Fragment implements OnMapReadyCallback, 
     }
 
     public void init(View view){
+        //Spinner
+        mRefNama = view.findViewById(R.id.mRefNama);
+        
         //editText
         eNama = view.findViewById(R.id.eNama);
         eNomorTelp = view.findViewById(R.id.mNomorTelp);
@@ -241,7 +248,38 @@ public class TambahBankFragment extends Fragment implements OnMapReadyCallback, 
             }
         });
     }
+    
+    public void setSpinner()
+    {
+        API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<JenisBankLengkap> call2 = api2.tampilJenisBank();
 
+        call2.enqueue(new Callback<JenisBankLengkap>() {
+            @Override
+            public void onResponse(Call<JenisBankLengkap> call, Response<JenisBankLengkap> response) {
+                Map<String, JenisBank> data = response.body().getData();
+
+                String[] stringArray;
+                stringArray = new String[response.body().getJumlah_data()];
+                items_value = new String[response.body().getJumlah_data()];
+                for (int i = 1; i <= response.body().getJumlah_data(); i++)
+                {
+                    stringArray[i-1] = data.get(String.valueOf(i)).getNama();
+                    items_value[i-1] = data.get(String.valueOf(i)).getId();
+                }
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, stringArray);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                mRefNama.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<JenisBankLengkap> call, Throwable t) {
+
+            }
+        });
+    }
+    
     private BitmapDescriptor bitmapDescriptor(Context context, int vectorID)
     {
         Drawable vectorDrawable = ContextCompat.getDrawable(context,vectorID);
@@ -282,6 +320,8 @@ public class TambahBankFragment extends Fragment implements OnMapReadyCallback, 
             longitude = String.valueOf(location.longitude);
         }
 
+        String value = items_value[mRefNama.getSelectedItemPosition()];
+
         Log.d("nama",nama);
         Log.d("telp",telp);
         Log.d("email",email);
@@ -295,7 +335,7 @@ public class TambahBankFragment extends Fragment implements OnMapReadyCallback, 
 
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<DetilBankBaru> call = api.addDataBank(nama,telp,email,website,deskripsi,latitude,longitude,"0","");
+        Call<DetilBankBaru> call = api.addDataBank(nama,telp,email,website,deskripsi,latitude,longitude,"0",value);
 
         call.enqueue(new Callback<DetilBankBaru>() {
             @Override

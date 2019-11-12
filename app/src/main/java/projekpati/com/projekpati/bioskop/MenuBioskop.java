@@ -82,6 +82,20 @@ public class MenuBioskop extends AppCompatActivity {
                     },5000);
 
                 }
+                else if(id==R.id.kategori){
+
+                    KategoriBioskopFragment second = new KategoriBioskopFragment();
+                    openFragment(second);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
+
+                }
                 else if(id==R.id.tambah){
 
                     TambahBioskopFragment third = new TambahBioskopFragment();
