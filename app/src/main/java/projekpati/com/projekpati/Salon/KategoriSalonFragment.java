@@ -2,6 +2,7 @@ package projekpati.com.projekpati.Salon;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -83,15 +85,15 @@ public class KategoriSalonFragment extends Fragment {
             }
         });
 
-//        listSalon.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getContext(),TampilTukangByJenis.class);
-//                intent.putExtra("id_salon",list.get(position).getId());
-//                intent.putExtra("kategori",list.get(position).getNama());
-//                startActivity(intent);
-//            }
-//        });
+        listSalon.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(),TampilSalonByJenis.class);
+                intent.putExtra("id_salon",list.get(position).getId());
+                intent.putExtra("kategori",list.get(position).getNama());
+                startActivity(intent);
+            }
+        });
 
     }
 

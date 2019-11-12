@@ -19,10 +19,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
@@ -43,10 +45,13 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.gson.Gson;
 
 import java.util.Arrays;
+import java.util.Map;
 
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.Polisi.DetilPolisiBaru;
+import projekpati.com.projekpati.Model.Polisi.JenisPolisi;
+import projekpati.com.projekpati.Model.Polisi.JenisPolisiLengkap;
 import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,6 +77,7 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
     RelativeLayout setMap;
     ScrollView form;
     LatLng location;
+    Spinner mRefNama;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,6 +86,7 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
         View view = inflater.inflate(R.layout.fragment_tambah_polisi, container, false);
 
         init(view);
+        setSpinner();
         startLatLng = new LatLng(-6.7487,111.0379);
         currentLatLng = startLatLng;
 
@@ -92,6 +99,9 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
 
 
     public void init(View view){
+        //Spinner
+        mRefNama = view.findViewById(R.id.mRefNama);
+        
         //editText
         eNama = view.findViewById(R.id.eNama);
         eNomorTelp = view.findViewById(R.id.mNomorTelp);
@@ -235,6 +245,37 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
         });
     }
 
+    public void setSpinner()
+    {
+        API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<JenisPolisiLengkap> call2 = api2.tampilJenisPolisi();
+
+        call2.enqueue(new Callback<JenisPolisiLengkap>() {
+            @Override
+            public void onResponse(Call<JenisPolisiLengkap> call, Response<JenisPolisiLengkap> response) {
+                Map<String, JenisPolisi> data = response.body().getData();
+
+                String[] stringArray;
+                stringArray = new String[response.body().getJumlah_data()];
+                items_value = new String[response.body().getJumlah_data()];
+                for (int i = 1; i <= response.body().getJumlah_data(); i++)
+                {
+                    stringArray[i-1] = data.get(String.valueOf(i)).getNama();
+                    items_value[i-1] = data.get(String.valueOf(i)).getId();
+                }
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, stringArray);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                mRefNama.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(Call<JenisPolisiLengkap> call, Throwable t) {
+
+            }
+        });
+    }
+
     private BitmapDescriptor bitmapDescriptor(Context context, int vectorID)
     {
         Drawable vectorDrawable = ContextCompat.getDrawable(context,vectorID);
@@ -274,6 +315,7 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
             latitude = String.valueOf(location.latitude);
             longitude = String.valueOf(location.longitude);
         }
+        String value = items_value[mRefNama.getSelectedItemPosition()];
 
         Log.d("nama",nama);
         Log.d("telp",telp);
@@ -288,7 +330,7 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
 
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<DetilPolisiBaru> call = api.addDataPolisi(nama,telp,email,website,deskripsi,latitude,longitude,"0","");
+        Call<DetilPolisiBaru> call = api.addDataPolisi(nama,telp,email,website,deskripsi,latitude,longitude,"0",value);
 
         call.enqueue(new Callback<DetilPolisiBaru>() {
             @Override

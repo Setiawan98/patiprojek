@@ -85,15 +85,15 @@ public class KategoriOlahragaFragment extends Fragment {
             }
         });
 
-//        listOlahraga.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getContext(),TampilTukangByJenis.class);
-//                intent.putExtra("id_olahraga",list.get(position).getId());
-//                intent.putExtra("kategori",list.get(position).getNama());
-//                startActivity(intent);
-//            }
-//        });
+        listOlahraga.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(),TampilOlahragaByJenis.class);
+                intent.putExtra("id_olahraga",list.get(position).getId());
+                intent.putExtra("kategori",list.get(position).getNama());
+                startActivity(intent);
+            }
+        });
 
     }
 
