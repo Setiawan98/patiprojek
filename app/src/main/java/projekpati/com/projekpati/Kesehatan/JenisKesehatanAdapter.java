@@ -19,12 +19,12 @@ import projekpati.com.projekpati.R;
 
 public class JenisKesehatanAdapter extends ArrayAdapter<JenisKesehatan> {
     private Context context;
-    private List<JenisKesehatan> kuliner;
+    private List<JenisKesehatan> kesehatan;
 
     public JenisKesehatanAdapter(Context context, int resource, List<JenisKesehatan> objects) {
         super(context,resource,objects);
         this.context = context;
-        this.kuliner = objects;
+        this.kesehatan = objects;
     }
 
     @Override
@@ -37,14 +37,14 @@ public class JenisKesehatanAdapter extends ArrayAdapter<JenisKesehatan> {
         ImageView mImage = rowView.findViewById(R.id.mImage);
 
         URL url = null;
-        if(kuliner.get(pos).getIcon().equals(""))
+        if(kesehatan.get(pos).getIcon().equals(""))
         {
             //tidak terjadi perubahan apapun
         }
         else
         {
             try {
-                url = new URL(kuliner.get(pos).getIcon());
+                url = new URL(kesehatan.get(pos).getIcon());
                 Picasso.get()
                         .load(String.valueOf(url))
                         .resize(150,100).noFade().into(mImage);
@@ -52,7 +52,7 @@ public class JenisKesehatanAdapter extends ArrayAdapter<JenisKesehatan> {
                 e.printStackTrace();
             }
         }
-        textNama.setText(kuliner.get(pos).getNama());
+        textNama.setText(kesehatan.get(pos).getNama());
 
         return rowView;
     }

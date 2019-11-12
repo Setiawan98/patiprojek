@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -78,6 +79,19 @@ public class MenuOlahraga extends AppCompatActivity {
                         }
                     },5000);
 
+                }
+                else if(id==R.id.kategori){
+
+                    KategoriOlahragaFragment second = new KategoriOlahragaFragment();
+                    openFragment(second);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
                 }
                 else if(id==R.id.tambah){
 

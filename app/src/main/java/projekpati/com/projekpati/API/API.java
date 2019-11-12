@@ -27,6 +27,7 @@ import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.Kuliner.KulinerModel;
 import projekpati.com.projekpati.Model.Olahraga.DetilOlahragaBaru;
 import projekpati.com.projekpati.Model.Olahraga.DetilOlahragaModel;
+import projekpati.com.projekpati.Model.Olahraga.JenisOlahragaLengkap;
 import projekpati.com.projekpati.Model.Olahraga.OlahragaModel;
 import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataBaru;
 import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataModel;
@@ -38,12 +39,15 @@ import projekpati.com.projekpati.Model.Pendidikan.JenisPendidikanLengkap;
 import projekpati.com.projekpati.Model.Pendidikan.PendidikanModel;
 import projekpati.com.projekpati.Model.Polisi.DetilPolisiBaru;
 import projekpati.com.projekpati.Model.Polisi.DetilPolisiModel;
+import projekpati.com.projekpati.Model.Polisi.JenisPolisiLengkap;
 import projekpati.com.projekpati.Model.Polisi.PolisiModel;
 import projekpati.com.projekpati.Model.Salon.DetilSalonBaru;
 import projekpati.com.projekpati.Model.Salon.DetilSalonModel;
+import projekpati.com.projekpati.Model.Salon.JenisSalonLengkap;
 import projekpati.com.projekpati.Model.Salon.SalonModel;
 import projekpati.com.projekpati.Model.Spbu.DetilSpbuBaru;
 import projekpati.com.projekpati.Model.Spbu.DetilSpbuModel;
+import projekpati.com.projekpati.Model.Spbu.JenisSpbuLengkap;
 import projekpati.com.projekpati.Model.Spbu.SpbuModel;
 import projekpati.com.projekpati.Model.Tukang.DetilTukangBaru;
 import projekpati.com.projekpati.Model.Tukang.DetilTukangModel;
@@ -573,6 +577,12 @@ public interface API {
             @Field("ref_olahraga_id") String ref_olahraga_id
     );
 
+    @GET("olahraga/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisOlahragaLengkap> tampilJenisOlahraga();
+
+    @GET("olahraga/data?key=TechnoPhoriaIndonesia")
+    Call<OlahragaModel> cariOlahragaByJenis(@Query("IDJenis") String keyword);
+
     //Polisi
     @GET("polisi/data/?key=TechnoPhoriaIndonesia")
     Call<PolisiModel> tampilSemuaPolisi();
@@ -613,6 +623,12 @@ public interface API {
             @Field("user_id") String user_id,
             @Field("ref_polisi_id") String ref_polisi_id
     );
+
+    @GET("polisi/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisPolisiLengkap> tampilJenisPolisi();
+
+    @GET("polisi/data?key=TechnoPhoriaIndonesia")
+    Call<PolisiModel> cariPolisiByJenis(@Query("IDJenis") String keyword);
 
 
     //Salon
@@ -657,6 +673,12 @@ public interface API {
             @Field("ref_salon_id") String ref_salon_id
     );
 
+    @GET("salon/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisSalonLengkap> tampilJenisSalon();
+
+    @GET("salon/data?key=TechnoPhoriaIndonesia")
+    Call<SalonModel> cariSalonByJenis(@Query("IDJenis") String keyword);
+
     //SPBU
 
     @GET("spbu/data/?key=TechnoPhoriaIndonesia")
@@ -698,4 +720,10 @@ public interface API {
             @Field("user_id") String user_id,
             @Field("ref_spbu_id") String ref_spbu_id
     );
+
+    @GET("spbu/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisSpbuLengkap> tampilJenisSpbu();
+
+    @GET("spbu/data?key=TechnoPhoriaIndonesia")
+    Call<SpbuModel> cariSpbuByJenis(@Query("IDJenis") String keyword);
 }

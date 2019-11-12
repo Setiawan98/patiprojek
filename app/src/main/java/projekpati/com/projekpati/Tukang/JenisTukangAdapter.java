@@ -19,12 +19,12 @@ import projekpati.com.projekpati.R;
 
 public class JenisTukangAdapter extends ArrayAdapter<JenisTukang> {
     private Context context;
-    private List<JenisTukang> kuliner;
+    private List<JenisTukang> tukang;
 
     public JenisTukangAdapter(Context context, int resource, List<JenisTukang> objects) {
         super(context,resource,objects);
         this.context = context;
-        this.kuliner = objects;
+        this.tukang = objects;
     }
 
     @Override
@@ -37,14 +37,14 @@ public class JenisTukangAdapter extends ArrayAdapter<JenisTukang> {
         ImageView mImage = rowView.findViewById(R.id.mImage);
 
         URL url = null;
-        if(kuliner.get(pos).getIcon().equals(""))
+        if(tukang.get(pos).getIcon().equals(""))
         {
             //tidak terjadi perubahan apapun
         }
         else
         {
             try {
-                url = new URL(kuliner.get(pos).getIcon());
+                url = new URL(tukang.get(pos).getIcon());
                 Picasso.get()
                         .load(String.valueOf(url))
                         .resize(150,100).noFade().into(mImage);
@@ -52,7 +52,7 @@ public class JenisTukangAdapter extends ArrayAdapter<JenisTukang> {
                 e.printStackTrace();
             }
         }
-        textNama.setText(kuliner.get(pos).getNama());
+        textNama.setText(tukang.get(pos).getNama());
 
         return rowView;
     }
