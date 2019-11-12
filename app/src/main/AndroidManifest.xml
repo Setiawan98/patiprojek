@@ -20,7 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Spbu.DataSaringSpbuActivity"></activity>
+        <activity android:name=".Spbu.TampilSpbuByJenis"></activity>
+        <activity android:name=".Salon.TampilSalonByJenis" />
+        <activity android:name=".Polisi.TampilPolisiByJenis" />
+        <activity android:name=".Olahraga.TampilOlahragaByJenis" />
+        <activity android:name=".Spbu.DataSaringSpbuActivity" />
         <activity android:name=".Spbu.DetilSpbu" />
         <activity android:name=".Spbu.CariSpbu" />
         <activity android:name=".Spbu.DetilMapSpbu" />

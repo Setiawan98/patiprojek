@@ -86,6 +86,19 @@ public class MenuSpbu extends AppCompatActivity {
                     },5000);
 
                 }
+                else if(id==R.id.kategori){
+
+                    KategoriSpbuFragment second = new KategoriSpbuFragment();
+                    openFragment(second);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
+                }
                 else if(id==R.id.tambah){
 
                     TambahSpbuFragment third = new TambahSpbuFragment();

@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.Olahraga;
+package projekpati.com.projekpati.Spbu;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,37 +14,37 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-import projekpati.com.projekpati.Model.Olahraga.JenisOlahraga;
+import projekpati.com.projekpati.Model.Spbu.JenisSpbu;
 import projekpati.com.projekpati.R;
 
-public class JenisOlahragaAdapter extends ArrayAdapter<JenisOlahraga> {
+public class JenisSpbuAdapter extends ArrayAdapter<JenisSpbu> {
     private Context context;
-    private List<JenisOlahraga> olahraga;
+    private List<JenisSpbu> spbu;
 
-    public JenisOlahragaAdapter(Context context, int resource, List<JenisOlahraga> objects) {
+    public JenisSpbuAdapter(Context context, int resource, List<JenisSpbu> objects) {
         super(context,resource,objects);
         this.context = context;
-        this.olahraga = objects;
+        this.spbu = objects;
     }
 
     @Override
     public View getView(final int pos, View convertView, final ViewGroup parent){
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View rowView = inflater.inflate(R.layout.jenis_olahraga_adapter, parent, false);
+        final View rowView = inflater.inflate(R.layout.jenis_spbu_adapter, parent, false);
 
         TextView textNama = (TextView) rowView.findViewById(R.id.mNama);
         ImageView mImage = rowView.findViewById(R.id.mImage);
 
         URL url = null;
-        if(olahraga.get(pos).getIcon().equals(""))
+        if(spbu.get(pos).getIcon().equals(""))
         {
             //tidak terjadi perubahan apapun
         }
         else
         {
             try {
-                url = new URL(olahraga.get(pos).getIcon());
+                url = new URL(spbu.get(pos).getIcon());
                 Picasso.get()
                         .load(String.valueOf(url))
                         .resize(150,100).noFade().into(mImage);
@@ -52,7 +52,7 @@ public class JenisOlahragaAdapter extends ArrayAdapter<JenisOlahraga> {
                 e.printStackTrace();
             }
         }
-        textNama.setText(olahraga.get(pos).getNama());
+        textNama.setText(spbu.get(pos).getNama());
 
         return rowView;
     }
