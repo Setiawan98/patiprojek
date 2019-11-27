@@ -2,6 +2,8 @@ package projekpati.com.projekpati.API;
 
 import projekpati.com.projekpati.Bank.BankAdapter;
 import projekpati.com.projekpati.Model.APIKey;
+import projekpati.com.projekpati.Model.Aspirasi.AspirasiModel;
+import projekpati.com.projekpati.Model.Aspirasi.JenisAspirasiLengkap;
 import projekpati.com.projekpati.Model.Bank.BankModel;
 import projekpati.com.projekpati.Model.Bank.DetilBankBaru;
 import projekpati.com.projekpati.Model.Bank.DetilBankModel;
@@ -754,4 +756,14 @@ public interface API {
 
     @GET("spbu/data?key=TechnoPhoriaIndonesia")
     Call<SpbuModel> cariSpbuByJenis(@Query("IDJenis") String keyword);
+
+    //Aspirasi
+    @GET("aspirasi/data/?key=TechnoPhoriaIndonesia")
+    Call<AspirasiModel> tampilSemuaAspirasi();
+
+    @GET("aspirasi/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<AspirasiModel> loadMoreAspirasi(@Path("id") String id);
+
+    @GET("aspirasi/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisAspirasiLengkap> tampilJenisAspirasi();
 }

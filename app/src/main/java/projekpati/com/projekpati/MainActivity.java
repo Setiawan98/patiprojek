@@ -34,6 +34,7 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import projekpati.com.projekpati.Aspirasi.MenuAspirasi;
 import projekpati.com.projekpati.Bank.MenuBank;
 import projekpati.com.projekpati.FasilitasUmum.MenuFasilitasUmum;
 import projekpati.com.projekpati.Hotel.MenuHotel;
@@ -51,7 +52,7 @@ import projekpati.com.projekpati.bioskop.MenuBioskop;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout kulinerLayout, spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout, pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout, biosopLayout, hotelLayput, koperasiLayout;
+    private LinearLayout kulinerLayout, aspirasiLayout, spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout, pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout, biosopLayout, hotelLayput, koperasiLayout;
     private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
     ScrollView scroll;
@@ -149,6 +150,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        aspirasiLayout = findViewById(R.id.aspirasiLinear);
+        aspirasiLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuAspirasi.class);
+                startActivity(i);
+            }
+        });
 
         kulinerLayout =  findViewById(R.id.kulinerLinear);
         kulinerLayout.setOnClickListener(new View.OnClickListener() {
@@ -190,14 +199,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        fasilitasUmumLayout = findViewById(R.id.fasilitasUmumLinear);
-        fasilitasUmumLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, MenuFasilitasUmum.class);
-                startActivity(i);
-            }
-        });
+//        fasilitasUmumLayout = findViewById(R.id.fasilitasUmumLinear);
+//        fasilitasUmumLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(MainActivity.this, MenuFasilitasUmum.class);
+//                startActivity(i);
+//            }
+//        });
 
         bankLayout = findViewById(R.id.bankLinear);
         bankLayout.setOnClickListener(new View.OnClickListener() {

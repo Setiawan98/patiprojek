@@ -255,8 +255,8 @@
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:id="@+id/fasilitasUmumLinear"
-                                                android:visibility="gone"
+                                                android:id="@+id/aspirasiLinear"
+                                                android:visibility="visible"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="110dp"
                                                 android:layout_marginTop="10dp"
@@ -276,7 +276,7 @@
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="5dp"
-                                                    android:text="Lain-Lain"
+                                                    android:text="Aspirasi"
                                                     android:textColor="@android:color/black" />
 
                                             </LinearLayout>

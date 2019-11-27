@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Koperasi.TampilKoperasiByJenis"></activity>
+        <activity android:name=".Aspirasi.MenuAspirasi"></activity>
+        <activity android:name=".Koperasi.TampilKoperasiByJenis" />
         <activity android:name=".bioskop.TampilBioskopByJenis" />
         <activity android:name=".Hotel.TampilHotelByJenis" />
         <activity android:name=".Spbu.TampilSpbuByJenis" />
