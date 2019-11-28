@@ -124,7 +124,7 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
                 {
                     eNama.setBackgroundTintList(getResources().getColorStateList(R.color.red));
                     eNama.setHintTextColor(getResources().getColor(R.color.red));
-                    Toast.makeText(getContext(),"*Nama Bank tidak bole kosong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"*Nama Polisi tidak bole kosong",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     addKuliner();

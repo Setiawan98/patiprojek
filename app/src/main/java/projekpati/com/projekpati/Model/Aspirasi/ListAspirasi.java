@@ -1,6 +1,9 @@
 package projekpati.com.projekpati.Model.Aspirasi;
 
-public class ListAspirasi {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ListAspirasi implements Parcelable {
     String id, nama, deskripsi, rating_jumlah, rating, file, file_small, latitude, longitude;
     Integer nomor;
     String ref_aspirasi_icon,  ref_aspirasi_nama, ref_aspirasi_warna;
@@ -124,4 +127,63 @@ public class ListAspirasi {
     public void setRef_aspirasi_warna(String ref_aspirasi_warna) {
         this.ref_aspirasi_warna = ref_aspirasi_warna;
     }
+
+    protected ListAspirasi(Parcel in) {
+        id = in.readString();
+        nama = in.readString();
+        rating_jumlah = in.readString();
+        rating = in.readString();
+        file = in.readString();
+        file_small = in.readString();
+        latitude = in.readString();
+        longitude = in.readString();
+        deskripsi = in.readString();
+        if (in.readByte() == 0) {
+            nomor = null;
+        } else {
+            nomor = in.readInt();
+        }
+        ref_aspirasi_icon = in.readString();
+        ref_aspirasi_nama = in.readString();
+        ref_aspirasi_warna = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(nama);
+        dest.writeString(rating_jumlah);
+        dest.writeString(rating);
+        dest.writeString(file);
+        dest.writeString(file_small);
+        dest.writeString(latitude);
+        dest.writeString(longitude);
+        dest.writeString(deskripsi);
+        if (nomor == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(nomor);
+        }
+        dest.writeString(ref_aspirasi_icon);
+        dest.writeString(ref_aspirasi_nama);
+        dest.writeString(ref_aspirasi_warna);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<ListAspirasi> CREATOR = new Creator<ListAspirasi>() {
+        @Override
+        public ListAspirasi createFromParcel(Parcel in) {
+            return new ListAspirasi(in);
+        }
+
+        @Override
+        public ListAspirasi[] newArray(int size) {
+            return new ListAspirasi[size];
+        }
+    };
 }

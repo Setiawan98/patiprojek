@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.Salon;
+package projekpati.com.projekpati.Aspirasi;
 
 
 import android.app.ProgressDialog;
@@ -49,9 +49,9 @@ import java.util.Map;
 
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.Model.Salon.DetilSalonBaru;
-import projekpati.com.projekpati.Model.Salon.JenisSalon;
-import projekpati.com.projekpati.Model.Salon.JenisSalonLengkap;
+import projekpati.com.projekpati.Model.Aspirasi.DetilAspirasiBaru;
+import projekpati.com.projekpati.Model.Aspirasi.JenisAspirasi;
+import projekpati.com.projekpati.Model.Aspirasi.JenisAspirasiLengkap;
 import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,16 +60,15 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TambahSalonFragment extends Fragment implements OnMapReadyCallback, LocationListener {
+public class TambahAspirasiFragment extends Fragment implements OnMapReadyCallback, LocationListener {
 
-
-    public TambahSalonFragment() {
+    public TambahAspirasiFragment() {
         // Required empty public constructor
     }
 
     String[] items_value;
     GoogleMap mMap1, mMap2;
-    EditText eNama, eNomorTelp, eWebsite, eDeskripsi, eEmail;
+    EditText eNama, eDeskripsi;
     Button btnTambah, btnSetLocation;
     SupportMapFragment mapFragment;
     SupportMapFragment mapFragment1;
@@ -87,7 +86,7 @@ public class TambahSalonFragment extends Fragment implements OnMapReadyCallback,
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tambah_salon, container, false);
+        View view = inflater.inflate(R.layout.fragment_tambah_aspirasi, container, false);
 
         init(view);
         setSpinner();
@@ -101,16 +100,16 @@ public class TambahSalonFragment extends Fragment implements OnMapReadyCallback,
         return view;
     }
 
+
     public void init(View view){
-        //Spinner
-        mRefNama = view.findViewById(R.id.mRefNama);
-        
         //editText
         eNama = view.findViewById(R.id.eNama);
-        eNomorTelp = view.findViewById(R.id.mNomorTelp);
-        eEmail = view.findViewById(R.id.mEmail);
-        eWebsite = view.findViewById(R.id.mWebsite);
         eDeskripsi = view.findViewById(R.id.mDeskripsi);
+
+
+        //Spinner
+        mRefNama = view.findViewById(R.id.mRefNama);
+
 
         //Button
         btnSetLocation = view.findViewById(R.id.btnLocation);
@@ -127,7 +126,7 @@ public class TambahSalonFragment extends Fragment implements OnMapReadyCallback,
                 {
                     eNama.setBackgroundTintList(getResources().getColorStateList(R.color.red));
                     eNama.setHintTextColor(getResources().getColor(R.color.red));
-                    Toast.makeText(getContext(),"*Nama Salon tidak bole kosong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"*Nama aspirasi tidak bole kosong",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     addKuliner();
@@ -251,12 +250,12 @@ public class TambahSalonFragment extends Fragment implements OnMapReadyCallback,
     public void setSpinner()
     {
         API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<JenisSalonLengkap> call2 = api2.tampilJenisSalon();
+        Call<JenisAspirasiLengkap> call2 = api2.tampilJenisAspirasi();
 
-        call2.enqueue(new Callback<JenisSalonLengkap>() {
+        call2.enqueue(new Callback<JenisAspirasiLengkap>() {
             @Override
-            public void onResponse(Call<JenisSalonLengkap> call, Response<JenisSalonLengkap> response) {
-                Map<String, JenisSalon> data = response.body().getData();
+            public void onResponse(Call<JenisAspirasiLengkap> call, Response<JenisAspirasiLengkap> response) {
+                Map<String, JenisAspirasi> data = response.body().getData();
 
                 String[] stringArray;
                 stringArray = new String[response.body().getJumlah_data()];
@@ -273,11 +272,12 @@ public class TambahSalonFragment extends Fragment implements OnMapReadyCallback,
             }
 
             @Override
-            public void onFailure(Call<JenisSalonLengkap> call, Throwable t) {
+            public void onFailure(Call<JenisAspirasiLengkap> call, Throwable t) {
 
             }
         });
     }
+
     private BitmapDescriptor bitmapDescriptor(Context context, int vectorID)
     {
         Drawable vectorDrawable = ContextCompat.getDrawable(context,vectorID);
@@ -302,9 +302,6 @@ public class TambahSalonFragment extends Fragment implements OnMapReadyCallback,
         progressDialog.show();
 
         String nama = eNama.getText().toString();
-        String telp = eNomorTelp.getText().toString();
-        String email = eEmail.getText().toString();
-        String website = eWebsite.getText().toString();
         String deskripsi = eDeskripsi.getText().toString();
         String latitude;
         String longitude;
@@ -318,13 +315,13 @@ public class TambahSalonFragment extends Fragment implements OnMapReadyCallback,
             longitude = String.valueOf(location.longitude);
         }
 
+
+
         String value = items_value[mRefNama.getSelectedItemPosition()];
 
         Log.d("nama",nama);
-        Log.d("telp",telp);
-        Log.d("email",email);
-        Log.d("website",website);
         Log.d("deskripsi",deskripsi);
+        Log.d("cobain", mRefNama.getSelectedItem().toString());
         if(location!=null)
         {
             Log.d("latitude",latitude);
@@ -333,11 +330,11 @@ public class TambahSalonFragment extends Fragment implements OnMapReadyCallback,
 
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<DetilSalonBaru> call = api.addDataSalon(nama,telp,email,website,deskripsi,latitude,longitude,"0",value);
+        Call<DetilAspirasiBaru> call = api.addDataAspirasi(nama, deskripsi, "0",latitude,longitude,"0",value);
 
-        call.enqueue(new Callback<DetilSalonBaru>() {
+        call.enqueue(new Callback<DetilAspirasiBaru>() {
             @Override
-            public void onResponse(Call<DetilSalonBaru> call, final Response<DetilSalonBaru> response) {
+            public void onResponse(Call<DetilAspirasiBaru> call, final Response<DetilAspirasiBaru> response) {
                 Toast.makeText(getContext(),"Sukses", Toast.LENGTH_SHORT).show();
                 Log.w("Response", new Gson().toJson(response.body()));
                 progressDialog.dismiss();
@@ -345,7 +342,7 @@ public class TambahSalonFragment extends Fragment implements OnMapReadyCallback,
             }
 
             @Override
-            public void onFailure(Call<DetilSalonBaru> call, Throwable t) {
+            public void onFailure(Call<DetilAspirasiBaru> call, Throwable t) {
                 progressDialog.dismiss();
                 Toast.makeText(getContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
@@ -396,6 +393,4 @@ public class TambahSalonFragment extends Fragment implements OnMapReadyCallback,
     public void onProviderDisabled(String provider) {
 
     }
-
-
 }

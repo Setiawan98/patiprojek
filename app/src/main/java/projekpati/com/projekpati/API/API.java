@@ -7,6 +7,7 @@ import projekpati.com.projekpati.Model.Agenda.DetilAgendaBaru;
 import projekpati.com.projekpati.Model.Agenda.DetilAgendaModel;
 import projekpati.com.projekpati.Model.Agenda.JenisAgendaLengkap;
 import projekpati.com.projekpati.Model.Aspirasi.AspirasiModel;
+import projekpati.com.projekpati.Model.Aspirasi.DetilAspirasiBaru;
 import projekpati.com.projekpati.Model.Aspirasi.DetilAspirasiModel;
 import projekpati.com.projekpati.Model.Aspirasi.JenisAspirasiLengkap;
 import projekpati.com.projekpati.Model.Bank.BankModel;
@@ -794,6 +795,18 @@ public interface API {
 
     @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=aspirasi")
     Call<KomentarLengkap> getKomentarAspirasi(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("aspirasi/update?key=TechnoPhoriaIndonesia")
+    Call<DetilAspirasiBaru> addDataAspirasi(
+            @Field("nama") String nama,
+            @Field("deskripsi") String deskripsi,
+            @Field("tgl") String tgl,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_aspirasi_id") String ref_spbu_id
+    );
 
     //Agenda
     @GET("agenda/data/?key=TechnoPhoriaIndonesia")

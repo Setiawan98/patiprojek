@@ -358,30 +358,30 @@ public class DataAspirasiFragment extends Fragment implements OnMapReadyCallback
                 return view;
             }
         });
-//        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-//            @Override
-//            public void onInfoWindowClick(Marker marker) {
-//                String id = (String) marker.getTag();
-//                Intent intent = new Intent(getContext(),DetilAspirasi.class);
-//                intent.putExtra("id_aspirasi",id);
-//                Log.d("idwoy1",id);
-//                startActivity(intent);
-//
-//
-//            }
-//        });
-//        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-//            @Override
-//            public void onMapClick(LatLng latLng) {
-//                Intent i = new Intent(getContext(), DetilMapSalon.class);
-//                Bundle bundle = new Bundle();
-//
-//                // bundle.putParcelableArrayList("list",listLatn);
-//
-//                i.putParcelableArrayListExtra("list",listLatn);
-//                startActivity(i);
-//            }
-//        });
+        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                String id = (String) marker.getTag();
+                Intent intent = new Intent(getContext(),DetilAspirasi.class);
+                intent.putExtra("id_aspirasi",id);
+                Log.d("idwoy1",id);
+                startActivity(intent);
+
+
+            }
+        });
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                Intent i = new Intent(getContext(), DetilMapAspirasi.class);
+                Bundle bundle = new Bundle();
+
+                // bundle.putParcelableArrayList("list",listLatn);
+
+                i.putParcelableArrayListExtra("list",listLatn);
+                startActivity(i);
+            }
+        });
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         googleMap.clear();

@@ -20,7 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Aspirasi.DetilAspirasi"></activity>
+        <activity android:name=".Aspirasi.DataSaringAspirasiActivity"></activity>
+        <activity android:name=".Aspirasi.DetilMapAspirasi" />
+        <activity android:name=".Aspirasi.DetilAspirasi" />
         <activity android:name=".Aspirasi.TampilAspirasiByJenis" />
         <activity android:name=".Aspirasi.CariAspirasi" />
         <activity android:name=".Agenda.TampilAgendaByJenis" />
