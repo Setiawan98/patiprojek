@@ -7,6 +7,7 @@ import projekpati.com.projekpati.Model.Agenda.DetilAgendaBaru;
 import projekpati.com.projekpati.Model.Agenda.DetilAgendaModel;
 import projekpati.com.projekpati.Model.Agenda.JenisAgendaLengkap;
 import projekpati.com.projekpati.Model.Aspirasi.AspirasiModel;
+import projekpati.com.projekpati.Model.Aspirasi.DetilAspirasiModel;
 import projekpati.com.projekpati.Model.Aspirasi.JenisAspirasiLengkap;
 import projekpati.com.projekpati.Model.Bank.BankModel;
 import projekpati.com.projekpati.Model.Bank.DetilBankBaru;
@@ -771,6 +772,28 @@ public interface API {
     @GET("aspirasi/jenis?key=TechnoPhoriaIndonesia")
     Call<JenisAspirasiLengkap> tampilJenisAspirasi();
 
+    @GET("aspirasi/data/?key=TechnoPhoriaIndonesia")
+    Call<AspirasiModel> cariAspirasibyAPI(@Query("cari") String keyword);
+
+    @GET("aspirasi/data?key=TechnoPhoriaIndonesia")
+    Call<AspirasiModel> cariAspirasiByJenis(@Query("IDJenis") String keyword);
+
+    @GET("aspirasi/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilAspirasiModel> detailAspirasi(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=aspirasi")
+    Call<postKomentar> addKomentarBalasAspirasi(@Query("dataID") String data_id,
+                                            @Field("nama") String nama,
+                                            @Field("email") String email,
+                                            @Field("telp") String telp,
+                                            @Field("website") String website,
+                                            @Field("parentID") String parentID,
+                                            @Field("isi") String isi,
+                                            @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=aspirasi")
+    Call<KomentarLengkap> getKomentarAspirasi(@Query("dataID") String data_id);
 
     //Agenda
     @GET("agenda/data/?key=TechnoPhoriaIndonesia")

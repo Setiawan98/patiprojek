@@ -197,8 +197,8 @@ public class MenuAspirasi extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-//            Intent intent = new Intent(MenuAspirasi.this, CariSalon.class);
-//            startActivity(intent);
+            Intent intent = new Intent(MenuAspirasi.this, CariAspirasi.class);
+            startActivity(intent);
 
         }
         else if(id==android.R.id.home)

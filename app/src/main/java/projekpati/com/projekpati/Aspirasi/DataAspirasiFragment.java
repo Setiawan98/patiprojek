@@ -177,14 +177,14 @@ public class DataAspirasiFragment extends Fragment implements OnMapReadyCallback
             }
         });
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getContext(), DetilAspirasi.class);
-//                intent.putExtra("id_aspirasi",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), DetilAspirasi.class);
+                intent.putExtra("id_aspirasi",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
     
     public void loadMoreData(){
@@ -233,14 +233,14 @@ public class DataAspirasiFragment extends Fragment implements OnMapReadyCallback
             }
         });
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getContext(),DetilAspirasi.class);
-//                intent.putExtra("id_aspirasi",list.get(position).getId());
-//                startActivity(intent);
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(),DetilAspirasi.class);
+                intent.putExtra("id_aspirasi",list.get(position).getId());
+                startActivity(intent);
+            }
+        });
     }
 
 

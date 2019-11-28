@@ -85,15 +85,15 @@ public class KategoriAspirasiFragment extends Fragment {
             }
         });
 
-//        listAspirasi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent = new Intent(getContext(),TampilSalonByJenis.class);
-//                intent.putExtra("id_aspirasi",list.get(position).getId());
-//                intent.putExtra("kategori",list.get(position).getNama());
-//                startActivity(intent);
-//            }
-//        });
+        listAspirasi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(),TampilAspirasiByJenis.class);
+                intent.putExtra("id_aspirasi",list.get(position).getId());
+                intent.putExtra("kategori",list.get(position).getNama());
+                startActivity(intent);
+            }
+        });
 
     }
 
