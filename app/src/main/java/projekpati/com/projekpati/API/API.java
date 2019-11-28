@@ -37,6 +37,10 @@ import projekpati.com.projekpati.Model.Kuliner.JenisKulinerLengkap;
 import projekpati.com.projekpati.Model.Kuliner.JenisMakananLengkap;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.Kuliner.KulinerModel;
+import projekpati.com.projekpati.Model.Lapak.DetilLapakBaru;
+import projekpati.com.projekpati.Model.Lapak.DetilLapakModel;
+import projekpati.com.projekpati.Model.Lapak.JenisLapakLengkap;
+import projekpati.com.projekpati.Model.Lapak.LapakModel;
 import projekpati.com.projekpati.Model.Olahraga.DetilOlahragaBaru;
 import projekpati.com.projekpati.Model.Olahraga.DetilOlahragaModel;
 import projekpati.com.projekpati.Model.Olahraga.JenisOlahragaLengkap;
@@ -858,4 +862,54 @@ public interface API {
             @Field("ref_agenda_id") String ref_agenda_id
 
     );
+
+    //Lapak
+
+    @GET("lapak/data/?key=TechnoPhoriaIndonesia")
+    Call<LapakModel> tampilSemuaLapak();
+
+    @GET("lapak/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<LapakModel> loadMoreLapak(@Path("id") String id);
+
+    @GET("lapak/data/?key=TechnoPhoriaIndonesia")
+    Call<LapakModel> cariLapakbyAPI(@Query("cari") String keyword);
+
+    @GET("lapak/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilLapakModel> detailLapak(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=lapak")
+    Call<postKomentar> addKomentarBalasLapak(@Query("dataID") String data_id,
+                                            @Field("nama") String nama,
+                                            @Field("email") String email,
+                                            @Field("telp") String telp,
+                                            @Field("website") String website,
+                                            @Field("parentID") String parentID,
+                                            @Field("isi") String isi,
+                                            @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=lapak")
+    Call<KomentarLengkap> getKomentarLapak(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("lapak/update?key=TechnoPhoriaIndonesia")
+    Call<DetilLapakBaru> addDataLapak(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("barang") String barang,
+            @Field("harga") String harga,
+            @Field("user_id") String user_id,
+            @Field("ref_lapak_id") String ref_spbu_id
+    );
+
+    @GET("lapak/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisLapakLengkap> tampilJenisLapak();
+
+    @GET("lapak/data?key=TechnoPhoriaIndonesia")
+    Call<LapakModel> cariLapakByJenis(@Query("IDJenis") String keyword);
 }

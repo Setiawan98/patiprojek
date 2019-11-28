@@ -20,7 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Aspirasi.DataSaringAspirasiActivity"></activity>
+        <activity android:name=".Lapak.TampilLapakByJenis"></activity>
+        <activity android:name=".Lapak.DetilLapak" />
+        <activity android:name=".Lapak.DataSaringLapakActicity" />
+        <activity android:name=".Lapak.DetilMapLapak" />
+        <activity android:name=".Lapak.MenuLapak" />
+        <activity android:name=".Lapak.CariLapak" />
+        <activity android:name=".Aspirasi.DataSaringAspirasiActivity" />
         <activity android:name=".Aspirasi.DetilMapAspirasi" />
         <activity android:name=".Aspirasi.DetilAspirasi" />
         <activity android:name=".Aspirasi.TampilAspirasiByJenis" />

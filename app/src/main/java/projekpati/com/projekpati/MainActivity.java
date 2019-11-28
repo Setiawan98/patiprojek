@@ -41,6 +41,7 @@ import projekpati.com.projekpati.Hotel.MenuHotel;
 import projekpati.com.projekpati.Kesehatan.MenuKesehatan;
 import projekpati.com.projekpati.Koperasi.MenuKoperasi;
 import projekpati.com.projekpati.Kuliner.MenuKuliner;
+import projekpati.com.projekpati.Lapak.MenuLapak;
 import projekpati.com.projekpati.Olahraga.MenuOlahraga;
 import projekpati.com.projekpati.Pariwisata.MenuPariwisata;
 import projekpati.com.projekpati.Pendidikan.MenuPendidikan;
@@ -52,7 +53,7 @@ import projekpati.com.projekpati.bioskop.MenuBioskop;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout kulinerLayout, aspirasiLayout, spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout, pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout, biosopLayout, hotelLayput, koperasiLayout;
+    private LinearLayout kulinerLayout, lapakLayout, aspirasiLayout, spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout, pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout, biosopLayout, hotelLayput, koperasiLayout;
     private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
     ScrollView scroll;
@@ -155,6 +156,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MenuAspirasi.class);
+                startActivity(i);
+            }
+        });
+
+        lapakLayout = findViewById(R.id.lapakLinear);
+        lapakLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuLapak.class);
                 startActivity(i);
             }
         });

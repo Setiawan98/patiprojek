@@ -1,13 +1,12 @@
-package projekpati.com.projekpati.Aspirasi;
+package projekpati.com.projekpati.Lapak;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import projekpati.com.projekpati.CustomInfoWindowGoogleMaps;
-import projekpati.com.projekpati.Model.Aspirasi.ListAspirasi;
+import projekpati.com.projekpati.Model.Lapak.ListLapak;
 import projekpati.com.projekpati.Model.MyItem;
 import projekpati.com.projekpati.R;
-import projekpati.com.projekpati.Salon.CustomClusterRendererSalon;
 
 import android.content.Context;
 import android.content.Intent;
@@ -44,9 +43,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class DetilMapAspirasi extends AppCompatActivity implements OnMapReadyCallback {
-
-    ArrayList<ListAspirasi> listLatn;
+public class DetilMapLapak extends AppCompatActivity implements OnMapReadyCallback {
+    ArrayList<ListLapak> listLatn;
     LinearLayout loadlLayout;
     View beforeClick;
     SupportMapFragment mapFragment;
@@ -57,15 +55,15 @@ public class DetilMapAspirasi extends AppCompatActivity implements OnMapReadyCal
     Marker beforeShow;
     Marker beforeClickLayout;
     private ClusterManager<MyItem> mClusterManager;
-    CustomClusterRendererAspirasi renderer;
+    CustomClusterRendererLapak renderer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detil_map_aspirasi);
+        setContentView(R.layout.activity_detil_map_lapak);
 
         Toolbar toolbar;
 
-        toolbar = (Toolbar) findViewById(R.id.aspirasiToolbar);
+        toolbar = (Toolbar) findViewById(R.id.lapakToolbar);
         loadlLayout = (LinearLayout) findViewById(R.id.loadLayout);
         horizontalScrollView = (HorizontalScrollView) findViewById(R.id.Horizontalscroll) ;
         title = toolbar.findViewById(R.id.title);
@@ -105,14 +103,14 @@ public class DetilMapAspirasi extends AppCompatActivity implements OnMapReadyCal
         mMap.setOnMarkerClickListener(mClusterManager);
         mMap.setOnInfoWindowClickListener(mClusterManager);
 
-        renderer = new CustomClusterRendererAspirasi(this, mMap, mClusterManager);
+        renderer = new CustomClusterRendererLapak(this, mMap, mClusterManager);
         googleMap.setOnMarkerClickListener(mClusterManager);
         mClusterManager.setRenderer(renderer);
 
         mClusterManager.setOnClusterClickListener(new ClusterManager.OnClusterClickListener<MyItem>() {
             @Override
             public boolean onClusterClick(Cluster<MyItem> cluster) {
-                Toast.makeText(DetilMapAspirasi.this,"cluster Cliced", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetilMapLapak.this,"cluster Cliced", Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -150,7 +148,7 @@ public class DetilMapAspirasi extends AppCompatActivity implements OnMapReadyCal
         mClusterManager.cluster();
 
 
-        ListAspirasi();
+        ListLapak();
 
     }
 
@@ -178,7 +176,7 @@ public class DetilMapAspirasi extends AppCompatActivity implements OnMapReadyCal
 
         if(id==android.R.id.home)
         {
-            Intent i = new Intent(DetilMapAspirasi.this, MenuAspirasi.class);
+            Intent i = new Intent(DetilMapLapak.this, MenuLapak.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);
@@ -195,7 +193,7 @@ public class DetilMapAspirasi extends AppCompatActivity implements OnMapReadyCal
     }
 
 
-    public void ListAspirasi()
+    public void ListLapak()
     {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         int size = listLatn.size();
@@ -205,7 +203,7 @@ public class DetilMapAspirasi extends AppCompatActivity implements OnMapReadyCal
 
         for(int i =0;i<size;i++)
         {
-            final ListAspirasi lk = listLatn.get(i);
+            final ListLapak lk = listLatn.get(i);
             Log.d("nama",lk.getNama());
 
             if(lk!=null)
@@ -235,7 +233,7 @@ public class DetilMapAspirasi extends AppCompatActivity implements OnMapReadyCal
                     }
                 }
                 titleText.setText(lk.getNama());
-                titleJenis.setText(lk.getRef_aspirasi_warna());
+                titleJenis.setText(lk.getRef_lapak_nama());
                 //titleJenis.setTextColor(getResources().getColor(R.color.blue));
 //                if(lk.getRef_tukang_nama()!=null) {
 //
@@ -275,8 +273,8 @@ public class DetilMapAspirasi extends AppCompatActivity implements OnMapReadyCal
                 btnDetail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(DetilMapAspirasi.this, DetilAspirasi.class);
-                        intent.putExtra("id_aspirasi",lk.getId());
+                        Intent intent = new Intent(DetilMapLapak.this, DetilLapak.class);
+                        intent.putExtra("id_lapak",lk.getId());
                         startActivity(intent);
                     }
                 });
@@ -343,11 +341,12 @@ public class DetilMapAspirasi extends AppCompatActivity implements OnMapReadyCal
 
     private void addItems(){
 
-        for(ListAspirasi lk : listLatn) {
+        for(ListLapak lk : listLatn) {
 
-            MyItem offsetItem = new MyItem(Double.parseDouble(lk.getLatitude()),Double.parseDouble(lk.getLongitude()),lk.getNama(),lk.getRef_aspirasi_nama());
+            MyItem offsetItem = new MyItem(Double.parseDouble(lk.getLatitude()),Double.parseDouble(lk.getLongitude()),lk.getNama(),lk.getAlamat(),lk.getRef_lapak_nama());
             mClusterManager.addItem(offsetItem);
         }
 
     }
+
 }
