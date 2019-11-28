@@ -2,6 +2,10 @@ package projekpati.com.projekpati.API;
 
 import projekpati.com.projekpati.Bank.BankAdapter;
 import projekpati.com.projekpati.Model.APIKey;
+import projekpati.com.projekpati.Model.Agenda.AgendaModel;
+import projekpati.com.projekpati.Model.Agenda.DetilAgendaBaru;
+import projekpati.com.projekpati.Model.Agenda.DetilAgendaModel;
+import projekpati.com.projekpati.Model.Agenda.JenisAgendaLengkap;
 import projekpati.com.projekpati.Model.Aspirasi.AspirasiModel;
 import projekpati.com.projekpati.Model.Aspirasi.JenisAspirasiLengkap;
 import projekpati.com.projekpati.Model.Bank.BankModel;
@@ -766,4 +770,56 @@ public interface API {
 
     @GET("aspirasi/jenis?key=TechnoPhoriaIndonesia")
     Call<JenisAspirasiLengkap> tampilJenisAspirasi();
+
+
+    //Agenda
+    @GET("agenda/data/?key=TechnoPhoriaIndonesia")
+    Call<AgendaModel> tampilSemuaAgenda();
+
+    @GET("agenda/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<AgendaModel> loadMoreAgenda(@Path("id") String id);
+
+    @GET("agenda/data?key=TechnoPhoriaIndonesia")
+    Call<AgendaModel> cariAgendaByJenis(@Query("IDJenis") String keyword);
+
+    @GET("agenda/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisAgendaLengkap> tampilJenisAgenda();
+
+    @GET("agenda/data/?key=TechnoPhoriaIndonesia")
+    Call<AgendaModel> cariAgendabyAPI(@Query("cari") String keyword);
+
+    @GET("agenda/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilAgendaModel> detailAgenda(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=agenda")
+    Call<postKomentar> addKomentarBalasAgenda(@Query("dataID") String data_id,
+                                              @Field("nama") String nama,
+                                              @Field("email") String email,
+                                              @Field("telp") String telp,
+                                              @Field("website") String website,
+                                              @Field("parentID") String parentID,
+                                              @Field("isi") String isi,
+                                              @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=agenda")
+    Call<KomentarLengkap> getKomentarAgenda(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("agenda/update?key=TechnoPhoriaIndonesia")
+    Call<DetilAgendaBaru> addDataAgenda(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("tgl_mulai") String tgl_mulai,
+            @Field("tgl_selesai") String tgl_selesai,
+            @Field("harga_tiket") String harga_tiket,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_agenda_id") String ref_agenda_id
+
+    );
 }

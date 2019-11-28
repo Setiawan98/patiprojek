@@ -1,9 +1,13 @@
-package projekpati.com.projekpati.Bank;
+package projekpati.com.projekpati.Agenda;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -13,43 +17,33 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.FasilitasUmum.DataFasilitasUmumFragment;
-import projekpati.com.projekpati.Kesehatan.KategoriKesehatanFragment;
-import projekpati.com.projekpati.Kesehatan.MenuKesehatan;
+import projekpati.com.projekpati.Agenda.CariAgenda;
+import projekpati.com.projekpati.Agenda.DataAgendaFragment;
+import projekpati.com.projekpati.Agenda.KategoriAgendaFragment;
+import projekpati.com.projekpati.Agenda.MenuAgenda;
+import projekpati.com.projekpati.Agenda.SaringAgendaFragment;
+import projekpati.com.projekpati.Agenda.TambahAgendaFragment;
 import projekpati.com.projekpati.MainActivity;
-import projekpati.com.projekpati.Model.Bank.BankModel;
-import projekpati.com.projekpati.Model.Bank.ListBank;
-import projekpati.com.projekpati.Model.FasilitasUmum.FasilitasUmumModel;
-import projekpati.com.projekpati.Model.FasilitasUmum.ListFasilitasUmum;
+import projekpati.com.projekpati.Model.Agenda.AgendaModel;
+import projekpati.com.projekpati.Model.Agenda.ListAgenda;
 import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MenuBank extends AppCompatActivity {
+public class MenuAgenda extends AppCompatActivity {
     ListView listView;
     EditText cari;
-    List<ListBank> list = new ArrayList<>();
+    List<ListAgenda> list = new ArrayList<>();
     Toolbar toolbar;
     TextView title;
     ImageView iconView;
@@ -59,9 +53,9 @@ public class MenuBank extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_bank);
+        setContentView(R.layout.activity_menu_agenda);
 
-        toolbar = (Toolbar) findViewById(R.id.bankToolbar);
+        toolbar = (Toolbar) findViewById(R.id.agendaToolbar);
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
         iconView = toolbar.findViewById(R.id.icon);
@@ -74,14 +68,14 @@ public class MenuBank extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        final BottomNavigationView bottomNavigationView = findViewById(R.id.menuBank);
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.menuAgenda);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
 
                 if(id==R.id.beranda){
-                    DataBankFragment first = new DataBankFragment();
+                    DataAgendaFragment first = new DataAgendaFragment();
                     openFragment(first);
                     //status =1;
                     bottomNavigationView.setEnabled(false);
@@ -96,7 +90,7 @@ public class MenuBank extends AppCompatActivity {
                 }
                 else if(id==R.id.kategori){
 
-                    KategoriBankFragment second = new KategoriBankFragment();
+                    KategoriAgendaFragment second = new KategoriAgendaFragment();
                     openFragment(second);
                     bottomNavigationView.setEnabled(false);
                     Handler handler = new Handler();
@@ -110,7 +104,7 @@ public class MenuBank extends AppCompatActivity {
                 }
                 else if(id==R.id.tambah){
 
-                    TambahBankFragment third = new TambahBankFragment();
+                    TambahAgendaFragment third = new TambahAgendaFragment();
                     openFragment(third);
                     bottomNavigationView.setEnabled(false);
                     Handler handler = new Handler();
@@ -125,7 +119,7 @@ public class MenuBank extends AppCompatActivity {
                 }
                 else if(id==R.id.saring){
 //
-                    SaringBankFragment fouth = new SaringBankFragment();
+                    SaringAgendaFragment fouth = new SaringAgendaFragment();
                     openFragment(fouth);
                     bottomNavigationView.setEnabled(false);
                     Handler handler = new Handler();
@@ -147,7 +141,7 @@ public class MenuBank extends AppCompatActivity {
             }
         });
 
-        DataBankFragment first = new DataBankFragment();
+        DataAgendaFragment first = new DataAgendaFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment, first).commit();
     }
@@ -155,14 +149,14 @@ public class MenuBank extends AppCompatActivity {
     public void getIconImage(){
         //defining a progress dialog to show while signing up
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<BankModel> call = api.tampilSemuaBank();
+        Call<AgendaModel> call = api.tampilSemuaAgenda();
 
-        call.enqueue(new Callback<BankModel>() {
+        call.enqueue(new Callback<AgendaModel>() {
             @Override
-            public void onResponse(Call<BankModel> call, final Response<BankModel> response) {
-                Map<String, ListBank> data = response.body().getData();
+            public void onResponse(Call<AgendaModel> call, final Response<AgendaModel> response) {
+                Map<String, ListAgenda> data = response.body().getData();
                 Log.d("iconnn",response.body().getIcon());
-                title.setText("Bank");
+                title.setText("Agenda");
 
 //                try {
 //                    URL url = new URL(response.body().getIcon());
@@ -184,7 +178,7 @@ public class MenuBank extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<BankModel> call, Throwable t) {
+            public void onFailure(Call<AgendaModel> call, Throwable t) {
 
                 Log.d("onResponse", t.toString());
             }
@@ -206,13 +200,13 @@ public class MenuBank extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-            Intent intent = new Intent(MenuBank.this, CariBank.class);
+            Intent intent = new Intent(MenuAgenda.this, CariAgenda.class);
             startActivity(intent);
 
         }
         else if(id==android.R.id.home)
         {
-            Intent i = new Intent(MenuBank.this, MainActivity.class);
+            Intent i = new Intent(MenuAgenda.this, MainActivity.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);

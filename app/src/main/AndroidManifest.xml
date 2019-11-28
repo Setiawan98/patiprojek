@@ -20,7 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Aspirasi.MenuAspirasi"></activity>
+        <activity android:name=".Agenda.TampilAgendaByJenis"></activity>
+        <activity android:name=".Agenda.MenuAgenda" />
+        <activity android:name=".Agenda.DetilMapAgenda" />
+        <activity android:name=".Agenda.DetilAgenda" />
+        <activity android:name=".Agenda.DataSaringAgendaActivity" />
+        <activity android:name=".Agenda.CariAgenda" />
+        <activity android:name=".Aspirasi.MenuAspirasi" />
         <activity android:name=".Koperasi.TampilKoperasiByJenis" />
         <activity android:name=".bioskop.TampilBioskopByJenis" />
         <activity android:name=".Hotel.TampilHotelByJenis" />
