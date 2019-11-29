@@ -127,6 +127,7 @@
                                         android:textSize="7.5pt" />
 
                                     <TextView
+                                        android:visibility="gone"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="right"
@@ -283,7 +284,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal"
-                                    android:layout_marginBottom="30dp"
+
                                     android:layout_marginTop="10dp">
                                     <ImageView
                                         android:layout_width="15dp"
@@ -301,6 +302,50 @@
                                         android:layout_height="wrap_content"
                                         android:textColor="@android:color/black"/>
                                 </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginTop="10dp">
+                                    <ImageView
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="10dp"
+                                        android:src="@drawable/ic_date_range_black_24dp"
+                                        android:layout_marginRight="10dp">
+                                    </ImageView>
+                                    <TextView
+                                        android:id="@+id/mTanggal"
+                                        android:paddingRight="20dp"
+                                        android:textSize="7.5pt"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@android:color/black"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginBottom="30dp"
+                                    android:layout_marginTop="10dp">
+                                    <ImageView
+                                        android:layout_width="15dp"
+                                        android:layout_height="15dp"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginLeft="10dp"
+                                        android:src="@drawable/ic_attach_money_black_24dp"
+                                        android:layout_marginRight="10dp">
+                                    </ImageView>
+                                    <TextView
+                                        android:id="@+id/mHargaTiket"
+                                        android:paddingRight="20dp"
+                                        android:textSize="7.5pt"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@android:color/black"/>
+                                </LinearLayout>
+
 
                             </LinearLayout>
 
@@ -314,6 +359,7 @@
                                 android:weightSum="8">
 
                                 <LinearLayout
+                                    android:visibility="gone"
                                     android:id="@+id/buttonJam"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"

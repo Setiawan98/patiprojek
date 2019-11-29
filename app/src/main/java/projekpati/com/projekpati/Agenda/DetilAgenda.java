@@ -48,7 +48,7 @@ import retrofit2.Response;
 
 public class DetilAgenda extends AppCompatActivity {
 
-    TextView textNama, textAlamat, textTelepon, textDeskripsi, textEmail, refnama, textWebsite, ratingsum, ratingpeople;
+    TextView textNama, textAlamat, textTelepon, textDeskripsi, textEmail, refnama, textWebsite, ratingsum, ratingpeople, textTanggal, textHargaTiket;
     TextView senin, selasa, rabu, kamis, jumat, sabtu, minggu;
     EditText komentar;
     RatingBar ratingstar;
@@ -112,6 +112,8 @@ public class DetilAgenda extends AppCompatActivity {
         pager = findViewById(R.id.view_pager);
         ratingstar = findViewById(R.id.ratingstar);
         pbKomen = findViewById(R.id.progress_bar);
+        textTanggal = findViewById(R.id.mTanggal);
+        textHargaTiket= findViewById(R.id.mHargaTiket);
         ratingstar.setMax(5);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         title.setText("Detil Agenda");
@@ -414,6 +416,8 @@ public class DetilAgenda extends AppCompatActivity {
                 textEmail.setText(response.body().getData().getEmail());
                 textWebsite.setText(response.body().getData().getWebsite());
                 textTelepon.setText(response.body().getData().getTelp());
+                textHargaTiket.setText(response.body().getData().getHarga_tiket());
+                textTanggal .setText(response.body().getData().getTgl_mulai()+" - "+response.body().getData().getTgl_selesai());
 /*                senin.setText(response.body().getData().getHari_1());
                 selasa.setText(response.body().getData().getHari_2());
                 rabu.setText(response.body().getData().getHari_3());

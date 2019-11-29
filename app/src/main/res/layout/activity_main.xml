@@ -308,8 +308,8 @@
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:id="@+id/apa2"
-                                                android:visibility="invisible"
+                                                android:id="@+id/agendaLinear"
+
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="110dp"
                                                 android:layout_marginLeft="5dp"
@@ -330,7 +330,7 @@
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="5dp"
-                                                    android:text="Pariwisata"
+                                                    android:text="Agenda"
                                                     android:textColor="@android:color/black" />
 
                                             </LinearLayout>

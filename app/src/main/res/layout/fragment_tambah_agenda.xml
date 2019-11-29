@@ -198,16 +198,49 @@
                             android:layout_marginLeft="5dp"
                             android:text="Tanggal Mulai"
                             android:textColor="@color/black"
-                            android:textSize="6pt"/>
-                        <EditText
-                            android:id="@+id/mTglSelesai"
-                            android:layout_marginTop="-20dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginLeft="5dp"
                             android:textSize="6pt"
-                            android:layout_marginRight="20dp"
-                            android:layout_height="50dp"
-                            android:hint="Tanggal Selesai"/>
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="4">
+                            <EditText
+                                android:layout_weight="1"
+                                android:id="@+id/mDDMulai"
+                                android:layout_marginTop="-20dp"
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:maxLength="2"
+                                android:digits="0123456789"
+                                android:textSize="6pt"
+                                android:layout_height="50dp"
+                                android:hint="DD"/>
+                            <EditText
+                                android:layout_weight="1"
+                                android:id="@+id/mMMMulai"
+                                android:layout_marginTop="-20dp"
+                                android:layout_width="match_parent"
+                                android:textSize="6pt"
+                                android:layout_marginLeft="5dp"
+                                android:layout_height="50dp"
+                                android:hint="MM"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
+                            <EditText
+                                android:layout_weight="2"
+                                android:id="@+id/mYYYYMulai"
+                                android:layout_marginTop="-20dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="match_parent"
+                                android:textSize="6pt"
+                                android:layout_height="50dp"
+                                android:hint="YYYY"
+                                android:maxLength="4"
+                                android:digits="0123456789"/>
+
+                        </LinearLayout>
+
 
                     </LinearLayout>
                     <LinearLayout
@@ -221,23 +254,112 @@
                             android:layout_height="30dp"
                             android:layout_marginTop="5dp"
                             android:layout_marginLeft="5dp"
-                            android:text="Tanggal Mulai"
+                            android:text="Tanggal Selesai"
                             android:textColor="@color/black"
                             android:textSize="6pt"/>
-                        <EditText
-                            android:id="@+id/mTglMulai"
-                            android:layout_marginTop="-20dp"
-                            android:layout_width="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:textSize="6pt"
-                            android:layout_marginRight="20dp"
-                            android:layout_height="50dp"
-                            android:hint="Tanggal Mulai"/>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="4">
+                            <EditText
+                                android:layout_weight="1"
+                                android:id="@+id/mDDSelesai"
+                                android:layout_marginTop="-20dp"
+                                android:layout_width="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:maxLength="2"
+                                android:digits="0123456789"
+                                android:textSize="6pt"
+                                android:layout_height="50dp"
+                                android:hint="DD"/>
+                            <EditText
+                                android:layout_weight="1"
+                                android:id="@+id/mMMSelesai"
+                                android:layout_marginTop="-20dp"
+                                android:layout_width="match_parent"
+                                android:textSize="6pt"
+                                android:layout_marginLeft="5dp"
+                                android:layout_height="50dp"
+                                android:hint="MM"
+                                android:maxLength="2"
+                                android:digits="0123456789"/>
+                            <EditText
+                                android:layout_weight="2"
+                                android:id="@+id/mYYYYSelesai"
+                                android:layout_marginTop="-20dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="match_parent"
+                                android:textSize="6pt"
+                                android:layout_height="50dp"
+                                android:hint="YYYY"
+                                android:maxLength="4"
+                                android:digits="0123456789"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                 </LinearLayout>
 
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/ic_attach_money_black_24dp"
+                    android:backgroundTint="@android:color/black"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:text="Harga Tiket"
+                        android:textColor="@color/black"
+                        android:textSize="6pt"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+                        <EditText
+                            android:layout_weight="1"
+                            android:id="@+id/mHargaTiket"
+                            android:layout_marginTop="-20dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="6pt"
+                            android:layout_height="50dp"
+                            android:hint="Masukan Harga Tiket"
+                            android:digits="0123456789"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:id="@+id/btnFree"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="-20dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="6pt"
+                            android:layout_height="50dp"
+                            android:text="Free"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

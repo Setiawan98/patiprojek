@@ -221,7 +221,7 @@ public class DataAgendaFragment extends Fragment implements OnMapReadyCallback {
                 Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
 
 
-                AgendaAdapter adapter = new AgendaAdapter(getContext(), R.layout.fasilitas_umum_adapter, list);
+                AgendaAdapter adapter = new AgendaAdapter(getContext(), R.layout.agenda_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);

@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
@@ -67,7 +68,7 @@ public class TambahAgendaFragment  extends Fragment implements OnMapReadyCallbac
 
     String[] items_value;
     GoogleMap mMap1, mMap2;
-    EditText eNama, eNomorTelp, eWebsite, eDeskripsi, eEmail;
+    EditText eNama, eNomorTelp, eWebsite, eDeskripsi, eEmail, eHargaTiket, eDDMulai, eMMMulai, eYYYYMulai,eDDSelesai, eMMSelesai, eYYYYSelesai;
     Button btnTambah, btnSetLocation;
     SupportMapFragment mapFragment;
     SupportMapFragment mapFragment1;
@@ -80,6 +81,9 @@ public class TambahAgendaFragment  extends Fragment implements OnMapReadyCallbac
     ScrollView form;
     LatLng location;
     Spinner mRefNama;
+    TextView btnFree;
+    boolean isFree;
+    int status=0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,6 +113,37 @@ public class TambahAgendaFragment  extends Fragment implements OnMapReadyCallbac
         eEmail = view.findViewById(R.id.mEmail);
         eWebsite = view.findViewById(R.id.mWebsite);
         eDeskripsi = view.findViewById(R.id.mDeskripsi);
+        eHargaTiket = view.findViewById(R.id.mHargaTiket);
+
+        eDDMulai = view.findViewById(R.id.mDDMulai);
+        eMMMulai = view.findViewById(R.id.mMMMulai);
+        eYYYYMulai = view.findViewById(R.id.mYYYYMulai);
+
+        eDDSelesai = view.findViewById(R.id.mDDSelesai);
+        eMMSelesai = view.findViewById(R.id.mMMSelesai);
+        eYYYYSelesai = view.findViewById(R.id.mYYYYSelesai);
+
+        btnFree = view.findViewById(R.id.btnFree);
+        btnFree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(status==0)
+                {
+                    btnFree.setTextColor(getResources().getColor(R.color.blue));
+                    eHargaTiket.setEnabled(false);
+                    isFree = true;
+                    status =1;
+                }
+                else
+                {
+                    btnFree.setTextColor(getResources().getColor(R.color.black));
+                    eHargaTiket.setEnabled(true);
+                    isFree = false;
+                    status =0;
+                }
+
+            }
+        });
 
         //Button
         btnSetLocation = view.findViewById(R.id.btnLocation);
@@ -127,7 +162,15 @@ public class TambahAgendaFragment  extends Fragment implements OnMapReadyCallbac
                     eNama.setHintTextColor(getResources().getColor(R.color.red));
                     Toast.makeText(getContext(),"*Nama Agenda tidak bole kosong",Toast.LENGTH_SHORT).show();
                 }
+                else if(eDDMulai.getText().toString().equals("") || eMMMulai.getText().toString().equals("") || eYYYYMulai.getText().toString().equals("") ||
+                        eDDSelesai.getText().toString().equals("") || eMMSelesai.getText().toString().equals("") || eYYYYSelesai.getText().toString().equals(""))
+                {
+
+                    Toast.makeText(getContext(),"*Tidak boleh kosong",Toast.LENGTH_SHORT).show();
+
+                }
                 else {
+
                     addKuliner();
                 }
             }
@@ -305,6 +348,19 @@ public class TambahAgendaFragment  extends Fragment implements OnMapReadyCallbac
         String email = eEmail.getText().toString();
         String website = eWebsite.getText().toString();
         String deskripsi = eDeskripsi.getText().toString();
+        String hargaTiket;
+        if(isFree == true)
+        {
+             hargaTiket = "Free";
+        }
+        else
+        {
+             hargaTiket = eHargaTiket.getText().toString();
+        }
+
+
+        String tglMulai = eYYYYMulai.getText().toString()+"-"+eMMMulai.getText().toString()+"-"+eDDMulai.getText().toString();
+        String tglSelesai =  eYYYYSelesai.getText().toString()+"-"+eMMSelesai.getText().toString()+"-"+eDDSelesai.getText().toString();
         String latitude;
         String longitude;
         if(location==null)
@@ -324,6 +380,9 @@ public class TambahAgendaFragment  extends Fragment implements OnMapReadyCallbac
         Log.d("email",email);
         Log.d("website",website);
         Log.d("deskripsi",deskripsi);
+        Log.d("hargaTiket",hargaTiket);
+        Log.d("tglMulai",tglMulai);
+        Log.d("tglSelesai",tglSelesai);
         if(location!=null)
         {
             Log.d("latitude",latitude);
@@ -332,7 +391,7 @@ public class TambahAgendaFragment  extends Fragment implements OnMapReadyCallbac
 
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<DetilAgendaBaru> call = api.addDataAgenda(nama,telp,email,null,null,null,website,deskripsi,latitude,longitude,"0",value);
+        Call<DetilAgendaBaru> call = api.addDataAgenda(nama,telp,email,tglMulai,tglSelesai,hargaTiket,website,deskripsi,latitude,longitude,"0",value);
 
         call.enqueue(new Callback<DetilAgendaBaru>() {
             @Override

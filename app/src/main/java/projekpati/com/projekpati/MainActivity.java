@@ -34,6 +34,7 @@ import com.google.android.material.navigation.NavigationView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import projekpati.com.projekpati.Agenda.MenuAgenda;
 import projekpati.com.projekpati.Aspirasi.MenuAspirasi;
 import projekpati.com.projekpati.Bank.MenuBank;
 import projekpati.com.projekpati.FasilitasUmum.MenuFasilitasUmum;
@@ -53,7 +54,10 @@ import projekpati.com.projekpati.bioskop.MenuBioskop;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout kulinerLayout, lapakLayout, aspirasiLayout, spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout, pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout, biosopLayout, hotelLayput, koperasiLayout;
+    private LinearLayout kulinerLayout, lapakLayout, aspirasiLayout,
+            spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout,
+            pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout,
+            biosopLayout, hotelLayput, koperasiLayout,agendaLayout;
     private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
     ScrollView scroll;
@@ -286,6 +290,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MenuSpbu.class);
+                startActivity(i);
+            }
+        });
+
+
+        agendaLayout = findViewById(R.id.agendaLinear);
+        agendaLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuAgenda.class);
                 startActivity(i);
             }
         });
