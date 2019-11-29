@@ -20,11 +20,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Lapak.TampilLapakByJenis"></activity>
+        <activity android:name=".Otomotif.TampilOtomotifByJenis"></activity>
+        <activity android:name=".Otomotif.MenuOtomotif" />
+        <activity android:name=".Otomotif.DetilOtomotif" />
+        <activity android:name=".Otomotif.DetilMapOtomotif" />
+        <activity android:name=".Otomotif.DataSaringOtomotifActivity" />
+        <activity android:name=".Otomotif.CariOtomotif" />
+        <activity android:name=".Lapak.TampilLapakByJenis" />
         <activity android:name=".Lapak.DetilLapak" />
         <activity android:name=".Lapak.DataSaringLapakActicity" />
         <activity android:name=".Lapak.DetilMapLapak" />
-        <activity android:name=".Lapak.MenuLapak" />
+        <activity
+            android:name=".Lapak.MenuLapak"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Lapak.CariLapak" />
         <activity android:name=".Aspirasi.DataSaringAspirasiActivity" />
         <activity android:name=".Aspirasi.DetilMapAspirasi" />
@@ -32,12 +40,16 @@
         <activity android:name=".Aspirasi.TampilAspirasiByJenis" />
         <activity android:name=".Aspirasi.CariAspirasi" />
         <activity android:name=".Agenda.TampilAgendaByJenis" />
-        <activity android:name=".Agenda.MenuAgenda" />
+        <activity
+            android:name=".Agenda.MenuAgenda"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Agenda.DetilMapAgenda" />
         <activity android:name=".Agenda.DetilAgenda" />
         <activity android:name=".Agenda.DataSaringAgendaActivity" />
         <activity android:name=".Agenda.CariAgenda" />
-        <activity android:name=".Aspirasi.MenuAspirasi" />
+        <activity
+            android:name=".Aspirasi.MenuAspirasi"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Koperasi.TampilKoperasiByJenis" />
         <activity android:name=".bioskop.TampilBioskopByJenis" />
         <activity android:name=".Hotel.TampilHotelByJenis" />
@@ -49,22 +61,30 @@
         <activity android:name=".Spbu.DetilSpbu" />
         <activity android:name=".Spbu.CariSpbu" />
         <activity android:name=".Spbu.DetilMapSpbu" />
-        <activity android:name=".Spbu.MenuSpbu" />
+        <activity
+            android:name=".Spbu.MenuSpbu"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Salon.DataSaringSalonActivity" />
         <activity android:name=".Salon.DetilSalon" />
         <activity android:name=".Salon.CariSalon" />
         <activity android:name=".Salon.DetilMapSalon" />
-        <activity android:name=".Salon.MenuSalon" />
+        <activity
+            android:name=".Salon.MenuSalon"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Polisi.DataSaringPolisiActivity" />
         <activity android:name=".Polisi.DetilPolisi" />
         <activity android:name=".Polisi.CariPolisi" />
         <activity android:name=".Polisi.DetilMapPolisi" />
-        <activity android:name=".Polisi.MenuPolisi" />
+        <activity
+            android:name=".Polisi.MenuPolisi"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Olahraga.DataSaringOlahragaActivity" />
         <activity android:name=".Olahraga.DetilOlahraga" />
         <activity android:name=".Olahraga.CariOlahraga" />
         <activity android:name=".Olahraga.DetilMapOlahraga" />
-        <activity android:name=".Olahraga.MenuOlahraga" />
+        <activity
+            android:name=".Olahraga.MenuOlahraga"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Koperasi.DataSaringKoperasiActivity" />
         <activity android:name=".Hotel.DataSaringHotelActivity" />
         <activity android:name=".bioskop.DataSaringBioskopActivity" />
