@@ -218,7 +218,7 @@ public class DataPolisiFragment extends Fragment implements OnMapReadyCallback {
                 Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
 
 
-                PolisiAdapter adapter = new PolisiAdapter(getContext(), R.layout.fasilitas_umum_adapter, list);
+                PolisiAdapter adapter = new PolisiAdapter(getContext(), R.layout.polisi_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);

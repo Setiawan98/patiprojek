@@ -219,7 +219,7 @@ public class DataBankFragment extends Fragment implements OnMapReadyCallback {
                 Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
 
 
-                BankAdapter adapter = new BankAdapter(getContext(), R.layout.fasilitas_umum_adapter, list);
+                BankAdapter adapter = new BankAdapter(getContext(), R.layout.bank_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);

@@ -218,7 +218,7 @@ public class DataSalonFragment extends Fragment implements OnMapReadyCallback {
                 Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
 
 
-                SalonAdapter adapter = new SalonAdapter(getContext(), R.layout.fasilitas_umum_adapter, list);
+                SalonAdapter adapter = new SalonAdapter(getContext(), R.layout.salon_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);

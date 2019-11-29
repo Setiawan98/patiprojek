@@ -215,7 +215,7 @@ public class DataKoperasiFragment extends Fragment implements OnMapReadyCallback
                 Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
 
 
-                KoperasiAdapter adapter = new KoperasiAdapter(getContext(), R.layout.fasilitas_umum_adapter, list);
+                KoperasiAdapter adapter = new KoperasiAdapter(getContext(), R.layout.koperasi_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);

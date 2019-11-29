@@ -218,7 +218,7 @@ public class DataOlahragaFragment extends Fragment implements OnMapReadyCallback
                 Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
 
 
-                OlahragaAdapter adapter = new OlahragaAdapter(getContext(), R.layout.fasilitas_umum_adapter, list);
+                OlahragaAdapter adapter = new OlahragaAdapter(getContext(), R.layout.olahraga_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);

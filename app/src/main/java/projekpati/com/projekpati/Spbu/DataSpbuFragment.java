@@ -218,7 +218,7 @@ public class DataSpbuFragment extends Fragment implements OnMapReadyCallback {
                 Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
 
 
-                SpbuAdapter adapter = new SpbuAdapter(getContext(), R.layout.fasilitas_umum_adapter, list);
+                SpbuAdapter adapter = new SpbuAdapter(getContext(), R.layout.spbu_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);

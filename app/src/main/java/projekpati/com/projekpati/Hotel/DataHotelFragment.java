@@ -215,7 +215,7 @@ public class DataHotelFragment extends Fragment implements OnMapReadyCallback {
                 Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
 
 
-                HotelAdapter adapter = new HotelAdapter(getContext(), R.layout.fasilitas_umum_adapter, list);
+                HotelAdapter adapter = new HotelAdapter(getContext(), R.layout.hotel_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);

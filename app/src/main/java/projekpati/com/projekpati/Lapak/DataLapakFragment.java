@@ -218,7 +218,7 @@ public class DataLapakFragment extends Fragment implements OnMapReadyCallback {
                 Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
 
 
-                LapakAdapter adapter = new LapakAdapter(getContext(), R.layout.fasilitas_umum_adapter, list);
+                LapakAdapter adapter = new LapakAdapter(getContext(), R.layout.lapak_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);

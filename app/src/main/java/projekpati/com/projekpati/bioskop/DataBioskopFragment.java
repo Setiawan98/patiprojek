@@ -216,7 +216,7 @@ public class DataBioskopFragment extends Fragment implements OnMapReadyCallback 
                 Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
 
 
-                BioskopAdapter adapter = new BioskopAdapter(getContext(), R.layout.fasilitas_umum_adapter, list);
+                BioskopAdapter adapter = new BioskopAdapter(getContext(), R.layout.bioskop_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);
@@ -273,6 +273,7 @@ public class DataBioskopFragment extends Fragment implements OnMapReadyCallback 
                     loadMap();
 
                 }
+
 
 
             }

@@ -218,7 +218,7 @@ public class DataAspirasiFragment extends Fragment implements OnMapReadyCallback
                 Log.d("next Page: ", String.valueOf(response.body().getHalaman_selanjutnya()));
 
 
-                AspirasiAdapter adapter = new AspirasiAdapter(getContext(), R.layout.fasilitas_umum_adapter, list);
+                AspirasiAdapter adapter = new AspirasiAdapter(getContext(), R.layout.aspirasi_adapter, list);
                 listView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 listView.setSelection(beforePage-CountShowData);
