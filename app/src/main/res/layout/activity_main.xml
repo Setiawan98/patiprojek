@@ -335,6 +335,122 @@
 
                                             </LinearLayout>
                                         </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:layout_marginBottom="10dp"
+                                            android:weightSum="4">
+
+                                            <LinearLayout
+                                                android:id="@+id/kerjaanLinear"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginLeft="10dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:src="@drawable/iconkesehatan" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Kerjaan"
+                                                    android:textColor="@android:color/black" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+
+                                                android:id="@+id/a"
+                                                android:visibility="invisible"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:src="@drawable/iconpendidikan" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Aspirasi"
+                                                    android:textColor="@android:color/black" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/b"
+                                                android:visibility="invisible"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:src="@drawable/iconlapak" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Lapak"
+                                                    android:textColor="@android:color/black" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/c"
+                                                android:visibility="invisible"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginRight="10dp"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:src="@drawable/iconpariwisata" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Agenda"
+                                                    android:textColor="@android:color/black" />
+
+                                            </LinearLayout>
+                                        </LinearLayout>
 
                                     </LinearLayout>
                                 </androidx.cardview.widget.CardView>

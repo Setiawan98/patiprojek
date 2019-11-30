@@ -23,6 +23,10 @@ import projekpati.com.projekpati.Model.Hotel.DetilHotelBaru;
 import projekpati.com.projekpati.Model.Hotel.DetilHotelModel;
 import projekpati.com.projekpati.Model.Hotel.HotelModel;
 import projekpati.com.projekpati.Model.Hotel.JenisHotelLengkap;
+import projekpati.com.projekpati.Model.Kerjaan.DetilKerjaanBaru;
+import projekpati.com.projekpati.Model.Kerjaan.DetilKerjaanModel;
+import projekpati.com.projekpati.Model.Kerjaan.JenisKerjaanLengkap;
+import projekpati.com.projekpati.Model.Kerjaan.KerjaanModel;
 import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanBaru;
 import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanModel;
 import projekpati.com.projekpati.Model.Kesehatan.JenisKesehatanLengkap;
@@ -912,4 +916,56 @@ public interface API {
 
     @GET("lapak/data?key=TechnoPhoriaIndonesia")
     Call<LapakModel> cariLapakByJenis(@Query("IDJenis") String keyword);
+
+
+    //Kerjaan
+    @GET("kerjaan/data/?key=TechnoPhoriaIndonesia")
+    Call<KerjaanModel> tampilSemuaKerjaan();
+
+    @GET("kerjaan/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<KerjaanModel> loadMoreKerjaan(@Path("id") String id);
+
+    @GET("kerjaan/data?key=TechnoPhoriaIndonesia")
+    Call<KerjaanModel> cariKerjaanByJenis(@Query("IDJenis") String keyword);
+
+    @GET("kerjaan/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisKerjaanLengkap> tampilJenisKerjaan();
+
+    @GET("kerjaan/data/?key=TechnoPhoriaIndonesia")
+    Call<KerjaanModel> cariKerjaanbyAPI(@Query("cari") String keyword);
+
+    @GET("kerjaan/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilKerjaanModel> detailKerjaan(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=kerjaan")
+    Call<postKomentar> addKomentarBalasKerjaan(@Query("dataID") String data_id,
+                                               @Field("nama") String nama,
+                                               @Field("email") String email,
+                                               @Field("telp") String telp,
+                                               @Field("website") String website,
+                                               @Field("parentID") String parentID,
+                                               @Field("isi") String isi,
+                                               @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=kerjaan")
+    Call<KomentarLengkap> getKomentarKerjaan(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("kerjaan/update?key=TechnoPhoriaIndonesia")
+    Call<DetilKerjaanBaru> addDataKerjaan(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("kantor") String kantor,
+            @Field("gaji") String gaji,
+            @Field("pengalaman") String pengalaman,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_kerjaan_id") String ref_kerjaan_id
+
+    );
 }

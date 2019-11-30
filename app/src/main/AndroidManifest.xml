@@ -20,7 +20,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Otomotif.TampilOtomotifByJenis"></activity>
+        <activity android:name=".Kerjaan.TampilKerjaanByJenis"></activity>
+        <activity android:name=".Kerjaan.MenuKerjaan" />
+        <activity android:name=".Kerjaan.JenisKerjaanAdapter" />
+        <activity android:name=".Kerjaan.DetilMapKerjaan" />
+        <activity android:name=".Kerjaan.DetilKerjaan" />
+        <activity android:name=".Kerjaan.DataSaringKerjaanActivity" />
+        <activity android:name=".Kerjaan.CariKerjaan" />
+        <activity android:name=".Otomotif.TampilOtomotifByJenis" />
         <activity android:name=".Otomotif.MenuOtomotif" />
         <activity android:name=".Otomotif.DetilOtomotif" />
         <activity android:name=".Otomotif.DetilMapOtomotif" />

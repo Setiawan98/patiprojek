@@ -39,6 +39,7 @@ import projekpati.com.projekpati.Aspirasi.MenuAspirasi;
 import projekpati.com.projekpati.Bank.MenuBank;
 import projekpati.com.projekpati.FasilitasUmum.MenuFasilitasUmum;
 import projekpati.com.projekpati.Hotel.MenuHotel;
+import projekpati.com.projekpati.Kerjaan.MenuKerjaan;
 import projekpati.com.projekpati.Kesehatan.MenuKesehatan;
 import projekpati.com.projekpati.Koperasi.MenuKoperasi;
 import projekpati.com.projekpati.Kuliner.MenuKuliner;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout kulinerLayout, lapakLayout, aspirasiLayout,
             spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout,
             pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout,
-            biosopLayout, hotelLayput, koperasiLayout,agendaLayout;
+            biosopLayout, hotelLayput, koperasiLayout,agendaLayout, kerjaanLayout;
     private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
     ScrollView scroll;
@@ -300,6 +301,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MenuAgenda.class);
+                startActivity(i);
+            }
+        });
+
+        kerjaanLayout = findViewById(R.id.kerjaanLinear);
+        kerjaanLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuKerjaan.class);
                 startActivity(i);
             }
         });
