@@ -248,6 +248,7 @@ public class ListOtomotif implements Parcelable {
     protected ListOtomotif(Parcel in) {
         id = in.readString();
         nama = in.readString();
+        penjual = in.readString();
         telp = in.readString();
         email = in.readString();
         website = in.readString();
@@ -281,6 +282,7 @@ public class ListOtomotif implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(nama);
+        dest.writeString(penjual);
         dest.writeString(telp);
         dest.writeString(email);
         dest.writeString(harga);
