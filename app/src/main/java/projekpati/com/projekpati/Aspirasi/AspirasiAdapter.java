@@ -38,7 +38,7 @@ public class AspirasiAdapter extends ArrayAdapter<ListAspirasi> {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.mImage);
         TextView textNama = (TextView) rowView.findViewById(R.id.mNama);
         TextView textDeskripsi = (TextView) rowView.findViewById(R.id.mDeskripsi);
-
+        TextView textRef = rowView.findViewById(R.id.mRefNama);
 
         URL url = null;
         if(aspirasi.get(pos).getFile_small().equals(""))
@@ -57,6 +57,7 @@ public class AspirasiAdapter extends ArrayAdapter<ListAspirasi> {
             }
         }
 
+        textRef.setText(aspirasi.get(pos).getRef_aspirasi_nama());
         textNama.setText(aspirasi.get(pos).getNama());
         textDeskripsi.setText(aspirasi.get(pos).getDeskripsi());
         return rowView;

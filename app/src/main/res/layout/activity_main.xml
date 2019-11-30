@@ -610,7 +610,7 @@
                                         android:orientation="horizontal">
 
                                         <LinearLayout
-                                            android:id="@+id/masjidLinear"
+                                            android:id="@+id/otomotifLinear"
                                             android:layout_width="75dp"
                                             android:layout_height="110dp"
                                             android:layout_marginLeft="10dp"
@@ -629,7 +629,7 @@
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="Masjid"
+                                                android:text="Otomotif"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>

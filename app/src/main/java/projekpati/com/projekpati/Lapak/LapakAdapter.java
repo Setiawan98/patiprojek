@@ -38,7 +38,7 @@ public class LapakAdapter extends ArrayAdapter<ListLapak> {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.mImage);
         TextView textNama = (TextView) rowView.findViewById(R.id.mNama);
         TextView textAlamat = (TextView) rowView.findViewById(R.id.mAlamat);
-
+        TextView textRef = rowView.findViewById(R.id.mRefNama);
 
 
         URL url = null;
@@ -58,6 +58,7 @@ public class LapakAdapter extends ArrayAdapter<ListLapak> {
             }
         }
 
+        textRef.setText(lapak.get(pos).getRef_lapak_nama());
         textNama.setText(lapak.get(pos).getNama());
         textAlamat.setText(lapak.get(pos).getAlamat());
         return rowView;

@@ -45,6 +45,11 @@ import projekpati.com.projekpati.Model.Olahraga.DetilOlahragaBaru;
 import projekpati.com.projekpati.Model.Olahraga.DetilOlahragaModel;
 import projekpati.com.projekpati.Model.Olahraga.JenisOlahragaLengkap;
 import projekpati.com.projekpati.Model.Olahraga.OlahragaModel;
+import projekpati.com.projekpati.Model.Otomotif.DetilOtomotifBaru;
+import projekpati.com.projekpati.Model.Otomotif.DetilOtomotifModel;
+import projekpati.com.projekpati.Model.Otomotif.JenisOtomotif;
+import projekpati.com.projekpati.Model.Otomotif.JenisOtomotifLengkap;
+import projekpati.com.projekpati.Model.Otomotif.OtomotifModel;
 import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataBaru;
 import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataModel;
 import projekpati.com.projekpati.Model.Pariwisata.JenisPariwisataLengkap;
@@ -809,7 +814,7 @@ public interface API {
             @Field("latitude") String latitude,
             @Field("longitude") String longitude,
             @Field("user_id") String user_id,
-            @Field("ref_aspirasi_id") String ref_spbu_id
+            @Field("ref_aspirasi_id") String ref_aspirasi_id
     );
 
     //Agenda
@@ -904,7 +909,7 @@ public interface API {
             @Field("barang") String barang,
             @Field("harga") String harga,
             @Field("user_id") String user_id,
-            @Field("ref_lapak_id") String ref_spbu_id
+            @Field("ref_lapak_id") String ref_lapak_id
     );
 
     @GET("lapak/jenis?key=TechnoPhoriaIndonesia")
@@ -912,4 +917,65 @@ public interface API {
 
     @GET("lapak/data?key=TechnoPhoriaIndonesia")
     Call<LapakModel> cariLapakByJenis(@Query("IDJenis") String keyword);
+
+    //Otomotif
+
+    @GET("otomotif/data/?key=TechnoPhoriaIndonesia")
+    Call<OtomotifModel> tampilSemuaOtomotif();
+
+    @GET("otomotif/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<OtomotifModel> loadMoreOtomotif(@Path("id") String id);
+
+    @GET("otomotif/data/?key=TechnoPhoriaIndonesia")
+    Call<OtomotifModel> cariOtomotifbyAPI(@Query("cari") String keyword);
+
+    @GET("otomotif/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilOtomotifModel> detailOtomotif(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=otomotif")
+    Call<postKomentar> addKomentarBalasOtomotif(@Query("dataID") String data_id,
+                                             @Field("nama") String nama,
+                                             @Field("email") String email,
+                                             @Field("telp") String telp,
+                                             @Field("website") String website,
+                                             @Field("parentID") String parentID,
+                                             @Field("isi") String isi,
+                                             @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=otomotif")
+    Call<KomentarLengkap> getKomentarOtomotif(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("otomotif/update?key=TechnoPhoriaIndonesia")
+    Call<DetilOtomotifBaru> addDataOtomotif(
+            @Field("nama") String nama,
+            @Field("penjual") String penjual,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("alamat") String alamat,
+            @Field("harga") String harga,
+            @Field("kondisi") String kondisi,
+            @Field("model") String model,
+            @Field("warna") String warna,
+            @Field("kilometer") String kilometer,
+            @Field("thn_pembuatan") String thn_pembuatan,
+            @Field("transmisi") String transmisi,
+            @Field("habis_terjual") String habis_terjual,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_otomotif_id") String ref_otomotif_id
+    );
+
+    @GET("otomotif/jenis/motor?key=TechnoPhoriaIndonesia")
+    Call<JenisOtomotifLengkap> tampilJenisMotorOtomotif();
+
+    @GET("otomotif/jenis/mobil?key=TechnoPhoriaIndonesia")
+    Call<JenisOtomotifLengkap> tampilJenisMobilOtomotif();
+
+    @GET("otomotif/data?key=TechnoPhoriaIndonesia")
+    Call<OtomotifModel> cariOtomotifByJenis(@Query("IDJenis") String keyword);
 }
