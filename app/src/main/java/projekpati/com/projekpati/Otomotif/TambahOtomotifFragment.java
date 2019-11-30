@@ -77,6 +77,13 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
     ScrollView form;
     LatLng location;
     Spinner mRefNama, mKondisi, mHabis, mTransmisi;
+    String[] stringArray;
+    Map<String, JenisOtomotif> dataMObil;
+    Map<String, JenisOtomotif> dataMotor;
+    int jumlahDataMotor;
+    int jumlahDataMobil;
+    int jumlahDataTotal;
+
     public TambahOtomotifFragment() {
         // Required empty public constructor
     }
@@ -272,26 +279,67 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
 
     public void setSpinner()
     {
+        responseGetMobil();
+    }
+
+    public void responseGetMobil()
+    {
+        API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<JenisOtomotifLengkap> call2 = api2.tampilJenisMobilOtomotif();
+
+        call2.enqueue(new Callback<JenisOtomotifLengkap>() {
+            @Override
+            public void onResponse(Call<JenisOtomotifLengkap> call, Response<JenisOtomotifLengkap> response) {
+                dataMObil = response.body().getData();
+                jumlahDataMobil = response.body().getJumlah_data();
+                Log.w("ResponseMobil",new Gson().toJson(dataMObil));
+                responseGetMotor();
+              /*  ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, stringArray);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                mRefNama.setAdapter(adapter);*/
+            }
+
+            @Override
+            public void onFailure(Call<JenisOtomotifLengkap> call, Throwable t) {
+
+            }
+        });
+    }
+    public void responseGetMotor()
+    {
         API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<JenisOtomotifLengkap> call2 = api2.tampilJenisMotorOtomotif();
 
         call2.enqueue(new Callback<JenisOtomotifLengkap>() {
             @Override
             public void onResponse(Call<JenisOtomotifLengkap> call, Response<JenisOtomotifLengkap> response) {
-                Map<String, JenisOtomotif> data = response.body().getData();
+                dataMotor = response.body().getData();
+                jumlahDataMotor = response.body().getJumlah_data();
+                Log.w("ResponseMotor",new Gson().toJson(dataMotor));
+                jumlahDataTotal = jumlahDataMobil+jumlahDataMotor;
+                Log.w("ResponseMotor",String.valueOf(jumlahDataTotal));
 
-                String[] stringArray;
-                stringArray = new String[response.body().getJumlah_data()];
-                items_value = new String[response.body().getJumlah_data()];
-                for (int i = 1; i <= response.body().getJumlah_data(); i++)
+                stringArray = new String[jumlahDataTotal];
+                items_value = new String[jumlahDataTotal];
+                for (int i = 1; i <= jumlahDataTotal; i++)
                 {
-                    stringArray[i-1] = data.get(String.valueOf(i)).getNama();
-                    items_value[i-1] = data.get(String.valueOf(i)).getId();
+                    if(i<=jumlahDataMotor)
+                    {
+                        stringArray[i-1] = dataMotor.get(String.valueOf(i)).getNama();
+                        items_value[i-1] = dataMotor.get(String.valueOf(i)).getId();
+                    }
+                    else {
+                        stringArray[i-1] = dataMObil.get(String.valueOf(i-jumlahDataMotor)).getNama();
+                        items_value[i-1] = dataMObil.get(String.valueOf(i-jumlahDataMotor)).getId();
+                    }
+
                 }
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, stringArray);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 mRefNama.setAdapter(adapter);
+
+
             }
 
             @Override
