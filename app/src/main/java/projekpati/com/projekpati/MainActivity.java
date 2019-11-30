@@ -45,6 +45,7 @@ import projekpati.com.projekpati.Koperasi.MenuKoperasi;
 import projekpati.com.projekpati.Kuliner.MenuKuliner;
 import projekpati.com.projekpati.Lapak.MenuLapak;
 import projekpati.com.projekpati.Olahraga.MenuOlahraga;
+import projekpati.com.projekpati.Otomotif.MenuOtomotif;
 import projekpati.com.projekpati.Pariwisata.MenuPariwisata;
 import projekpati.com.projekpati.Pendidikan.MenuPendidikan;
 import projekpati.com.projekpati.Polisi.MenuPolisi;
@@ -55,7 +56,7 @@ import projekpati.com.projekpati.bioskop.MenuBioskop;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout kulinerLayout, lapakLayout, aspirasiLayout,
+    private LinearLayout kulinerLayout, otomotifLayout, lapakLayout, aspirasiLayout,
             spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout,
             pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout,
             biosopLayout, hotelLayput, koperasiLayout,agendaLayout, kerjaanLayout;
@@ -153,6 +154,15 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Login dalam proses",Toast.LENGTH_SHORT).show();
                 }
                 return true;
+            }
+        });
+
+        otomotifLayout = findViewById(R.id.otomotifLinear);
+        otomotifLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuOtomotif.class);
+                startActivity(i);
             }
         });
 
