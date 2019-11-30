@@ -93,6 +93,7 @@ public class KategoriOtomotifFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(),TampilOtomotifByJenis.class);
                 intent.putExtra("id_otomotif",list.get(position).getId());
+                intent.putExtra("kategori",list.get(position).getNama());
                 startActivity(intent);
             }
         });
@@ -130,6 +131,7 @@ public class KategoriOtomotifFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(),TampilOtomotifByJenis.class);
                 intent.putExtra("id_otomotif",list2.get(position).getId());
+                intent.putExtra("kategori",list2.get(position).getNama());
                 startActivity(intent);
             }
         });
