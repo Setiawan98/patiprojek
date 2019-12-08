@@ -16,6 +16,10 @@ import projekpati.com.projekpati.Model.Bank.BankModel;
 import projekpati.com.projekpati.Model.Bank.DetilBankBaru;
 import projekpati.com.projekpati.Model.Bank.DetilBankModel;
 import projekpati.com.projekpati.Model.Bank.JenisBankLengkap;
+import projekpati.com.projekpati.Model.BeritaOnline.BeritaOnlineModel;
+import projekpati.com.projekpati.Model.BeritaOnline.DetilBeritaOnlineBaru;
+import projekpati.com.projekpati.Model.BeritaOnline.DetilBeritaOnlineModel;
+import projekpati.com.projekpati.Model.BeritaOnline.JenisBeritaOnlineLengkap;
 import projekpati.com.projekpati.Model.Bioskop.BioskopModel;
 import projekpati.com.projekpati.Model.Bioskop.DetilBioskopBaru;
 import projekpati.com.projekpati.Model.Bioskop.DetilBioskopModel;
@@ -1084,4 +1088,55 @@ public interface API {
     //gambar slider
     @GET("galeri_android/data?key=TechnoPhoriaIndonesia")
     Call<galeriModel> getGaleri();
+
+
+    //BeritaOnline
+    @GET("beritaOnline/data/?key=TechnoPhoriaIndonesia")
+    Call<BeritaOnlineModel> tampilSemuaBeritaOnline();
+
+    @GET("beritaOnline/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<BeritaOnlineModel> loadMoreBeritaOnline(@Path("id") String id);
+
+    @GET("beritaOnline/data?key=TechnoPhoriaIndonesia")
+    Call<BeritaOnlineModel> cariBeritaOnlineByJenis(@Query("IDJenis") String keyword);
+
+    @GET("beritaOnline/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisBeritaOnlineLengkap> tampilJenisBeritaOnline();
+
+    @GET("beritaOnline/data/?key=TechnoPhoriaIndonesia")
+    Call<BeritaOnlineModel> cariBeritaOnlinebyAPI(@Query("cari") String keyword);
+
+    @GET("beritaOnline/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilBeritaOnlineModel> detailBeritaOnline(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=beritaOnline")
+    Call<postKomentar> addKomentarBalasBeritaOnline(@Query("dataID") String data_id,
+                                                    @Field("nama") String nama,
+                                                    @Field("email") String email,
+                                                    @Field("telp") String telp,
+                                                    @Field("website") String website,
+                                                    @Field("parentID") String parentID,
+                                                    @Field("isi") String isi,
+                                                    @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=beritaOnline")
+    Call<KomentarLengkap> getKomentarBeritaOnline(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("beritaOnline/update?key=TechnoPhoriaIndonesia")
+    Call<DetilBeritaOnlineBaru> addDataBeritaOnline(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_beritaOnline_id") String ref_beritaOnline_id
+    );
+
+
+
 }

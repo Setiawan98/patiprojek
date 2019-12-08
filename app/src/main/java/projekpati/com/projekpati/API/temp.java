@@ -1,5 +1,9 @@
 package projekpati.com.projekpati.API;
 
+import projekpati.com.projekpati.Model.BeritaOnline.BeritaOnlineModel;
+import projekpati.com.projekpati.Model.BeritaOnline.DetilBeritaOnlineBaru;
+import projekpati.com.projekpati.Model.BeritaOnline.DetilBeritaOnlineModel;
+import projekpati.com.projekpati.Model.BeritaOnline.JenisBeritaOnlineLengkap;
 import projekpati.com.projekpati.Model.Kerjaan.KerjaanModel;
 import projekpati.com.projekpati.Model.Kerjaan.DetilKerjaanBaru;
 import projekpati.com.projekpati.Model.Kerjaan.DetilKerjaanModel;
@@ -15,6 +19,8 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public class temp {
+
+
 
 
 }

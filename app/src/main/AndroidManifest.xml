@@ -20,7 +20,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".addGambarAdapter"></activity>
+        <activity android:name=".BeritaOnline.TampilBeritaOnlineByJenis"></activity>
+        <activity android:name=".BeritaOnline.DetilBeritaOnline" />
+        <activity android:name=".BeritaOnline.DataSaringBeritaOnlineActivity" />
+        <activity android:name=".BeritaOnline.CariBeritaOnline" />
+        <activity android:name=".BeritaOnline.BeritaOnlineAdapter" />
+        <activity android:name=".BeritaOnline.MenuBeritaOnline" />
+        <activity android:name=".addGambarAdapter" />
         <activity android:name=".Pendidikan.EditPendidikanActivity" />
         <activity android:name=".Kerjaan.TampilKerjaanByJenis" />
         <activity
@@ -189,9 +195,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
