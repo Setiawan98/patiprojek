@@ -38,6 +38,7 @@ import projekpati.com.projekpati.Agenda.MenuAgenda;
 import projekpati.com.projekpati.Aspirasi.MenuAspirasi;
 import projekpati.com.projekpati.Bank.MenuBank;
 import projekpati.com.projekpati.BeritaCetak.MenuBeritaCetak;
+import projekpati.com.projekpati.BeritaOnline.MenuBeritaOnline;
 import projekpati.com.projekpati.FasilitasUmum.MenuFasilitasUmum;
 import projekpati.com.projekpati.Hotel.MenuHotel;
 import projekpati.com.projekpati.Kerjaan.MenuKerjaan;
@@ -60,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout kulinerLayout, beritaCetakLayout, otomotifLayout, lapakLayout, aspirasiLayout,
             spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout,
             pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout,
-            biosopLayout, hotelLayput, koperasiLayout,agendaLayout, kerjaanLayout;
+            biosopLayout, hotelLayput, koperasiLayout,agendaLayout, kerjaanLayout,
+            beritaOnlineLayout;
     private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
     ScrollView scroll;
@@ -329,6 +331,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MenuKerjaan.class);
+                startActivity(i);
+            }
+        });
+
+        beritaOnlineLayout = findViewById(R.id.beritaOnlineLinear);
+        beritaOnlineLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuBeritaOnline.class);
                 startActivity(i);
             }
         });

@@ -167,6 +167,7 @@ public class DataBeritaOnlineFragment extends Fragment {
 
                 listView.setAdapter(new BeritaOnlineAdapter(getContext(), R.layout.berita_online_adapter, list));
 
+                progressDialog.dismiss();
 
             }
 

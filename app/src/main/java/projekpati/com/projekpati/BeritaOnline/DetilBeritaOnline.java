@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,18 +49,16 @@ import retrofit2.Response;
 
 public class DetilBeritaOnline extends AppCompatActivity {
 
-    TextView textNama, textAlamat, textTelepon, textDeskripsi, textEmail, refnama, textWebsite, ratingsum, ratingpeople;
-    TextView senin, selasa, rabu, kamis, jumat, sabtu, minggu;
+    TextView textNama,  textDeskripsi,  refnama, ratingsum, ratingpeople;
+    TextView mTime;
     EditText komentar;
     RatingBar ratingstar;
     Button btnDetil;
-    LinearLayout btnJam, btnMap;
     TextView btnKomen;
     ViewPager pager;
-    float lat;
-    float longt;
+
     LinearLayout listBeritaOnline;
-    LinearLayout linearDetil, linearJam;
+
     List<KomentarParent> list = new ArrayList<>();
     List<DetilBeritaOnlineBaru> Menu = new ArrayList<>();
     List<GambarBeritaOnlineDetil> gambarList = new ArrayList<>();
@@ -84,30 +83,26 @@ public class DetilBeritaOnline extends AppCompatActivity {
         setSupportActionBar(toolbar);
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
-        linearDetil = findViewById(R.id.linearDetil);
+
         ratingpeople = findViewById(R.id.ratingpeople);
         ratingsum = findViewById(R.id.ratingsum);
-        linearJam = findViewById(R.id.linearJam);
-        senin = findViewById(R.id.mSenin);
-        selasa = findViewById(R.id.mSelasa);
-        rabu = findViewById(R.id.mRabu);
-        kamis = findViewById(R.id.mKamis);
-        jumat = findViewById(R.id.mJumat);
-        sabtu = findViewById(R.id.mSabtu);
-        minggu = findViewById(R.id.mMinggu);
-        btnDetil = findViewById(R.id.buttonDetil);
-        btnJam = findViewById(R.id.buttonJam);
+
         textNama = findViewById(R.id.mNama);
-        textAlamat = findViewById(R.id.mAlamat);
-        textTelepon = findViewById(R.id.mTelpon);
         textDeskripsi = findViewById(R.id.mDeskripsi);
         tabLayout = findViewById(R.id.tabDots);
+        mTime = findViewById(R.id.mTime);
 
-        textEmail = findViewById(R.id.mEmail);
-        textWebsite = findViewById(R.id.mWebsite);
+
         listBeritaOnline = findViewById(R.id.listBeritaOnline);
-        btnMap = findViewById(R.id.btnMap);
+
         komentar = findViewById(R.id.komentar);
+        //komentar.clearFocus();
+        /*komentar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                komentar.setEnabled(true);
+            }
+        });*/
         btnKomen = findViewById(R.id.btnKomen);
         pager = findViewById(R.id.view_pager);
         ratingstar = findViewById(R.id.ratingstar);
@@ -118,15 +113,14 @@ public class DetilBeritaOnline extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        linearDetil.setVisibility(View.VISIBLE);
-        linearJam.setVisibility(View.GONE);
+
 
         final Bundle bundle = getIntent().getExtras();
         id = bundle.getString("id_beritaOnline");
 
         getDataDetail();
 
-        getKomentar();
+        //getKomentar();
 
         swipeRefreshLayout = findViewById(R.id.swipe);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -170,6 +164,7 @@ public class DetilBeritaOnline extends AppCompatActivity {
         btnKomen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("clicked","1");
                 final Bundle bundle = getIntent().getExtras();
                 final String id = bundle.getString("id_beritaOnline");
                 final float hasil = ratingstar.getRating();
@@ -177,7 +172,7 @@ public class DetilBeritaOnline extends AppCompatActivity {
                 isi = komentar.getText().toString();
 
                 API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-                Call<postKomentar> call = api.addKomentar( id, "beritaOnline",nama, email, telp, website, isi, String.valueOf(hasil), userid);
+                Call<postKomentar> call = api.addKomentar( id, "berita_online",nama, email, telp, website, isi, String.valueOf(hasil), userid);
                 call.enqueue(new Callback<postKomentar>() {
                     @Override
                     public void onResponse(Call<postKomentar> call, Response<postKomentar> response) {
@@ -207,32 +202,8 @@ public class DetilBeritaOnline extends AppCompatActivity {
         });
 
 
-        btnMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String uri = String.format(Locale.ENGLISH,"http://maps.google.com/maps?daddr=%f,%f (%s)",lat,longt,"Your Search");
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-                i.setPackage("com.google.android.apps.maps");
-                startActivity(i);
-            }
-        });
 
 
-        btnJam.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                linearDetil.setVisibility(View.GONE);
-                linearJam.setVisibility(View.VISIBLE);
-            }
-        });
-
-        btnDetil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                linearJam.setVisibility(View.GONE);
-                linearDetil.setVisibility(View.VISIBLE);
-            }
-        });
     }
 
     @Override
@@ -405,6 +376,7 @@ public class DetilBeritaOnline extends AppCompatActivity {
                 Log.w("ResponseAsu", new Gson().toJson(response.body()));
                 title.setText(response.body().getJudul());
                 refnama.setText(response.body().getData().getRef_beritaOnline_nama());
+                mTime.setText(response.body().getData().getTime());
                 ratingsum.setText(String.format("%s/5",response.body().getData().getRating()));
                 String tampung = response.body().getData().getRating_jumlah();
                 ratingpeople.setText(String.format("(%s orang)", tampung));
@@ -415,10 +387,12 @@ public class DetilBeritaOnline extends AppCompatActivity {
                 gambarList = response.body().getData().getGambar();
                 String[] stringArray;
 
+
                 if(gambarList.size() == 0)
                 {
                     stringArray = new String[gambarList.size()+1];
                     stringArray[0] = response.body().getIcon();
+
 
                 }
                 else
@@ -437,7 +411,7 @@ public class DetilBeritaOnline extends AppCompatActivity {
                 pager.setAdapter(adapter);
                 tabLayout.setupWithViewPager(pager, true);
 
-                btnMap.bringToFront();
+
 
             }
 
@@ -449,6 +423,7 @@ public class DetilBeritaOnline extends AppCompatActivity {
     }
 
     public void getKomentar(){
+        Log.d("idddd",String.valueOf(id));
         Toast.makeText(DetilBeritaOnline.this.getApplicationContext(),id, Toast.LENGTH_SHORT).show();
         API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<KomentarLengkap> call2 = api2.getKomentarBeritaOnline(id);

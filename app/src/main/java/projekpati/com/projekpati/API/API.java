@@ -1094,26 +1094,26 @@ public interface API {
 
 
     //BeritaOnline
-    @GET("beritaOnline/data/?key=TechnoPhoriaIndonesia")
+    @GET("berita_online/data/?key=TechnoPhoriaIndonesia")
     Call<BeritaOnlineModel> tampilSemuaBeritaOnline();
 
-    @GET("beritaOnline/data/{id}?key=TechnoPhoriaIndonesia")
+    @GET("berita_online/data/{id}?key=TechnoPhoriaIndonesia")
     Call<BeritaOnlineModel> loadMoreBeritaOnline(@Path("id") String id);
 
-    @GET("beritaOnline/data?key=TechnoPhoriaIndonesia")
+    @GET("berita_online/data?key=TechnoPhoriaIndonesia")
     Call<BeritaOnlineModel> cariBeritaOnlineByJenis(@Query("IDJenis") String keyword);
 
-    @GET("beritaOnline/jenis?key=TechnoPhoriaIndonesia")
+    @GET("berita_online/jenis?key=TechnoPhoriaIndonesia")
     Call<JenisBeritaOnlineLengkap> tampilJenisBeritaOnline();
 
-    @GET("beritaOnline/data/?key=TechnoPhoriaIndonesia")
+    @GET("berita_online/data/?key=TechnoPhoriaIndonesia")
     Call<BeritaOnlineModel> cariBeritaOnlinebyAPI(@Query("cari") String keyword);
 
-    @GET("beritaOnline/detail/{id}?key=TechnoPhoriaIndonesia")
+    @GET("berita_online/detail/{id}?key=TechnoPhoriaIndonesia")
     Call<DetilBeritaOnlineModel> detailBeritaOnline(@Path("id") String id);
 
     @FormUrlEncoded
-    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=beritaOnline")
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=berita_online")
     Call<postKomentar> addKomentarBalasBeritaOnline(@Query("dataID") String data_id,
                                                     @Field("nama") String nama,
                                                     @Field("email") String email,
@@ -1123,11 +1123,11 @@ public interface API {
                                                     @Field("isi") String isi,
                                                     @Field("userID") String userID);
 
-    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=beritaOnline")
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=berita_online")
     Call<KomentarLengkap> getKomentarBeritaOnline(@Query("dataID") String data_id);
 
     @FormUrlEncoded
-    @POST("beritaOnline/update?key=TechnoPhoriaIndonesia")
+    @POST("berita_online/update?key=TechnoPhoriaIndonesia")
     Call<DetilBeritaOnlineBaru> addDataBeritaOnline(
             @Field("nama") String nama,
             @Field("telp") String telp,
@@ -1137,7 +1137,7 @@ public interface API {
             @Field("latitude") String latitude,
             @Field("longitude") String longitude,
             @Field("user_id") String user_id,
-            @Field("ref_beritaOnline_id") String ref_beritaOnline_id
+            @Field("ref_berita_online_id") String ref_berita_online_id
     );
 
     //Berita Cetak
