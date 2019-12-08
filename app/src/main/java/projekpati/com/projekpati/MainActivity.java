@@ -37,6 +37,7 @@ import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.Agenda.MenuAgenda;
 import projekpati.com.projekpati.Aspirasi.MenuAspirasi;
 import projekpati.com.projekpati.Bank.MenuBank;
+import projekpati.com.projekpati.BeritaCetak.MenuBeritaCetak;
 import projekpati.com.projekpati.FasilitasUmum.MenuFasilitasUmum;
 import projekpati.com.projekpati.Hotel.MenuHotel;
 import projekpati.com.projekpati.Kerjaan.MenuKerjaan;
@@ -56,7 +57,7 @@ import projekpati.com.projekpati.bioskop.MenuBioskop;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout kulinerLayout, otomotifLayout, lapakLayout, aspirasiLayout,
+    private LinearLayout kulinerLayout, beritaCetakLayout, otomotifLayout, lapakLayout, aspirasiLayout,
             spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout,
             pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout,
             biosopLayout, hotelLayput, koperasiLayout,agendaLayout, kerjaanLayout;
@@ -157,6 +158,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        beritaCetakLayout = findViewById(R.id.beritaCetakLinear);
+        beritaCetakLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuBeritaCetak.class);
+                startActivity(i);
+            }
+        });
         otomotifLayout = findViewById(R.id.otomotifLinear);
         otomotifLayout.setOnClickListener(new View.OnClickListener() {
             @Override

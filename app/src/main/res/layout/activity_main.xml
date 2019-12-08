@@ -853,7 +853,7 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginLeft="42dp"
                                     android:textSize="7pt"
-                                    android:text="Kuliner"
+                                    android:text="Berita"
                                     android:textColor="@android:color/black" />
                             </androidx.cardview.widget.CardView>
 
@@ -909,7 +909,7 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/x2"
+                                            android:id="@+id/beritaCetakLinear"
                                             android:layout_width="75dp"
                                             android:layout_weight="1"
                                             android:layout_height="110dp"
@@ -922,15 +922,13 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:background="@drawable/cerclebackgroundyello"
-                                                android:padding="10dp"
-                                                android:src="@drawable/ic_wisata" />
+                                                android:src="@drawable/iconberita" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="xxxxx"
+                                                android:text="Berita Cetak"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>
