@@ -16,6 +16,9 @@ import projekpati.com.projekpati.Model.Bank.BankModel;
 import projekpati.com.projekpati.Model.Bank.DetilBankBaru;
 import projekpati.com.projekpati.Model.Bank.DetilBankModel;
 import projekpati.com.projekpati.Model.Bank.JenisBankLengkap;
+import projekpati.com.projekpati.Model.BeritaCetak.BeritaCetakModel;
+import projekpati.com.projekpati.Model.BeritaCetak.DetilBeritaCetakModel;
+import projekpati.com.projekpati.Model.BeritaCetak.JenisBeritaCetakLengkap;
 import projekpati.com.projekpati.Model.BeritaOnline.BeritaOnlineModel;
 import projekpati.com.projekpati.Model.BeritaOnline.DetilBeritaOnlineBaru;
 import projekpati.com.projekpati.Model.BeritaOnline.DetilBeritaOnlineModel;
@@ -1137,6 +1140,37 @@ public interface API {
             @Field("ref_beritaOnline_id") String ref_beritaOnline_id
     );
 
+    //Berita Cetak
+    @GET("berita_cetak/data/?key=TechnoPhoriaIndonesia")
+    Call<BeritaCetakModel> tampilSemuaBeritaCetak();
 
+    @GET("berita_cetak/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<BeritaCetakModel> loadMoreBeritaCetak(@Path("id") String id);
+
+    @GET("berita_cetak/data?key=TechnoPhoriaIndonesia")
+    Call<BeritaCetakModel> cariBeritaCetakByJenis(@Query("IDJenis") String keyword);
+
+    @GET("berita_cetak/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisBeritaCetakLengkap> tampilJenisBeritaCetak();
+
+    @GET("berita_cetak/data/?key=TechnoPhoriaIndonesia")
+    Call<BeritaCetakModel> cariBeritaCetakbyAPI(@Query("cari") String keyword);
+
+    @GET("berita_cetak/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilBeritaCetakModel> detailBeritaCetak(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=berita_cetak")
+    Call<postKomentar> addKomentarBalasBeritaCetak(@Query("dataID") String data_id,
+                                                    @Field("nama") String nama,
+                                                    @Field("email") String email,
+                                                    @Field("telp") String telp,
+                                                    @Field("website") String website,
+                                                    @Field("parentID") String parentID,
+                                                    @Field("isi") String isi,
+                                                    @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=berita_cetak")
+    Call<KomentarLengkap> getKomentarBeritaCetak(@Query("dataID") String data_id);
 
 }

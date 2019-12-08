@@ -23,6 +23,10 @@
         <activity android:name=".BeritaOnline.TampilBeritaOnlineByJenis"></activity>
         <activity android:name=".BeritaOnline.DetilBeritaOnline" />
         <activity android:name=".BeritaOnline.CariBeritaOnline" />
+        <activity android:name=".BeritaCetak.TampilBeritaCetakByJenis"></activity>
+        <activity android:name=".BeritaCetak.DetilBeritaCetak" />
+        <activity android:name=".BeritaCetak.CariBeritaCetak" />
+        <activity android:name=".BeritaCetak.MenuBeritaCetak" />
         <activity android:name=".BeritaOnline.BeritaOnlineAdapter" />
         <activity android:name=".BeritaOnline.MenuBeritaOnline" />
         <activity android:name=".addGambarAdapter" />
