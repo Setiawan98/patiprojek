@@ -20,17 +20,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Kerjaan.TampilKerjaanByJenis"></activity>
-        <activity android:name=".Kerjaan.MenuKerjaan"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".addGambarAdapter"></activity>
+        <activity android:name=".Pendidikan.EditPendidikanActivity" />
+        <activity android:name=".Kerjaan.TampilKerjaanByJenis" />
+        <activity
+            android:name=".Kerjaan.MenuKerjaan"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Kerjaan.JenisKerjaanAdapter" />
         <activity android:name=".Kerjaan.DetilMapKerjaan" />
         <activity android:name=".Kerjaan.DetilKerjaan" />
         <activity android:name=".Kerjaan.DataSaringKerjaanActivity" />
         <activity android:name=".Kerjaan.CariKerjaan" />
         <activity android:name=".Otomotif.TampilOtomotifByJenis" />
-        <activity android:name=".Otomotif.MenuOtomotif"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".Otomotif.MenuOtomotif"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Otomotif.DetilOtomotif" />
         <activity android:name=".Otomotif.DetilMapOtomotif" />
         <activity android:name=".Otomotif.DataSaringOtomotifActivity" />
@@ -185,8 +189,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>

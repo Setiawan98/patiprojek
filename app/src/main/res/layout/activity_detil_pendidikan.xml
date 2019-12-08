@@ -96,16 +96,35 @@
                                 android:layout_marginTop="-5dp"
                                 android:orientation="vertical">
 
-                                <TextView
-                                    android:id="@+id/mNama"
-                                    android:layout_width="wrap_content"
+                                <LinearLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="15dp"
-                                    android:ellipsize="end"
-                                    android:paddingRight="10dp"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="10pt"
-                                    android:textStyle="bold" />
+                                    android:orientation="horizontal"
+                                    android:weightSum="5">
+
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:id="@+id/mNama"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:ellipsize="end"
+                                        android:paddingRight="10dp"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="10pt"
+                                        android:text="test"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:id="@+id/btnEdit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="4"
+                                        android:src="@drawable/ic_edit_black_24dp"/>
+
+
+                                </LinearLayout>
+
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
@@ -410,5 +429,14 @@
                 </LinearLayout>
             </ScrollView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <FrameLayout
+            android:visibility="gone"
+            android:id="@+id/fragmentEdit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"/>
     </RelativeLayout>
+
+
+
 </LinearLayout>

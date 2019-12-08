@@ -27,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -57,7 +58,12 @@ public class MenuLapak extends AppCompatActivity {
         title.setTextColor(0xFFFFFFFF);
         iconView = toolbar.findViewById(R.id.icon);
 
-        getIconImage();
+        //getIconImage();
+        iconView.setLayoutParams(new LinearLayout.LayoutParams(80,80));
+        iconView.setImageResource(R.drawable.iconlapak);
+
+        title.setText("Lapak");
+        title.setPadding(20,0,0,0);
 
         setSupportActionBar(toolbar);
 

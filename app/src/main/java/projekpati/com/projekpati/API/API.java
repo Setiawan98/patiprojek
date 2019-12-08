@@ -1,5 +1,7 @@
 package projekpati.com.projekpati.API;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import projekpati.com.projekpati.Bank.BankAdapter;
 import projekpati.com.projekpati.Model.APIKey;
 import projekpati.com.projekpati.Model.Agenda.AgendaModel;
@@ -78,12 +80,15 @@ import projekpati.com.projekpati.Model.Tukang.DetilTukangBaru;
 import projekpati.com.projekpati.Model.Tukang.DetilTukangModel;
 import projekpati.com.projekpati.Model.Tukang.JenisTukangLengkap;
 import projekpati.com.projekpati.Model.Tukang.TukangModel;
+import projekpati.com.projekpati.Model.galeri_android.galeriModel;
 import projekpati.com.projekpati.Model.postKomentar;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -198,6 +203,8 @@ public interface API {
                                         @Field("isi") String isi,
                                         @Field("userID") String userID);
 
+
+
     @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=pendidikan")
     Call<KomentarLengkap> getKomentarPendidikan(@Query("dataID") String data_id);
 
@@ -217,6 +224,45 @@ public interface API {
             @Field("user_id") String user_id,
             @Field("ref_pendidikan_id") String ref_pendidikan_id
     );
+
+    @Multipart
+    @POST("pendidikan/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilPendidikanBaru> updateDataPendidikanWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_pendidikan_id") RequestBody ref_pendidikan_id
+    );
+
+    @Multipart
+    @POST("pendidikan/update?key=TechnoPhoriaIndonesia")
+    Call<DetilPendidikanBaru> addDataPendidikanWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_pendidikan_id") RequestBody ref_pendidikan_id
+    );
+
+    @GET("pendidikan/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilPendidikanModel> hapusGambar(@Path("id") String id);
+
 
 
     //Tukang
@@ -1034,4 +1080,8 @@ public interface API {
             @Field("ref_kerjaan_id") String ref_kerjaan_id
 
     );
+
+    //gambar slider
+    @GET("galeri_android/data?key=TechnoPhoriaIndonesia")
+    Call<galeriModel> getGaleri();
 }

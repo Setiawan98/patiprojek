@@ -225,7 +225,7 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:orientation="horizontal"
-                                            android:layout_marginBottom="10dp"
+
                                             android:weightSum="4">
 
                                             <LinearLayout
@@ -270,7 +270,7 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:src="@drawable/iconpendidikan" />
+                                                    android:src="@drawable/iconaspirasilaporan" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
@@ -324,7 +324,7 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:src="@drawable/iconpariwisata" />
+                                                    android:src="@drawable/iconagenda" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
@@ -357,7 +357,7 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:src="@drawable/iconkesehatan" />
+                                                    android:src="@drawable/iconloker" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
@@ -520,7 +520,7 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconmakan" />
+                                                android:src="@drawable/iconatmbank" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -545,7 +545,7 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconmakan" />
+                                                android:src="@drawable/iconbioskop" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -596,7 +596,7 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconmakan" />
+                                                android:src="@drawable/iconkoperasi" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -629,7 +629,7 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconmakan" />
+                                                android:src="@drawable/iconsport" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -654,7 +654,7 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconmakan" />
+                                                android:src="@drawable/iconpolisi" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -705,7 +705,7 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconmakan" />
+                                                android:src="@drawable/iconspbu" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -739,7 +739,7 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconmakan" />
+                                                android:src="@drawable/iconmotor" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"

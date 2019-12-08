@@ -2,6 +2,8 @@ package projekpati.com.projekpati.Pendidikan;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.API.API;
@@ -29,6 +31,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
@@ -47,6 +51,7 @@ import java.util.Map;
 public class DetilPendidikan extends AppCompatActivity {
     TextView textNama, textAlamat, textTelepon, textDeskripsi, textEmail, textWebsite, refnama, ratingsum, ratingpeople;
     SwipeRefreshLayout swipeRefreshLayout;
+    FrameLayout frameLayout;
     TextView title;
     Toolbar toolbar;
     List<KomentarParent> list = new ArrayList<>();
@@ -63,6 +68,7 @@ public class DetilPendidikan extends AppCompatActivity {
     LinearLayout pbKomen;
     String id;
     ViewPager pager;
+    ImageView btnEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +77,7 @@ public class DetilPendidikan extends AppCompatActivity {
         setSupportActionBar(toolbar);
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
+
 
         ratingpeople = findViewById(R.id.ratingpeople);
         ratingsum = findViewById(R.id.ratingsum);
@@ -82,6 +89,7 @@ public class DetilPendidikan extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabDots);
         textEmail = findViewById(R.id.mEmail);
         textWebsite = findViewById(R.id.mWebsite);
+        btnEdit = findViewById(R.id.btnEdit);
 
         listPendidikan = findViewById(R.id.listPendidikan);
         btnMap = findViewById(R.id.btnMap);
@@ -188,6 +196,24 @@ public class DetilPendidikan extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+         frameLayout = findViewById(R.id.fragmentEdit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swipeRefreshLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                Bundle bundle = new Bundle();
+                bundle.putString("id_detil",id);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                EditPendidikanActivity editPendidikanActivity = new EditPendidikanActivity();
+                editPendidikanActivity.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragmentEdit, editPendidikanActivity);
+                fragmentTransaction.commit();
+            }
+        });
+
     }
 
     @Override

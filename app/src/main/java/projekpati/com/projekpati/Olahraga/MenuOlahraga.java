@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,7 +53,12 @@ public class MenuOlahraga extends AppCompatActivity {
         title.setTextColor(0xFFFFFFFF);
         iconView = toolbar.findViewById(R.id.icon);
 
-        getIconImage();
+        //getIconImage();
+        iconView.setLayoutParams(new LinearLayout.LayoutParams(80,80));
+        iconView.setImageResource(R.drawable.iconsport);
+
+        title.setText("Olahraga");
+        title.setPadding(20,0,0,0);
 
         setSupportActionBar(toolbar);
 

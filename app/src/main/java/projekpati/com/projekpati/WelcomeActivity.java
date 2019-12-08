@@ -6,11 +6,17 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.text.Html;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +24,25 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.os.Bundle;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Map;
+
+import projekpati.com.projekpati.API.API;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
+import projekpati.com.projekpati.Model.Polisi.ListPolisi;
+import projekpati.com.projekpati.Model.Polisi.PolisiModel;
+import projekpati.com.projekpati.Model.galeri_android.galeriModel;
+import projekpati.com.projekpati.Model.galeri_android.listGaleri;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -30,6 +53,9 @@ public class WelcomeActivity extends AppCompatActivity {
     private int[] layouts;
     private Button btnSkip, btnNext;
     private PrefManager prefManager;
+    Context context;
+    String[] linkUrl = new String[4];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,45 +84,12 @@ public class WelcomeActivity extends AppCompatActivity {
         btnNext = (Button) findViewById(R.id.btn_next);
 
 
-        // layout xml slide 1 sampai 4
-        // add few more layouts if you want
-        layouts = new int[]{
-                R.layout.slide1,
-                R.layout.slide2,
-                R.layout.slide3,
-                R.layout.slide4};
+        getGaleri();
 
-        // tombol dots (lingkaran kecil perpindahan slide)
-        addBottomDots(0);
 
-        // membuat transparan notifikasi
-        changeStatusBarColor();
 
-        myViewPagerAdapter = new MyViewPagerAdapter();
-        viewPager.setAdapter(myViewPagerAdapter);
-        viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 
-        btnSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchHomeScreen();
-            }
-        });
 
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // mengecek page terakhir (slide 4)
-                // jika activity home sudah tampil
-                int current = getItem(+1);
-                if (current < layouts.length) {
-                    // move to next screen
-                    viewPager.setCurrentItem(current);
-                } else {
-                    launchHomeScreen();
-                }
-            }
-        });
     }
     private void addBottomDots(int currentPage) {
         dots = new TextView[layouts.length];
@@ -180,11 +173,15 @@ public class WelcomeActivity extends AppCompatActivity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View Layout = layoutInflater.inflate(layouts[position],container, false);
+            Bitmap image1 = getBitmapFromURL(linkUrl[position]);
+            BitmapDrawable drawable1 = new BitmapDrawable((image1));
+            Layout.setBackgroundDrawable(drawable1);
 
-            View view = layoutInflater.inflate(layouts[position], container, false);
-            container.addView(view);
+           // View view = layoutInflater.inflate(layouts[position], container, false);
+            container.addView(Layout);
 
-            return view;
+            return Layout;
         }
 
         @Override
@@ -202,6 +199,98 @@ public class WelcomeActivity extends AppCompatActivity {
         public void destroyItem(ViewGroup container, int position, Object object) {
             View view = (View) object;
             container.removeView(view);
+        }
+    }
+
+    public void getGaleri(){
+        //defining a progress dialog to show while signing up
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<galeriModel> call = api.getGaleri();
+
+        call.enqueue(new Callback<galeriModel>() {
+            @Override
+            public void onResponse(Call<galeriModel> call, final Response<galeriModel> response) {
+                Map<String, listGaleri> data = response.body().getData();
+
+
+                for(int i=1;i<=4;i++)
+                {
+                    linkUrl[i-1]= data.get(String.valueOf(i)).getGambar();
+                }
+
+                // layout xml slide 1 sampai 4
+                // add few more layouts if you want
+
+
+
+
+                /*Layout_2 = getLayoutInflater().inflate(R.layout.slide2,null);
+                Layout_3 = getLayoutInflater().inflate(R.layout.slide3,null);
+                Layout_4 = getLayoutInflater().inflate(R.layout.slide4,null);*/
+
+                layouts = new int[]{
+                        R.layout.slide1,
+                        R.layout.slide2,
+                        R.layout.slide3,
+                        R.layout.slide4};
+
+
+                // tombol dots (lingkaran kecil perpindahan slide)
+                addBottomDots(0);
+
+                // membuat transparan notifikasi
+                changeStatusBarColor();
+
+                myViewPagerAdapter = new MyViewPagerAdapter();
+                viewPager.setAdapter(myViewPagerAdapter);
+                viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
+
+                btnSkip.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        launchHomeScreen();
+                    }
+                });
+
+                btnNext.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // mengecek page terakhir (slide 4)
+                        // jika activity home sudah tampil
+                        int current = getItem(+1);
+                        if (current < layouts.length) {
+                            // move to next screen
+                            viewPager.setCurrentItem(current);
+                        } else {
+                            launchHomeScreen();
+                        }
+                    }
+                });
+
+            }
+
+            @Override
+            public void onFailure(Call<galeriModel> call, Throwable t) {
+
+                Log.d("onResponse", t.toString());
+            }
+        });
+
+    }
+
+
+    public Bitmap getBitmapFromURL(String imageUrl) {
+        try {
+            URL url = new URL(imageUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

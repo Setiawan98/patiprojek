@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_screen3">
 
-    <LinearLayout
+   <!-- <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -36,5 +36,5 @@
             android:textSize="@dimen/slide_desc" />
 
     </LinearLayout>
-
+-->
 </RelativeLayout>
