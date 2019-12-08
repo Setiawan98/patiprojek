@@ -22,7 +22,6 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".BeritaOnline.TampilBeritaOnlineByJenis"></activity>
         <activity android:name=".BeritaOnline.DetilBeritaOnline" />
-        <activity android:name=".BeritaOnline.DataSaringBeritaOnlineActivity" />
         <activity android:name=".BeritaOnline.CariBeritaOnline" />
         <activity android:name=".BeritaOnline.BeritaOnlineAdapter" />
         <activity android:name=".BeritaOnline.MenuBeritaOnline" />

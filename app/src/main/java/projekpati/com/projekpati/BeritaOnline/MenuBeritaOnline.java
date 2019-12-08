@@ -27,9 +27,6 @@ import java.util.Map;
 
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.BeritaOnline.DataBeritaOnlineFragment;
-import projekpati.com.projekpati.BeritaOnline.KategoriBeritaOnlineFragment;
-import projekpati.com.projekpati.BeritaOnline.SaringBeritaOnlineFragment;
 import projekpati.com.projekpati.MainActivity;
 import projekpati.com.projekpati.Model.BeritaOnline.BeritaOnlineModel;
 import projekpati.com.projekpati.Model.BeritaOnline.ListBeritaOnline;
@@ -122,7 +119,7 @@ public class MenuBeritaOnline extends AppCompatActivity {
                 }
                 else if(id==R.id.saring){
 //
-                    SaringBeritaOnlineFragment fouth = new SaringBeritaOnlineFragment();
+                   /* SaringBeritaOnlineFragment fouth = new SaringBeritaOnlineFragment();
                     openFragment(fouth);
                     bottomNavigationView.setEnabled(false);
                     Handler handler = new Handler();
@@ -132,7 +129,7 @@ public class MenuBeritaOnline extends AppCompatActivity {
                             status =0;
                             bottomNavigationView.setEnabled(true);
                         }
-                    },5000);
+                    },5000);*/
 
                 }
                 else if(id==R.id.dataku){
