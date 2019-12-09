@@ -971,6 +971,194 @@ public class EditPariwisata extends Fragment implements OnMapReadyCallback, Loca
                 eEmail.setText(response.body().getData().getEmail());
                 eWebsite.setText(response.body().getData().getWebsite());
                 eNomorTelp.setText(response.body().getData().getTelp());
+//Hari Senin
+                if(response.body().getData().getHari_1().equals(""))
+                {
+                    //nothing to do
+                }
+                else
+                {
+                    String hariSenin = response.body().getData().getHari_1();
+                    String[] pecahSenin = hariSenin.split("-");
+                    String seninBuka = pecahSenin[0];
+                    String seninTutup = pecahSenin[1];
+
+                    String[] pecahSenin2 = seninBuka.split(":");
+                    String seninJamBuka = pecahSenin2[0];
+                    String seninMenitBuka = pecahSenin2[1];
+
+                    String[] pecahSenin3 = seninTutup.split(":");
+                    String seninJamTutup = pecahSenin3[0].trim();
+                    String seninMenitTutup = pecahSenin3[1];
+
+                    eJamSeninBuka.setText(seninJamBuka);
+                    eMenitSeninBuka.setText(seninMenitBuka);
+                    eJamSeninTutup.setText(seninJamTutup);
+                    eMenitSeninTutup.setText(seninMenitTutup);
+                }
+
+
+                //Hari Selasa
+                if(response.body().getData().getHari_2().equals(""))
+                {
+                    //nothing to do
+                }
+                else
+                {
+                    String hariSelasa = response.body().getData().getHari_2();
+                    String[] pecahSelasa = hariSelasa.split("-");
+                    String selasaBuka = pecahSelasa[0];
+                    String selasaTutup = pecahSelasa[1];
+
+                    String[] pecahSelasa2 = selasaBuka.split(":");
+                    String selasaJamBuka = pecahSelasa2[0];
+                    String selasaMenitBuka = pecahSelasa2[1];
+
+                    String[] pecahSelasa3 = selasaTutup.split(":");
+                    String selasaJamTutup = pecahSelasa3[0].trim();
+                    String selasaMenitTutup = pecahSelasa3[1];
+
+                    eJamSelasaBuka.setText(selasaJamBuka);
+                    eMenitselasaBuka.setText(selasaMenitBuka);
+                    eJamSelasaTutup.setText(selasaJamTutup);
+                    eMenitselasaTutup.setText(selasaMenitTutup);
+                }
+
+
+                //Hari Rabu
+
+                if(response.body().getData().getHari_3().equals(""))
+                {
+                    //nothing to do
+                }
+                else
+                {
+                    String hariRabu = response.body().getData().getHari_3();
+                    String[] pecahRabu = hariRabu.split("-");
+                    String rabuBuka = pecahRabu[0];
+                    String rabuTutup = pecahRabu[1];
+
+                    String[] pecahRabu2 = rabuBuka.split(":");
+                    String rabuJamBuka = pecahRabu2[0];
+                    String rabuMenitBuka = pecahRabu2[1];
+
+                    String[] pecahRabu3 = rabuTutup.split(":");
+                    String rabuJamTutup = pecahRabu3[0].trim();
+                    String rabuMenitTutup = pecahRabu3[1];
+
+                    eJamRabuBuka.setText(rabuJamBuka);
+                    eMenitRabuBuka.setText(rabuMenitBuka);
+                    eJamRabuTutup.setText(rabuJamTutup);
+                    eMenitRabuTutup.setText(rabuMenitTutup);
+                }
+
+
+                //Hari Kamis
+                if(response.body().getData().getHari_4().equals(""))
+                {
+                    //nothing to do
+                }
+                else
+                {
+                    String hariKamis = response.body().getData().getHari_4();
+                    String[] pecahKamis = hariKamis.split("-");
+                    String kamisBuka = pecahKamis[0];
+                    String kamisTutup = pecahKamis[1];
+
+                    String[] pecahKamis2 = kamisBuka.split(":");
+                    String kamisJamBuka = pecahKamis2[0];
+                    String kamisMenitBuka = pecahKamis2[1];
+
+                    String[] pecahKamis3 = kamisTutup.split(":");
+                    String kamisJamTutup = pecahKamis3[0].trim();
+                    String kamisMenitTutup = pecahKamis3[1];
+
+                    eJamKamisBuka.setText(kamisJamBuka);
+                    eMenitKamisBuka.setText(kamisMenitBuka);
+                    eJamKamisTutup.setText(kamisJamTutup);
+                    eMenitKamisTutup.setText(kamisMenitTutup);
+                }
+
+
+                //Hari Jumat
+                if(response.body().getData().getHari_5().equals(""))
+                {
+                    //nothing to do
+                }
+                else
+                {
+                    String hariJumat = response.body().getData().getHari_5();
+                    String[] pecahJumat = hariJumat.split("-");
+                    String jumatBuka = pecahJumat[0];
+                    String jumatTutup = pecahJumat[1];
+
+                    String[] pecahJumat2 = jumatBuka.split(":");
+                    String jumatJamBuka = pecahJumat2[0];
+                    String jumatMenitBuka = pecahJumat2[1];
+
+                    String[] pecahJumat3 = jumatTutup.split(":");
+                    String jumatJamTutup = pecahJumat3[0].trim();
+                    String jumatMenitTutup = pecahJumat3[1];
+
+                    eJamJumatBuka.setText(jumatJamBuka);
+                    eMenitJumatBuka.setText(jumatMenitBuka);
+                    eJamJumatTutup.setText(jumatJamTutup);
+                    eMenitJumatTutup.setText(jumatMenitTutup);
+                }
+
+
+                //Hari Sabtu
+                if(response.body().getData().getHari_6().equals(""))
+                {
+                    //nothing to do
+                }
+                else
+                {
+                    String hariSabtu = response.body().getData().getHari_6();
+                    String[] pecahSabtu = hariSabtu.split("-");
+                    String sabtuBuka = pecahSabtu[0];
+                    String sabtuTutup = pecahSabtu[1];
+
+                    String[] pecahSabtu2 = sabtuBuka.split(":");
+                    String sabtuJamBuka = pecahSabtu2[0];
+                    String sabtuMenitBuka = pecahSabtu2[1];
+
+                    String[] pecahSabtu3 = sabtuTutup.split(":");
+                    String sabtuJamTutup = pecahSabtu3[0].trim();
+                    String sabtuMenitTutup = pecahSabtu3[1];
+
+                    eJamSabtuBuka.setText(sabtuJamBuka);
+                    eMenitSabtuBuka.setText(sabtuMenitBuka);
+                    eJamSabtuTutup.setText(sabtuJamTutup);
+                    eMenitSabtuTutup.setText(sabtuMenitTutup);
+                }
+
+
+                //Hari Minggu
+                if(response.body().getData().getHari_0().equals(""))
+                {
+                    //nothing to do
+                }
+                else
+                {
+                    String hariMinggu = response.body().getData().getHari_0();
+                    String[] pecahMinggu = hariMinggu.split("-");
+                    String mingguBuka = pecahMinggu[0];
+                    String mingguTutup = pecahMinggu[1];
+
+                    String[] pecahMinggu2 = mingguBuka.split(":");
+                    String mingguJamBuka = pecahMinggu2[0];
+                    String mingguMenitBuka = pecahMinggu2[1];
+
+                    String[] pecahMinggu3 = mingguTutup.split(":");
+                    String mingguJamTutup = pecahMinggu3[0].trim();
+                    String mingguMenitTutup = pecahMinggu3[1];
+
+                    eJamMingguBuka.setText(mingguJamBuka);
+                    eMenitMingguBuka.setText(mingguMenitBuka);
+                    eJamMingguTutup.setText(mingguJamTutup);
+                    eMenitMingguTutup.setText(mingguMenitTutup);
+                }
 
 
                 for (int i =0 ;i<stringArray.length;i++)
