@@ -31,7 +31,7 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
+                        android:layout_height="20dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginLeft="5dp"
                         android:text="Foto tempat makan"
@@ -48,7 +48,6 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:orientation="horizontal"
-                            android:layout_marginTop="10dp"
                             android:paddingRight="30dp">
 
                             <RelativeLayout
@@ -78,7 +77,7 @@
                     <TextView
                         android:id="@+id/mFileName"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:text=""
                         android:paddingLeft="21dp"
                         android:layout_marginTop="5dp"

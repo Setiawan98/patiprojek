@@ -629,22 +629,26 @@ public class EditKuliner extends Fragment implements OnMapReadyCallback, Locatio
         RequestBody requestFile =null;
         if(imageBytes!=null)
         {
+            Log.d("notNull","1");
             requestFile= RequestBody.create(MediaType.parse("image/*"), imageBytes);
         }
+
+        RequestBody nama = RequestBody.create(MediaType.parse("multipart/form-data"), eNama.getText().toString());
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         MultipartBody.Part gambarKuliner =null;
         MultipartBody.Part gambarKulinerUtama = null;
         if(requestFile!=null) {
-            gambarKuliner = MultipartBody.Part.createFormData("gambar", mFileName.getText().toString(), requestFile);
-            //gambarKulinerUtama = MultipartBody.Part.createFormData("gambarutama", mFileName.getText().toString(), requestFile);
+            Log.d("notNull","2");
+            gambarKuliner = MultipartBody.Part.createFormData("gambar", "a.jpg", requestFile);
+           // gambarKulinerUtama = MultipartBody.Part.createFormData("gambarutama", "b.jpg", requestFile);
         }
-        Call<DetilKulinerBaru> call = api.updateDataKulinerWithGambar(id,gambarKuliner,gambarKulinerUtama,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+        Call<DetilKulinerBaru> call = api.updateDataKulinerWithGambar(id,gambarKuliner,gambarKulinerUtama,nama,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilKulinerBaru>() {
             @Override
             public void onResponse(Call<DetilKulinerBaru> call, final Response<DetilKulinerBaru> response) {
                 Toast.makeText(getContext(),"Sukses", Toast.LENGTH_SHORT).show();
-                Log.w("Response", new Gson().toJson(response.body()));
+                //Log.w("Response", new Gson().toJson(response.body()));
                 refreshLayout();
             }
 
@@ -652,6 +656,7 @@ public class EditKuliner extends Fragment implements OnMapReadyCallback, Locatio
             public void onFailure(Call<DetilKulinerBaru> call, Throwable t) {
                 Toast.makeText(getContext(),t.toString(), Toast.LENGTH_SHORT).show();
                 Log.d("onResponse", t.toString());
+                Log.d("error","1");
             }
         });
 

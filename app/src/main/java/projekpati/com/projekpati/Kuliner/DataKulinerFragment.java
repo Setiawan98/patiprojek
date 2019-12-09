@@ -423,17 +423,17 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
         {
             Log.d("masuk","a");
             BitmapDescriptor icon = null;
-            if(lk.getRef_kuliner_icon().equals(""))
-            {
+            /*if(lk.getRef_kuliner_icon().equals(""))
+            {*/
                 Drawable vectorDrawable = ContextCompat.getDrawable(getContext(),R.drawable.ic_location_on_black_24dp);
                 vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight());
                 Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight(),Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(bitmap);
                 vectorDrawable.draw(canvas);
                 icon = BitmapDescriptorFactory.fromBitmap(bitmap);
-            }
-            else {
-                try {
+            //}
+            //else {
+                /*try {
                     URL url = new URL(lk.getRef_kuliner_icon());
                     Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
                     Bitmap scaled = Bitmap.createScaledBitmap(bmp,50,50,true);
@@ -442,9 +442,9 @@ public class DataKulinerFragment extends Fragment implements OnMapReadyCallback 
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
+                }*/
 
-            }
+            //}
             Marker marker = googleMap.addMarker(new MarkerOptions()
                     .position(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
                     .title(lk.getNama())
