@@ -6,8 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
@@ -53,12 +53,18 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.MediaType;
@@ -67,7 +73,8 @@ import okhttp3.RequestBody;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataBaru;
-import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataBaru;
+import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataModel;
+import projekpati.com.projekpati.Model.Pariwisata.GambarPariwisataDetil;
 import projekpati.com.projekpati.Model.Pariwisata.JenisPariwisata;
 import projekpati.com.projekpati.Model.Pariwisata.JenisPariwisataLengkap;
 import projekpati.com.projekpati.R;
@@ -81,12 +88,7 @@ import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TambahPariwisataFragment extends Fragment implements OnMapReadyCallback, LocationListener {
-
-
-    public TambahPariwisataFragment() {
-        // Required empty public constructor
-    }
+public class EditPariwisata extends Fragment implements OnMapReadyCallback, LocationListener{
 
     String[] items_value;
     GoogleMap mMap1, mMap2;
@@ -95,7 +97,7 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
     SupportMapFragment mapFragment;
     SupportMapFragment mapFragment1;
     PlacesClient placesClient;
-
+    String[] stringArray;
     Marker currentLocation;
     LocationManager locationManager;
     LocationListener locationListener;
@@ -108,7 +110,6 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
     Marker markerLoc;
     LinearLayout layoutJam;
     Button setJam;
-    int status=0;
     Spinner mRefNama;
     EditText eJamMingguBuka,eMenitMingguBuka,eJamSeninBuka,eMenitSeninBuka,eJamSelasaBuka,eMenitselasaBuka,
             eJamRabuBuka,eMenitRabuBuka,eJamKamisBuka,eMenitKamisBuka, eJamJumatBuka,eMenitJumatBuka,
@@ -129,24 +130,42 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
     private byte[] imageBytes1, imageBytes2,imageBytes3;
     LinearLayout loadLayout;
     ViewGroup vg;
+    View tempView;
+    String id;
     int count=0;
 
     TextView mFileName;
     ImageView btnAddGamabar;
+    private byte[] imageBytes;
     private static final int REQUEST_GET_SINGLE_FILE = 202;
+    int status;
+    List<GambarPariwisataDetil> gambarList = new ArrayList<>();
+    ProgressDialog progressDialogUpdate;
+    public EditPariwisata() {
+        // Required empty public constructor
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_tambah_pariwisata, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_pariwisata, container, false);
+        tempView = view;
         vg=container;
+        progressDialogUpdate = new ProgressDialog(getContext());
         init(view);
         setSpinner();
         startLatLng = new LatLng(-6.7487,111.0379);
         currentLatLng = startLatLng;
+        final Bundle bundle = getActivity().getIntent().getExtras();
+        id = getArguments().getString("id_detil");
+
 
         initMap();
         setupAutoCompleteFragment();
+
+
 
         // Inflate the layout for this fragment
         return view;
@@ -162,6 +181,7 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
         mFileName = view.findViewById(R.id.mFileName);
         loadLayout = view.findViewById(R.id.loadLayout);
         btnAddGamabar = view.findViewById(R.id.btnAddGambar);
+
         //editText Jam
         eJamMingguBuka = view.findViewById(R.id.mJamMingguBuka);
         eMenitMingguBuka = view.findViewById(R.id.mMenitMingguBuka);
@@ -243,10 +263,10 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
                 {
                     eNama.setBackgroundTintList(getResources().getColorStateList(R.color.red));
                     eNama.setHintTextColor(getResources().getColor(R.color.red));
-                    Toast.makeText(getContext(),"*Nama Pariwisata tidak bole kosong",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"*Nama pariwisata tidak bole kosong",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    addPariwisataWithGambar();
+                    updateAllPariwisataWithGambar();
                 }
             }
         });
@@ -462,6 +482,7 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("image/*");
+                status = 1;
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"),REQUEST_GET_SINGLE_FILE);
             }
         });
@@ -544,7 +565,6 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
         });
     }
 
-
     public void setSpinner()
     {
         API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
@@ -555,7 +575,7 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
             public void onResponse(Call<JenisPariwisataLengkap> call, Response<JenisPariwisataLengkap> response) {
                 Map<String, JenisPariwisata> data = response.body().getData();
 
-                String[] stringArray;
+
                 stringArray = new String[response.body().getJumlah_data()];
                 items_value = new String[response.body().getJumlah_data()];
                 for (int i = 1; i <= response.body().getJumlah_data(); i++)
@@ -567,6 +587,8 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, stringArray);
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 mRefNama.setAdapter(adapter);
+
+                getDataDetail();
             }
 
             @Override
@@ -594,47 +616,55 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
     }
 
 
-    public void addPariwisataWithGambar(){
+    public void updatePariwisataWithGambar(){
+        //defining a progress dialog to show while signing up
+
+        progressDialogUpdate.setMessage("Loading...");
+        progressDialogUpdate.show();
+
+        String uID = "0";
+        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), uID);
+        RequestBody requestFile =null;
+        if(imageBytes!=null)
+        {
+            Log.d("notNull","1");
+            requestFile= RequestBody.create(MediaType.parse("image/*"), imageBytes);
+        }
+
+        RequestBody nama = RequestBody.create(MediaType.parse("multipart/form-data"), eNama.getText().toString());
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        MultipartBody.Part gambarPariwisata =null;
+        MultipartBody.Part gambarPariwisataUtama = null;
+        if(requestFile!=null) {
+            Log.d("notNull","2");
+            gambarPariwisata = MultipartBody.Part.createFormData("gambar", "a.jpg", requestFile);
+            // gambarPariwisataUtama = MultipartBody.Part.createFormData("gambarutama", "b.jpg", requestFile);
+        }
+        Call<DetilPariwisataBaru> call = api.updateDataPariwisataWithGambar(id,gambarPariwisata,gambarPariwisataUtama,nama,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+
+        call.enqueue(new Callback<DetilPariwisataBaru>() {
+            @Override
+            public void onResponse(Call<DetilPariwisataBaru> call, final Response<DetilPariwisataBaru> response) {
+                Toast.makeText(getContext(),"Sukses", Toast.LENGTH_SHORT).show();
+                //Log.w("Response", new Gson().toJson(response.body()));
+                refreshLayout();
+            }
+
+            @Override
+            public void onFailure(Call<DetilPariwisataBaru> call, Throwable t) {
+                Toast.makeText(getContext(),t.toString(), Toast.LENGTH_SHORT).show();
+                Log.d("onResponse", t.toString());
+                Log.d("error","1");
+            }
+        });
+
+    }
+
+    public void updateAllPariwisataWithGambar(){
         //defining a progress dialog to show while signing up
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        int j=0;
-
-        for(int i=0;i<loadLayout.getChildCount()-1;i++)
-        {
-
-            if(loadLayout.getChildAt(i)!=null)
-            {
-                Log.d("test",String.valueOf(i));
-                ImageView imageView = loadLayout.getChildAt(i).findViewById(R.id.btnAddGambar);
-                if(imageView!= null)
-                {
-
-                    Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
-                    byte[] imageinByte = baos.toByteArray();
-                    if(j==0)
-                    {
-                        imageBytes1=imageinByte;
-                    }
-                    else if(j==1)
-                    {
-                        imageBytes2=imageinByte;
-                    }
-                    else if(j==2)
-                    {
-                        imageBytes3=imageinByte;
-                    }
-                    j++;
-
-                }
-
-
-            }
-
-        }
 
 
         RequestBody nama = RequestBody.create(MediaType.parse("multipart/form-data"), eNama.getText().toString());
@@ -644,8 +674,6 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
         RequestBody deskripsi = RequestBody.create(MediaType.parse("multipart/form-data"), eDeskripsi.getText().toString());
         RequestBody latitude;
         RequestBody longitude;
-        String uID = "0";
-        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), uID);
         if(location==null)
         {
             latitude = null;
@@ -656,6 +684,8 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
             longitude = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(location.longitude));
         }
         RequestBody value = RequestBody.create(MediaType.parse("multipart/form-data"), items_value[mRefNama.getSelectedItemPosition()]);
+        String uID = "0";
+        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), uID);
         String hari_0;
         if(eJamMingguBuka.getText().toString().equals("") || eMenitMingguBuka.getText().toString().equals("")
                 || eJamMingguTutup.getText().toString().equals("") || eMenitMingguTutup.getText().toString().equals("")
@@ -781,52 +811,11 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
 
 
 
-        RequestBody requestFile1=null;
-        RequestBody requestFile2=null;
-        RequestBody requestFile3=null;
-        if(imageBytes1!=null)
-        {
-            requestFile1 = RequestBody.create(MediaType.parse("image/*"), imageBytes1);
-        }
-        if(imageBytes2!=null)
-        {
-            requestFile2 = RequestBody.create(MediaType.parse("image/*"), imageBytes2);
-        }
-        if(imageBytes3!=null)
-        {
-            requestFile3 = RequestBody.create(MediaType.parse("image/*"), imageBytes3);
-        }
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
-        MultipartBody.Part gambarPariwisataUtama=null;
-        MultipartBody.Part gambarPariwisata1=null;
-        MultipartBody.Part gambarPariwisata2=null;
-        MultipartBody.Part gambarPariwisata3=null;
-        if(imageBytes1!=null)
-        {
-            gambarPariwisata1 = MultipartBody.Part.createFormData("gambar", "a.jpg", requestFile1);
-            gambarPariwisataUtama = MultipartBody.Part.createFormData("gambarutama", "a.jpg", requestFile1);
-            Log.d("masuk","1");
-        }else{
-            Log.d("nullImage","1");
-        }
-        if(imageBytes2!=null)
-        {
-            gambarPariwisata2 = MultipartBody.Part.createFormData("gambar2", "b.jpg", requestFile2);
-            Log.d("masuk","2");
-        }else{
-            Log.d("nullImage","2");
-        }
-        if(imageBytes3!=null)
-        {
-            gambarPariwisata3 = MultipartBody.Part.createFormData("gambar3", "c.jpg", requestFile3);
-            Log.d("masuk","3");
-        }else{
-            Log.d("nullImage","3");
-        }
 
-        Call<DetilPariwisataBaru> call = api.addDataPariwisataWithGambar(gambarPariwisata1,gambarPariwisata2,gambarPariwisata3,gambarPariwisataUtama,nama,telp,email,website,deskripsi,latitude,longitude,rHari_0,rHari_1,rHari_2,rHari_3,rHari_4,rHari_5,rHari_6,userId,value);
+        Call<DetilPariwisataBaru> call = api.updateDataPariwisataWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,rHari_0,rHari_1,rHari_2,rHari_3,rHari_4,rHari_5,rHari_6,userId,value);
 
         call.enqueue(new Callback<DetilPariwisataBaru>() {
             @Override
@@ -846,7 +835,9 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
         });
 
     }
-    
+
+
+
     @Override
     public void onLocationChanged(Location location) {
         if(currentLocation==null)
@@ -890,6 +881,8 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
 
     }
 
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -908,48 +901,14 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
 
 
                     }
-                    // Set the image in ImageView
-
-
-
-                    LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
-                    final RelativeLayout view = (RelativeLayout) inflater.inflate(R.layout.activity_add_gambar_adapter,vg,false);
-                    final ImageView gambarLayout = view.findViewById(R.id.btnAddGambar);
-                    ImageView deleteGambar = view.findViewById(R.id.btnHapusGambar);
-
-                    gambarLayout.setImageURI(selectedImageUri);
-
-                    deleteGambar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            btnAddGamabar.setVisibility(View.VISIBLE);
-                            view.setVisibility(View.GONE);
-                            view.removeAllViewsInLayout();
-                            count--;
-
-
-
-                        }
-                    });
-
-
-                    int size = loadLayout.getChildCount();
-
-                    loadLayout.addView(view, size-1);
 
                     int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
                     returnCursor.moveToFirst();
                     mFileName.setText(returnCursor.getString(nameIndex));
                     InputStream is = getActivity().getContentResolver().openInputStream(data.getData());
-                    // Toast.makeText(getContext(),String.valueOf(count),Toast.LENGTH_SHORT).show();
-                   /* tempImageModel gambar = new tempImageModel(String.valueOf(loadLayout.indexOfChild(view)),getBytes(is));
-                    imageByte.put(String.valueOf(count),gambar);*/
 
-                    count++;
-                    if(count==3)
-                    {
-                        btnAddGamabar.setVisibility(View.GONE);
-                    }
+                    imageBytes = getBytes(is);
+                    updatePariwisataWithGambar();
                 }
             }
         } catch (Exception e) {
@@ -981,6 +940,220 @@ public class TambahPariwisataFragment extends Fragment implements OnMapReadyCall
         }
 
         return byteBuff.toByteArray();
+    }
+
+
+    public void refreshGambarLoad()
+    {
+        for(int i =0;i<loadLayout.getChildCount()-1;i++)
+        {
+            loadLayout.removeViewAt(i);
+        }
+    }
+
+
+    public void getDataDetail(){
+
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<DetilPariwisataModel> call = api.detailPariwisata(id);
+
+        call.enqueue(new Callback<DetilPariwisataModel>() {
+            @Override
+            public void onResponse(Call<DetilPariwisataModel> call, Response<DetilPariwisataModel> response) {
+             /*   title.setText(response.body().getJudul());
+                refnama.setText(response.body().getData().getRef_pariwisata_nama());
+                ratingsum.setText(String.format("%s/5",response.body().getData().getRating()));
+                String tampung = response.body().getData().getRating_jumlah();
+                ratingpeople.setText(String.format("(%s orang)", tampung));*/
+                eNama.setText(response.body().getData().getNama());
+                //textAlamat.setText(response.body().getData().getAlamat());
+                eDeskripsi.setText(response.body().getData().getDeskripsi());
+                eEmail.setText(response.body().getData().getEmail());
+                eWebsite.setText(response.body().getData().getWebsite());
+                eNomorTelp.setText(response.body().getData().getTelp());
+
+
+                for (int i =0 ;i<stringArray.length;i++)
+                {
+                    if(stringArray[i].equals(response.body().getData().getRef_pariwisata_nama()))
+                    {
+                        mRefNama.setSelection(i);
+                    }
+                }
+                Float lat = Float.parseFloat(response.body().getData().getLatitude());
+                Float longt = Float.parseFloat(response.body().getData().getLongitude());
+                LatLng lokasi = new LatLng(lat,longt);
+                //currentLatLng = lokasi;
+                /*Bitmap image = getBitmapFromURL(response.body().getData().getFile());
+                BitmapDrawable drawable1 = new BitmapDrawable(image);
+                btnAddGamabar.setImageDrawable(drawable1);*/
+
+                gambarList = response.body().getData().getGambar();
+
+
+                LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+                for(int i= gambarList.size()-1 ; i>=0 ; i--)
+                {
+                    final int index = i;
+                    final RelativeLayout view = (RelativeLayout) inflater.inflate(R.layout.activity_add_gambar_adapter,vg,false);
+                   /* Bitmap image = getBitmapFromURL(gambarList.get(i).getFile_pariwisata_img());
+                    BitmapDrawable drawable = new BitmapDrawable(image);*/
+                    final ImageView gambarLayout = view.findViewById(R.id.btnAddGambar);
+                    ImageView deleteGambar = view.findViewById(R.id.btnHapusGambar);
+
+                    URL url = null;
+                    if(gambarList.get(i).getFile_pariwisata_img().equals(""))
+                    {
+                        //tidak terjadi perubahan apapun
+                    }
+                    else
+                    {
+                        try {
+                            url = new URL(gambarList.get(i).getFile_pariwisata_img());
+                            Picasso.get()
+                                    .load(String.valueOf(url))
+                                    .into(gambarLayout);
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                  /*  gambarLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            tempGambar=gambarLayout;
+                            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                            intent.addCategory(Intent.CATEGORY_OPENABLE);
+                            intent.setType("image/*");
+                            status = 0;
+                            startActivityForResult(Intent.createChooser(intent, "Select Picture"),REQUEST_GET_SINGLE_FILE);
+
+                        }
+                    });*/
+                    deleteGambar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            hapusGambar(gambarList.get(index).getFile_pariwisata_id());
+                            view.setVisibility(View.GONE);
+                            view.removeAllViews();
+
+                        }
+                    });
+                    loadLayout.addView(view,0);
+                }
+
+
+
+                mMap1.addMarker(new MarkerOptions().position(lokasi));
+                mMap1.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasi, 15));
+                mMap2.moveCamera(CameraUpdateFactory.newLatLngZoom(lokasi, 15));
+
+
+            }
+
+            @Override
+            public void onFailure(Call<DetilPariwisataModel> call, Throwable t) {
+                Log.e("OnFailureDetil", t.getMessage().toString());
+            }
+        });
+    }
+
+    public void refreshLayout(){
+//        refreshGambarLoad();
+//        for(int i =0;i<loadLayout.getChildCount()-1;i++)
+//        {
+//            loadLayout.removeViewAt(i);
+//        }
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<DetilPariwisataModel> call = api.detailPariwisata(id);
+
+        call.enqueue(new Callback<DetilPariwisataModel>() {
+            @Override
+            public void onResponse(Call<DetilPariwisataModel> call, Response<DetilPariwisataModel> response) {
+
+                gambarList = response.body().getData().getGambar();
+
+
+                LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+
+                final int index =gambarList.size()-1 ;
+                final RelativeLayout view = (RelativeLayout) inflater.inflate(R.layout.activity_add_gambar_adapter,vg,false);
+                   /* Bitmap image = getBitmapFromURL(gambarList.get(index).getFile_pariwisata_img());
+                    BitmapDrawable drawable = new BitmapDrawable(image);*/
+                final ImageView gambarLayout = view.findViewById(R.id.btnAddGambar);
+                ImageView deleteGambar = view.findViewById(R.id.btnHapusGambar);
+                URL url = null;
+                if(gambarList.get(index).getFile_pariwisata_img().equals(""))
+                {
+                    //tidak terjadi perubahan apapun
+                }
+                else
+                {
+                    try {
+                        url = new URL(gambarList.get(index).getFile_pariwisata_img());
+                        Picasso.get()
+                                .load(String.valueOf(url))
+                                .into(gambarLayout);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+
+                deleteGambar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        hapusGambar(gambarList.get(index).getFile_pariwisata_id());
+                        view.setVisibility(View.GONE);
+                        view.removeAllViews();
+                    }
+                });
+                loadLayout.addView(view,loadLayout.getChildCount()-1);
+                progressDialogUpdate.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<DetilPariwisataModel> call, Throwable t) {
+                Log.e("OnFailureDetil", t.getMessage().toString());
+                progressDialogUpdate.dismiss();
+            }
+        });
+    }
+
+    public Bitmap getBitmapFromURL(String imageUrl) {
+        try {
+            URL url = new URL(imageUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+
+    }
+
+    public void hapusGambar(String id_gambar){
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<DetilPariwisataModel> call = api.hapusGambarPariwisata(id_gambar);
+
+        call.enqueue(new Callback<DetilPariwisataModel>() {
+            @Override
+            public void onResponse(Call<DetilPariwisataModel> call, Response<DetilPariwisataModel> response) {
+                Toast.makeText(getContext(), "deleted",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<DetilPariwisataModel> call, Throwable t) {
+                Log.e("OnFailureDetil", t.getMessage().toString());
+            }
+        });
     }
 
 }

@@ -369,7 +369,7 @@
                     android:id="@+id/btnTambah"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tambah"
+                    android:text="Selesai"
                     android:padding="20dp"
                     android:layout_margin="20dp"/>
 

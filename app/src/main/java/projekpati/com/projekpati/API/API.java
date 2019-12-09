@@ -432,6 +432,58 @@ public interface API {
             @Field("ref_pariwisata_id") String ref_pariwisata_id
     );
 
+    @Multipart
+    @POST("pariwisata/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilPariwisataBaru> updateDataPariwisataWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("hari_0") RequestBody hari_0,
+            @Part("hari_1") RequestBody hari_1,
+            @Part("hari_2") RequestBody hari_2,
+            @Part("hari_3") RequestBody hari_3,
+            @Part("hari_4") RequestBody hari_4,
+            @Part("hari_5") RequestBody hari_5,
+            @Part("hari_6") RequestBody hari_6,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_pariwisata_id") RequestBody ref_pariwisata_id
+    );
+
+    @Multipart
+    @POST("pariwisata/update?key=TechnoPhoriaIndonesia")
+    Call<DetilPariwisataBaru> addDataPariwisataWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("hari_0") RequestBody hari_0,
+            @Part("hari_1") RequestBody hari_1,
+            @Part("hari_2") RequestBody hari_2,
+            @Part("hari_3") RequestBody hari_3,
+            @Part("hari_4") RequestBody hari_4,
+            @Part("hari_5") RequestBody hari_5,
+            @Part("hari_6") RequestBody hari_6,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_pariwisata_id") RequestBody ref_pariwisata_id
+    );
+
+    @GET("pariwisata/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilPariwisataModel> hapusGambarPariwisata(@Path("id") String id);
+
     //Kesehatan
     @GET("kesehatan/data/?key=TechnoPhoriaIndonesia")
     Call<KesehatanModel> tampilSemuaKesehatan();
@@ -942,6 +994,44 @@ public interface API {
 
     @GET("olahraga/data?key=TechnoPhoriaIndonesia")
     Call<OlahragaModel> cariOlahragaByJenis(@Query("IDJenis") String keyword);
+
+    @Multipart
+    @POST("olahraga/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilOlahragaBaru> updateDataOlahragaWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_olahraga_id") RequestBody ref_olahraga_id
+    );
+
+    @Multipart
+    @POST("olahraga/update?key=TechnoPhoriaIndonesia")
+    Call<DetilOlahragaBaru> addDataOlahragaWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_olahraga_id") RequestBody ref_olahraga_id
+    );
+
+    @GET("olahraga/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilOlahragaModel> hapusGambarOlahraga(@Path("id") String id);
 
     //Polisi
     @GET("polisi/data/?key=TechnoPhoriaIndonesia")

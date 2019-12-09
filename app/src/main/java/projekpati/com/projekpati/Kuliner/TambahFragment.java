@@ -70,6 +70,7 @@ import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Map;
@@ -140,7 +141,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tambah, container, false);
-
+        vg=container;
         init(view);
         setSpinner();
         startLatLng = new LatLng(-6.7487,111.0379);
@@ -599,155 +600,6 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
 
     }
 
-    public void addKuliner(){
-        //defining a progress dialog to show while signing up
-        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-
-        String nama = eNama.getText().toString();
-        String pemilik = ePemilik.getText().toString();
-        String telp = eNomorTelp.getText().toString();
-        String email = eEmail.getText().toString();
-        String website = eWebsite.getText().toString();
-        String deskripsi = eDeskripsi.getText().toString();
-        String latitude;
-        String longitude;
-        if(location==null)
-        {
-            latitude = null;
-            longitude =null;
-        }
-        else{
-            latitude = String.valueOf(location.latitude);
-            longitude = String.valueOf(location.longitude);
-        }
-
-        String hari_0;
-        if(eJamMingguBuka.getText().toString().equals("") || eMenitMingguBuka.getText().toString().equals("")
-                || eJamMingguTutup.getText().toString().equals("") || eMenitMingguTutup.getText().toString().equals("")
-                || sLiburMinggu==1)
-        {
-           hari_0=null;
-        }
-        else {
-
-            hari_0 = eJamMingguBuka.getText().toString()+ ":"+ eMenitMingguBuka.getText().toString() + " - " +
-                    eJamMingguTutup.getText().toString()+ ":"+ eMenitMingguTutup.getText().toString();
-        }
-        String hari_1;
-        if( eJamSeninBuka.getText().toString().equals("") || eMenitSeninBuka.getText().toString().equals("") ||
-                eJamSeninTutup.getText().toString().equals("") || eMenitSeninTutup.getText().toString().equals("")
-                || sLiburSenin==1)
-        {
-            hari_1=null;
-        }
-        else {
-
-           hari_1 = eJamSeninBuka.getText().toString()+ ":"+ eMenitSeninBuka.getText().toString() + " - " +
-                   eJamSeninTutup.getText().toString()+ ":"+ eMenitSeninTutup.getText().toString();
-        }
-
-        String hari_2;
-        if(eJamSelasaBuka.getText().toString().equals("") ||  eMenitselasaBuka.getText().toString().equals("") ||
-                eJamSelasaTutup.getText().toString().equals("") || eMenitselasaTutup.getText().toString().equals("")
-                || sLiburSelasa==1)
-        {
-            hari_2=null;
-        }
-        else {
-
-             hari_2 = eJamSelasaBuka.getText().toString()+ ":"+ eMenitselasaBuka.getText().toString() + " - " +
-                    eJamSelasaTutup.getText().toString()+ ":"+ eMenitselasaTutup.getText().toString();
-        }
-        String hari_3;
-        if(eJamRabuBuka.getText().toString().equals("") ||  eMenitRabuBuka.getText().toString().equals("") ||
-                eJamRabuTutup.getText().toString().equals("") ||  eMenitRabuTutup.getText().toString().equals("")
-                || sLiburRabu==1)
-        {
-            hari_3=null;
-        }
-        else {
-
-            hari_3 = eJamRabuBuka.getText().toString()+ ":"+ eMenitRabuBuka.getText().toString() + " - " +
-                eJamRabuTutup.getText().toString()+ ":"+ eMenitRabuTutup.getText().toString();
-        }
-
-        String hari_4;
-        if(eJamKamisBuka.getText().toString().equals("") || eMenitKamisBuka.getText().toString().equals("") ||
-                eJamKamisTutup.getText().toString().equals("") || eMenitKamisTutup.getText().toString().equals("")
-                || sLiburKamis==1)
-        {
-            hari_4=null;
-        }
-        else {
-
-            hari_4 = eJamKamisBuka.getText().toString()+ ":"+ eMenitKamisBuka.getText().toString() + " - " +
-                    eJamKamisTutup.getText().toString()+ ":"+ eMenitKamisTutup.getText().toString();
-        }
-        String hari_5;
-        if(eJamJumatBuka.getText().toString().equals("") || eMenitJumatBuka.getText().toString().equals("") ||
-                eJamJumatTutup.getText().toString().equals("") || eMenitJumatTutup.getText().toString().equals("")
-                || sLiburJumat==1)
-        {
-            hari_5=null;
-        }
-        else {
-
-            hari_5 =  eJamJumatBuka.getText().toString()+ ":"+ eMenitJumatBuka.getText().toString() + " - " +
-                    eJamJumatTutup.getText().toString()+ ":"+ eMenitJumatTutup.getText().toString();
-        }
-        String hari_6;
-        if(eJamSabtuBuka.getText().toString().equals("") || eMenitSabtuBuka.getText().toString().equals("") ||
-                eJamSabtuTutup.getText().toString().equals("") ||  eMenitSabtuTutup.getText().toString().equals("")
-                || sLiburSabtu==1)
-        {
-            hari_6=null;
-        }
-        else {
-
-            hari_6 =  eJamSabtuBuka.getText().toString()+ ":"+ eMenitSabtuBuka.getText().toString() + " - " +
-                    eJamSabtuTutup.getText().toString()+ ":"+ eMenitSabtuTutup.getText().toString();
-        }
-
-       String value = items_value[mRefNama.getSelectedItemPosition()];
-
-        Log.d("nama",nama);
-        Log.d("pemilik",pemilik);
-        Log.d("telp",telp);
-        Log.d("email",email);
-        Log.d("website",website);
-        Log.d("deskripsi",deskripsi);
-        Log.d("cobain", mRefNama.getSelectedItem().toString());
-        if(location!=null)
-        {
-            Log.d("latitude",latitude);
-            Log.d("longitude",longitude);
-        }
-
-
-
-        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<DetilKulinerBaru> call = api.addDataKuliner(nama,pemilik,telp,email,website,deskripsi,latitude,longitude,hari_0,hari_1,hari_2,hari_3,hari_4,hari_5,hari_6,value);
-
-        call.enqueue(new Callback<DetilKulinerBaru>() {
-            @Override
-            public void onResponse(Call<DetilKulinerBaru> call, final Response<DetilKulinerBaru> response) {
-                Toast.makeText(getContext(),"Sukses", Toast.LENGTH_SHORT).show();
-                Log.w("Response", new Gson().toJson(response.body()));
-                progressDialog.dismiss();
-
-            }
-
-            @Override
-            public void onFailure(Call<DetilKulinerBaru> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(getContext(),t.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("onResponse", t.toString());
-            }
-        });
-
-    }
     public void addKulinerWithGambar(){
         //defining a progress dialog to show while signing up
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
@@ -1001,8 +853,6 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
         });
 
     }
-    
-    
 
     @Override
     public void onLocationChanged(Location location) {
@@ -1124,5 +974,19 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
         }
         cursor.close();
         return res;
+    }
+
+    public byte[] getBytes(InputStream is) throws IOException {
+        ByteArrayOutputStream byteBuff = new ByteArrayOutputStream();
+
+        int buffSize = 1024;
+        byte[] buff = new byte[buffSize];
+
+        int len = 0;
+        while ((len = is.read(buff)) != -1) {
+            byteBuff.write(buff, 0, len);
+        }
+
+        return byteBuff.toByteArray();
     }
 }
