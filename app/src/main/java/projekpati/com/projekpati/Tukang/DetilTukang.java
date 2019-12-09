@@ -2,6 +2,8 @@ package projekpati.com.projekpati.Tukang;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.API.API;
@@ -30,6 +32,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -72,6 +75,8 @@ public class DetilTukang extends AppCompatActivity {
     String parentID;
     LinearLayout pbKomen;
     SwipeRefreshLayout swipeRefreshLayout;
+    ImageView btnEdit;
+    FrameLayout frameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,7 +107,7 @@ public class DetilTukang extends AppCompatActivity {
         textTelepon = findViewById(R.id.mTelpon);
         textDeskripsi = findViewById(R.id.mDeskripsi);
         tabLayout = findViewById(R.id.tabDots);
-
+        btnEdit = findViewById(R.id.btnEdit);
         textEmail = findViewById(R.id.mEmail);
         textWebsite = findViewById(R.id.mWebsite);
         listTukang = findViewById(R.id.listTukang);
@@ -217,6 +222,22 @@ public class DetilTukang extends AppCompatActivity {
             }
         });
 
+        frameLayout = findViewById(R.id.fragmentEdit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swipeRefreshLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                Bundle bundle = new Bundle();
+                bundle.putString("id_detil",id);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                EditTukang editTukang = new EditTukang();
+                editTukang.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragmentEdit, editTukang);
+                fragmentTransaction.commit();
+            }
+        });
 
         btnJam.setOnClickListener(new View.OnClickListener() {
             @Override

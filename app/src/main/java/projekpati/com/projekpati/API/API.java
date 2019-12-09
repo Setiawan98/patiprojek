@@ -378,6 +378,58 @@ public interface API {
             @Field("ref_tukang_id") String ref_tukang_id
     );
 
+    @Multipart
+    @POST("tukang/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilTukangBaru> updateDataTukangWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("hari_0") RequestBody hari_0,
+            @Part("hari_1") RequestBody hari_1,
+            @Part("hari_2") RequestBody hari_2,
+            @Part("hari_3") RequestBody hari_3,
+            @Part("hari_4") RequestBody hari_4,
+            @Part("hari_5") RequestBody hari_5,
+            @Part("hari_6") RequestBody hari_6,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_tukang_id") RequestBody ref_tukang_id
+    );
+
+    @Multipart
+    @POST("tukang/update?key=TechnoPhoriaIndonesia")
+    Call<DetilTukangBaru> addDataTukangWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("hari_0") RequestBody hari_0,
+            @Part("hari_1") RequestBody hari_1,
+            @Part("hari_2") RequestBody hari_2,
+            @Part("hari_3") RequestBody hari_3,
+            @Part("hari_4") RequestBody hari_4,
+            @Part("hari_5") RequestBody hari_5,
+            @Part("hari_6") RequestBody hari_6,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_tukang_id") RequestBody ref_tukang_id
+    );
+
+    @GET("tukang/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilTukangModel> hapusGambarTukang(@Path("id") String id);
+
     //Pariwisata
     @GET("pariwisata/data/?key=TechnoPhoriaIndonesia")
     Call<PariwisataModel> tampilSemuaPariwisata();
@@ -1572,6 +1624,64 @@ public interface API {
 
     @GET("otomotif/data?key=TechnoPhoriaIndonesia")
     Call<OtomotifModel> cariOtomotifByJenis(@Query("IDJenis") String keyword);
+
+    @Multipart
+    @POST("otomotif/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilOtomotifBaru> updateDataOtomotifWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("penjual") RequestBody penjual,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("alamat") RequestBody alamat,
+            @Part("harga") RequestBody harga,
+            @Part("kondisi") RequestBody kondisi,
+            @Part("model") RequestBody model,
+            @Part("warna") RequestBody warna,
+            @Part("kilometer") RequestBody kilometer,
+            @Part("thn_pembuatan") RequestBody thn_pembuatan,
+            @Part("transmisi") RequestBody transmisi,
+            @Part("habis_terjual") RequestBody habis_terjual,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_otomotif_id") RequestBody ref_otomotif_id
+    );
+
+    @Multipart
+    @POST("otomotif/update?key=TechnoPhoriaIndonesia")
+    Call<DetilOtomotifBaru> addDataOtomotifWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("penjual") RequestBody penjual,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("alamat") RequestBody alamat,
+            @Part("harga") RequestBody harga,
+            @Part("kondisi") RequestBody kondisi,
+            @Part("model") RequestBody model,
+            @Part("warna") RequestBody warna,
+            @Part("kilometer") RequestBody kilometer,
+            @Part("thn_pembuatan") RequestBody thn_pembuatan,
+            @Part("transmisi") RequestBody transmisi,
+            @Part("habis_terjual") RequestBody habis_terjual,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_otomotif_id") RequestBody ref_otomotif_id
+    );
+
+    @GET("otomotif/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilOtomotifModel> hapusGambarOtomotif(@Path("id") String id);
 
 
     //Kerjaan
