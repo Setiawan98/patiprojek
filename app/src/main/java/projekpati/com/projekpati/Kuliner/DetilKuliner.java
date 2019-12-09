@@ -2,6 +2,8 @@ package projekpati.com.projekpati.Kuliner;
 
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.appcompat.widget.Toolbar;
+        import androidx.fragment.app.FragmentManager;
+        import androidx.fragment.app.FragmentTransaction;
         import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
         import androidx.viewpager.widget.ViewPager;
         import projekpati.com.projekpati.API.API;
@@ -12,6 +14,7 @@ package projekpati.com.projekpati.Kuliner;
         import projekpati.com.projekpati.Model.KomentarLengkap;
         import projekpati.com.projekpati.Model.KomentarParent;
         import projekpati.com.projekpati.Model.postKomentar;
+        import projekpati.com.projekpati.Pendidikan.EditPendidikanActivity;
         import projekpati.com.projekpati.R;
         import retrofit2.Call;
         import retrofit2.Callback;
@@ -29,6 +32,7 @@ package projekpati.com.projekpati.Kuliner;
         import android.view.Menu;
         import android.widget.Button;
         import android.widget.EditText;
+        import android.widget.FrameLayout;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
         import android.widget.ProgressBar;
@@ -49,6 +53,7 @@ public class DetilKuliner extends AppCompatActivity {
 
     TextView textNama, textAlamat, textTelepon, textDeskripsi, textEmail, textWebsite, textPemilik, refnama, ratingsum, ratingpeople;
     TextView senin, selasa, rabu, kamis, jumat, sabtu, minggu;
+    FrameLayout frameLayout;
     EditText komentar;
     RatingBar ratingstar;
     Button btnDetil;
@@ -56,6 +61,7 @@ public class DetilKuliner extends AppCompatActivity {
     ImageView btnMenu;
     TextView btnKomen;
     ViewPager pager;
+    ImageView btnEdit;
     float lat;
     float longt;
     LinearLayout listKuliner, listMenu;
@@ -108,7 +114,7 @@ public class DetilKuliner extends AppCompatActivity {
         textTelepon = findViewById(R.id.mTelpon);
         textDeskripsi = findViewById(R.id.mDeskripsi);
         tabLayout = findViewById(R.id.tabDots);
-
+        btnEdit = findViewById(R.id.btnEdit);
         textEmail = findViewById(R.id.mEmail);
         textWebsite = findViewById(R.id.mWebsite);
         textPemilik = findViewById(R.id.mPemilik);
@@ -173,7 +179,22 @@ public class DetilKuliner extends AppCompatActivity {
             }
         });
 
-
+        frameLayout = findViewById(R.id.fragmentEdit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swipeRefreshLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                Bundle bundle = new Bundle();
+                bundle.putString("id_detil",id);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                EditKuliner editKuliner = new EditKuliner();
+                editKuliner.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragmentEdit, editKuliner);
+                fragmentTransaction.commit();
+            }
+        });
 
         btnKomen.setOnClickListener(new View.OnClickListener() {
             @Override

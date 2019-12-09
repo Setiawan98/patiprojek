@@ -20,10 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BeritaOnline.TampilBeritaOnlineByJenis"></activity>
+        <activity android:name=".BeritaOnline.TampilBeritaOnlineByJenis" />
         <activity android:name=".BeritaOnline.DetilBeritaOnline" />
         <activity android:name=".BeritaOnline.CariBeritaOnline" />
-        <activity android:name=".BeritaCetak.TampilBeritaCetakByJenis"></activity>
+        <activity android:name=".BeritaCetak.TampilBeritaCetakByJenis" />
         <activity android:name=".BeritaCetak.DetilBeritaCetak" />
         <activity android:name=".BeritaCetak.CariBeritaCetak" />
         <activity android:name=".BeritaCetak.MenuBeritaCetak" />

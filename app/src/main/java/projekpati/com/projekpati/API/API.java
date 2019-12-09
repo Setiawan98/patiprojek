@@ -177,6 +177,58 @@ public interface API {
                                      @Field("userID") String userID);
 
 
+    @Multipart
+    @POST("kuliner/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilKulinerBaru> updateDataKulinerWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("pemilik") RequestBody pemilik,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("hari_0") RequestBody hari_0,
+            @Part("hari_1") RequestBody hari_1,
+            @Part("hari_2") RequestBody hari_2,
+            @Part("hari_3") RequestBody hari_3,
+            @Part("hari_4") RequestBody hari_4,
+            @Part("hari_5") RequestBody hari_5,
+            @Part("hari_6") RequestBody hari_6,
+            @Part("ref_kuliner_id") RequestBody ref_kuliner_id
+    );
+
+    @Multipart
+    @POST("kuliner/update?key=TechnoPhoriaIndonesia")
+    Call<DetilKulinerBaru> addDataKulinerWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("pemilik") RequestBody pemilik,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("hari_0") RequestBody hari_0,
+            @Part("hari_1") RequestBody hari_1,
+            @Part("hari_2") RequestBody hari_2,
+            @Part("hari_3") RequestBody hari_3,
+            @Part("hari_4") RequestBody hari_4,
+            @Part("hari_5") RequestBody hari_5,
+            @Part("hari_6") RequestBody hari_6,
+            @Part("ref_kuliner_id") RequestBody ref_kuliner_id
+    );
+
+    @GET("kuliner/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilKulinerModel> hapusGambarKuliner(@Path("id") String id);
+
 
 
     ///Pendidikan
@@ -1171,6 +1223,7 @@ public interface API {
                                                     @Field("userID") String userID);
 
     @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=berita_cetak")
-    Call<KomentarLengkap> getKomentarBeritaCetak(@Query("dataID") String data_id);
+    Call<KomentarLengkap> getKomentarBeritaCetak
+            (@Query("dataID") String data_id);
 
 }
