@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Aspirasi.EditAspirasiActivity"></activity>
         <activity android:name=".BeritaOnline.TampilBeritaOnlineByJenis" />
         <activity android:name=".BeritaOnline.DetilBeritaOnline" />
         <activity android:name=".BeritaOnline.CariBeritaOnline" />
@@ -192,9 +193,7 @@
             android:name=".Koperasi.MenuKoperasi"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Koperasi.DetilMapKoperasi" />
-        <activity android:name=".WelcomeActivity">
-
-        </activity>
+        <activity android:name=".WelcomeActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

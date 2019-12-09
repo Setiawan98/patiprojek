@@ -2,6 +2,8 @@ package projekpati.com.projekpati.Aspirasi;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.API.API;
@@ -12,6 +14,7 @@ import projekpati.com.projekpati.Model.Aspirasi.GambarAspirasiDetil;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.KomentarParent;
 import projekpati.com.projekpati.Model.postKomentar;
+import projekpati.com.projekpati.Pendidikan.EditPendidikanActivity;
 import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +32,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
@@ -62,6 +67,8 @@ public class DetilAspirasi extends AppCompatActivity {
     LinearLayout pbKomen;
     String id;
     ViewPager pager;
+    FrameLayout frameLayout;
+    ImageView btnEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,6 +189,24 @@ public class DetilAspirasi extends AppCompatActivity {
                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 i.setPackage("com.google.android.apps.maps");
                 startActivity(i);
+            }
+        });
+
+        frameLayout = findViewById(R.id.fragmentEdit);
+        btnEdit = findViewById(R.id.btnEdit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swipeRefreshLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                Bundle bundle = new Bundle();
+                bundle.putString("id_detil",id);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                EditPendidikanActivity editPendidikanActivity = new EditPendidikanActivity();
+                editPendidikanActivity.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragmentEdit, editPendidikanActivity);
+                fragmentTransaction.commit();
             }
         });
     }

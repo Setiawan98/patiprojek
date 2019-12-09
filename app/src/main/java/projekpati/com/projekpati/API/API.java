@@ -486,6 +486,58 @@ public interface API {
             @Field("ref_kesehatan_id") String ref_kesehatan_id
     );
 
+    @Multipart
+    @POST("kesehatan/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilKesehatanBaru> updateDataKesehatanWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("hari_0") RequestBody hari_0,
+            @Part("hari_1") RequestBody hari_1,
+            @Part("hari_2") RequestBody hari_2,
+            @Part("hari_3") RequestBody hari_3,
+            @Part("hari_4") RequestBody hari_4,
+            @Part("hari_5") RequestBody hari_5,
+            @Part("hari_6") RequestBody hari_6,
+            @Field("user_id") String user_id,
+            @Part("ref_kesehatan_id") RequestBody ref_kesehatan_id
+    );
+
+    @Multipart
+    @POST("kesehatan/update?key=TechnoPhoriaIndonesia")
+    Call<DetilKesehatanBaru> addDataKesehatanWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("hari_0") RequestBody hari_0,
+            @Part("hari_1") RequestBody hari_1,
+            @Part("hari_2") RequestBody hari_2,
+            @Part("hari_3") RequestBody hari_3,
+            @Part("hari_4") RequestBody hari_4,
+            @Part("hari_5") RequestBody hari_5,
+            @Part("hari_6") RequestBody hari_6,
+            @Field("user_id") String user_id,
+            @Part("ref_kesehatan_id") RequestBody ref_kesehatan_id
+    );
+
+    @GET("kesehatan/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilKesehatanModel> hapusGambarKesehatan(@Path("id") String id);
+
     //Fasilitas Umum
     @GET("lain_lain/data/?key=TechnoPhoriaIndonesia")
     Call<FasilitasUmumModel> tampilSemuaFasilitasUmum();
@@ -549,6 +601,43 @@ public interface API {
             @Field("ref_bank_id") String ref_bank_id
     );
 
+    @Multipart
+    @POST("bank/update?key=TechnoPhoriaIndonesia")
+    Call<DetilBankBaru> addDataBankWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_bank_id") RequestBody ref_bank_id
+    );
+
+    @Multipart
+    @POST("bank/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilBankBaru> updateDataBankWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_bank_id") RequestBody ref_bank_id
+    );
+    @GET("bank/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilBankModel> hapusGambarBank(@Path("id") String id);
+
     //Bioskop
     @GET("bioskop/data/?key=TechnoPhoriaIndonesia")
     Call<BioskopModel> tampilSemuaBioskop();
@@ -589,6 +678,45 @@ public interface API {
             @Field("user_id") String user_id,
             @Field("ref_bioskop_id") String ref_bioskop_id
     );
+
+    @Multipart
+    @POST("bioskop/update?key=TechnoPhoriaIndonesia")
+    Call<DetilBioskopBaru> addDataBioskopWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_bioskop_id") RequestBody ref_bioskop_id
+    );
+
+    @Multipart
+    @POST("bioskop/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilBioskopBaru> updateDataBioskopWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_bioskop_id") RequestBody ref_bioskop_id
+    );
+
+    @GET("bioskop/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilBioskopModel> hapusGambarBioskop(@Path("id") String id);
+
 
     @GET("bioskop/jenis?key=TechnoPhoriaIndonesia")
     Call<JenisBioskopLengkap> tampilJenisBioskop();
@@ -637,6 +765,44 @@ public interface API {
             @Field("ref_hotel_id") String ref_hotel_id
     );
 
+    @Multipart
+    @POST("hotel/update?key=TechnoPhoriaIndonesia")
+    Call<DetilHotelBaru> addDataHotelWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_hotel_id") RequestBody ref_hotel_id
+    );
+
+    @Multipart
+    @POST("hotel/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilHotelBaru> updateDataHotelWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_hotel_id") RequestBody ref_hotel_id
+    );
+
+    @GET("hotel/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilHotelModel> hapusGambarHotel(@Path("id") String id);
+
     @GET("hotel/jenis?key=TechnoPhoriaIndonesia")
     Call<JenisHotelLengkap> tampilJenisHotel();
 
@@ -683,6 +849,46 @@ public interface API {
             @Field("user_id") String user_id,
             @Field("ref_koperasi_id") String ref_koperasi_id
     );
+
+    @Multipart
+    @POST("koperasi/update?key=TechnoPhoriaIndonesia")
+    Call<DetilKoperasiBaru> addDataKoperasiWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_koperasi_id") RequestBody ref_koperasi_id
+    );
+
+
+    @Multipart
+    @POST("koperasi/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilKoperasiBaru> updateDataKoperasiWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_koperasi_id") RequestBody ref_koperasi_id
+    );
+    @GET("koperasi/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilKoperasiModel> hapusGambarKoperasi(@Path("id") String id);
 
     @GET("koperasi/jenis?key=TechnoPhoriaIndonesia")
     Call<JenisKoperasiLengkap> tampilJenisKoperasi();
@@ -949,6 +1155,46 @@ public interface API {
             @Field("ref_spbu_id") String ref_spbu_id
     );
 
+    @Multipart
+    @POST("spbu/update?key=TechnoPhoriaIndonesia")
+    Call<DetilSpbuBaru> addDataSpbuWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_spbu_id") RequestBody ref_spbu_id
+    );
+
+    @Multipart
+    @POST("spbu/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilSpbuBaru> updateDataSpbuWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_spbu_id") RequestBody ref_spbu_id
+    );
+
+    @GET("spbu/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilSpbuModel> hapusGambarSpbu(@Path("id") String id);
+
+
+
     @GET("spbu/jenis?key=TechnoPhoriaIndonesia")
     Call<JenisSpbuLengkap> tampilJenisSpbu();
 
@@ -999,6 +1245,39 @@ public interface API {
             @Field("user_id") String user_id,
             @Field("ref_aspirasi_id") String ref_spbu_id
     );
+
+    @Multipart
+    @POST("aspirasi/update?key=TechnoPhoriaIndonesia")
+    Call<DetilAspirasiBaru> addDataAspirasiWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("tgl") RequestBody tgl,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_aspirasi_id") RequestBody ref_aspirasi_id
+    );
+
+    @Multipart
+    @POST("aspirasi/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilAspirasiBaru> updateDataAspirasiWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("tgl") RequestBody tgl,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_aspirasi_id") RequestBody ref_aspirasi_id
+    );
+    @GET("aspirasi/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilAspirasiModel> hapusGambarAspirasi(@Path("id") String id);
 
     //Agenda
     @GET("agenda/data/?key=TechnoPhoriaIndonesia")
@@ -1255,6 +1534,47 @@ public interface API {
             @Field("ref_kerjaan_id") String ref_kerjaan_id
 
     );
+
+    @Multipart
+    @POST("kerjaan/update?key=TechnoPhoriaIndonesia")
+    Call<DetilKerjaanBaru> addDataKerjaanWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("kantor") RequestBody kantor,
+            @Part("gaji") RequestBody gaji,
+            @Part("pengalaman") RequestBody pengalaman,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("tgl") RequestBody tgl,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_kerjaan_id") RequestBody ref_kerjaan_id
+    );
+
+    @Multipart
+    @POST("kerjaan/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilKerjaanBaru> updateDataKerjaanWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("tgl") RequestBody tgl,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_kerjaan_id") RequestBody ref_kerjaan_id
+    );
+
+    @GET("kerjaan/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilKerjaanModel> hapusGambarKerjaan(@Path("id") String id);
+
 
     //gambar slider
     @GET("galeri_android/data?key=TechnoPhoriaIndonesia")
