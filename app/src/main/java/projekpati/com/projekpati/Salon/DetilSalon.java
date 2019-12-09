@@ -2,6 +2,8 @@ package projekpati.com.projekpati.Salon;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.API.API;
@@ -29,6 +31,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
@@ -55,6 +59,7 @@ public class DetilSalon extends AppCompatActivity {
     ViewPager pager;
     float lat;
     float longt;
+    FrameLayout frameLayout;
     LinearLayout listSalon;
     LinearLayout linearDetil, linearJam;
     List<KomentarParent> list = new ArrayList<>();
@@ -69,6 +74,7 @@ public class DetilSalon extends AppCompatActivity {
     String parentID;
     LinearLayout pbKomen;
     SwipeRefreshLayout swipeRefreshLayout;
+    ImageView btnEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +85,7 @@ public class DetilSalon extends AppCompatActivity {
         refnama = findViewById(R.id.refnama);
         ly = findViewById(R.id.konten);
         setSupportActionBar(toolbar);
+        btnEdit = findViewById(R.id.btnEdit);
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
         linearDetil = findViewById(R.id.linearDetil);
@@ -211,6 +218,23 @@ public class DetilSalon extends AppCompatActivity {
                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 i.setPackage("com.google.android.apps.maps");
                 startActivity(i);
+            }
+        });
+
+        frameLayout = findViewById(R.id.fragmentEdit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swipeRefreshLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                Bundle bundle = new Bundle();
+                bundle.putString("id_detil",id);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                EditSalon editSalon = new EditSalon();
+                editSalon.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragmentEdit, editSalon);
+                fragmentTransaction.commit();
             }
         });
 

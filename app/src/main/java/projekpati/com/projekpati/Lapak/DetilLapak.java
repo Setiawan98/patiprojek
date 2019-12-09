@@ -2,10 +2,13 @@ package projekpati.com.projekpati.Lapak;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
+import projekpati.com.projekpati.Kuliner.EditKuliner;
 import projekpati.com.projekpati.Kuliner.ViewPagerAdapter;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.KomentarParent;
@@ -29,6 +32,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
@@ -62,6 +67,8 @@ public class DetilLapak extends AppCompatActivity {
     LinearLayout pbKomen;
     String id;
     ViewPager pager;
+    FrameLayout frameLayout;
+    ImageView btnEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +99,7 @@ public class DetilLapak extends AppCompatActivity {
         ratingstar = findViewById(R.id.ratingstar);
         pbKomen = findViewById(R.id.progress_bar);
         ratingstar.setMax(5);
+        btnEdit = findViewById(R.id.btnEdit);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         title.setText("Detil Lapak");
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -187,6 +195,23 @@ public class DetilLapak extends AppCompatActivity {
                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 i.setPackage("com.google.android.apps.maps");
                 startActivity(i);
+            }
+        });
+
+        frameLayout = findViewById(R.id.fragmentEdit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swipeRefreshLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                Bundle bundle = new Bundle();
+                bundle.putString("id_detil",id);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                EditLapak editLapak = new EditLapak();
+                editLapak.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragmentEdit, editLapak);
+                fragmentTransaction.commit();
             }
         });
     }

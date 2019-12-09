@@ -37,13 +37,52 @@
                         android:text="Foto lokasi Lapak"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
-                    <Button
-                        android:layout_marginTop="10dp"
-                        android:layout_width="50dp"
-                        android:layout_marginLeft="20dp"
-                        android:textSize="6pt"
-                        android:layout_height="50dp"
-                        android:background="@drawable/add"/>
+                    <HorizontalScrollView
+                        android:id="@+id/Horizontalscroll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+                        <LinearLayout
+                            android:id="@+id/loadLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp"
+                            android:paddingRight="30dp">
+
+                            <RelativeLayout
+                                android:layout_width="58dp"
+                                android:layout_height="58dp"
+                                android:paddingLeft="10dp">
+                                <ImageView
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:id="@+id/btnAddGambar"
+                                    android:layout_width="50dp"
+                                    android:textSize="6pt"
+                                    android:layout_height="50dp"
+                                    android:src="@drawable/add"
+                                    android:scaleType="centerCrop"
+                                    android:adjustViewBounds="true"/>
+
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                    <TextView
+                        android:id="@+id/mFileName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text=""
+                        android:paddingLeft="21dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"/>
 
                 </LinearLayout>
 

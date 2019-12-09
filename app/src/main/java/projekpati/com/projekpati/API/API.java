@@ -784,7 +784,43 @@ public interface API {
     @GET("polisi/data?key=TechnoPhoriaIndonesia")
     Call<PolisiModel> cariPolisiByJenis(@Query("IDJenis") String keyword);
 
+    @Multipart
+    @POST("polisi/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilPolisiBaru> updateDataPolisiWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_polisi_id") RequestBody ref_polisi_id
+    );
 
+    @Multipart
+    @POST("polisi/update?key=TechnoPhoriaIndonesia")
+    Call<DetilPolisiBaru> addDataPolisiWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_polisi_id") RequestBody ref_polisi_id
+    );
+
+    @GET("polisi/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilPolisiModel> hapusGambarPolisi(@Path("id") String id);
     //Salon
 
     @GET("salon/data/?key=TechnoPhoriaIndonesia")
@@ -832,6 +868,44 @@ public interface API {
 
     @GET("salon/data?key=TechnoPhoriaIndonesia")
     Call<SalonModel> cariSalonByJenis(@Query("IDJenis") String keyword);
+
+    @Multipart
+    @POST("salon/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilSalonBaru> updateDataSalonWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_salon_id") RequestBody ref_salon_id
+    );
+
+    @Multipart
+    @POST("salon/update?key=TechnoPhoriaIndonesia")
+    Call<DetilSalonBaru> addDataSalonWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_salon_id") RequestBody ref_salon_id
+    );
+
+    @GET("salon/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilSalonModel> hapusGambarSalon(@Path("id") String id);
 
     //SPBU
 
@@ -1026,6 +1100,48 @@ public interface API {
 
     @GET("lapak/data?key=TechnoPhoriaIndonesia")
     Call<LapakModel> cariLapakByJenis(@Query("IDJenis") String keyword);
+
+    @Multipart
+    @POST("lapak/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilLapakBaru> updateDataLapakWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("barang") RequestBody barang,
+            @Part("harga") RequestBody harga,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_lapak_id") RequestBody ref_lapak_id
+    );
+
+    @Multipart
+    @POST("lapak/update?key=TechnoPhoriaIndonesia")
+    Call<DetilLapakBaru> addDataLapakWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("barang") RequestBody barang,
+            @Part("harga") RequestBody harga,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_lapak_id") RequestBody ref_lapak_id
+    );
+
+    @GET("lapak/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilLapakModel> hapusGambarLapak(@Path("id") String id);
 
     //Otomotif
 

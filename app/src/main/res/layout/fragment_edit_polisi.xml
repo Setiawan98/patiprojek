@@ -34,7 +34,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Foto lokasi Salon"
+                        android:text="Foto lokasi polisi"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
                     <HorizontalScrollView
@@ -84,7 +84,6 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"/>
 
-
                 </LinearLayout>
 
             </LinearLayout>
@@ -117,7 +116,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Nama Salon"
+                        android:text="Nama Kantor Polisi"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
 
@@ -128,7 +127,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="-20dp"
                         android:layout_marginRight="20dp"
-                        android:hint="Masukan Nama Salon Anda"
+                        android:hint="Masukan Nama Bank Anda"
                         android:textSize="6pt" />
 
                 </LinearLayout>
@@ -242,7 +241,7 @@
                         android:layout_marginLeft="5dp"
                         android:textSize="6pt"
                         android:layout_height="50dp"
-                        android:hint="Masukan Website Salon Anda"/>
+                        android:hint="Masukan Website Kantor Polisi Anda"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -268,7 +267,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Tentang Salon"
+                        android:text="Tentang Kantor Polisi"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
                     <EditText
@@ -279,7 +278,7 @@
                         android:textSize="6pt"
                         android:layout_height="50dp"
                         android:id="@+id/mDeskripsi"
-                        android:hint="Masukan deskripsi salon Anda"/>
+                        android:hint="Masukan deskripsi Kantor Polisi Anda"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -304,7 +303,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Tipe Salon"
+                        android:text="Tipe Polisi"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
 
@@ -369,7 +368,7 @@
                     android:id="@+id/btnTambah"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tambah"
+                    android:text="Selesai"
                     android:padding="20dp"
                     android:layout_margin="20dp"/>
 

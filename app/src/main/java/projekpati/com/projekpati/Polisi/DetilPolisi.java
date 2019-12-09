@@ -2,6 +2,8 @@ package projekpati.com.projekpati.Polisi;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.API.API;
@@ -29,6 +31,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
@@ -69,6 +73,8 @@ public class DetilPolisi extends AppCompatActivity {
     String parentID;
     LinearLayout pbKomen;
     SwipeRefreshLayout swipeRefreshLayout;
+    ImageView btnEdit;
+    FrameLayout frameLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +105,7 @@ public class DetilPolisi extends AppCompatActivity {
         textTelepon = findViewById(R.id.mTelpon);
         textDeskripsi = findViewById(R.id.mDeskripsi);
         tabLayout = findViewById(R.id.tabDots);
-
+        btnEdit = findViewById(R.id.btnEdit);
         textEmail = findViewById(R.id.mEmail);
         textWebsite = findViewById(R.id.mWebsite);
         listPolisi = findViewById(R.id.listPolisi);
@@ -211,6 +217,23 @@ public class DetilPolisi extends AppCompatActivity {
                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 i.setPackage("com.google.android.apps.maps");
                 startActivity(i);
+            }
+        });
+
+        frameLayout = findViewById(R.id.fragmentEdit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swipeRefreshLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                Bundle bundle = new Bundle();
+                bundle.putString("id_detil",id);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                EditPolisi editPolisi = new EditPolisi();
+                editPolisi.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragmentEdit, editPolisi);
+                fragmentTransaction.commit();
             }
         });
 

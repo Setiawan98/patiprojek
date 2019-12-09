@@ -2,8 +2,11 @@ package projekpati.com.projekpati.Polisi;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
@@ -15,6 +18,8 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +27,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
@@ -44,9 +52,16 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.gson.Gson;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.Polisi.DetilPolisiBaru;
@@ -56,6 +71,9 @@ import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_OK;
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback, LocationListener {
 
@@ -78,13 +96,22 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
     ScrollView form;
     LatLng location;
     Spinner mRefNama;
+    ImageView btnAddGamabar;
+    TextView mFileName;
+    private byte[] imageBytes1, imageBytes2,imageBytes3;
+    String fileName1, fileName2, fileName3;
+
+    private static final int REQUEST_GET_SINGLE_FILE = 202;
+    LinearLayout loadLayout;
+    ViewGroup vg;
+    int count=0;
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tambah_polisi, container, false);
-
+        vg=container;
         init(view);
         setSpinner();
         startLatLng = new LatLng(-6.7487,111.0379);
@@ -108,7 +135,9 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
         eEmail = view.findViewById(R.id.mEmail);
         eWebsite = view.findViewById(R.id.mWebsite);
         eDeskripsi = view.findViewById(R.id.mDeskripsi);
-
+        mFileName = view.findViewById(R.id.mFileName);
+        loadLayout = view.findViewById(R.id.loadLayout);
+        btnAddGamabar = view.findViewById(R.id.btnAddGambar);
         //Button
         btnSetLocation = view.findViewById(R.id.btnLocation);
         btnTambah = view.findViewById(R.id.btnTambah);
@@ -127,7 +156,7 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
                     Toast.makeText(getContext(),"*Nama Polisi tidak bole kosong",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    addKuliner();
+                    addPolisiWithGambar();
                 }
             }
         });
@@ -164,6 +193,16 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
                 simpanLocation.setVisibility(View.VISIBLE);
                 // Toast.makeText(getContext(),"clicked",Toast.LENGTH_SHORT).show();
                 Toast.makeText(getContext(), String.valueOf(currentLatLng.latitude),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnAddGamabar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("image/*");
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"),REQUEST_GET_SINGLE_FILE);
             }
         });
     }
@@ -293,44 +332,114 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
 
     }
 
-    public void addKuliner(){
+    public void addPolisiWithGambar(){
         //defining a progress dialog to show while signing up
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+        int j=0;
 
-        String nama = eNama.getText().toString();
-        String telp = eNomorTelp.getText().toString();
-        String email = eEmail.getText().toString();
-        String website = eWebsite.getText().toString();
-        String deskripsi = eDeskripsi.getText().toString();
-        String latitude;
-        String longitude;
+        for(int i=0;i<loadLayout.getChildCount()-1;i++)
+        {
+
+            if(loadLayout.getChildAt(i)!=null)
+            {
+                Log.d("test",String.valueOf(i));
+                ImageView imageView = loadLayout.getChildAt(i).findViewById(R.id.btnAddGambar);
+                if(imageView!= null)
+                {
+
+                    Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
+                    byte[] imageinByte = baos.toByteArray();
+                    if(j==0)
+                    {
+                        imageBytes1=imageinByte;
+                    }
+                    else if(j==1)
+                    {
+                        imageBytes2=imageinByte;
+                    }
+                    else if(j==2)
+                    {
+                        imageBytes3=imageinByte;
+                    }
+                    j++;
+
+                }
+
+
+            }
+
+        }
+
+
+        RequestBody nama = RequestBody.create(MediaType.parse("multipart/form-data"), eNama.getText().toString());
+        RequestBody telp = RequestBody.create(MediaType.parse("multipart/form-data"), eNomorTelp.getText().toString());
+        RequestBody email = RequestBody.create(MediaType.parse("multipart/form-data"), eEmail.getText().toString());
+        RequestBody website = RequestBody.create(MediaType.parse("multipart/form-data"), eWebsite.getText().toString());
+        RequestBody deskripsi = RequestBody.create(MediaType.parse("multipart/form-data"), eDeskripsi.getText().toString());
+        RequestBody latitude;
+        RequestBody longitude;
         if(location==null)
         {
             latitude = null;
             longitude =null;
         }
         else{
-            latitude = String.valueOf(location.latitude);
-            longitude = String.valueOf(location.longitude);
+            latitude = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(location.latitude));
+            longitude = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(location.longitude));
         }
-        String value = items_value[mRefNama.getSelectedItemPosition()];
-
-        Log.d("nama",nama);
-        Log.d("telp",telp);
-        Log.d("email",email);
-        Log.d("website",website);
-        Log.d("deskripsi",deskripsi);
-        if(location!=null)
+        RequestBody value = RequestBody.create(MediaType.parse("multipart/form-data"), items_value[mRefNama.getSelectedItemPosition()]);
+        String uID = "0";
+        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), uID);
+        RequestBody requestFile1=null;
+        RequestBody requestFile2=null;
+        RequestBody requestFile3=null;
+        if(imageBytes1!=null)
         {
-            Log.d("latitude",latitude);
-            Log.d("longitude",longitude);
+            requestFile1 = RequestBody.create(MediaType.parse("image/*"), imageBytes1);
         }
-
+        if(imageBytes2!=null)
+        {
+            requestFile2 = RequestBody.create(MediaType.parse("image/*"), imageBytes2);
+        }
+        if(imageBytes3!=null)
+        {
+            requestFile3 = RequestBody.create(MediaType.parse("image/*"), imageBytes3);
+        }
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<DetilPolisiBaru> call = api.addDataPolisi(nama,telp,email,website,deskripsi,latitude,longitude,"0",value);
+
+        MultipartBody.Part gambarPolisiUtama=null;
+        MultipartBody.Part gambarPolisi1=null;
+        MultipartBody.Part gambarPolisi2=null;
+        MultipartBody.Part gambarPolisi3=null;
+        if(imageBytes1!=null)
+        {
+            gambarPolisi1 = MultipartBody.Part.createFormData("gambar", "a.jpg", requestFile1);
+            gambarPolisiUtama = MultipartBody.Part.createFormData("gambarutama", "a.jpg", requestFile1);
+            Log.d("masuk","1");
+        }else{
+            Log.d("nullImage","1");
+        }
+        if(imageBytes2!=null)
+        {
+            gambarPolisi2 = MultipartBody.Part.createFormData("gambar2", "b.jpg", requestFile2);
+            Log.d("masuk","2");
+        }else{
+            Log.d("nullImage","2");
+        }
+        if(imageBytes3!=null)
+        {
+            gambarPolisi3 = MultipartBody.Part.createFormData("gambar3", "c.jpg", requestFile3);
+            Log.d("masuk","3");
+        }else{
+            Log.d("nullImage","3");
+        }
+
+        Call<DetilPolisiBaru> call = api.addDataPolisiWithGambar(gambarPolisi1,gambarPolisi2,gambarPolisi3,gambarPolisiUtama,nama,telp,email,website,deskripsi,latitude,longitude,userId,value);
 
         call.enqueue(new Callback<DetilPolisiBaru>() {
             @Override
@@ -350,7 +459,7 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
         });
 
     }
-
+    
     @Override
     public void onLocationChanged(Location location) {
         if(currentLocation==null)
@@ -394,6 +503,97 @@ public class TambahPolisiFragment extends Fragment implements OnMapReadyCallback
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
 
+            if (resultCode == RESULT_OK) {
+                if (requestCode == REQUEST_GET_SINGLE_FILE) {
+
+                    Uri selectedImageUri = data.getData();
+                    Cursor returnCursor = getActivity().getContentResolver().query(selectedImageUri,null,null,null,null);
+                    // Get the path from the Uri
+                    final String path = getPathFromURI(selectedImageUri);
+                    if (path != null) {
+                        File f = new File(path);
+                        selectedImageUri = Uri.fromFile(f);
+
+
+                    }
+                    // Set the image in ImageView
+
+
+
+                    LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+                    final RelativeLayout view = (RelativeLayout) inflater.inflate(R.layout.activity_add_gambar_adapter,vg,false);
+                    final ImageView gambarLayout = view.findViewById(R.id.btnAddGambar);
+                    ImageView deleteGambar = view.findViewById(R.id.btnHapusGambar);
+
+                    gambarLayout.setImageURI(selectedImageUri);
+
+                    deleteGambar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            btnAddGamabar.setVisibility(View.VISIBLE);
+                            view.setVisibility(View.GONE);
+                            view.removeAllViewsInLayout();
+                            count--;
+
+
+
+                        }
+                    });
+
+
+                    int size = loadLayout.getChildCount();
+
+                    loadLayout.addView(view, size-1);
+
+                    int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                    returnCursor.moveToFirst();
+                    mFileName.setText(returnCursor.getString(nameIndex));
+                    InputStream is = getActivity().getContentResolver().openInputStream(data.getData());
+                    // Toast.makeText(getContext(),String.valueOf(count),Toast.LENGTH_SHORT).show();
+                   /* tempImageModel gambar = new tempImageModel(String.valueOf(loadLayout.indexOfChild(view)),getBytes(is));
+                    imageByte.put(String.valueOf(count),gambar);*/
+
+                    count++;
+                    if(count==3)
+                    {
+                        btnAddGamabar.setVisibility(View.GONE);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Log.e("FileSelectorActivity", "File select error", e);
+        }
+    }
+
+    public String getPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getActivity().getContentResolver().query(contentUri, proj, null, null, null);
+        if (cursor.moveToFirst()) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        cursor.close();
+        return res;
+    }
+
+    public byte[] getBytes(InputStream is) throws IOException {
+        ByteArrayOutputStream byteBuff = new ByteArrayOutputStream();
+
+        int buffSize = 1024;
+        byte[] buff = new byte[buffSize];
+
+        int len = 0;
+        while ((len = is.read(buff)) != -1) {
+            byteBuff.write(buff, 0, len);
+        }
+
+        return byteBuff.toByteArray();
+    }
 
 }
