@@ -20,7 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Aspirasi.EditAspirasiActivity"></activity>
+        <activity android:name=".Koperasi.EditKoperasiActivity"></activity>
+        <activity android:name=".Hotel.EditHotelActivity" />
+        <activity android:name=".bioskop.EditBioskopActivity" />
+        <activity android:name=".Bank.EditBankActivity" />
+        <activity android:name=".Spbu.EditSpbuActivity" />
+        <activity android:name=".Aspirasi.EditAspirasiActivity" />
         <activity android:name=".BeritaOnline.TampilBeritaOnlineByJenis" />
         <activity android:name=".BeritaOnline.DetilBeritaOnline" />
         <activity android:name=".BeritaOnline.CariBeritaOnline" />
@@ -193,7 +198,7 @@
             android:name=".Koperasi.MenuKoperasi"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Koperasi.DetilMapKoperasi" />
-        <activity android:name=".WelcomeActivity"></activity>
+        <activity android:name=".WelcomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

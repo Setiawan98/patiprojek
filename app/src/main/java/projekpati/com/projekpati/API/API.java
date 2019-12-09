@@ -978,8 +978,6 @@ public interface API {
     Call<DetilKoperasiBaru> updateDataKoperasiWithGambar(
             @Path("id") String id,
             @Part MultipartBody.Part gambar,
-            @Part MultipartBody.Part gambar2,
-            @Part MultipartBody.Part gambar3,
             @Part MultipartBody.Part gambarutama,
             @Part("nama") RequestBody nama,
             @Part("telp") RequestBody telp,

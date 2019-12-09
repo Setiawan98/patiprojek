@@ -34,7 +34,7 @@
                         android:layout_height="20dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Foto lokasi pendidikan"
+                        android:text="Foto Aspirasi"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
                     <HorizontalScrollView

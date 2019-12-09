@@ -14,7 +14,7 @@ import projekpati.com.projekpati.Model.Aspirasi.GambarAspirasiDetil;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.KomentarParent;
 import projekpati.com.projekpati.Model.postKomentar;
-import projekpati.com.projekpati.Pendidikan.EditPendidikanActivity;
+import projekpati.com.projekpati.Aspirasi.EditAspirasiActivity;
 import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -203,9 +203,9 @@ public class DetilAspirasi extends AppCompatActivity {
                 bundle.putString("id_detil",id);
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                EditPendidikanActivity editPendidikanActivity = new EditPendidikanActivity();
-                editPendidikanActivity.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fragmentEdit, editPendidikanActivity);
+                EditAspirasiActivity editAspirasiActivity = new EditAspirasiActivity();
+                editAspirasiActivity.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragmentEdit, editAspirasiActivity);
                 fragmentTransaction.commit();
             }
         });

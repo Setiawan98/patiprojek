@@ -2,6 +2,8 @@ package projekpati.com.projekpati.Bank;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.API.API;
@@ -14,6 +16,7 @@ import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.KomentarParent;
 import projekpati.com.projekpati.Model.postKomentar;
 import projekpati.com.projekpati.R;
+import projekpati.com.projekpati.Bank.EditBankActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,6 +32,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
@@ -70,6 +75,8 @@ public class DetilBank extends AppCompatActivity {
     String parentID;
     LinearLayout pbKomen;
     SwipeRefreshLayout swipeRefreshLayout;
+    FrameLayout frameLayout;
+    ImageView btnEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -229,6 +236,24 @@ public class DetilBank extends AppCompatActivity {
             public void onClick(View v) {
                 linearJam.setVisibility(View.GONE);
                 linearDetil.setVisibility(View.VISIBLE);
+            }
+        });
+
+        frameLayout = findViewById(R.id.fragmentEdit);
+        btnEdit = findViewById(R.id.btnEdit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swipeRefreshLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                Bundle bundle = new Bundle();
+                bundle.putString("id_detil",id);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                EditBankActivity editBankActivity = new EditBankActivity();
+                editBankActivity.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragmentEdit, editBankActivity);
+                fragmentTransaction.commit();
             }
         });
     }

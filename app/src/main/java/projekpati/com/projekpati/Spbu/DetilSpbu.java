@@ -2,10 +2,13 @@ package projekpati.com.projekpati.Spbu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
+import projekpati.com.projekpati.Spbu.EditSpbuActivity;
 import projekpati.com.projekpati.Kuliner.ViewPagerAdapter;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.KomentarParent;
@@ -29,6 +32,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
@@ -69,6 +74,8 @@ public class DetilSpbu extends AppCompatActivity {
     String parentID;
     LinearLayout pbKomen;
     SwipeRefreshLayout swipeRefreshLayout;
+    FrameLayout frameLayout;
+    ImageView btnEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -228,6 +235,24 @@ public class DetilSpbu extends AppCompatActivity {
             public void onClick(View v) {
                 linearJam.setVisibility(View.GONE);
                 linearDetil.setVisibility(View.VISIBLE);
+            }
+        });
+
+        frameLayout = findViewById(R.id.fragmentEdit);
+        btnEdit = findViewById(R.id.btnEdit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swipeRefreshLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                Bundle bundle = new Bundle();
+                bundle.putString("id_detil",id);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                EditSpbuActivity editSpbuActivity = new EditSpbuActivity();
+                editSpbuActivity.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragmentEdit, editSpbuActivity);
+                fragmentTransaction.commit();
             }
         });
     }
