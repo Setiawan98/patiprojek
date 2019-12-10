@@ -2,6 +2,8 @@ package projekpati.com.projekpati.Otomotif;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.API.API;
@@ -29,6 +31,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
@@ -63,6 +67,8 @@ public class DetilOtomotif extends AppCompatActivity {
     LinearLayout pbKomen;
     String id;
     ViewPager pager;
+    FrameLayout frameLayout;
+    ImageView btnEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +98,7 @@ public class DetilOtomotif extends AppCompatActivity {
         textTahun = findViewById(R.id.mThnPembuatan);
         textTransmisi = findViewById(R.id.mTransmisi);
         textHabis = findViewById(R.id.mHabisTerjual);
-
+        btnEdit = findViewById(R.id.btnEdit);
         listOtomotif = findViewById(R.id.listOtomotif);
         btnMap = findViewById(R.id.btnMap);
         komentar = findViewById(R.id.komentar);
@@ -196,6 +202,23 @@ public class DetilOtomotif extends AppCompatActivity {
                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 i.setPackage("com.google.android.apps.maps");
                 startActivity(i);
+            }
+        });
+
+        frameLayout = findViewById(R.id.fragmentEdit);
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swipeRefreshLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                Bundle bundle = new Bundle();
+                bundle.putString("id_detil",id);
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                EditOtomotif editOtomotif = new EditOtomotif();
+                editOtomotif.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragmentEdit, editOtomotif);
+                fragmentTransaction.commit();
             }
         });
     }

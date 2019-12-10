@@ -3,11 +3,15 @@ package projekpati.com.projekpati.Otomotif;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +19,8 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +28,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.Status;
@@ -44,11 +53,19 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.gson.Gson;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
+import projekpati.com.projekpati.Model.Otomotif.DetilOtomotifBaru;
 import projekpati.com.projekpati.Model.Otomotif.DetilOtomotifBaru;
 import projekpati.com.projekpati.Model.Otomotif.JenisOtomotif;
 import projekpati.com.projekpati.Model.Otomotif.JenisOtomotifLengkap;
@@ -56,6 +73,9 @@ import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_OK;
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,7 +103,14 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
     int jumlahDataMotor;
     int jumlahDataMobil;
     int jumlahDataTotal;
-
+    
+    ImageView btnAddGamabar;
+    TextView mFileName;
+    private byte[] imageBytes1, imageBytes2,imageBytes3;
+    private static final int REQUEST_GET_SINGLE_FILE = 202;
+    LinearLayout loadLayout;
+    ViewGroup vg;
+    int count=0;
     public TambahOtomotifFragment() {
         // Required empty public constructor
     }
@@ -94,7 +121,7 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tambah_otomotif, container, false);
-
+        vg=container;
         init(view);
         setSpinner();
         startLatLng = new LatLng(-6.7487,111.0379);
@@ -122,7 +149,10 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
         ePenjual = view.findViewById(R.id.mPenjual);
         eWarna = view.findViewById(R.id.mWarna);
         eTahun = view.findViewById(R.id.mThnPembuatan);
-
+        loadLayout = view.findViewById(R.id.loadLayout);
+        btnAddGamabar = view.findViewById(R.id.btnAddGambar);
+        mFileName = view.findViewById(R.id.mFileName);
+        
         //Spinner
         mRefNama = view.findViewById(R.id.mRefNama);
         mKondisi = view.findViewById(R.id.mKondisi);
@@ -159,7 +189,7 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
                     Toast.makeText(getContext(),"*Nama Otomotif tidak bole kosong",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    addKuliner();
+                    addOtomotifWithGambar();
                 }
             }
         });
@@ -196,6 +226,16 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
                 simpanLocation.setVisibility(View.VISIBLE);
                 // Toast.makeText(getContext(),"clicked",Toast.LENGTH_SHORT).show();
                 Toast.makeText(getContext(), String.valueOf(currentLatLng.latitude),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnAddGamabar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("image/*");
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"),REQUEST_GET_SINGLE_FILE);
             }
         });
     }
@@ -366,57 +406,194 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
 
     }
 
-    public void addKuliner(){
+//    public void addKuliner(){
+//        //defining a progress dialog to show while signing up
+//        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+//        progressDialog.setMessage("Loading...");
+//        progressDialog.show();
+//
+//        String nama = eNama.getText().toString();
+//        String telp = eNomorTelp.getText().toString();
+//        String email = eEmail.getText().toString();
+//        String website = eWebsite.getText().toString();
+//        String deskripsi = eDeskripsi.getText().toString();
+//        String alamat = eAlamat.getText().toString();
+//        String harga = eHarga.getText().toString();
+//        String penjual = ePenjual.getText().toString();
+//        String model = eModel.getText().toString();
+//        String kilometer = eKilometer.getText().toString();
+//        String warna = eWarna.getText().toString();
+//        String tahun = eTahun.getText().toString();
+//        String latitude;
+//        String longitude;
+//        if(location==null)
+//        {
+//            latitude = null;
+//            longitude =null;
+//        }
+//        else{
+//            latitude = String.valueOf(location.latitude);
+//            longitude = String.valueOf(location.longitude);
+//        }
+//
+//
+//
+//        String value = items_value[mRefNama.getSelectedItemPosition()];
+//        String value2 = items_value[mKondisi.getSelectedItemPosition()];
+//        String value3 = items_value[mTransmisi.getSelectedItemPosition()];
+//        String value4 = items_value[mHabis.getSelectedItemPosition()];
+//        Log.d("nama",nama);
+//        Log.d("telp",telp);
+//        Log.d("email",email);
+//        Log.d("website",website);
+//        Log.d("deskripsi",deskripsi);
+//        Log.d("cobain", mRefNama.getSelectedItem().toString());
+//        if(location!=null)
+//        {
+//            Log.d("latitude",latitude);
+//            Log.d("longitude",longitude);
+//        }
+//
+//
+//        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+//        Call<DetilOtomotifBaru> call = api.addDataOtomotif(nama,penjual,telp,email,website,alamat,harga,value2,model,warna,kilometer,tahun,value3,value4,deskripsi,latitude,longitude,"0",value);
+//
+//        call.enqueue(new Callback<DetilOtomotifBaru>() {
+//            @Override
+//            public void onResponse(Call<DetilOtomotifBaru> call, final Response<DetilOtomotifBaru> response) {
+//                Toast.makeText(getContext(),"Sukses", Toast.LENGTH_SHORT).show();
+//                Log.w("Response", new Gson().toJson(response.body()));
+//                progressDialog.dismiss();
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<DetilOtomotifBaru> call, Throwable t) {
+//                progressDialog.dismiss();
+//                Toast.makeText(getContext(),t.toString(), Toast.LENGTH_SHORT).show();
+//                Log.d("onResponse", t.toString());
+//            }
+//        });
+//
+//    }
+
+    public void addOtomotifWithGambar(){
         //defining a progress dialog to show while signing up
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
+        int j=0;
 
-        String nama = eNama.getText().toString();
-        String telp = eNomorTelp.getText().toString();
-        String email = eEmail.getText().toString();
-        String website = eWebsite.getText().toString();
-        String deskripsi = eDeskripsi.getText().toString();
-        String alamat = eAlamat.getText().toString();
-        String harga = eHarga.getText().toString();
-        String penjual = ePenjual.getText().toString();
-        String model = eModel.getText().toString();
-        String kilometer = eKilometer.getText().toString();
-        String warna = eWarna.getText().toString();
-        String tahun = eTahun.getText().toString();
-        String latitude;
-        String longitude;
+        for(int i=0;i<loadLayout.getChildCount()-1;i++)
+        {
+
+            if(loadLayout.getChildAt(i)!=null)
+            {
+                Log.d("test",String.valueOf(i));
+                ImageView imageView = loadLayout.getChildAt(i).findViewById(R.id.btnAddGambar);
+                if(imageView!= null)
+                {
+
+                    Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
+                    byte[] imageinByte = baos.toByteArray();
+                    if(j==0)
+                    {
+                        imageBytes1=imageinByte;
+                    }
+                    else if(j==1)
+                    {
+                        imageBytes2=imageinByte;
+                    }
+                    else if(j==2)
+                    {
+                        imageBytes3=imageinByte;
+                    }
+                    j++;
+
+                }
+
+
+            }
+
+        }
+        RequestBody model = RequestBody.create(MediaType.parse("multipart/form-data"), eModel.getText().toString());
+        RequestBody warna = RequestBody.create(MediaType.parse("multipart/form-data"), eWarna.getText().toString());
+        RequestBody thn = RequestBody.create(MediaType.parse("multipart/form-data"), eTahun.getText().toString());
+        RequestBody kilometer = RequestBody.create(MediaType.parse("multipart/form-data"), eKilometer.getText().toString());
+        RequestBody alamat = RequestBody.create(MediaType.parse("multipart/form-data"), eAlamat.getText().toString());
+        RequestBody penjual = RequestBody.create(MediaType.parse("multipart/form-data"), ePenjual.getText().toString());
+        RequestBody nama = RequestBody.create(MediaType.parse("multipart/form-data"), eNama.getText().toString());
+        RequestBody telp = RequestBody.create(MediaType.parse("multipart/form-data"), eNomorTelp.getText().toString());
+        RequestBody email = RequestBody.create(MediaType.parse("multipart/form-data"), eEmail.getText().toString());
+        RequestBody harga = RequestBody.create(MediaType.parse("multipart/form-data"), eHarga.getText().toString());
+        RequestBody website = RequestBody.create(MediaType.parse("multipart/form-data"), eWebsite.getText().toString());
+        RequestBody deskripsi = RequestBody.create(MediaType.parse("multipart/form-data"), eDeskripsi.getText().toString());
+        RequestBody latitude;
+        RequestBody longitude;
         if(location==null)
         {
             latitude = null;
             longitude =null;
         }
         else{
-            latitude = String.valueOf(location.latitude);
-            longitude = String.valueOf(location.longitude);
+            latitude = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(location.latitude));
+            longitude = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(location.longitude));
         }
 
-
-
-        String value = items_value[mRefNama.getSelectedItemPosition()];
-        String value2 = items_value[mKondisi.getSelectedItemPosition()];
-        String value3 = items_value[mTransmisi.getSelectedItemPosition()];
-        String value4 = items_value[mHabis.getSelectedItemPosition()];
-        Log.d("nama",nama);
-        Log.d("telp",telp);
-        Log.d("email",email);
-        Log.d("website",website);
-        Log.d("deskripsi",deskripsi);
-        Log.d("cobain", mRefNama.getSelectedItem().toString());
-        if(location!=null)
+        RequestBody value = RequestBody.create(MediaType.parse("multipart/form-data"), items_value[mRefNama.getSelectedItemPosition()]);
+        RequestBody kondisi = RequestBody.create(MediaType.parse("multipart/form-data"), items_value[mKondisi.getSelectedItemPosition()]);
+        RequestBody transmisi = RequestBody.create(MediaType.parse("multipart/form-data"), items_value[mTransmisi.getSelectedItemPosition()]);
+        RequestBody habis = RequestBody.create(MediaType.parse("multipart/form-data"), items_value[mHabis.getSelectedItemPosition()]);
+        String uID = "0";
+        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), uID);
+        RequestBody requestFile1=null;
+        RequestBody requestFile2=null;
+        RequestBody requestFile3=null;
+        if(imageBytes1!=null)
         {
-            Log.d("latitude",latitude);
-            Log.d("longitude",longitude);
+            requestFile1 = RequestBody.create(MediaType.parse("image/*"), imageBytes1);
         }
-
+        if(imageBytes2!=null)
+        {
+            requestFile2 = RequestBody.create(MediaType.parse("image/*"), imageBytes2);
+        }
+        if(imageBytes3!=null)
+        {
+            requestFile3 = RequestBody.create(MediaType.parse("image/*"), imageBytes3);
+        }
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<DetilOtomotifBaru> call = api.addDataOtomotif(nama,penjual,telp,email,website,alamat,harga,value2,model,warna,kilometer,tahun,value3,value4,deskripsi,latitude,longitude,"0",value);
+
+        MultipartBody.Part gambarOtomotifUtama=null;
+        MultipartBody.Part gambarOtomotif1=null;
+        MultipartBody.Part gambarOtomotif2=null;
+        MultipartBody.Part gambarOtomotif3=null;
+        if(imageBytes1!=null)
+        {
+            gambarOtomotif1 = MultipartBody.Part.createFormData("gambar", "a.jpg", requestFile1);
+            gambarOtomotifUtama = MultipartBody.Part.createFormData("gambarutama", "a.jpg", requestFile1);
+            Log.d("masuk","1");
+        }else{
+            Log.d("nullImage","1");
+        }
+        if(imageBytes2!=null)
+        {
+            gambarOtomotif2 = MultipartBody.Part.createFormData("gambar2", "b.jpg", requestFile2);
+            Log.d("masuk","2");
+        }else{
+            Log.d("nullImage","2");
+        }
+        if(imageBytes3!=null)
+        {
+            gambarOtomotif3 = MultipartBody.Part.createFormData("gambar3", "c.jpg", requestFile3);
+            Log.d("masuk","3");
+        }else{
+            Log.d("nullImage","3");
+        }
+
+        Call<DetilOtomotifBaru> call = api.addDataOtomotifWithGambar(gambarOtomotif1,gambarOtomotif2,gambarOtomotif3,gambarOtomotifUtama,nama,penjual,telp,email,website,alamat,harga,kondisi,model,warna,kilometer,thn,transmisi,habis,deskripsi,latitude,longitude,userId,value);
 
         call.enqueue(new Callback<DetilOtomotifBaru>() {
             @Override
@@ -436,7 +613,7 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
         });
 
     }
-
+    
     @Override
     public void onLocationChanged(Location location) {
         if(currentLocation==null)
@@ -478,5 +655,98 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
     @Override
     public void onProviderDisabled(String provider) {
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+
+            if (resultCode == RESULT_OK) {
+                if (requestCode == REQUEST_GET_SINGLE_FILE) {
+
+                    Uri selectedImageUri = data.getData();
+                    Cursor returnCursor = getActivity().getContentResolver().query(selectedImageUri,null,null,null,null);
+                    // Get the path from the Uri
+                    final String path = getPathFromURI(selectedImageUri);
+                    if (path != null) {
+                        File f = new File(path);
+                        selectedImageUri = Uri.fromFile(f);
+
+
+                    }
+                    // Set the image in ImageView
+
+
+
+                    LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+                    final RelativeLayout view = (RelativeLayout) inflater.inflate(R.layout.activity_add_gambar_adapter,vg,false);
+                    final ImageView gambarLayout = view.findViewById(R.id.btnAddGambar);
+                    ImageView deleteGambar = view.findViewById(R.id.btnHapusGambar);
+
+                    gambarLayout.setImageURI(selectedImageUri);
+
+                    deleteGambar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            btnAddGamabar.setVisibility(View.VISIBLE);
+                            view.setVisibility(View.GONE);
+                            view.removeAllViewsInLayout();
+                            count--;
+
+
+
+                        }
+                    });
+
+
+                    int size = loadLayout.getChildCount();
+
+                    loadLayout.addView(view, size-1);
+
+                    int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                    returnCursor.moveToFirst();
+                    mFileName.setText(returnCursor.getString(nameIndex));
+                    InputStream is = getActivity().getContentResolver().openInputStream(data.getData());
+                    // Toast.makeText(getContext(),String.valueOf(count),Toast.LENGTH_SHORT).show();
+                   /* tempImageModel gambar = new tempImageModel(String.valueOf(loadLayout.indexOfChild(view)),getBytes(is));
+                    imageByte.put(String.valueOf(count),gambar);*/
+
+                    count++;
+                    if(count==3)
+                    {
+                        btnAddGamabar.setVisibility(View.GONE);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Log.e("FileSelectorActivity", "File select error", e);
+        }
+    }
+
+    public String getPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getActivity().getContentResolver().query(contentUri, proj, null, null, null);
+        if (cursor.moveToFirst()) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        cursor.close();
+        return res;
+    }
+
+    public byte[] getBytes(InputStream is) throws IOException {
+        ByteArrayOutputStream byteBuff = new ByteArrayOutputStream();
+
+        int buffSize = 1024;
+        byte[] buff = new byte[buffSize];
+
+        int len = 0;
+        while ((len = is.read(buff)) != -1) {
+            byteBuff.write(buff, 0, len);
+        }
+
+        return byteBuff.toByteArray();
     }
 }
