@@ -475,7 +475,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
                                     android:textSize="7pt"
-                                    android:layout_marginLeft="33dp"
+                                    android:layout_marginLeft="43dp"
                                     android:text="INFORMASI"
                                     android:textColor="@android:color/black" />
                             </androidx.cardview.widget.CardView>
@@ -847,7 +847,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:layout_marginLeft="42dp"
+                                    android:layout_marginLeft="18dp"
                                     android:textSize="7pt"
                                     android:text="PEMERINTAHAN"
                                     android:textColor="@android:color/black" />
