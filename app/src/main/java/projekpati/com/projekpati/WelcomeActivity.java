@@ -213,7 +213,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 Map<String, listGaleri> data = response.body().getData();
 
 
-                for(int i=1;i<=4;i++)
+                for(int i=1;i<=response.body().getJumlah_data();i++)
                 {
                     linkUrl[i-1]= data.get(String.valueOf(i)).getGambar();
                 }
@@ -222,17 +222,22 @@ public class WelcomeActivity extends AppCompatActivity {
                 // add few more layouts if you want
 
 
+                layouts = new int[response.body().getJumlah_data()];
+                for(int i=0;i<response.body().getJumlah_data();i++)
+                {
+                    layouts[i] = R.layout.slide1;
+                }
 
 
                 /*Layout_2 = getLayoutInflater().inflate(R.layout.slide2,null);
                 Layout_3 = getLayoutInflater().inflate(R.layout.slide3,null);
                 Layout_4 = getLayoutInflater().inflate(R.layout.slide4,null);*/
 
-                layouts = new int[]{
+              /*  layouts = new int[]{
                         R.layout.slide1,
                         R.layout.slide2,
                         R.layout.slide3,
-                        R.layout.slide4};
+                        R.layout.slide4};*/
 
 
                 // tombol dots (lingkaran kecil perpindahan slide)
