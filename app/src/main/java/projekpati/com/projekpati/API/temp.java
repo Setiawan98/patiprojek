@@ -1,5 +1,7 @@
 package projekpati.com.projekpati.API;
 
+import android.widget.EditText;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import projekpati.com.projekpati.Model.BeritaOnline.BeritaOnlineModel;
@@ -14,6 +16,7 @@ import projekpati.com.projekpati.Model.Kerjaan.JenisKerjaanLengkap;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanBaru;
 import projekpati.com.projekpati.Model.postKomentar;
+import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -25,6 +28,9 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public class temp {
+
+
+
 
 
 

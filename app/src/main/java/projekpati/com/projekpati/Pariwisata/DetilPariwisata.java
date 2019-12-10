@@ -106,7 +106,7 @@ public class DetilPariwisata extends AppCompatActivity {
         textTelepon = findViewById(R.id.mTelpon);
         textDeskripsi = findViewById(R.id.mDeskripsi);
         tabLayout = findViewById(R.id.tabDots);
-        btnEdit = findViewById(R.id.btnEdit);
+
         textEmail = findViewById(R.id.mEmail);
         textWebsite = findViewById(R.id.mWebsite);
         listPariwisata = findViewById(R.id.listPariwisata);
@@ -222,6 +222,8 @@ public class DetilPariwisata extends AppCompatActivity {
         });
 
 
+
+        btnEdit = findViewById(R.id.btnEdit);
         frameLayout = findViewById(R.id.fragmentEdit);
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override

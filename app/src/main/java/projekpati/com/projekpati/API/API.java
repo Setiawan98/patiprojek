@@ -610,7 +610,7 @@ public interface API {
             @Part("hari_4") RequestBody hari_4,
             @Part("hari_5") RequestBody hari_5,
             @Part("hari_6") RequestBody hari_6,
-            @Field("user_id") String user_id,
+            @Part("user_id") RequestBody user_id,
             @Part("ref_kesehatan_id") RequestBody ref_kesehatan_id
     );
 
@@ -635,7 +635,7 @@ public interface API {
             @Part("hari_4") RequestBody hari_4,
             @Part("hari_5") RequestBody hari_5,
             @Part("hari_6") RequestBody hari_6,
-            @Field("user_id") String user_id,
+            @Part("user_id") RequestBody user_id,
             @Part("ref_kesehatan_id") RequestBody ref_kesehatan_id
     );
 
@@ -1748,7 +1748,6 @@ public interface API {
             @Part("pengalaman") RequestBody pengalaman,
             @Part("website") RequestBody website,
             @Part("deskripsi") RequestBody deskripsi,
-            @Part("tgl") RequestBody tgl,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
             @Part("user_id") RequestBody user_id,
@@ -1762,8 +1761,13 @@ public interface API {
             @Part MultipartBody.Part gambar,
             @Part MultipartBody.Part gambarutama,
             @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("kantor") RequestBody kantor,
+            @Part("gaji") RequestBody gaji,
+            @Part("pengalaman") RequestBody pengalaman,
+            @Part("website") RequestBody website,
             @Part("deskripsi") RequestBody deskripsi,
-            @Part("tgl") RequestBody tgl,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
             @Part("user_id") RequestBody user_id,

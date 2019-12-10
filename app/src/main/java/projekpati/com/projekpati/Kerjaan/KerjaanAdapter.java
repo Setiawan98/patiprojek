@@ -45,25 +45,24 @@ public class KerjaanAdapter extends ArrayAdapter<ListKerjaan> {
 
 
 
-//        URL url = null;
-//        if(kerjaan.get(pos).getFile_small().equals(""))
-//        {
-//            //tidak terjadi perubahan apapun
-//        }
-//        else
-//        {
-//            try {
-//                url = new URL(kerjaan.get(pos).getFile_small());
-//                Picasso.get()
-//                        .load(String.valueOf(url))
-//                        .resize(150,100).noFade().into(imageView);
-//
-//
-//
-//            } catch (MalformedURLException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        URL url = null;
+        if(kerjaan.get(pos).getFile_small().equals(""))
+        {
+            //tidak terjadi perubahan apapun
+        }
+        else
+        {
+            try {
+                url = new URL(kerjaan.get(pos).getFile_small());
+                Picasso.get()
+                        .load(String.valueOf(url))
+                        .resize(150,100).noFade().into(imageView);
+
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
 
         textNama.setText(kerjaan.get(pos).getNama());
         textAlamat.setText(kerjaan.get(pos).getAlamat());

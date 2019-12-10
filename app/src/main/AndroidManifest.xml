@@ -20,7 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Koperasi.EditKoperasiActivity"></activity>
+        <activity android:name=".Kerjaan.EditKerjaanActivity"></activity>
+        <activity android:name=".Kesehatan.EditKesehatan" />
+        <activity android:name=".Koperasi.EditKoperasiActivity" />
         <activity android:name=".Hotel.EditHotelActivity" />
         <activity android:name=".bioskop.EditBioskopActivity" />
         <activity android:name=".Bank.EditBankActivity" />
