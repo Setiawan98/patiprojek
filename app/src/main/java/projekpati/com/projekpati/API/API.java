@@ -40,6 +40,9 @@ import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanBaru;
 import projekpati.com.projekpati.Model.Kesehatan.DetilKesehatanModel;
 import projekpati.com.projekpati.Model.Kesehatan.JenisKesehatanLengkap;
 import projekpati.com.projekpati.Model.Kesehatan.KesehatanModel;
+import projekpati.com.projekpati.Model.KodePos.DetilKodePosModel;
+import projekpati.com.projekpati.Model.KodePos.JenisKodePosLengkap;
+import projekpati.com.projekpati.Model.KodePos.KodePosModel;
 import projekpati.com.projekpati.Model.Koperasi.DetilKoperasiBaru;
 import projekpati.com.projekpati.Model.Koperasi.DetilKoperasiModel;
 import projekpati.com.projekpati.Model.Koperasi.JenisKoperasiLengkap;
@@ -83,6 +86,9 @@ import projekpati.com.projekpati.Model.Spbu.DetilSpbuBaru;
 import projekpati.com.projekpati.Model.Spbu.DetilSpbuModel;
 import projekpati.com.projekpati.Model.Spbu.JenisSpbuLengkap;
 import projekpati.com.projekpati.Model.Spbu.SpbuModel;
+import projekpati.com.projekpati.Model.TelpPenting.DetilTelpPentingModel;
+import projekpati.com.projekpati.Model.TelpPenting.JenisTelpPentingLengkap;
+import projekpati.com.projekpati.Model.TelpPenting.TelpPentingModel;
 import projekpati.com.projekpati.Model.Tukang.DetilTukangBaru;
 import projekpati.com.projekpati.Model.Tukang.DetilTukangModel;
 import projekpati.com.projekpati.Model.Tukang.JenisTukangLengkap;
@@ -1852,16 +1858,85 @@ public interface API {
     @FormUrlEncoded
     @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=berita_cetak")
     Call<postKomentar> addKomentarBalasBeritaCetak(@Query("dataID") String data_id,
-                                                    @Field("nama") String nama,
-                                                    @Field("email") String email,
-                                                    @Field("telp") String telp,
-                                                    @Field("website") String website,
-                                                    @Field("parentID") String parentID,
-                                                    @Field("isi") String isi,
-                                                    @Field("userID") String userID);
+                                                   @Field("nama") String nama,
+                                                   @Field("email") String email,
+                                                   @Field("telp") String telp,
+                                                   @Field("website") String website,
+                                                   @Field("parentID") String parentID,
+                                                   @Field("isi") String isi,
+                                                   @Field("userID") String userID);
 
     @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=berita_cetak")
     Call<KomentarLengkap> getKomentarBeritaCetak
+            (@Query("dataID") String data_id);
+
+    //TelpPenting
+    @GET("info/data/telp_penting?key=TechnoPhoriaIndonesia")
+    Call<TelpPentingModel> tampilSemuaTelpPenting();
+
+    @GET("info/data/telp_penting/{id}?key=TechnoPhoriaIndonesia")
+    Call<TelpPentingModel> loadMoreTelpPenting(@Path("id") String id);
+
+    @GET("info/data/telp_penting?key=TechnoPhoriaIndonesia")
+    Call<TelpPentingModel> cariTelpPentingByJenis(@Query("IDJenis") String keyword);
+
+    @GET("info/jenis/telp_penting?key=TechnoPhoriaIndonesia")
+    Call<JenisTelpPentingLengkap> tampilJenisTelpPenting();
+
+    @GET("info/data/telp_penting?key=TechnoPhoriaIndonesia")
+    Call<TelpPentingModel> cariTelpPentingbyAPI(@Query("cari") String keyword);
+
+    @GET("info/detail/telp_penting/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilTelpPentingModel> detailTelpPenting(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=telp_penting")
+    Call<postKomentar> addKomentarBalasTelpPenting(@Query("dataID") String data_id,
+                                                   @Field("nama") String nama,
+                                                   @Field("email") String email,
+                                                   @Field("telp") String telp,
+                                                   @Field("website") String website,
+                                                   @Field("parentID") String parentID,
+                                                   @Field("isi") String isi,
+                                                   @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=telp_penting")
+    Call<KomentarLengkap> getKomentarTelpPenting
+            (@Query("dataID") String data_id);
+
+
+    //KodePos
+    @GET("info/data/kode_pos?key=TechnoPhoriaIndonesia")
+    Call<KodePosModel> tampilSemuaKodePos();
+
+    @GET("info/data/kode_pos/{id}?key=TechnoPhoriaIndonesia")
+    Call<KodePosModel> loadMoreKodePos(@Path("id") String id);
+
+    @GET("info/data/kode_pos?key=TechnoPhoriaIndonesia")
+    Call<KodePosModel> cariKodePosByJenis(@Query("IDJenis") String keyword);
+
+    @GET("info/jenis/kode_pos?key=TechnoPhoriaIndonesia")
+    Call<JenisKodePosLengkap> tampilJenisKodePos();
+
+    @GET("info/data/kode_pos?key=TechnoPhoriaIndonesia")
+    Call<KodePosModel> cariKodePosbyAPI(@Query("cari") String keyword);
+
+    @GET("info/detail/kode_pos/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilKodePosModel> detailKodePos(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=kode_pos")
+    Call<postKomentar> addKomentarBalasKodePos(@Query("dataID") String data_id,
+                                               @Field("nama") String nama,
+                                               @Field("email") String email,
+                                               @Field("telp") String telp,
+                                               @Field("website") String website,
+                                               @Field("parentID") String parentID,
+                                               @Field("isi") String isi,
+                                               @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=kode_pos")
+    Call<KomentarLengkap> getKomentarKodePos
             (@Query("dataID") String data_id);
 
 }

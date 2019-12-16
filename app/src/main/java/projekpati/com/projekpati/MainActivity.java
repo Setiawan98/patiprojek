@@ -43,6 +43,7 @@ import projekpati.com.projekpati.FasilitasUmum.MenuFasilitasUmum;
 import projekpati.com.projekpati.Hotel.MenuHotel;
 import projekpati.com.projekpati.Kerjaan.MenuKerjaan;
 import projekpati.com.projekpati.Kesehatan.MenuKesehatan;
+import projekpati.com.projekpati.KodePos.MenuKodePos;
 import projekpati.com.projekpati.Koperasi.MenuKoperasi;
 import projekpati.com.projekpati.Kuliner.MenuKuliner;
 import projekpati.com.projekpati.Lapak.MenuLapak;
@@ -53,6 +54,7 @@ import projekpati.com.projekpati.Pendidikan.MenuPendidikan;
 import projekpati.com.projekpati.Polisi.MenuPolisi;
 import projekpati.com.projekpati.Salon.MenuSalon;
 import projekpati.com.projekpati.Spbu.MenuSpbu;
+import projekpati.com.projekpati.TelpPenting.MenuTelpPenting;
 import projekpati.com.projekpati.Tukang.MenuTukang;
 import projekpati.com.projekpati.bioskop.MenuBioskop;
 
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout,
             pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout,
             biosopLayout, hotelLayput, koperasiLayout,agendaLayout, kerjaanLayout,
-            beritaOnlineLayout;
+            beritaOnlineLayout, telpPentingLayout, kodePosLayout;
     private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
     ScrollView scroll;
@@ -340,6 +342,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MenuBeritaOnline.class);
+                startActivity(i);
+            }
+        });
+
+        kodePosLayout = findViewById(R.id.kodePosLinear);
+        kodePosLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuKodePos.class);
+                startActivity(i);
+            }
+        });
+
+        telpPentingLayout = findViewById(R.id.telpPentingLinear);
+        telpPentingLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuTelpPenting.class);
                 startActivity(i);
             }
         });

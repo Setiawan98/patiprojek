@@ -719,7 +719,6 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:weightSum="4"
-                                        android:layout_marginBottom="10dp"
                                         android:layout_marginTop="10dp"
                                         android:orientation="horizontal">
 
@@ -799,7 +798,119 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/apa5"
+                                            android:id="@+id/kodePosLinear"
+                                            android:layout_width="75dp"
+                                            android:layout_marginRight="10dp"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:src="@drawable/iconinfokab" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="Kode Pos"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:weightSum="4"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginTop="10dp"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:id="@+id/telpPentingLinear"
+                                            android:layout_width="75dp"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:src="@drawable/iconinfokab" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="Telp Penting"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/a1"
+                                            android:visibility="invisible"
+                                            android:layout_width="75dp"
+                                            android:layout_weight="1"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:src="@drawable/iconjadwalsholat" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="Ibadah"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/a2"
+                                            android:visibility="invisible"
+                                            android:layout_width="75dp"
+                                            android:layout_height="110dp"
+                                            android:layout_weight="1"
+                                            android:layout_marginLeft="5dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:src="@drawable/iconloker" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="Kerjaan"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/a3"
                                             android:visibility="invisible"
                                             android:layout_width="75dp"
                                             android:layout_marginRight="10dp"
@@ -814,13 +925,13 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconmakan" />
+                                                android:src="@drawable/iconinfokab" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="SPBU"
+                                                android:text="Kode Pos"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>

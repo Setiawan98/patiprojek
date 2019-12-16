@@ -20,7 +20,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Kerjaan.EditKerjaanActivity"></activity>
+        <activity android:name=".KodePos.TampilKodePosByJenis"></activity>
+        <activity android:name=".KodePos.MenuKodePos" />
+        <activity android:name=".KodePos.DetilKodePos" />
+        <activity android:name=".KodePos.CariKodePos" />
+        <activity android:name=".TelpPenting.TampilTelpPentingByJenis" />
+        <activity android:name=".TelpPenting.MenuTelpPenting" />
+        <activity android:name=".TelpPenting.DetilTelpPenting" />
+        <activity android:name=".TelpPenting.CariTelpPenting" />
+        <activity android:name=".Kerjaan.EditKerjaanActivity" />
         <activity android:name=".Kesehatan.EditKesehatan" />
         <activity android:name=".Koperasi.EditKoperasiActivity" />
         <activity android:name=".Hotel.EditHotelActivity" />
