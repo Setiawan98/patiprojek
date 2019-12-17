@@ -29,7 +29,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="15dp"
-                android:text="Pilih Jenis Berita Cetak yang Anda cari"/>
+                android:text="Pilih Jenis Telp Penting yang Anda cari"/>
             <GridView
                 android:id="@+id/listTelpPenting"
                 android:layout_width="match_parent"
