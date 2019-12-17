@@ -116,7 +116,7 @@ public class DetilKodePos extends AppCompatActivity {
 
 
         final Bundle bundle = getIntent().getExtras();
-        id = bundle.getString("id_beritaOnline");
+        id = bundle.getString("id_kode_pos");
 
         getDataDetail();
 
@@ -375,23 +375,23 @@ public class DetilKodePos extends AppCompatActivity {
 
                 Log.w("ResponseAsu", new Gson().toJson(response.body()));
                 title.setText(response.body().getJudul());
-                refnama.setText(response.body().getData().getRef_kode_pos_nama());
-                mTime.setText(response.body().getData().getTime());
+                refnama.setText(response.body().getData().getKecamatan());
+                mTime.setText(response.body().getData().getKelurahan()+", "+response.body().getData().getKabupaten());
                 ratingsum.setText(String.format("%s/5",response.body().getData().getRating()));
                 String tampung = response.body().getData().getRating_jumlah();
                 ratingpeople.setText(String.format("(%s orang)", tampung));
                 textNama.setText(response.body().getData().getKode());
                 textDeskripsi.setText(response.body().getData().getDeskripsi());
 
-
+/*
                 gambarList = response.body().getData().getGambar();
-                String[] stringArray;
+                String[] stringArray = null;
 
 
                 if(gambarList.size() == 0)
                 {
-                    stringArray = new String[gambarList.size()+1];
-                    stringArray[0] = response.body().getIcon();
+                    *//*stringArray = new String[gambarList.size()+1];
+                    stringArray[0] = response.body().getIcon();*//*
 
 
                 }
@@ -409,7 +409,7 @@ public class DetilKodePos extends AppCompatActivity {
                 }
                 ViewPagerAdapter adapter = new ViewPagerAdapter(DetilKodePos.this,stringArray);
                 pager.setAdapter(adapter);
-                tabLayout.setupWithViewPager(pager, true);
+                tabLayout.setupWithViewPager(pager, true);*/
 
 
 

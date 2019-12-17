@@ -116,7 +116,8 @@ public class DetilTelpPenting extends AppCompatActivity {
 
 
         final Bundle bundle = getIntent().getExtras();
-        id = bundle.getString("id_beritaOnline");
+        id = bundle.getString("id_telp_penting");
+        Log.d("id",id);
 
         getDataDetail();
 
@@ -384,8 +385,8 @@ public class DetilTelpPenting extends AppCompatActivity {
                 textDeskripsi.setText(response.body().getData().getDeskripsi());
 
 
-                gambarList = response.body().getData().getGambar();
-                String[] stringArray;
+                /*gambarList = response.body().getData().getGambar();
+                String[] stringArray = null;
 
 
                 if(gambarList.size() == 0)
@@ -409,7 +410,7 @@ public class DetilTelpPenting extends AppCompatActivity {
                 }
                 ViewPagerAdapter adapter = new ViewPagerAdapter(DetilTelpPenting.this,stringArray);
                 pager.setAdapter(adapter);
-                tabLayout.setupWithViewPager(pager, true);
+                tabLayout.setupWithViewPager(pager, true);*/
 
 
 
