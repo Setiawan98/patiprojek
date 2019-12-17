@@ -20,7 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".KodePos.TampilKodePosByJenis"></activity>
+        <activity android:name=".PerangkatDaerah.DetilPerda"></activity>
+        <activity android:name=".PerangkatDaerah.TampilPerdaByJenis" />
+        <activity android:name=".PerangkatDaerah.CariPerda" />
+        <activity android:name=".PerangkatDaerah.MenuPerda" />
+        <activity android:name=".KodePos.TampilKodePosByJenis" />
         <activity android:name=".KodePos.MenuKodePos" />
         <activity android:name=".KodePos.DetilKodePos" />
         <activity android:name=".KodePos.CariKodePos" />
@@ -215,7 +219,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

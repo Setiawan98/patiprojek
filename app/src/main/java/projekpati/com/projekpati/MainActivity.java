@@ -51,6 +51,7 @@ import projekpati.com.projekpati.Olahraga.MenuOlahraga;
 import projekpati.com.projekpati.Otomotif.MenuOtomotif;
 import projekpati.com.projekpati.Pariwisata.MenuPariwisata;
 import projekpati.com.projekpati.Pendidikan.MenuPendidikan;
+import projekpati.com.projekpati.PerangkatDaerah.MenuPerda;
 import projekpati.com.projekpati.Polisi.MenuPolisi;
 import projekpati.com.projekpati.Salon.MenuSalon;
 import projekpati.com.projekpati.Spbu.MenuSpbu;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout kulinerLayout, beritaCetakLayout, otomotifLayout, lapakLayout, aspirasiLayout,
             spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout,
             pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout,
-            biosopLayout, hotelLayput, koperasiLayout,agendaLayout, kerjaanLayout,
+            biosopLayout, hotelLayput, koperasiLayout,agendaLayout, kerjaanLayout, perdaLayout,
             beritaOnlineLayout, telpPentingLayout, kodePosLayout;
     private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
@@ -179,6 +180,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        perdaLayout = findViewById(R.id.perangkatDaerahLinear);
+        perdaLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuPerda.class);
+                startActivity(i);
+            }
+        });
         aspirasiLayout = findViewById(R.id.aspirasiLinear);
         aspirasiLayout.setOnClickListener(new View.OnClickListener() {
             @Override

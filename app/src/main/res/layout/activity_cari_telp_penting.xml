@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="6"
                 android:layout_height="50dp"
-                android:hint="Cari Berita Cetak disini" />
+                android:hint="Cari Telepon Penting disini" />
 
             <ImageView
                 android:layout_width="25dp"

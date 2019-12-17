@@ -1,4 +1,4 @@
-package projekpati.com.projekpati.TelpPenting;
+package projekpati.com.projekpati.PerangkatDaerah;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,10 +8,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.BeritaOnline.KategoriBeritaOnlineFragment;
 import projekpati.com.projekpati.MainActivity;
-import projekpati.com.projekpati.Model.TelpPenting.TelpPentingModel;
-import projekpati.com.projekpati.Model.TelpPenting.ListTelpPenting;
+import projekpati.com.projekpati.Model.PerangkatDaerah.ListPerda;
+import projekpati.com.projekpati.Model.PerangkatDaerah.PerdaModel;
 import projekpati.com.projekpati.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,10 +34,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class MenuTelpPenting extends AppCompatActivity {
+public class MenuPerda extends AppCompatActivity {
     ListView listView;
     EditText cari;
-    List<ListTelpPenting> list = new ArrayList<>();
+    List<ListPerda> list = new ArrayList<>();
     Toolbar toolbar;
     TextView title;
     ImageView iconView;
@@ -46,18 +45,18 @@ public class MenuTelpPenting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_telp_penting);
+        setContentView(R.layout.activity_menu_perda);
 
-        toolbar = (Toolbar) findViewById(R.id.beritaCetakToolbar);
+        toolbar = (Toolbar) findViewById(R.id.perdaToolbaar);
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
         iconView = toolbar.findViewById(R.id.icon);
 
         //getIconImage();
         iconView.setLayoutParams(new LinearLayout.LayoutParams(80,80));
-        iconView.setImageResource(R.drawable.iconinfokab);
+        iconView.setImageResource(R.drawable.iconperangkatdaerah);
 
-        title.setText("Telp Penting");
+        title.setText("Perangkat Daerah");
         title.setPadding(20,0,0,0);
 
         setSupportActionBar(toolbar);
@@ -66,14 +65,14 @@ public class MenuTelpPenting extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        final BottomNavigationView bottomNavigationView = findViewById(R.id.menuTelpPenting);
+        final BottomNavigationView bottomNavigationView = findViewById(R.id.menuPerda);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
 
                 if(id==R.id.beranda){
-                    DataTelpPentingFragment first = new DataTelpPentingFragment();
+                    DataPerdaFragment first = new DataPerdaFragment();
                     openFragment(first);
                     //status =1;
                     bottomNavigationView.setEnabled(false);
@@ -88,7 +87,7 @@ public class MenuTelpPenting extends AppCompatActivity {
                 }
                 else if(id==R.id.kategori){
 
-                    KategoriTelpPentingFragment second = new KategoriTelpPentingFragment();
+                    KategoriPerdaFragment second = new KategoriPerdaFragment();
                     openFragment(second);
                     bottomNavigationView.setEnabled(false);
                     Handler handler = new Handler();
@@ -139,19 +138,20 @@ public class MenuTelpPenting extends AppCompatActivity {
             }
         });
 
-        DataTelpPentingFragment first = new DataTelpPentingFragment();
+        DataPerdaFragment first = new DataPerdaFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment, first).commit();
     }
+
     public void getIconImage(){
         //defining a progress dialog to show while signing up
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<TelpPentingModel> call = api.tampilSemuaTelpPenting();
+        Call<PerdaModel> call = api.tampilSemuaPerda();
 
-        call.enqueue(new Callback<TelpPentingModel>() {
+        call.enqueue(new Callback<PerdaModel>() {
             @Override
-            public void onResponse(Call<TelpPentingModel> call, final Response<TelpPentingModel> response) {
-                Map<String, ListTelpPenting> data = response.body().getData();
+            public void onResponse(Call<PerdaModel> call, final Response<PerdaModel> response) {
+                Map<String, ListPerda> data = response.body().getData();
                 Log.d("iconnn",response.body().getIcon());
                 title.setText("BeritaOnline");
 
@@ -175,7 +175,7 @@ public class MenuTelpPenting extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<TelpPentingModel> call, Throwable t) {
+            public void onFailure(Call<PerdaModel> call, Throwable t) {
 
                 Log.d("onResponse", t.toString());
             }
@@ -197,13 +197,13 @@ public class MenuTelpPenting extends AppCompatActivity {
 
         if(id==R.id.btnSearch)
         {
-            Intent intent = new Intent(MenuTelpPenting.this, CariTelpPenting.class);
+            Intent intent = new Intent(MenuPerda.this, CariPerda.class);
             startActivity(intent);
 
         }
         else if(id==android.R.id.home)
         {
-            Intent i = new Intent(MenuTelpPenting.this, MainActivity.class);
+            Intent i = new Intent(MenuPerda.this, MainActivity.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);

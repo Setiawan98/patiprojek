@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="6"
                 android:layout_height="50dp"
-                android:hint="Cari Kode Pos disini" />
+                android:hint="Cari Perangkat Daerah disini" />
 
             <ImageView
                 android:layout_width="25dp"
@@ -62,7 +62,7 @@
             android:layout_alignTop="@id/kulinerToolbar">
 
             <ListView
-                android:id="@+id/listKodePos"
+                android:id="@+id/listPerda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true">

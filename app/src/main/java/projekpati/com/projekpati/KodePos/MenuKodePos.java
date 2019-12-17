@@ -55,9 +55,9 @@ public class MenuKodePos extends AppCompatActivity {
 
         //getIconImage();
         iconView.setLayoutParams(new LinearLayout.LayoutParams(80,80));
-        iconView.setImageResource(R.drawable.iconberita);
+        iconView.setImageResource(R.drawable.iconinfokab);
 
-        title.setText("Berita Cetak");
+        title.setText("Kode Pos");
         title.setPadding(20,0,0,0);
 
         setSupportActionBar(toolbar);
