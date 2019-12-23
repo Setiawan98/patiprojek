@@ -20,7 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PerangkatDaerah.DetilPerda"></activity>
+        <activity android:name=".BeliMobil.DetilMapBeliMobil"></activity>
+        <activity android:name=".BeliMobil.MenuBeliMobil" />
+        <activity android:name=".BeliMotor.DetilMapBeliMotor" />
+        <activity android:name=".BeliMotor.MenuBeliMotor" />
+        <activity android:name=".PerangkatDaerah.DetilPerda" />
         <activity android:name=".PerangkatDaerah.TampilPerdaByJenis" />
         <activity android:name=".PerangkatDaerah.CariPerda" />
         <activity android:name=".PerangkatDaerah.MenuPerda" />

@@ -1976,4 +1976,18 @@ public interface API {
     Call<KomentarLengkap> getKomentarPerda
             (@Query("dataID") String data_id);
 
+    // Beli Mobil dan Motor
+    @GET("otomotif/data?key=TechnoPhoriaIndonesia&IDJenisParent=motor")
+    Call<OtomotifModel> tampilSemuaMotor();
+
+    @GET("otomotif/data/{id}?key=TechnoPhoriaIndonesia&IDJenisParent=motor")
+    Call<OtomotifModel> loadMoreMotor(@Path("id") String id);
+
+    @GET("otomotif/data?key=TechnoPhoriaIndonesia&IDJenisParent=mobil")
+    Call<OtomotifModel> tampilSemuaMobil();
+
+    @GET("otomotif/data/{id}?key=TechnoPhoriaIndonesia&IDJenisParent=mobil")
+    Call<OtomotifModel> loadMoreMobil(@Path("id") String id);
+
+
 }

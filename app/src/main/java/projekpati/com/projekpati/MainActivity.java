@@ -37,6 +37,7 @@ import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.Agenda.MenuAgenda;
 import projekpati.com.projekpati.Aspirasi.MenuAspirasi;
 import projekpati.com.projekpati.Bank.MenuBank;
+import projekpati.com.projekpati.BeliMotor.MenuBeliMotor;
 import projekpati.com.projekpati.BeritaCetak.MenuBeritaCetak;
 import projekpati.com.projekpati.BeritaOnline.MenuBeritaOnline;
 import projekpati.com.projekpati.FasilitasUmum.MenuFasilitasUmum;
@@ -62,7 +63,7 @@ import projekpati.com.projekpati.bioskop.MenuBioskop;
 
 public class MainActivity extends AppCompatActivity {
 
-    private LinearLayout kulinerLayout, beritaCetakLayout, otomotifLayout, lapakLayout, aspirasiLayout,
+    private LinearLayout kulinerLayout, bMotorLayout, bMobilLayout, beritaCetakLayout, otomotifLayout, lapakLayout, aspirasiLayout,
             spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout,
             pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout,
             biosopLayout, hotelLayput, koperasiLayout,agendaLayout, kerjaanLayout, perdaLayout,
@@ -187,6 +188,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MenuPerda.class);
+                startActivity(i);
+            }
+        });
+
+        bMotorLayout = findViewById(R.id.bengkelMotorLinear);
+        bMotorLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuBeliMotor.class);
+                startActivity(i);
+            }
+        });
+
+        bMobilLayout = findViewById(R.id.bengkelMobilLinear);
+        bMobilLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuBeliMotor.class);
                 startActivity(i);
             }
         });
