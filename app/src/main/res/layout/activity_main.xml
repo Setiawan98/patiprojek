@@ -339,7 +339,6 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:orientation="horizontal"
-                                            android:layout_marginBottom="10dp"
                                             android:weightSum="4">
 
                                             <LinearLayout
@@ -422,7 +421,121 @@
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:id="@+id/c"
+                                                android:id="@+id/rumahSakitLinear"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginRight="10dp"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:src="@drawable/iconrumahsakit" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Rumah Sakit"
+                                                    android:textColor="@android:color/black" />
+
+                                            </LinearLayout>
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                            android:layout_marginBottom="10dp"
+                                            android:weightSum="4">
+
+                                            <LinearLayout
+                                                android:id="@+id/pukesmasLinear"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginLeft="10dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:src="@drawable/iconrumahsakit" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Puskesmas"
+                                                    android:textColor="@android:color/black" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+
+                                                android:id="@+id/ambulanLinear"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:src="@drawable/iconkesehatan" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="Ambulan"
+                                                    android:textColor="@android:color/black" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/a"
+                                                android:visibility="invisible"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="110dp"
+                                                android:layout_marginTop="10dp"
+                                                android:layout_marginLeft="5dp"
+                                                android:layout_weight="1"
+                                                android:background="@drawable/linear_layout_shadow"
+                                                android:gravity="center"
+                                                android:orientation="vertical">
+
+                                                <ImageView
+                                                    android:layout_width="60dp"
+                                                    android:layout_height="60dp"
+                                                    android:layout_marginTop="5dp"
+                                                    android:src="@drawable/iconmotor" />
+
+                                                <TextView
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_marginTop="5dp"
+                                                    android:text="B. Motor"
+                                                    android:textColor="@android:color/black" />
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:id="@+id/b"
                                                 android:visibility="invisible"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="110dp"
@@ -438,13 +551,13 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:src="@drawable/iconpariwisata" />
+                                                    android:src="@drawable/iconrumahsakit" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="5dp"
-                                                    android:text="Agenda"
+                                                    android:text="Rumah Sakit"
                                                     android:textColor="@android:color/black" />
 
                                             </LinearLayout>

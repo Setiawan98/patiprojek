@@ -43,6 +43,7 @@ import projekpati.com.projekpati.FasilitasUmum.MenuFasilitasUmum;
 import projekpati.com.projekpati.Hotel.MenuHotel;
 import projekpati.com.projekpati.Kerjaan.MenuKerjaan;
 import projekpati.com.projekpati.Kesehatan.MenuKesehatan;
+import projekpati.com.projekpati.Kesehatan.TampilKesehatanByJenis;
 import projekpati.com.projekpati.KodePos.MenuKodePos;
 import projekpati.com.projekpati.Koperasi.MenuKoperasi;
 import projekpati.com.projekpati.Kuliner.MenuKuliner;
@@ -65,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
             spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout,
             pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout,
             biosopLayout, hotelLayput, koperasiLayout,agendaLayout, kerjaanLayout, perdaLayout,
-            beritaOnlineLayout, telpPentingLayout, kodePosLayout;
+            beritaOnlineLayout, telpPentingLayout, kodePosLayout, apotekLayout, dokterLayout,rumahSakitLayout,
+            pukesmasLayout, ambulanLayout;
     private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
     ScrollView scroll;
@@ -370,6 +372,61 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MenuTelpPenting.class);
                 startActivity(i);
+            }
+        });
+
+        apotekLayout = findViewById(R.id.apotikLinear);
+        apotekLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TampilKesehatanByJenis.class);
+                intent.putExtra("id_kesehatan","4");
+                intent.putExtra("kategori","Apotek");
+                startActivity(intent);
+            }
+        });
+
+        dokterLayout = findViewById(R.id.dokterLinear);
+        dokterLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TampilKesehatanByJenis.class);
+                intent.putExtra("id_kesehatan","7");
+                intent.putExtra("kategori","Dokter");
+                startActivity(intent);
+            }
+        });
+
+        rumahSakitLayout = findViewById(R.id.rumahSakitLinear);
+        rumahSakitLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TampilKesehatanByJenis.class);
+                intent.putExtra("id_kesehatan","1");
+                intent.putExtra("kategori","Rumah Sakit");
+                startActivity(intent);
+            }
+        });
+
+        pukesmasLayout = findViewById(R.id.pukesmasLinear);
+        pukesmasLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TampilKesehatanByJenis.class);
+                intent.putExtra("id_kesehatan","6");
+                intent.putExtra("kategori","Puskesmas");
+                startActivity(intent);
+            }
+        });
+
+        ambulanLayout = findViewById(R.id.ambulanLinear);
+        ambulanLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TampilKesehatanByJenis.class);
+                intent.putExtra("id_kesehatan","5");
+                intent.putExtra("kategori","Ambulan");
+                startActivity(intent);
             }
         });
 
