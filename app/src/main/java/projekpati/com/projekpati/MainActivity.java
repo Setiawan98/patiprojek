@@ -37,6 +37,7 @@ import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.Agenda.MenuAgenda;
 import projekpati.com.projekpati.Aspirasi.MenuAspirasi;
 import projekpati.com.projekpati.Bank.MenuBank;
+import projekpati.com.projekpati.BeliMobil.MenuBeliMobil;
 import projekpati.com.projekpati.BeliMotor.MenuBeliMotor;
 import projekpati.com.projekpati.BeritaCetak.MenuBeritaCetak;
 import projekpati.com.projekpati.BeritaOnline.MenuBeritaOnline;
@@ -205,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
         bMobilLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, MenuBeliMotor.class);
+                Intent i = new Intent(MainActivity.this, MenuBeliMobil.class);
                 startActivity(i);
             }
         });

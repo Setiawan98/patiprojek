@@ -48,7 +48,6 @@ import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.APIKey;
 import projekpati.com.projekpati.Model.Otomotif.ListOtomotif;
 import projekpati.com.projekpati.Model.Otomotif.OtomotifModel;
-import projekpati.com.projekpati.Otomotif.DetilMapOtomotif;
 import projekpati.com.projekpati.Otomotif.DetilOtomotif;
 import projekpati.com.projekpati.Otomotif.OtomotifAdapter;
 import projekpati.com.projekpati.R;
@@ -376,7 +375,7 @@ public class DataBeliMotorFragment extends Fragment implements OnMapReadyCallbac
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                Intent i = new Intent(getContext(), DetilMapOtomotif.class);
+                Intent i = new Intent(getContext(), DetilMapBeliMotor.class);
                 Bundle bundle = new Bundle();
 
                 // bundle.putParcelableArrayList("list",listLatn);
