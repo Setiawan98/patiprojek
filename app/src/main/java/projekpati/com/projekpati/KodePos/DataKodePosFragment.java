@@ -2,6 +2,9 @@ package projekpati.com.projekpati.KodePos;
 
 
 import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -161,9 +164,15 @@ public class DataKodePosFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), DetilKodePos.class);
+                /*Intent intent = new Intent(getContext(),DetilKodePos.class);
                 intent.putExtra("id_kode_pos",list.get(position).getId());
-                startActivity(intent);
+                startActivity(intent);*/
+
+                ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("Kodepos : "+list.get(position).getKelurahan(),list.get(position).getKode());
+                clipboardManager.setPrimaryClip(clip);
+                Toast.makeText(getContext(),"Kodepos "+list.get(position).getKelurahan()+" berhasil disalin",Toast.LENGTH_SHORT).show();
+
             }
         });
     }
@@ -172,7 +181,7 @@ public class DataKodePosFragment extends Fragment {
         //defining a progress dialog to show while signing up
 
         Status=1;
-        CountShowData = (listView.getHeight()/161);
+        CountShowData = (listView.getHeight()/140);
         Log.d("Height: ", String.valueOf(listView.getHeight()));
         Log.d("Height: ", String.valueOf(CountShowData));
 
@@ -217,9 +226,15 @@ public class DataKodePosFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(),DetilKodePos.class);
+                /*Intent intent = new Intent(getContext(),DetilKodePos.class);
                 intent.putExtra("id_kode_pos",list.get(position).getId());
-                startActivity(intent);
+                startActivity(intent);*/
+
+                ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("Kodepos : "+list.get(position).getKelurahan(),list.get(position).getKode());
+                clipboardManager.setPrimaryClip(clip);
+                Toast.makeText(getContext(),"Kodepos "+list.get(position).getKelurahan()+" berhasil disalin",Toast.LENGTH_SHORT).show();
+
             }
         });
     }

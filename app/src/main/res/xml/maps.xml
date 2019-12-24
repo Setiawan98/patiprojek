@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<maps xmlns:android="http://schemas.android.com/apk/res/android">
+    <map name="center">
+		<area identity="1" name="Apotek" shape="poly" coords="223,115,270,224,385,202,348,92" />
+		<area identity="2" name="Aspirasi" shape="poly" coords="428,187,541,167,584,286,467,308" />
+		<area identity="3" name="JadwalSholat"  shape="poly" coords="27,210,130,188,163,286,47,306" />
+		<area identity="4" name="hargaPangan" shape="poly" coords="194,395,80,411,52,302,169,284" />
+		<area identity="5" name="Tukang" shape="poly" coords="87,514,170,500,168,481,180,470,163,443,160,428,192,420,182,394,55,413" />
+		<area identity="6" name="Video" shape="poly" coords="308,346,424,331,388,259,367,260,334,216,297,226,301,270,262,281,298,350" />
+		<area identity="7" name="infoKab" shape="poly" coords="348,363,422,349,433,379,461,455,386,465,373,421" />
+		<area identity="8" name="Hotel" shape="poly" coords="479,418,573,399,537,322,560,315,551,297,464,311,468,358,445,367" />
+		<area identity="9" name="bank" shape="poly" coords="267,685,360,672,376,709,371,726,397,794,283,817,247,743,289,735" />
+		<area identity="10" name="spbu" shape="poly" coords="556,823,648,803,663,834,634,849,689,936,580,966,538,886,577,867" />
+		<area identity="11" name="kuliner" shape="poly" coords="87,972,243,942,261,970,208,983,216,1008,224,1004,264,1091,128,1129,99,1033,121,1022,105,1007,100,1007" />
+		<area identity="12" name="kesehatan" shape="poly" coords="35,743,98,738,98,724,152,712,160,728,222,715,238,733,198,748,243,855,81,894,38,773" />
+	</map>
+</maps>

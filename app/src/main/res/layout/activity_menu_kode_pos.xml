@@ -56,15 +56,5 @@
             android:background="@android:color/white" />
     </LinearLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/menuKodePos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/white"
-        app:itemIconTint="@drawable/state_bnve"
-        app:itemTextColor="@drawable/state_bnve"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottomnavigation_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

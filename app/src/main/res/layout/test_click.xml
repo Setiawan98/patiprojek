@@ -8,7 +8,7 @@
         android:id="@+id/map"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        ctc:map="center"
+        ctc:map="usamap"
         ctc:maxSizeFactor="1.5"
         ctc:scaleFromOriginal="true"
         ctc:fitImageToScreen="true"/>

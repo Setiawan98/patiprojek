@@ -66,78 +66,7 @@ public class MenuKodePos extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        final BottomNavigationView bottomNavigationView = findViewById(R.id.menuKodePos);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int id = menuItem.getItemId();
 
-                if(id==R.id.beranda){
-                    DataKodePosFragment first = new DataKodePosFragment();
-                    openFragment(first);
-                    //status =1;
-                    bottomNavigationView.setEnabled(false);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            bottomNavigationView.setEnabled(true);
-                        }
-                    },5000);
-
-                }
-                else if(id==R.id.kategori){
-
-                    KategoriKodePosFragment second = new KategoriKodePosFragment();
-                    openFragment(second);
-                    bottomNavigationView.setEnabled(false);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            bottomNavigationView.setEnabled(true);
-                        }
-                    },5000);
-
-                }
-                else if(id==R.id.tambah){
-
-                   /* TambahBeritaOnlineFragment third = new TambahBeritaOnlineFragment();
-                    openFragment(third);
-                    bottomNavigationView.setEnabled(false);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            status =0;
-                            bottomNavigationView.setEnabled(true);
-                        }
-                    },5000);*/
-
-                }
-                else if(id==R.id.saring){
-//
-                   /* SaringBeritaOnlineFragment fouth = new SaringBeritaOnlineFragment();
-                    openFragment(fouth);
-                    bottomNavigationView.setEnabled(false);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            status =0;
-                            bottomNavigationView.setEnabled(true);
-                        }
-                    },5000);*/
-
-                }
-                else if(id==R.id.dataku){
-
-                    //Toast.makeText(MenuPendidikan.this, "Login dalam proses",Toast.LENGTH_SHORT).show();
-
-                }
-                return true;
-            }
-        });
 
         DataKodePosFragment first = new DataKodePosFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();

@@ -1,6 +1,7 @@
 package projekpati.com.projekpati.KodePos;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,23 +9,26 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+
 import com.squareup.picasso.Picasso;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Random;
 
 import projekpati.com.projekpati.Model.KodePos.ListKodePos;
 import projekpati.com.projekpati.R;
 
 public class KodePosAdapter extends ArrayAdapter<ListKodePos> {
     private Context context;
-    private List<ListKodePos> beritaCetak;
+    private List<ListKodePos> kodePos;
 
     public KodePosAdapter(Context context, int resource, List<ListKodePos> objects) {
         super(context,resource,objects);
         this.context = context;
-        this.beritaCetak = objects;
+        this.kodePos = objects;
     }
 
 
@@ -35,42 +39,26 @@ public class KodePosAdapter extends ArrayAdapter<ListKodePos> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View rowView = inflater.inflate(R.layout.kode_pos_adapter, parent, false);
 
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.mImage);
-        TextView textNama = (TextView) rowView.findViewById(R.id.mNama);
-        TextView textAlamat = (TextView) rowView.findViewById(R.id.mAlamat);
-        TextView textJam = (TextView) rowView.findViewById(R.id.mJamBuka);
-        ImageView iconJam= (ImageView) rowView.findViewById(R.id.iconJam);
-        TextView textRef = rowView.findViewById(R.id.mRefNama);
+
+        TextView textInitial = (TextView) rowView.findViewById(R.id.mInitial);
+        TextView textKelurahan = (TextView) rowView.findViewById(R.id.mKelurahan);
+        TextView textKecamatan = (TextView) rowView.findViewById(R.id.mKecamatan);
+        TextView textKodePos = rowView.findViewById(R.id.mKodePos);
+        CardView background = rowView.findViewById(R.id.backgroundInitial);
+
+        Random rnd = new Random();
+        int color = Color.argb(255,rnd.nextInt(256),rnd.nextInt(256),rnd.nextInt(256));
+        background.setBackgroundColor(color);
 
 
-
-        URL url = null;
-        if(beritaCetak.get(pos).getFile_small().equals(""))
+        if(kodePos.get(pos).getKelurahan()!=null)
         {
-            //tidak terjadi perubahan apapun
-        }
-        else
-        {
-            try {
-                url = new URL(beritaCetak.get(pos).getFile_small());
-                Picasso.get()
-                        .load(String.valueOf(url))
-                        .resize(150,100).noFade().into(imageView);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
+            textInitial.setText(kodePos.get(pos).getKelurahan().substring(0,1));
         }
 
-        textNama.setText(beritaCetak.get(pos).getKode());
-        textAlamat.setText(beritaCetak.get(pos).getKelurahan());
-        // textJam.setText(fasilitasUmum.get(pos).getJam_buka());
-        textRef.setText(beritaCetak.get(pos).getKecamatan()+", "+beritaCetak.get(pos).getKabupaten());
-        if(textJam.getText().equals(""))
-        {
-            iconJam.setVisibility(View.INVISIBLE);
-        }
-
-
+        textKelurahan.setText(kodePos.get(pos).getKelurahan());
+        textKecamatan.setText("Kec. "+kodePos.get(pos).getKecamatan());
+        textKodePos.setText(kodePos.get(pos).getKode());
         return rowView;
     }
 }

@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView[] dots;
     private int[] layouts;
     public static boolean doubleBackToExitPressedOnce = false;
+    ImageView a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -528,6 +531,35 @@ public class MainActivity extends AppCompatActivity {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
             View view = layoutInflater.inflate(layouts[position], container, false);
+            if(position==1)
+            {
+                final ImageMap mImageMap;
+                mImageMap = (ImageMap)view.findViewById(R.id.map);
+                mImageMap.setImageResource(R.drawable.backgroundberanda);
+
+                // add a click handler to react when areas are tapped
+                mImageMap.addOnImageMapClickedHandler(new ImageMap.OnImageMapClickedHandler()
+                {
+                    @Override
+                    public void onImageMapClicked(int id, ImageMap imageMap)
+                    {
+                        // when the area is tapped, show the name in a
+                        // text bubble
+
+                        //mImageMap.showBubble(id);
+                        Toast.makeText(MainActivity.this, mImageMap.getName(id),Toast.LENGTH_SHORT).show();
+                        Log.d("MasukClick","Clicked");
+                    }
+
+                    @Override
+                    public void onBubbleClicked(int id)
+                    {
+                        // react to info bubble for area being tapped
+                    }
+                });
+
+            }
+
             container.addView(view);
 
             return view;
