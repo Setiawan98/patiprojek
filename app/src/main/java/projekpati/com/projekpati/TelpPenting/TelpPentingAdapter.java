@@ -38,10 +38,6 @@ public class TelpPentingAdapter extends ArrayAdapter<ListTelpPenting> {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.mImage);
         TextView textNama = (TextView) rowView.findViewById(R.id.mNama);
         TextView textAlamat = (TextView) rowView.findViewById(R.id.mAlamat);
-        TextView textJam = (TextView) rowView.findViewById(R.id.mJamBuka);
-        ImageView iconJam= (ImageView) rowView.findViewById(R.id.iconJam);
-        TextView textRef = rowView.findViewById(R.id.mRefNama);
-
 
 
         URL url = null;
@@ -63,12 +59,6 @@ public class TelpPentingAdapter extends ArrayAdapter<ListTelpPenting> {
 
         textNama.setText(beritaCetak.get(pos).getNama());
         textAlamat.setText(beritaCetak.get(pos).getNotelp());
-        // textJam.setText(fasilitasUmum.get(pos).getJam_buka());
-        textRef.setText(beritaCetak.get(pos).getRef_telp_penting_nama());
-        if(textJam.getText().equals(""))
-        {
-            iconJam.setVisibility(View.INVISIBLE);
-        }
 
 
         return rowView;

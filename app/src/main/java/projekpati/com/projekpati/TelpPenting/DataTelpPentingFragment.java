@@ -3,6 +3,7 @@ package projekpati.com.projekpati.TelpPenting;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -161,9 +162,13 @@ public class DataTelpPentingFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), DetilTelpPenting.class);
-                intent.putExtra("id_telp_penting",list.get(position).getId());
-                startActivity(intent);
+//                Intent intent = new Intent(getContext(), DetilTelpPenting.class);
+//                intent.putExtra("id_telp_penting",list.get(position).getId());
+//                startActivity(intent);
+
+                String uri = "tel:"+list.get(position).getNotelp();
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse(uri));
+                startActivity(dialIntent);
             }
         });
     }
@@ -217,9 +222,13 @@ public class DataTelpPentingFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(),DetilTelpPenting.class);
-                intent.putExtra("id_telp_penting",list.get(position).getId());
-                startActivity(intent);
+//                Intent intent = new Intent(getContext(),DetilTelpPenting.class);
+//                intent.putExtra("id_telp_penting",list.get(position).getId());
+//                startActivity(intent);
+
+                String uri = "tel:"+list.get(position).getNotelp();
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse(uri));
+                startActivity(dialIntent);
             }
         });
     }
