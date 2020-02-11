@@ -282,71 +282,11 @@
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:id="@+id/apotikLinear"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="110dp"
-                                                android:layout_marginTop="10dp"
-                                                android:layout_marginLeft="5dp"
-                                                android:layout_weight="1"
-                                                android:background="@drawable/linear_layout_shadow"
-                                                android:gravity="center"
-                                                android:orientation="vertical">
-
-                                                <ImageView
-                                                    android:layout_width="60dp"
-                                                    android:layout_height="60dp"
-                                                    android:layout_marginTop="5dp"
-                                                    android:src="@drawable/iconapotik" />
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="5dp"
-                                                    android:text="Apotik"
-                                                    android:textColor="@android:color/black" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:id="@+id/dokterLinear"
-
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="110dp"
-                                                android:layout_marginLeft="5dp"
-                                                android:layout_marginTop="10dp"
-                                                android:layout_marginRight="10dp"
-                                                android:layout_weight="1"
-                                                android:background="@drawable/linear_layout_shadow"
-                                                android:gravity="center"
-                                                android:orientation="vertical">
-
-                                                <ImageView
-                                                    android:layout_width="60dp"
-                                                    android:layout_height="60dp"
-                                                    android:layout_marginTop="5dp"
-                                                    android:src="@drawable/icondokter" />
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="5dp"
-                                                    android:text="Dokter"
-                                                    android:textColor="@android:color/black" />
-
-                                            </LinearLayout>
-                                        </LinearLayout>
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="horizontal"
-                                            android:weightSum="4">
-
-                                            <LinearLayout
                                                 android:id="@+id/propertiLinear"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="110dp"
-                                                android:layout_marginLeft="10dp"
                                                 android:layout_marginTop="10dp"
+                                                android:layout_marginLeft="5dp"
                                                 android:layout_weight="1"
                                                 android:background="@drawable/linear_layout_shadow"
                                                 android:gravity="center"
@@ -368,60 +308,7 @@
                                             </LinearLayout>
 
                                             <LinearLayout
-
                                                 android:id="@+id/bengkelMobilLinear"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="110dp"
-                                                android:layout_marginTop="10dp"
-                                                android:layout_marginLeft="5dp"
-                                                android:layout_weight="1"
-                                                android:background="@drawable/linear_layout_shadow"
-                                                android:gravity="center"
-                                                android:orientation="vertical">
-
-                                                <ImageView
-                                                    android:layout_width="60dp"
-                                                    android:layout_height="60dp"
-                                                    android:layout_marginTop="5dp"
-                                                    android:src="@drawable/iconmobil" />
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="5dp"
-                                                    android:text="B. Mobil"
-                                                    android:textColor="@android:color/black" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:id="@+id/bengkelMotorLinear"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="110dp"
-                                                android:layout_marginTop="10dp"
-                                                android:layout_marginLeft="5dp"
-                                                android:layout_weight="1"
-                                                android:background="@drawable/linear_layout_shadow"
-                                                android:gravity="center"
-                                                android:orientation="vertical">
-
-                                                <ImageView
-                                                    android:layout_width="60dp"
-                                                    android:layout_height="60dp"
-                                                    android:layout_marginTop="5dp"
-                                                    android:src="@drawable/iconmotor" />
-
-                                                <TextView
-                                                    android:layout_width="wrap_content"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_marginTop="5dp"
-                                                    android:text="B. Motor"
-                                                    android:textColor="@android:color/black" />
-
-                                            </LinearLayout>
-
-                                            <LinearLayout
-                                                android:id="@+id/rumahSakitLinear"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="110dp"
                                                 android:layout_marginLeft="5dp"
@@ -436,13 +323,13 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:src="@drawable/iconrumahsakit" />
+                                                    android:src="@drawable/iconjbmobil" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="5dp"
-                                                    android:text="Rumah Sakit"
+                                                    android:text="JB. Mobil"
                                                     android:textColor="@android:color/black" />
 
                                             </LinearLayout>
@@ -451,11 +338,10 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
                                             android:orientation="horizontal"
-                                            android:layout_marginBottom="10dp"
                                             android:weightSum="4">
 
                                             <LinearLayout
-                                                android:id="@+id/pukesmasLinear"
+                                                android:id="@+id/bengkelMotorLinear"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="110dp"
                                                 android:layout_marginLeft="10dp"
@@ -469,20 +355,20 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:src="@drawable/iconrumahsakit" />
+                                                    android:src="@drawable/iconjbmotor" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="5dp"
-                                                    android:text="Puskesmas"
+                                                    android:text="JB. Motor"
                                                     android:textColor="@android:color/black" />
 
                                             </LinearLayout>
 
                                             <LinearLayout
 
-                                                android:id="@+id/ambulanLinear"
+                                                android:id="@+id/angkutanLinear"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="110dp"
                                                 android:layout_marginTop="10dp"
@@ -496,20 +382,19 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:src="@drawable/iconkesehatan" />
+                                                    android:src="@drawable/iconangkutan" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="5dp"
-                                                    android:text="Ambulan"
+                                                    android:text="Angkutan"
                                                     android:textColor="@android:color/black" />
 
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:id="@+id/a"
-                                                android:visibility="invisible"
+                                                android:id="@+id/koperasiLinear"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="110dp"
                                                 android:layout_marginTop="10dp"
@@ -523,20 +408,19 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:src="@drawable/iconmotor" />
+                                                    android:src="@drawable/iconkoperasi" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="5dp"
-                                                    android:text="B. Motor"
+                                                    android:text="Koperasi"
                                                     android:textColor="@android:color/black" />
 
                                             </LinearLayout>
 
                                             <LinearLayout
-                                                android:id="@+id/b"
-                                                android:visibility="invisible"
+                                                android:id="@+id/pelelanganIkanLinear"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="110dp"
                                                 android:layout_marginLeft="5dp"
@@ -551,13 +435,13 @@
                                                     android:layout_width="60dp"
                                                     android:layout_height="60dp"
                                                     android:layout_marginTop="5dp"
-                                                    android:src="@drawable/iconrumahsakit" />
+                                                    android:src="@drawable/iconlelang" />
 
                                                 <TextView
                                                     android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:layout_marginTop="5dp"
-                                                    android:text="Rumah Sakit"
+                                                    android:text="Pelelangan"
                                                     android:textColor="@android:color/black" />
 
                                             </LinearLayout>
@@ -618,7 +502,7 @@
                                         android:orientation="horizontal">
 
                                         <LinearLayout
-                                            android:id="@+id/bankLinear"
+                                            android:id="@+id/rumahSakitLinear"
                                             android:layout_width="75dp"
                                             android:layout_height="110dp"
                                             android:layout_marginLeft="10dp"
@@ -631,19 +515,19 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconatmbank" />
+                                                android:src="@drawable/iconrumahsakit" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="Bank"
+                                                android:text="Rumah Sakit"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/bioskopLinear"
+                                            android:id="@+id/pukesmasLinear"
                                             android:layout_width="75dp"
                                             android:layout_weight="1"
                                             android:layout_height="110dp"
@@ -656,13 +540,38 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconbioskop" />
+                                                android:src="@drawable/iconpuskemas" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="Bioskop"
+                                                android:text="Puskesmas"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/ambulanLinear"
+                                            android:layout_width="75dp"
+                                            android:layout_height="110dp"
+                                            android:layout_weight="1"
+                                            android:layout_marginLeft="5dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:src="@drawable/iconambulan" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="Ambulan"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>
@@ -670,9 +579,10 @@
                                         <LinearLayout
                                             android:id="@+id/kesehatanLinear"
                                             android:layout_width="75dp"
+                                            android:layout_marginRight="10dp"
                                             android:layout_height="110dp"
-                                            android:layout_weight="1"
                                             android:layout_marginLeft="5dp"
+                                            android:layout_weight="1"
                                             android:background="@drawable/linear_layout_shadow"
                                             android:gravity="center"
                                             android:orientation="vertical">
@@ -688,32 +598,6 @@
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
                                                 android:text="Kesehatan"
-                                                android:textColor="@android:color/black" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:id="@+id/koperasiLinear"
-                                            android:layout_width="75dp"
-                                            android:layout_marginRight="10dp"
-                                            android:layout_height="110dp"
-                                            android:layout_marginLeft="5dp"
-                                            android:layout_weight="1"
-                                            android:background="@drawable/linear_layout_shadow"
-                                            android:gravity="center"
-                                            android:orientation="vertical">
-
-                                            <ImageView
-                                                android:layout_width="60dp"
-                                                android:layout_height="60dp"
-                                                android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconkoperasi" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:text="Koperasi"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>
@@ -925,13 +809,123 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconinfokab" />
+                                                android:src="@drawable/iconkodepos" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
                                                 android:text="Kode Pos"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:weightSum="4"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginTop="10dp"
+                                        android:orientation="horizontal">
+
+                                        <LinearLayout
+                                            android:id="@+id/beritaOnlineLinear"
+                                            android:layout_width="75dp"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="10dp"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:src="@drawable/iconberitaonline" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="Berita Online"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/beritaCetakLinear"
+                                            android:layout_width="75dp"
+                                            android:layout_weight="1"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:src="@drawable/iconberitacetak" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="Berita Cetak"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/bioskopLinear"
+                                            android:layout_width="75dp"
+                                            android:layout_height="110dp"
+                                            android:layout_weight="1"
+                                            android:layout_marginLeft="5dp"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:src="@drawable/iconbioskop" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="Bioskop"
+                                                android:textColor="@android:color/black" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/pariwisataLinear"
+                                            android:layout_width="75dp"
+                                            android:layout_marginRight="10dp"
+                                            android:layout_height="110dp"
+                                            android:layout_marginLeft="5dp"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/linear_layout_shadow"
+                                            android:gravity="center"
+                                            android:orientation="vertical">
+
+                                            <ImageView
+                                                android:layout_width="60dp"
+                                                android:layout_height="60dp"
+                                                android:layout_marginTop="5dp"
+                                                android:src="@drawable/iconpariwisata" />
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="5dp"
+                                                android:text="Pariwisata"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>
@@ -959,7 +953,7 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconinfokab" />
+                                                android:src="@drawable/iconnomorpenting" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
@@ -971,8 +965,7 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/a1"
-                                            android:visibility="invisible"
+                                            android:id="@+id/bankLinear"
                                             android:layout_width="75dp"
                                             android:layout_weight="1"
                                             android:layout_height="110dp"
@@ -985,19 +978,19 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconjadwalsholat" />
+                                                android:src="@drawable/iconatmbank" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="Ibadah"
+                                                android:text="ATM"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/a2"
+                                            android:id="@+id/apotikLinear"
                                             android:visibility="invisible"
                                             android:layout_width="75dp"
                                             android:layout_height="110dp"
@@ -1011,19 +1004,19 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconloker" />
+                                                android:src="@drawable/iconapotik" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="Kerjaan"
+                                                android:text="Apotik"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/a3"
+                                            android:id="@+id/dokterLinear"
                                             android:visibility="invisible"
                                             android:layout_width="75dp"
                                             android:layout_marginRight="10dp"
@@ -1038,13 +1031,13 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconinfokab" />
+                                                android:src="@drawable/icondokter" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="Kode Pos"
+                                                android:text="Dokter"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>
@@ -1102,7 +1095,7 @@
                                         android:orientation="horizontal">
 
                                         <LinearLayout
-                                            android:id="@+id/beritaOnlineLinear"
+                                            android:id="@+id/perangkatDaerahLinear"
                                             android:layout_width="75dp"
                                             android:layout_weight="1"
                                             android:layout_marginLeft="10dp"
@@ -1115,20 +1108,20 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconberita" />
+                                                android:src="@drawable/iconperangkatdaerah" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="Berita Online"
+                                                android:text="P. Daerah"
                                                 android:textSize="11dp"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/beritaCetakLinear"
+                                            android:id="@+id/agendaLinear"
                                             android:layout_width="75dp"
                                             android:layout_weight="1"
                                             android:layout_height="110dp"
@@ -1141,13 +1134,13 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconberita" />
+                                                android:src="@drawable/iconagenda" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="Berita Cetak"
+                                                android:text="Agenda"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>
@@ -1178,7 +1171,7 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/agendaLinear"
+                                            android:id="@+id/portalAplikasiLinear"
                                             android:layout_width="75dp"
                                             android:layout_weight="1"
                                             android:layout_height="110dp"
@@ -1191,13 +1184,13 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconagenda" />
+                                                android:src="@drawable/iconportalaplikasi" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="Agenda"
+                                                android:text="Aplikasi"
                                                 android:textColor="@android:color/black" />
 
                                         </LinearLayout>
@@ -1212,7 +1205,7 @@
                                         android:orientation="horizontal">
 
                                         <LinearLayout
-                                            android:id="@+id/pariwisataLinear"
+                                            android:id="@+id/videoLinear"
                                             android:layout_width="75dp"
                                             android:layout_weight="1"
                                             android:layout_marginLeft="10dp"
@@ -1225,13 +1218,13 @@
                                                 android:layout_width="60dp"
                                                 android:layout_height="60dp"
                                                 android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconpariwisata" />
+                                                android:src="@drawable/iconvideo" />
 
                                             <TextView
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:layout_marginTop="5dp"
-                                                android:text="Pariwisata"
+                                                android:text="Video"
                                                 android:textSize="11dp"
                                                 android:textColor="@android:color/black" />
 
@@ -1239,6 +1232,7 @@
 
                                         <LinearLayout
                                             android:id="@+id/infoKabLinear"
+                                            android:visibility="invisible"
                                             android:layout_width="75dp"
                                             android:layout_weight="1"
                                             android:layout_height="110dp"
@@ -1263,118 +1257,7 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/angkutanLinear"
-                                            android:layout_width="75dp"
-                                            android:layout_weight="1"
-                                            android:layout_height="110dp"
-                                            android:layout_marginLeft="5dp"
-                                            android:background="@drawable/linear_layout_shadow"
-                                            android:gravity="center"
-                                            android:orientation="vertical">
-
-                                            <ImageView
-                                                android:layout_width="60dp"
-                                                android:layout_height="60dp"
-                                                android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconangkutan" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:text="Angkutan"
-                                                android:textColor="@android:color/black" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:id="@+id/videoLinear"
-                                            android:layout_width="75dp"
-                                            android:layout_weight="1"
-                                            android:layout_height="110dp"
-                                            android:layout_marginLeft="5dp"
-                                            android:background="@drawable/linear_layout_shadow"
-                                            android:gravity="center"
-                                            android:orientation="vertical">
-
-                                            <ImageView
-                                                android:layout_width="60dp"
-                                                android:layout_height="60dp"
-                                                android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconvideo" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:text="Video"
-                                                android:textColor="@android:color/black" />
-
-                                        </LinearLayout>
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="10dp"
-                                        android:layout_marginBottom="10dp"
-                                        android:weightSum="4"
-                                        android:orientation="horizontal">
-
-                                        <LinearLayout
-                                            android:id="@+id/perangkatDaerahLinear"
-                                            android:layout_width="75dp"
-                                            android:layout_weight="1"
-                                            android:layout_marginLeft="10dp"
-                                            android:layout_height="110dp"
-                                            android:background="@drawable/linear_layout_shadow"
-                                            android:gravity="center"
-                                            android:orientation="vertical">
-
-                                            <ImageView
-                                                android:layout_width="60dp"
-                                                android:layout_height="60dp"
-                                                android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconperangkatdaerah" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:text="P Daerah"
-                                                android:textSize="11dp"
-                                                android:textColor="@android:color/black" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:id="@+id/portalAplikasiLinear"
-                                            android:layout_width="75dp"
-                                            android:layout_weight="1"
-                                            android:layout_height="110dp"
-                                            android:layout_marginLeft="5dp"
-                                            android:background="@drawable/linear_layout_shadow"
-                                            android:gravity="center"
-                                            android:orientation="vertical">
-
-                                            <ImageView
-                                                android:layout_width="60dp"
-                                                android:layout_height="60dp"
-                                                android:layout_marginTop="5dp"
-                                                android:src="@drawable/iconportalaplikasi" />
-
-                                            <TextView
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_marginTop="5dp"
-                                                android:text="Aplikasi"
-                                                android:textColor="@android:color/black" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:id="@+id/xx"
+                                            android:id="@+id/angkutanLinearr"
                                             android:visibility="invisible"
                                             android:layout_width="75dp"
                                             android:layout_weight="1"
@@ -1400,7 +1283,7 @@
                                         </LinearLayout>
 
                                         <LinearLayout
-                                            android:id="@+id/yy"
+                                            android:id="@+id/videoLinearr"
                                             android:visibility="invisible"
                                             android:layout_width="75dp"
                                             android:layout_weight="1"
@@ -1426,6 +1309,7 @@
                                         </LinearLayout>
 
                                     </LinearLayout>
+
                                 </LinearLayout>
                             </androidx.cardview.widget.CardView>
                         </LinearLayout>
