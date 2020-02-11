@@ -547,6 +547,46 @@ public class MainActivity extends AppCompatActivity {
                         // text bubble
 
                         //mImageMap.showBubble(id);
+                        if(mImageMap.getName(id).equals("Aspirasi"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuAspirasi.class);
+                            startActivity(i);
+                        }
+                        else if(mImageMap.getName(id).equals("Tukang"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuTukang.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("infoKab"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuPerda.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("Hotel"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuHotel.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("bank"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuBank.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("spbu"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuSpbu.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("kuliner"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuKuliner.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("kesehatan"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuKesehatan.class);
+                            startActivity(i);
+                        }
                         Toast.makeText(MainActivity.this, mImageMap.getName(id),Toast.LENGTH_SHORT).show();
                         Log.d("MasukClick","Clicked");
                     }
@@ -558,6 +598,99 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+            }
+
+            else if (position==0){
+                final ImageMap mImageMap;
+                mImageMap = (ImageMap)view.findViewById(R.id.map);
+                mImageMap.setImageResource(R.drawable.left);
+                mImageMap.addOnImageMapClickedHandler(new ImageMap.OnImageMapClickedHandler() {
+                    @Override
+                    public void onImageMapClicked(int id, ImageMap imageMap) {
+                        if(mImageMap.getName(id).equals("Olahraga"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuOlahraga.class);
+                            startActivity(i);
+                        }
+                        else if(mImageMap.getName(id).equals("Berita"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuBeritaCetak.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("Bioskop"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuBioskop.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("Pariwisata"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuPariwisata.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("Agenda"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuAgenda.class);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onBubbleClicked(int id) {
+
+                    }
+                });
+            }
+
+            else if(position==2)
+            {
+                final ImageMap mImageMap;
+                mImageMap = (ImageMap)view.findViewById(R.id.map);
+                mImageMap.setImageResource(R.drawable.right);
+                mImageMap.addOnImageMapClickedHandler(new ImageMap.OnImageMapClickedHandler() {
+                    @Override
+                    public void onImageMapClicked(int id, ImageMap imageMap) {
+                        if(mImageMap.getName(id).equals("Pendidikan"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuPendidikan.class);
+                            startActivity(i);
+                        }
+                        else if(mImageMap.getName(id).equals("Motor"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuBeliMotor.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("Koperasi"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuKoperasi.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("Mobil"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuBeliMobil.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("Kerjaan"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuKerjaan.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("Polisi"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuPolisi.class);
+                            startActivity(i);
+                        }
+                        else if (mImageMap.getName(id).equals("Salon"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuSalon.class);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onBubbleClicked(int id) {
+
+                    }
+                });
             }
 
             container.addView(view);

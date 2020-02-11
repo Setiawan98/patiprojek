@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ctc="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/left">
+    android:layout_height="match_parent">
 
-</RelativeLayout>
+    <projekpati.com.projekpati.ImageMap
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        ctc:map="left"
+        ctc:maxSizeFactor="1.5"
+        ctc:scaleFromOriginal="true"
+        ctc:fitImageToScreen="true"/>
+</LinearLayout>
