@@ -96,6 +96,8 @@ import projekpati.com.projekpati.Model.Tukang.DetilTukangBaru;
 import projekpati.com.projekpati.Model.Tukang.DetilTukangModel;
 import projekpati.com.projekpati.Model.Tukang.JenisTukangLengkap;
 import projekpati.com.projekpati.Model.Tukang.TukangModel;
+import projekpati.com.projekpati.Model.Video.VideoModel;
+import projekpati.com.projekpati.Model.Video.jenisVideoLengkap;
 import projekpati.com.projekpati.Model.galeri_android.galeriModel;
 import projekpati.com.projekpati.Model.postKomentar;
 import retrofit2.Call;
@@ -1989,5 +1991,34 @@ public interface API {
     @GET("otomotif/data/{id}?key=TechnoPhoriaIndonesia&IDJenisParent=mobil")
     Call<OtomotifModel> loadMoreMobil(@Path("id") String id);
 
+    //Video
+    @GET("data/video?key=TechnoPhoriaIndonesia")
+    Call<VideoModel> tampilSemuaVideo();
 
+    @GET("data/video/{id}?key=TechnoPhoriaIndonesia")
+    Call<VideoModel> loadMoreVideo(@Path("id") String id);
+
+    @GET("data/video?key=TechnoPhoriaIndonesia")
+    Call<VideoModel> cariVideobyAPI(@Query("cari") String keyword);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=video")
+    Call<postKomentar> addKomentarBalasVideo(@Query("dataID") String data_id,
+                                             @Field("nama") String nama,
+                                             @Field("email") String email,
+                                             @Field("telp") String telp,
+                                             @Field("website") String website,
+                                             @Field("parentID") String parentID,
+                                             @Field("isi") String isi,
+                                             @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=video")
+    Call<KomentarLengkap> getKomentarVideo(@Query("dataID") String data_id);
+
+
+    @GET("jenis/video?key=TechnoPhoriaIndonesia")
+    Call<jenisVideoLengkap> tampilJenisVideo();
+
+    @GET("data/video?key=TechnoPhoriaIndonesia")
+    Call<VideoModel> cariVideoByJenis(@Query("IDJenis") String keyword);
 }

@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="22" />
@@ -21,7 +21,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BeliMobil.DetilMapBeliMobil"></activity>
+        <activity android:name=".Video.CariVideo"></activity>
+        <activity android:name=".Video.TampilVideoByJenis" />
+        <activity android:name=".Video.JenisVideoAdapter" />
+        <activity android:name=".Video.DetilVideo" />
+        <activity android:name=".Video.VideoAdapter" />
+        <activity android:name=".Video.MenuVideo" />
+        <activity android:name=".BeliMobil.DetilMapBeliMobil" />
         <activity android:name=".BeliMobil.MenuBeliMobil" />
         <activity android:name=".BeliMotor.DetilMapBeliMotor" />
         <activity android:name=".BeliMotor.MenuBeliMotor" />
