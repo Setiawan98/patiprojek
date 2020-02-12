@@ -21,7 +21,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Video.CariVideo"></activity>
+        <activity android:name=".Pangan.TampilPanganByJenis"></activity>
+        <activity android:name=".Pangan.JenisPanganAdapter" />
+        <activity android:name=".Pangan.CariPangan" />
+        <activity android:name=".Pangan.PanganAdapter" />
+        <activity android:name=".Pangan.MenuPangan" />
+        <activity android:name=".Video.CariVideo" />
         <activity android:name=".Video.TampilVideoByJenis" />
         <activity android:name=".Video.JenisVideoAdapter" />
         <activity android:name=".Video.DetilVideo" />

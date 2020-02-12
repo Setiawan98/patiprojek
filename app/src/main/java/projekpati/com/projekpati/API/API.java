@@ -66,6 +66,8 @@ import projekpati.com.projekpati.Model.Otomotif.DetilOtomotifModel;
 import projekpati.com.projekpati.Model.Otomotif.JenisOtomotif;
 import projekpati.com.projekpati.Model.Otomotif.JenisOtomotifLengkap;
 import projekpati.com.projekpati.Model.Otomotif.OtomotifModel;
+import projekpati.com.projekpati.Model.Pangan.JenisPanganLengkap;
+import projekpati.com.projekpati.Model.Pangan.PanganModel;
 import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataBaru;
 import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataModel;
 import projekpati.com.projekpati.Model.Pariwisata.JenisPariwisataLengkap;
@@ -2021,4 +2023,35 @@ public interface API {
 
     @GET("data/video?key=TechnoPhoriaIndonesia")
     Call<VideoModel> cariVideoByJenis(@Query("IDJenis") String keyword);
+
+    //Pangan
+    @GET("data/harga_pangan?key=TechnoPhoriaIndonesia")
+    Call<PanganModel> tampilSemuaPangan();
+
+    @GET("data/harga_pangan/{id}?key=TechnoPhoriaIndonesia")
+    Call<PanganModel> loadMorePangan(@Path("id") String id);
+
+    @GET("data/harga_pangan?key=TechnoPhoriaIndonesia")
+    Call<PanganModel> cariPanganbyAPI(@Query("cari") String keyword);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=Pangan")
+    Call<postKomentar> addKomentarBalasPangan(@Query("dataID") String data_id,
+                                              @Field("nama") String nama,
+                                              @Field("email") String email,
+                                              @Field("telp") String telp,
+                                              @Field("website") String website,
+                                              @Field("parentID") String parentID,
+                                              @Field("isi") String isi,
+                                              @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=Pangan")
+    Call<KomentarLengkap> getKomentarPangan(@Query("dataID") String data_id);
+
+
+    @GET("jenis/harga_pangan?key=TechnoPhoriaIndonesia")
+    Call<JenisPanganLengkap> tampilJenisPangan();
+
+    @GET("data/harga_pangan?key=TechnoPhoriaIndonesia")
+    Call<PanganModel> cariPanganByJenis(@Query("IDJenis") String keyword);
 }
