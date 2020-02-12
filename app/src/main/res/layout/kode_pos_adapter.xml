@@ -7,8 +7,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/backgroundInitial"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:text="B"
             android:textColor="@android:color/white"
-            android:textSize="35dp"
+            android:textSize="25dp"
             android:gravity="center_horizontal|center_vertical"/>
     </androidx.cardview.widget.CardView>
 
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:text="Batursari"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textColor="@color/black"
             android:textAllCaps="true"/>
         <TextView
@@ -45,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kec. Batangan"
-            android:textSize="14dp"
+            android:textSize="12dp"
             android:textColor="@color/grey"/>
 
     </LinearLayout>
@@ -57,7 +57,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:textSize="17dp"
+        android:textSize="15dp"
         android:text="59186"
         android:textColor="@color/black"
         android:gravity="top|right"/>

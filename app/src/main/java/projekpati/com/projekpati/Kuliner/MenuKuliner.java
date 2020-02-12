@@ -66,7 +66,7 @@ public class MenuKuliner extends AppCompatActivity {
 
         //getIconImage();
         iconView.setLayoutParams(new LinearLayout.LayoutParams(80,80));
-        iconView.setImageResource(R.drawable.ic_kuliner);
+        iconView.setImageResource(R.drawable.iconkuliner);
 
         title.setText("Kuliner");
         title.setPadding(20,0,0,0);

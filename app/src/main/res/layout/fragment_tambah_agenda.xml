@@ -66,7 +66,7 @@
                     android:layout_height="20dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/diet"/>
+                    android:src="@drawable/nama"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"

@@ -56,7 +56,7 @@
                     android:layout_height="40dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/diet" />
+                    android:src="@drawable/iconkoperasi" />
 
                 <EditText
                     android:id="@+id/pencarian"

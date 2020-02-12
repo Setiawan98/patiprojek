@@ -54,7 +54,7 @@ public class MenuBeliMobil extends AppCompatActivity {
 
         // getIconImage();
         iconView.setLayoutParams(new LinearLayout.LayoutParams(80,80));
-        iconView.setImageResource(R.drawable.iconmobil);
+        iconView.setImageResource(R.drawable.iconjbmobil);
 
         title.setText("Beli Mobil");
         title.setPadding(20,0,0,0);

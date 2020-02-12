@@ -50,7 +50,7 @@ public class MenuOtomotif extends AppCompatActivity {
 
        // getIconImage();
         iconView.setLayoutParams(new LinearLayout.LayoutParams(80,80));
-        iconView.setImageResource(R.drawable.iconmotor);
+        iconView.setImageResource(R.drawable.iconmobil);
 
         title.setText("Otomotif");
         title.setPadding(20,0,0,0);
