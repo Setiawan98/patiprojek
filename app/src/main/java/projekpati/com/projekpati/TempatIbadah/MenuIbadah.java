@@ -98,21 +98,21 @@ public class MenuIbadah extends AppCompatActivity {
                         }
                     },5000);
                 }
-//                else if(id==R.id.tambah){
-//
-//                    TambahIbadahFragment third = new TambahIbadahFragment();
-//                    openFragment(third);
-//                    bottomNavigationView.setEnabled(false);
-//                    Handler handler = new Handler();
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            status =0;
-//                            bottomNavigationView.setEnabled(true);
-//                        }
-//                    },5000);
-//
-//                }
+                else if(id==R.id.tambah){
+
+                    TambahIbadahFragment third = new TambahIbadahFragment();
+                    openFragment(third);
+                    bottomNavigationView.setEnabled(false);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            status =0;
+                            bottomNavigationView.setEnabled(true);
+                        }
+                    },5000);
+
+                }
                 else if(id==R.id.saring){
                     SaringIbadahFragment fouth = new SaringIbadahFragment();
                     openFragment(fouth);

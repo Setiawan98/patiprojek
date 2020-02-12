@@ -34,7 +34,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Foto lokasi polisi"
+                        android:text="Foto lokasi ibadah"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
                     <HorizontalScrollView
@@ -116,7 +116,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Nama Kantor Polisi"
+                        android:text="Nama Tempat Ibadah"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
 
@@ -127,7 +127,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="-20dp"
                         android:layout_marginRight="20dp"
-                        android:hint="Masukan Nama Kantor Polisi Anda"
+                        android:hint="Masukan Nama Tempat Ibadah Anda"
                         android:textSize="6pt" />
 
                 </LinearLayout>
@@ -241,7 +241,7 @@
                         android:layout_marginLeft="5dp"
                         android:textSize="6pt"
                         android:layout_height="50dp"
-                        android:hint="Masukan Website Kantor Polisi Anda"/>
+                        android:hint="Masukan Website Tempat Ibadah Anda"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -267,7 +267,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Tentang Kantor Polisi"
+                        android:text="Tentang Kantor Ibadah"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
                     <EditText
@@ -278,7 +278,7 @@
                         android:textSize="6pt"
                         android:layout_height="50dp"
                         android:id="@+id/mDeskripsi"
-                        android:hint="Masukan deskripsi Kantor Polisi Anda"/>
+                        android:hint="Masukan deskripsi Tempat Ibadah Anda"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -303,7 +303,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Tipe Polisi"
+                        android:text="Tipe Ibadah"
                         android:textColor="@color/black"
                         android:textSize="6pt"/>
 

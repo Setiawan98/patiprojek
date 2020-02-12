@@ -55,7 +55,7 @@ public class MenuBeritaCetak extends AppCompatActivity {
 
         //getIconImage();
         iconView.setLayoutParams(new LinearLayout.LayoutParams(80,80));
-        iconView.setImageResource(R.drawable.iconberita);
+        iconView.setImageResource(R.drawable.iconberitacetak);
 
         title.setText("Berita Cetak");
         title.setPadding(20,0,0,0);

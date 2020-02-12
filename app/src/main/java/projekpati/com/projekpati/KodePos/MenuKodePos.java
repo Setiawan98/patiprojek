@@ -55,7 +55,7 @@ public class MenuKodePos extends AppCompatActivity {
 
         //getIconImage();
         iconView.setLayoutParams(new LinearLayout.LayoutParams(80,80));
-        iconView.setImageResource(R.drawable.iconinfokab);
+        iconView.setImageResource(R.drawable.iconkodepos);
 
         title.setText("Kode Pos");
         title.setPadding(20,0,0,0);

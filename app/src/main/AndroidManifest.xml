@@ -21,16 +21,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Pangan.TampilPanganByJenis"></activity>
+        <activity android:name=".TempatIbadah.DataSaringIbadahActivity"></activity>
+        <activity android:name=".Pangan.TampilPanganByJenis" />
         <activity android:name=".Pangan.JenisPanganAdapter" />
         <activity android:name=".Pangan.CariPangan" />
         <activity android:name=".Pangan.PanganAdapter" />
-        <activity android:name=".TempatIbadah.DetilIbadah"></activity>
+        <activity android:name=".TempatIbadah.DetilIbadah" />
         <activity android:name=".TempatIbadah.TampilIbadahByJenis" />
         <activity android:name=".TempatIbadah.DetilMapIbadah" />
         <activity android:name=".TempatIbadah.CariIbadah" />
-        <activity android:name=".TempatIbadah.MenuIbadah"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".TempatIbadah.MenuIbadah"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Pangan.MenuPangan" />
         <activity android:name=".Video.CariVideo" />
         <activity android:name=".Video.TampilVideoByJenis" />
