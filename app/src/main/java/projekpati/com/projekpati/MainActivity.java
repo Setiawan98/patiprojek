@@ -62,6 +62,7 @@ import projekpati.com.projekpati.Polisi.MenuPolisi;
 import projekpati.com.projekpati.Salon.MenuSalon;
 import projekpati.com.projekpati.Spbu.MenuSpbu;
 import projekpati.com.projekpati.TelpPenting.MenuTelpPenting;
+import projekpati.com.projekpati.TempatIbadah.MenuIbadah;
 import projekpati.com.projekpati.Tukang.MenuTukang;
 import projekpati.com.projekpati.Video.MenuVideo;
 import projekpati.com.projekpati.bioskop.MenuBioskop;
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout,
             pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout,
             biosopLayout, hotelLayput, koperasiLayout,agendaLayout, kerjaanLayout, perdaLayout,
-            beritaOnlineLayout, telpPentingLayout, kodePosLayout, apotekLayout, dokterLayout,rumahSakitLayout,
+            beritaOnlineLayout, telpPentingLayout, kodePosLayout, apotekLayout, dokterLayout,rumahSakitLayout,ibadahLayout,
             pukesmasLayout, ambulanLayout, videoLayout, panganLayout;
     private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
@@ -203,6 +204,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, MenuBeliMotor.class);
+                startActivity(i);
+            }
+        });
+
+        ibadahLayout = findViewById(R.id.tempatIbadahLinear);
+        ibadahLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuIbadah.class);
                 startActivity(i);
             }
         });
@@ -570,6 +580,21 @@ public class MainActivity extends AppCompatActivity {
                         if(mImageMap.getName(id).equals("Aspirasi"))
                         {
                             Intent i = new Intent(MainActivity.this, MenuAspirasi.class);
+                            startActivity(i);
+                        }
+                        else if(mImageMap.getName(id).equals("JadwalSholat"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuIbadah.class);
+                            startActivity(i);
+                        }
+                        else if(mImageMap.getName(id).equals("Video"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuVideo.class);
+                            startActivity(i);
+                        }
+                        else if(mImageMap.getName(id).equals("hargaPangan"))
+                        {
+                            Intent i = new Intent(MainActivity.this, MenuPangan.class);
                             startActivity(i);
                         }
                         else if(mImageMap.getName(id).equals("Tukang"))
