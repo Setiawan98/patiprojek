@@ -94,6 +94,10 @@ import projekpati.com.projekpati.Model.Spbu.SpbuModel;
 import projekpati.com.projekpati.Model.TelpPenting.DetilTelpPentingModel;
 import projekpati.com.projekpati.Model.TelpPenting.JenisTelpPentingLengkap;
 import projekpati.com.projekpati.Model.TelpPenting.TelpPentingModel;
+import projekpati.com.projekpati.Model.TempatIbadah.DetilIbadahBaru;
+import projekpati.com.projekpati.Model.TempatIbadah.DetilIbadahModel;
+import projekpati.com.projekpati.Model.TempatIbadah.IbadahModel;
+import projekpati.com.projekpati.Model.TempatIbadah.JenisIbadahLengkap;
 import projekpati.com.projekpati.Model.Tukang.DetilTukangBaru;
 import projekpati.com.projekpati.Model.Tukang.DetilTukangModel;
 import projekpati.com.projekpati.Model.Tukang.JenisTukangLengkap;
@@ -2054,4 +2058,89 @@ public interface API {
 
     @GET("data/harga_pangan?key=TechnoPhoriaIndonesia")
     Call<PanganModel> cariPanganByJenis(@Query("IDJenis") String keyword);
+
+    //Tempat Ibadah
+    @GET("ibadah/data/?key=TechnoPhoriaIndonesia")
+    Call<IbadahModel> tampilSemuaIbadah();
+
+    @GET("ibadah/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<IbadahModel> loadMoreIbadah(@Path("id") String id);
+
+    @GET("ibadah/data/?key=TechnoPhoriaIndonesia")
+    Call<IbadahModel> cariIbadahbyAPI(@Query("cari") String keyword);
+
+    @GET("ibadah/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilIbadahModel> detailIbadah(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=ibadah")
+    Call<postKomentar> addKomentarBalasIbadah(@Query("dataID") String data_id,
+                                              @Field("nama") String nama,
+                                              @Field("email") String email,
+                                              @Field("telp") String telp,
+                                              @Field("website") String website,
+                                              @Field("parentID") String parentID,
+                                              @Field("isi") String isi,
+                                              @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=ibadah")
+    Call<KomentarLengkap> getKomentarIbadah(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("ibadah/update?key=TechnoPhoriaIndonesia")
+    Call<DetilIbadahBaru> addDataIbadah(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_ibadah_id") String ref_ibadah_id
+    );
+
+    @GET("ibadah/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisIbadahLengkap> tampilJenisIbadah();
+
+    @GET("ibadah/data?key=TechnoPhoriaIndonesia")
+    Call<IbadahModel> cariIbadahByJenis(@Query("IDJenis") String keyword);
+
+    @Multipart
+    @POST("ibadah/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilIbadahBaru> updateDataIbadahWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_ibadah_id") RequestBody ref_ibadah_id
+    );
+
+    @Multipart
+    @POST("ibadah/update?key=TechnoPhoriaIndonesia")
+    Call<DetilIbadahBaru> addDataIbadahWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_ibadah_id") RequestBody ref_ibadah_id
+    );
+
+    @GET("ibadah/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilIbadahModel> hapusGambarIbadah(@Path("id") String id);
 }
