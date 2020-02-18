@@ -3,7 +3,7 @@ package projekpati.com.projekpati.TempatIbadah;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import projekpati.com.projekpati.API.API;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemoo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.TempatIbadah.IbadahModel;
 import projekpati.com.projekpati.Model.TempatIbadah.ListIbadah;
 import projekpati.com.projekpati.R;
@@ -107,7 +107,7 @@ public class TampilIbadahByJenis extends AppCompatActivity {
         final Bundle bundle = getIntent().getExtras();
         final String kategori = bundle.getString("id_ibadah");
 
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<IbadahModel> call = api.cariIbadahByJenis(kategori);
 
         call.enqueue(new Callback<IbadahModel>() {
@@ -139,7 +139,7 @@ public class TampilIbadahByJenis extends AppCompatActivity {
         CountShowData = (listView.getHeight()/161)+1;
         final Bundle bundle = getIntent().getExtras();
 
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<IbadahModel> a = api.loadMoreIbadah(String.valueOf(nextPage));
         a.enqueue(new Callback<IbadahModel>() {
 

@@ -44,7 +44,7 @@ import java.util.Map;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientApiKey;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemoo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.APIKey;
 import projekpati.com.projekpati.Model.TempatIbadah.IbadahModel;
 import projekpati.com.projekpati.Model.TempatIbadah.ListIbadah;
@@ -149,7 +149,7 @@ public class DataIbadahFragment extends Fragment implements OnMapReadyCallback {
 
     public void getAllBank(){
         //defining a progress dialog to show while signing up
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<IbadahModel> call = api.tampilSemuaIbadah();
 
         call.enqueue(new Callback<IbadahModel>() {
@@ -197,7 +197,7 @@ public class DataIbadahFragment extends Fragment implements OnMapReadyCallback {
 
 
 
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<IbadahModel> call = api.loadMoreIbadah(String.valueOf(nextPage));
 
         call.enqueue(new Callback<IbadahModel>() {
@@ -246,7 +246,7 @@ public class DataIbadahFragment extends Fragment implements OnMapReadyCallback {
 
     public void getAllData(){
 
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<IbadahModel> call = api.tampilSemuaIbadah();
 
         call.enqueue(new Callback<IbadahModel>() {
@@ -291,7 +291,7 @@ public class DataIbadahFragment extends Fragment implements OnMapReadyCallback {
     public void loadmore(){
 
 
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<IbadahModel> a = api.loadMoreIbadah(String.valueOf(npLatn));
         a.enqueue(new Callback<IbadahModel>() {
 

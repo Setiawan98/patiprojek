@@ -64,7 +64,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import projekpati.com.projekpati.API.API;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemoo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.TempatIbadah.DetilIbadahBaru;
 import projekpati.com.projekpati.Model.TempatIbadah.JenisIbadah;
 import projekpati.com.projekpati.Model.TempatIbadah.JenisIbadahLengkap;
@@ -288,7 +288,7 @@ public class TambahIbadahFragment extends Fragment implements OnMapReadyCallback
 
     public void setSpinner()
     {
-        API api2 = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<JenisIbadahLengkap> call2 = api2.tampilJenisIbadah();
 
         call2.enqueue(new Callback<JenisIbadahLengkap>() {
@@ -412,7 +412,7 @@ public class TambahIbadahFragment extends Fragment implements OnMapReadyCallback
             requestFile3 = RequestBody.create(MediaType.parse("image/*"), imageBytes3);
         }
 
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
         MultipartBody.Part gambarIbadahUtama=null;
         MultipartBody.Part gambarIbadah1=null;

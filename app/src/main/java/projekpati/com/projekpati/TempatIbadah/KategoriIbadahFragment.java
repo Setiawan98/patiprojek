@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import projekpati.com.projekpati.API.API;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemoo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.TempatIbadah.JenisIbadah;
 import projekpati.com.projekpati.Model.TempatIbadah.JenisIbadahLengkap;
 import projekpati.com.projekpati.R;
@@ -57,7 +57,7 @@ public class KategoriIbadahFragment extends Fragment {
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<JenisIbadahLengkap> call = api.tampilJenisIbadah();
 
         call.enqueue(new Callback<JenisIbadahLengkap>() {

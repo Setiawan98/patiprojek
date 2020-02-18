@@ -3,7 +3,7 @@ package projekpati.com.projekpati.TempatIbadah;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import projekpati.com.projekpati.API.API;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemoo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.TempatIbadah.IbadahModel;
 import projekpati.com.projekpati.Model.TempatIbadah.ListIbadah;
 import projekpati.com.projekpati.R;
@@ -96,7 +96,7 @@ public class DataSaringIbadahActivity extends AppCompatActivity {
 
         if(namasaring.equals(""))
         {
-            API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+            API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
             Call<IbadahModel> call = api.tampilSemuaIbadah();
 
             call.enqueue(new Callback<IbadahModel>() {
@@ -166,7 +166,7 @@ public class DataSaringIbadahActivity extends AppCompatActivity {
         }
         else
         {
-            API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+            API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
             Call<IbadahModel> call = api.cariIbadahbyAPI(namasaring);
             call.enqueue(new Callback<IbadahModel>() {
                 @Override
@@ -237,7 +237,7 @@ public class DataSaringIbadahActivity extends AppCompatActivity {
 
 
     public void loadmore() {
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<IbadahModel> a = api.loadMoreIbadah(String.valueOf(nextPage));
         a.enqueue(new Callback<IbadahModel>() {
 

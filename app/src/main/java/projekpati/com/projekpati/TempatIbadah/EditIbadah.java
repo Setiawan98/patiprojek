@@ -70,7 +70,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import projekpati.com.projekpati.API.API;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemoo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.TempatIbadah.DetilIbadahBaru;
 import projekpati.com.projekpati.Model.TempatIbadah.DetilIbadahModel;
 import projekpati.com.projekpati.Model.TempatIbadah.GambarIbadahDetil;
@@ -314,7 +314,7 @@ public class EditIbadah extends Fragment implements OnMapReadyCallback, Location
 
     public void setSpinner()
     {
-        API api2 = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<JenisIbadahLengkap> call2 = api2.tampilJenisIbadah();
 
         call2.enqueue(new Callback<JenisIbadahLengkap>() {
@@ -377,7 +377,7 @@ public class EditIbadah extends Fragment implements OnMapReadyCallback, Location
         {
             requestFile= RequestBody.create(MediaType.parse("image/*"), imageBytes);
         }
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         MultipartBody.Part gambarIbadah =null;
         MultipartBody.Part gambarIbadahUtama = null;
         if(requestFile!=null) {
@@ -435,7 +435,7 @@ public class EditIbadah extends Fragment implements OnMapReadyCallback, Location
 
 
 
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
         Call<DetilIbadahBaru> call = api.updateDataIbadahWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,userId,value);
@@ -577,7 +577,7 @@ public class EditIbadah extends Fragment implements OnMapReadyCallback, Location
 
     public void getDataDetail(){
 
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<DetilIbadahModel> call = api.detailIbadah(id);
 
         call.enqueue(new Callback<DetilIbadahModel>() {
@@ -687,7 +687,7 @@ public class EditIbadah extends Fragment implements OnMapReadyCallback, Location
 //        {
 //            loadLayout.removeViewAt(i);
 //        }
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<DetilIbadahModel> call = api.detailIbadah(id);
 
         call.enqueue(new Callback<DetilIbadahModel>() {
@@ -763,7 +763,7 @@ public class EditIbadah extends Fragment implements OnMapReadyCallback, Location
     }
 
     public void hapusGambar(String id_gambar){
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<DetilIbadahModel> call = api.hapusGambarIbadah(id_gambar);
 
         call.enqueue(new Callback<DetilIbadahModel>() {

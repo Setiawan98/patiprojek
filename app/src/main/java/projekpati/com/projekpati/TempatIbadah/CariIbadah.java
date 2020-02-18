@@ -2,7 +2,7 @@ package projekpati.com.projekpati.TempatIbadah;
 
 import androidx.appcompat.app.AppCompatActivity;
 import projekpati.com.projekpati.API.API;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemoo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.TempatIbadah.IbadahModel;
 import projekpati.com.projekpati.Model.TempatIbadah.ListIbadah;
 import projekpati.com.projekpati.R;
@@ -101,7 +101,7 @@ public class CariIbadah extends AppCompatActivity {
         buttonImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+                API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
                 Call<IbadahModel> call = api.cariIbadahbyAPI(textCari.getText().toString());
                 call.enqueue(new Callback<IbadahModel>() {
                     @Override
@@ -137,7 +137,7 @@ public class CariIbadah extends AppCompatActivity {
     }
     public void performSearch()
     {
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<IbadahModel> call = api.cariIbadahbyAPI(textCari.getText().toString());
         call.enqueue(new Callback<IbadahModel>() {
             @Override
@@ -189,7 +189,7 @@ public class CariIbadah extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<IbadahModel> call = api.loadMoreIbadah(String.valueOf(nextPage));
 
         call.enqueue(new Callback<IbadahModel>() {

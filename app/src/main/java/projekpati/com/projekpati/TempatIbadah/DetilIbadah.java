@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import projekpati.com.projekpati.API.API;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemoo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Kuliner.ViewPagerAdapter;
 import projekpati.com.projekpati.Model.KomentarLengkap;
 import projekpati.com.projekpati.Model.KomentarParent;
@@ -179,7 +179,7 @@ public class DetilIbadah extends AppCompatActivity {
                 final String isi,waktu=null, nama=null,email=null,telp=null,website=null,userid=null;
                 isi = komentar.getText().toString();
 
-                API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+                API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
                 Call<postKomentar> call = api.addKomentar( id, "ibadah",nama, email, telp, website, isi, String.valueOf(hasil), userid);
                 call.enqueue(new Callback<postKomentar>() {
                     @Override
@@ -398,7 +398,7 @@ public class DetilIbadah extends AppCompatActivity {
     public void addBalas(String id, String nama, String email, String telp, String website, String isi, String parentID, String userid)
     {
 
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<postKomentar> call = api.addKomentarBalasIbadah( id, nama, email, telp, website, parentID, isi , userid);
         call.enqueue(new Callback<postKomentar>() {
             @Override
@@ -414,7 +414,7 @@ public class DetilIbadah extends AppCompatActivity {
 
 
     public void getDataDetail(){
-        API api = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<DetilIbadahModel> call = api.detailIbadah(id);
 
         call.enqueue(new Callback<DetilIbadahModel>() {
@@ -483,7 +483,7 @@ public class DetilIbadah extends AppCompatActivity {
 
     public void getKomentar(){
         Toast.makeText(DetilIbadah.this.getApplicationContext(),id, Toast.LENGTH_SHORT).show();
-        API api2 = RetrofitClientInstanceDemoo.getRetrofitInstance().create(API.class);
+        API api2 = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<KomentarLengkap> call2 = api2.getKomentarIbadah(id);
         call2.enqueue(new Callback<KomentarLengkap>() {
             @Override
