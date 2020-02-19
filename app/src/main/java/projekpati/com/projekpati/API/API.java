@@ -57,6 +57,7 @@ import projekpati.com.projekpati.Model.Lapak.DetilLapakBaru;
 import projekpati.com.projekpati.Model.Lapak.DetilLapakModel;
 import projekpati.com.projekpati.Model.Lapak.JenisLapakLengkap;
 import projekpati.com.projekpati.Model.Lapak.LapakModel;
+import projekpati.com.projekpati.Model.Notifikasi;
 import projekpati.com.projekpati.Model.Olahraga.DetilOlahragaBaru;
 import projekpati.com.projekpati.Model.Olahraga.DetilOlahragaModel;
 import projekpati.com.projekpati.Model.Olahraga.JenisOlahragaLengkap;
@@ -2143,4 +2144,9 @@ public interface API {
 
     @GET("ibadah/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
     Call<DetilIbadahModel> hapusGambarIbadah(@Path("id") String id);
+
+    //Notifikasi
+    @GET("notif?key=TechnoPhoriaIndonesia")
+    Call<Notifikasi> tampilNotifikasi();
+
 }

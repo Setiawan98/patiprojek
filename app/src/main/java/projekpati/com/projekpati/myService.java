@@ -1,5 +1,6 @@
 package projekpati.com.projekpati;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,17 +10,41 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import projekpati.com.projekpati.API.API;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
+import projekpati.com.projekpati.Model.Notifikasi;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class myService extends Service {
 
-
+    //Notifikasi notif;
+    String judul, pesan;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        setNotification(this,"aaa","bbbbb");
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+        Call<Notifikasi> call = api.tampilNotifikasi();
+        call.enqueue(new Callback<Notifikasi>() {
+            @Override
+            public void onResponse(Call<Notifikasi> call, Response<Notifikasi> response) {
+                judul = response.body().getJudul();
+                pesan = response.body().getPesan();
+
+                Log.d("cobaYa", response.body().getJudul());
+            }
+
+            @Override
+            public void onFailure(Call<Notifikasi> call, Throwable t) {
+
+            }
+        });
+        setNotification(this,judul,pesan);
         return Service.START_STICKY;
     }
 
@@ -53,15 +78,19 @@ public class myService extends Service {
         } else {
             notification_builder = new NotificationCompat.Builder(context);
         }
+//        NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
+
         notification_builder.setSmallIcon(R.drawable.iconawal)
                 .setContentTitle(namaSparepart)
-                .setContentText("Stok Sisa: " + Stok)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(Stok))
+                .setContentText(Stok)
                 .setAutoCancel(true)
                 .setContentIntent(pending_intent);
+
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
         // notificationId is a unique int for each notification that you must define
-        notificationManager.notify(1, notification_builder.build());
+        notificationManager.notify(0, notification_builder.build());
     }
 }
