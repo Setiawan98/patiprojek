@@ -2044,7 +2044,7 @@ public interface API {
 
 
     @FormUrlEncoded
-    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=pangan")
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=harga_pangan")
     Call<postKomentar> addKomentarBalasPangan(@Query("dataID") String data_id,
                                               @Field("nama") String nama,
                                               @Field("email") String email,
@@ -2054,14 +2054,14 @@ public interface API {
                                               @Field("isi") String isi,
                                               @Field("userID") String userID);
 
-    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=pangan")
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=harga_pangan")
     Call<KomentarLengkap> getKomentarPangan(@Query("dataID") String data_id);
 
 
-    @GET("pangan/jenis?key=TechnoPhoriaIndonesia")
+    @GET("harga_pangan/jenis?key=TechnoPhoriaIndonesia")
     Call<JenisPanganLengkap> tampilJenisPangan();
 
-    @GET("pangan/data?key=TechnoPhoriaIndonesia")
+    @GET("harga_pangan/data?key=TechnoPhoriaIndonesia")
     Call<PanganModel> cariPanganByJenis(@Query("IDJenis") String keyword);
 
     //Tempat Ibadah
