@@ -43,7 +43,7 @@ import java.util.Map;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientApiKey;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.APIKey;
 import projekpati.com.projekpati.Model.Video.VideoModel;
 import projekpati.com.projekpati.Model.Video.ListVideo;
@@ -146,7 +146,7 @@ public class DataVideoFragment extends Fragment {
 
     public void getAllVideo(){
         //defining a progress dialog to show while signing up
-        API api = RetrofitClientInstanceDemo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<VideoModel> call = api.tampilSemuaVideo();
 
         call.enqueue(new Callback<VideoModel>() {

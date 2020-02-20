@@ -47,7 +47,7 @@ import java.util.Map;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientApiKey;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.APIKey;
 import projekpati.com.projekpati.Model.Pangan.ListPangan;
 import projekpati.com.projekpati.Model.Pangan.PanganModel;
@@ -153,7 +153,7 @@ public class DataPanganFragment extends Fragment{
 
     public void getAllPangan(){
         //defining a progress dialog to show while signing up
-        API api = RetrofitClientInstanceDemo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<PanganModel> call = api.tampilSemuaPangan();
 
         call.enqueue(new Callback<PanganModel>() {
@@ -194,7 +194,7 @@ public class DataPanganFragment extends Fragment{
 
 
 
-        API api = RetrofitClientInstanceDemo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<PanganModel> call = api.loadMorePangan(String.valueOf(nextPage));
 
         call.enqueue(new Callback<PanganModel>() {

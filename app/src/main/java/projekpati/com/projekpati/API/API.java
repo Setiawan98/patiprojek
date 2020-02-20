@@ -1998,15 +1998,16 @@ public interface API {
     @GET("otomotif/data/{id}?key=TechnoPhoriaIndonesia&IDJenisParent=mobil")
     Call<OtomotifModel> loadMoreMobil(@Path("id") String id);
 
-    //Video
-    @GET("data/video?key=TechnoPhoriaIndonesia")
+    //Tempat Video
+    @GET("video/data/?key=TechnoPhoriaIndonesia")
     Call<VideoModel> tampilSemuaVideo();
 
-    @GET("data/video/{id}?key=TechnoPhoriaIndonesia")
+    @GET("video/data/{id}?key=TechnoPhoriaIndonesia")
     Call<VideoModel> loadMoreVideo(@Path("id") String id);
 
-    @GET("data/video?key=TechnoPhoriaIndonesia")
+    @GET("video/data/?key=TechnoPhoriaIndonesia")
     Call<VideoModel> cariVideobyAPI(@Query("cari") String keyword);
+
 
     @FormUrlEncoded
     @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=video")
@@ -2023,24 +2024,27 @@ public interface API {
     Call<KomentarLengkap> getKomentarVideo(@Query("dataID") String data_id);
 
 
-    @GET("jenis/video?key=TechnoPhoriaIndonesia")
+
+    @GET("video/jenis?key=TechnoPhoriaIndonesia")
     Call<jenisVideoLengkap> tampilJenisVideo();
 
-    @GET("data/video?key=TechnoPhoriaIndonesia")
+    @GET("video/data?key=TechnoPhoriaIndonesia")
     Call<VideoModel> cariVideoByJenis(@Query("IDJenis") String keyword);
 
-    //Pangan
-    @GET("data/harga_pangan?key=TechnoPhoriaIndonesia")
+
+    //Tempat Pangan
+    @GET("harga_pangan/data/?key=TechnoPhoriaIndonesia")
     Call<PanganModel> tampilSemuaPangan();
 
-    @GET("data/harga_pangan/{id}?key=TechnoPhoriaIndonesia")
+    @GET("harga_pangan/data/{id}?key=TechnoPhoriaIndonesia")
     Call<PanganModel> loadMorePangan(@Path("id") String id);
 
-    @GET("data/harga_pangan?key=TechnoPhoriaIndonesia")
+    @GET("harga_pangan/data/?key=TechnoPhoriaIndonesia")
     Call<PanganModel> cariPanganbyAPI(@Query("cari") String keyword);
 
+
     @FormUrlEncoded
-    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=Pangan")
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=pangan")
     Call<postKomentar> addKomentarBalasPangan(@Query("dataID") String data_id,
                                               @Field("nama") String nama,
                                               @Field("email") String email,
@@ -2050,14 +2054,14 @@ public interface API {
                                               @Field("isi") String isi,
                                               @Field("userID") String userID);
 
-    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=Pangan")
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=pangan")
     Call<KomentarLengkap> getKomentarPangan(@Query("dataID") String data_id);
 
 
-    @GET("jenis/harga_pangan?key=TechnoPhoriaIndonesia")
+    @GET("pangan/jenis?key=TechnoPhoriaIndonesia")
     Call<JenisPanganLengkap> tampilJenisPangan();
 
-    @GET("data/harga_pangan?key=TechnoPhoriaIndonesia")
+    @GET("pangan/data?key=TechnoPhoriaIndonesia")
     Call<PanganModel> cariPanganByJenis(@Query("IDJenis") String keyword);
 
     //Tempat Ibadah

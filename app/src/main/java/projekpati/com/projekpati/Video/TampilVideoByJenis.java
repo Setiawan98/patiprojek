@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.Video.ListVideo;
 import projekpati.com.projekpati.Model.Video.VideoModel;
 import projekpati.com.projekpati.R;
@@ -108,7 +108,7 @@ public class TampilVideoByJenis extends AppCompatActivity {
         final Bundle bundle = getIntent().getExtras();
         final String kategori = bundle.getString("id_video");
 
-        API api = RetrofitClientInstanceDemo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<VideoModel> call = api.cariVideoByJenis(kategori);
 
         call.enqueue(new Callback<VideoModel>() {
@@ -140,7 +140,7 @@ public class TampilVideoByJenis extends AppCompatActivity {
         CountShowData = (listView.getHeight()/161)+1;
         final Bundle bundle = getIntent().getExtras();
 
-        API api = RetrofitClientInstanceDemo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<VideoModel> a = api.loadMoreVideo(String.valueOf(nextPage));
         a.enqueue(new Callback<VideoModel>() {
 

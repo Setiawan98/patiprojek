@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.Pangan.ListPangan;
 import projekpati.com.projekpati.Model.Pangan.PanganModel;
 import projekpati.com.projekpati.R;
@@ -100,7 +100,7 @@ public class TampilPanganByJenis extends AppCompatActivity {
         final Bundle bundle = getIntent().getExtras();
         final String kategori = bundle.getString("id_pangan");
 
-        API api = RetrofitClientInstanceDemo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<PanganModel> call = api.cariPanganByJenis(kategori);
 
         call.enqueue(new Callback<PanganModel>() {
@@ -132,7 +132,7 @@ public class TampilPanganByJenis extends AppCompatActivity {
         CountShowData = (listView.getHeight()/161)+1;
         final Bundle bundle = getIntent().getExtras();
 
-        API api = RetrofitClientInstanceDemo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<PanganModel> a = api.loadMorePangan(String.valueOf(nextPage));
         a.enqueue(new Callback<PanganModel>() {
 

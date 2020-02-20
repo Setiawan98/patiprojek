@@ -3,7 +3,7 @@ package projekpati.com.projekpati.Pangan;
 import androidx.appcompat.app.AppCompatActivity;
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.Pangan.ListPangan;
 import projekpati.com.projekpati.Model.Pangan.PanganModel;
 import projekpati.com.projekpati.R;
@@ -102,7 +102,7 @@ public class CariPangan extends AppCompatActivity {
         buttonImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                API api = RetrofitClientInstanceDemo.getRetrofitInstance().create(API.class);
+                API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
                 Call<PanganModel> call = api.cariPanganbyAPI(textCari.getText().toString());
                 call.enqueue(new Callback<PanganModel>() {
                     @Override
@@ -132,7 +132,7 @@ public class CariPangan extends AppCompatActivity {
 
     public void performSearch()
     {
-        API api = RetrofitClientInstanceDemo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<PanganModel> call = api.cariPanganbyAPI(textCari.getText().toString());
         call.enqueue(new Callback<PanganModel>() {
             @Override
@@ -177,7 +177,7 @@ public class CariPangan extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        API api = RetrofitClientInstanceDemo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<PanganModel> call = api.loadMorePangan(String.valueOf(nextPage));
 
         call.enqueue(new Callback<PanganModel>() {

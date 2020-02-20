@@ -26,6 +26,7 @@ public class myService extends Service {
 
     //Notifikasi notif;
     String judul, pesan;
+    Context context = this;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
@@ -35,6 +36,7 @@ public class myService extends Service {
             public void onResponse(Call<Notifikasi> call, Response<Notifikasi> response) {
                 judul = response.body().getJudul();
                 pesan = response.body().getPesan();
+                setNotification(context,judul,pesan);
 
                 Log.d("cobaYa", response.body().getJudul());
             }
@@ -44,7 +46,7 @@ public class myService extends Service {
 
             }
         });
-        setNotification(this,judul,pesan);
+
         return Service.START_STICKY;
     }
 

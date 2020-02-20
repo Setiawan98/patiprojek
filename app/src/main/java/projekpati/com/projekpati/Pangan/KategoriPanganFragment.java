@@ -24,7 +24,7 @@ import java.util.Map;
 
 import projekpati.com.projekpati.API.API;
 import projekpati.com.projekpati.API.RetrofitClientInstance;
-import projekpati.com.projekpati.API.RetrofitClientInstanceDemo;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
 import projekpati.com.projekpati.Model.Pangan.JenisPangan;
 import projekpati.com.projekpati.Model.Pangan.JenisPanganLengkap;
 import projekpati.com.projekpati.R;
@@ -55,7 +55,7 @@ public class KategoriPanganFragment extends Fragment {
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
         progressDialog.show();
-        API api = RetrofitClientInstanceDemo.getRetrofitInstance().create(API.class);
+        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
         Call<JenisPanganLengkap> call = api.tampilJenisPangan();
 
         call.enqueue(new Callback<JenisPanganLengkap>() {
