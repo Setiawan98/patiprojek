@@ -16,7 +16,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -31,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -49,10 +52,13 @@ public class MenuAspirasi extends AppCompatActivity {
     TextView title;
     ImageView iconView;
     Integer status =0;
+    String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_aspirasi);
+        SharedPreferences sharedPreferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userID = sharedPreferences.getString("user_id","");
 
         toolbar = (Toolbar) findViewById(R.id.aspirasiToolbar);
         title = toolbar.findViewById(R.id.title);
@@ -108,17 +114,25 @@ public class MenuAspirasi extends AppCompatActivity {
                 }
                 else if(id==R.id.tambah){
 
-                    TambahAspirasiFragment third = new TambahAspirasiFragment();
-                    openFragment(third);
-                    bottomNavigationView.setEnabled(false);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            status =0;
-                            bottomNavigationView.setEnabled(true);
-                        }
-                    },5000);
+                    if(userID.equals(""))
+                    {
+                        Toast.makeText(MenuAspirasi.this,"Silahkan login terlebih dahulu untuk tambah data",Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        TambahAspirasiFragment third = new TambahAspirasiFragment();
+                        openFragment(third);
+                        bottomNavigationView.setEnabled(false);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                status =0;
+                                bottomNavigationView.setEnabled(true);
+                            }
+                        },5000);
+                    }
+
+
 
                 }
                 else if(id==R.id.saring){

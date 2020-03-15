@@ -107,6 +107,8 @@ import projekpati.com.projekpati.Model.Video.VideoModel;
 import projekpati.com.projekpati.Model.Video.jenisVideoLengkap;
 import projekpati.com.projekpati.Model.galeri_android.galeriModel;
 import projekpati.com.projekpati.Model.postKomentar;
+import projekpati.com.projekpati.Model.userData;
+import projekpati.com.projekpati.Model.userDataModel;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -2152,5 +2154,13 @@ public interface API {
     //Notifikasi
     @GET("notif?key=TechnoPhoriaIndonesia")
     Call<Notifikasi> tampilNotifikasi();
+
+    @FormUrlEncoded
+    @POST("user/login?key=TechnoPhoriaIndonesia")
+    Call<userDataModel> login(
+            @Field("namalogin") String namalogin,
+            @Field("sandi") String sandi
+    );
+
 
 }

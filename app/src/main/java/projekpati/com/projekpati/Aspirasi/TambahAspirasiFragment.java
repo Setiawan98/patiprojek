@@ -4,6 +4,7 @@ package projekpati.com.projekpati.Aspirasi;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -115,6 +116,7 @@ public class TambahAspirasiFragment extends Fragment implements OnMapReadyCallba
     int count=0;
     int multiple=0;
     Map<String, tempImageModel> imageByte;
+    String userID;
 
 
     @Override
@@ -130,6 +132,10 @@ public class TambahAspirasiFragment extends Fragment implements OnMapReadyCallba
 
         initMap();
         setupAutoCompleteFragment();
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("userData",Context.MODE_PRIVATE);
+        userID = sharedPreferences.getString("user_id","");
+
 
         // Inflate the layout for this fragment
         return view;
@@ -457,8 +463,7 @@ public class TambahAspirasiFragment extends Fragment implements OnMapReadyCallba
             longitude = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(location.longitude));
         }
         RequestBody value = RequestBody.create(MediaType.parse("multipart/form-data"), items_value[mRefNama.getSelectedItemPosition()]);
-        String uID = "0";
-        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), uID);
+        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), userID);
         RequestBody requestFile1=null;
         RequestBody requestFile2=null;
         RequestBody requestFile3=null;

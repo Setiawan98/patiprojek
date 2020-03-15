@@ -20,7 +20,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,6 +41,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -69,10 +72,14 @@ public class DetilAspirasi extends AppCompatActivity {
     ViewPager pager;
     FrameLayout frameLayout;
     ImageView btnEdit;
+    String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detil_aspirasi);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userID = sharedPreferences.getString("user_id","");
 
         toolbar = (Toolbar) findViewById(R.id.aspirasiToolbar);
         setSupportActionBar(toolbar);
@@ -146,38 +153,46 @@ public class DetilAspirasi extends AppCompatActivity {
         btnKomen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Bundle bundle = getIntent().getExtras();
-                final String id = bundle.getString("id_aspirasi");
-                final float hasil = ratingstar.getRating();
-                final String isi,waktu=null, nama=null,email=null,telp=null,website=null,userid=null;
-                isi = komentar.getText().toString();
+                if(userID.equals(""))
+                {
+                    Toast.makeText(DetilAspirasi.this,"Silahkan login terlebih dahulu untuk tambah komentar",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    final Bundle bundle = getIntent().getExtras();
+                    final String id = bundle.getString("id_aspirasi");
+                    final float hasil = ratingstar.getRating();
+                    final String isi,waktu=null, nama=null,email=null,telp=null,website=null,userid=null;
+                    isi = komentar.getText().toString();
 
-                API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-                Call<postKomentar> call = api.addKomentar( id, "aspirasi",nama, email, telp, website, isi, String.valueOf(hasil), userid);
-                call.enqueue(new Callback<postKomentar>() {
-                    @Override
-                    public void onResponse(Call<postKomentar> call, Response<postKomentar> response) {
-                        //Toast.makeText(DetilKuliner.this, "Sukses Berkomentar", Toast.LENGTH_SHORT).show();
-                        parentID= response.body().getDataid();
-                        addViewKomentar(id,  nama, waktu,  telp, email,  website,isi,parentID, hasil);
-                        pbKomen.setVisibility(View.VISIBLE);
-                        btnKomen.setVisibility(View.GONE);
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                pbKomen.setVisibility(View.GONE);
-                                btnKomen.setVisibility(View.VISIBLE);
-                            }
-                        },2000);
+                    API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
+                    Call<postKomentar> call = api.addKomentar( id, "aspirasi",nama, email, telp, website, isi, String.valueOf(hasil), userID);
+                    call.enqueue(new Callback<postKomentar>() {
+                        @Override
+                        public void onResponse(Call<postKomentar> call, Response<postKomentar> response) {
+                            //Toast.makeText(DetilKuliner.this, "Sukses Berkomentar", Toast.LENGTH_SHORT).show();
+                            parentID= response.body().getDataid();
+                            addViewKomentar(id,  nama, waktu,  telp, email,  website,isi,parentID, hasil);
+                            pbKomen.setVisibility(View.VISIBLE);
+                            btnKomen.setVisibility(View.GONE);
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    pbKomen.setVisibility(View.GONE);
+                                    btnKomen.setVisibility(View.VISIBLE);
+                                }
+                            },2000);
 
-                    }
+                        }
 
-                    @Override
-                    public void onFailure(Call<postKomentar> call, Throwable t) {
-                        Log.d("error", t.toString());
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<postKomentar> call, Throwable t) {
+                            Log.d("error", t.toString());
+                        }
+                    });
+
+                }
+
 
             }
         });
@@ -298,7 +313,7 @@ public class DetilAspirasi extends AppCompatActivity {
                     public void onClick(View v) {
                         final ProgressBar pg = adapter.findViewById(R.id.progress_bar);
                         pg.setVisibility(View.VISIBLE);
-                        addBalas(kp.getData_id(), kp.getKomentar_nama(), kp.getKomentar_email(), kp.getKomentar_telp(),kp.getKomentar_website(), eKomenBalas.getText().toString(), kp.getKomentar_id(), null);
+                        addBalas(kp.getData_id(), kp.getKomentar_nama(), kp.getKomentar_email(), kp.getKomentar_telp(),kp.getKomentar_website(), eKomenBalas.getText().toString(), kp.getKomentar_id(), userID);
                         final RelativeLayout adapterChild = (RelativeLayout) inflater.inflate(R.layout.komentarchild_adapter,null);
                         TextView txtChildNama = (TextView) adapterChild.findViewById(R.id.mNama);
                         TextView textChildKomentar = (TextView) adapterChild.findViewById(R.id.mKomentar);
@@ -486,7 +501,13 @@ public class DetilAspirasi extends AppCompatActivity {
         btnBalas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                layoutBalas.setVisibility(View.VISIBLE);
+                if(userID.equals(""))
+                {
+                    Toast.makeText(DetilAspirasi.this,"Silahkan login terlebih dahulu untuk tambah komentar",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    layoutBalas.setVisibility(View.VISIBLE);
+                }
             }
         });
         btnBatal.setOnClickListener(new View.OnClickListener() {

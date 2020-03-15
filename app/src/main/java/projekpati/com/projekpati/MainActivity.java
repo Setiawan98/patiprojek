@@ -15,6 +15,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
@@ -24,6 +25,7 @@ import android.os.SystemClock;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,12 +104,21 @@ public class MainActivity extends AppCompatActivity {
     PendingIntent pendingIntent;
     AlarmManager alarmManager;
     Intent alarmIntent;
+    String userID;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor myEdit;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AutoUpdateDataInBackgroud();
+
+        sharedPreferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userID = sharedPreferences.getString("user_id","");
+
 
 
         dl= (DrawerLayout) findViewById(R.id.dl);
@@ -147,6 +158,15 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu menu = navigationView.getMenu();
+        MenuItem loginMenu = menu.findItem(R.id.mMasukDaftar);
+        if(userID.equals(""))
+        {
+            loginMenu.setTitle("Masuk Atau Daftar");
+        }
+        else {
+            loginMenu.setTitle("Log out");
+        }
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -183,7 +203,21 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Tentang Kami Clicked",Toast.LENGTH_SHORT).show();
                 }
                 else if(id==R.id.mMasukDaftar){
-                    Toast.makeText(MainActivity.this, "Login dalam proses",Toast.LENGTH_SHORT).show();
+                    if(userID.equals("")) {
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        sharedPreferences = getSharedPreferences("userData",MODE_PRIVATE);
+                        myEdit = sharedPreferences.edit();
+                        myEdit.putString("user_id","");
+                        myEdit.apply();
+                        Toast.makeText(MainActivity.this, "Log out berhasil..", Toast.LENGTH_SHORT);
+                        finish();
+                        startActivity(getIntent());
+                    }
+                    //Toast.makeText(MainActivity.this, "Login dalam proses",Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }

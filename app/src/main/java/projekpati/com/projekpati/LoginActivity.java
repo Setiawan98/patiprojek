@@ -2,15 +2,30 @@ package projekpati.com.projekpati;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import projekpati.com.projekpati.Kuliner.MenuKuliner;
 
+import projekpati.com.projekpati.API.API;
+import projekpati.com.projekpati.API.RetrofitClientInstance;
+import projekpati.com.projekpati.API.RetrofitClientInstanceDemo;
+import projekpati.com.projekpati.Kuliner.MenuKuliner;
+import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanBaru;
+import projekpati.com.projekpati.Model.userData;
+import projekpati.com.projekpati.Model.userDataModel;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -19,31 +34,35 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
 
 public class LoginActivity extends AppCompatActivity {
-    SignInButton signin;
+    Button signin;
     int RC_SIGN_IN=0;
     GoogleSignInClient mGoogleSignInClient;
     Toolbar toolbar;
     TextView title;
+    EditText mUsername, mSandi;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor myEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
         signin = findViewById(R.id.sign_in_button);
-        signin.setSize(SignInButton.SIZE_STANDARD);
         toolbar = (Toolbar) findViewById(R.id.kulinerToolbar);
         setSupportActionBar(toolbar);
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
         title.setText("Login");
+
+        mUsername = findViewById(R.id.mUsername);
+        mSandi = findViewById(R.id.mSandi);
+        sharedPreferences = getSharedPreferences("userData",MODE_PRIVATE);
+        myEdit = sharedPreferences.edit();
+
+
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -52,67 +71,53 @@ public class LoginActivity extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.sign_in_button:
-                        signIn();
-                        break;
-                    // ...
-                }
+                signIn();
             }
         });
 
-
-
-    }
-
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
     }
 
 
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+    public void signIn()
+    {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
+        API api = RetrofitClientInstanceDemo.getRetrofitInstance().create(API.class);
+        Call<userDataModel> call = api.login(mUsername.getText().toString(),mSandi.getText().toString());
 
-            // Signed in successfully, show authenticated UI.
-            Intent intent = new Intent(LoginActivity.this, UserActivity.class);
-            startActivity(intent );
-        } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("Error", "signInResult:failed code=" + e.getStatusCode());
-        }
+        call.enqueue(new Callback<userDataModel>() {
+            @Override
+            public void onResponse(Call<userDataModel> call, final Response<userDataModel> response) {
+
+                Log.w("ResponseLogin", new Gson().toJson(response.body()));
+                if(response.body().getStatus().equals("OK"))
+                {
+                    myEdit.putString("user_id",response.body().getData().getUser_id());
+                    myEdit.commit();
+
+
+                    Toast.makeText(LoginActivity.this,response.body().getPesan(),Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+
+                }
+                else {
+                    Toast.makeText(LoginActivity.this,response.body().getPesan(),Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<userDataModel> call, Throwable t) {
+                progressDialog.dismiss();
+                Log.d("onResponse", t.toString());
+                Toast.makeText(LoginActivity.this, "Login gagal.. ",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.back_toolbar,menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if(id==android.R.id.home)
-        {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

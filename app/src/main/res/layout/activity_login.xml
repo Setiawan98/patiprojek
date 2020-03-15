@@ -62,21 +62,24 @@
                     />
 
                 <EditText
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:id="@+id/mUsername"
                     android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="15dp"
-                    android:layout_height="50dp"
-                    android:hint="Email / nomor telepon*"
-                    android:textColor="@android:color/black"/>
-                <EditText
-                    android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
+                    android:hint="Username"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/mSandi"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
                     android:layout_height="50dp"
-                    android:hint="Kata sandi*"
-                    android:textColor="@android:color/black"/>
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="Kata sandi"
+                    android:textColor="@android:color/black" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -90,14 +93,16 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center">
+
                     <Button
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="10dp"
+                        android:id="@+id/sign_in_button"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
                         android:background="@color/blue"
-                        android:text="MASUK"/>
+                        android:text="MASUK" />
 
                     <Button
 
@@ -108,12 +113,6 @@
                         android:layout_height="40dp"
                         android:background="@color/yellow"
                         android:text="DAFTAR"/>
-
-                    <com.google.android.gms.common.SignInButton
-                        android:layout_marginTop="10dp"
-                        android:id="@+id/sign_in_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
 
 
                 </LinearLayout>
