@@ -357,67 +357,6 @@ public class TambahBankFragment extends Fragment implements OnMapReadyCallback, 
 
     }
 
-    public void addBank(){
-        //defining a progress dialog to show while signing up
-        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-
-        String nama = eNama.getText().toString();
-        String telp = eNomorTelp.getText().toString();
-        String email = eEmail.getText().toString();
-        String website = eWebsite.getText().toString();
-        String deskripsi = eDeskripsi.getText().toString();
-        String latitude;
-        String longitude;
-        if(location==null)
-        {
-            latitude = null;
-            longitude =null;
-        }
-        else{
-            latitude = String.valueOf(location.latitude);
-            longitude = String.valueOf(location.longitude);
-        }
-
-
-
-        String value = items_value[mRefNama.getSelectedItemPosition()];
-
-        Log.d("nama",nama);
-        Log.d("telp",telp);
-        Log.d("email",email);
-        Log.d("website",website);
-        Log.d("deskripsi",deskripsi);
-        Log.d("cobain", mRefNama.getSelectedItem().toString());
-        if(location!=null)
-        {
-            Log.d("latitude",latitude);
-            Log.d("longitude",longitude);
-        }
-
-
-        API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<DetilBankBaru> call = api.addDataBank(nama,telp,email,website,deskripsi,latitude,longitude,"0",value);
-
-        call.enqueue(new Callback<DetilBankBaru>() {
-            @Override
-            public void onResponse(Call<DetilBankBaru> call, final Response<DetilBankBaru> response) {
-                Toast.makeText(getContext(),"Sukses", Toast.LENGTH_SHORT).show();
-                Log.w("Response", new Gson().toJson(response.body()));
-                progressDialog.dismiss();
-
-            }
-
-            @Override
-            public void onFailure(Call<DetilBankBaru> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(getContext(),t.toString(), Toast.LENGTH_SHORT).show();
-                Log.d("onResponse", t.toString());
-            }
-        });
-
-    }
 
 
     public void addBankWithGambar(){

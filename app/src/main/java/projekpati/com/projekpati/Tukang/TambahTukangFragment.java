@@ -4,6 +4,7 @@ package projekpati.com.projekpati.Tukang;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -130,7 +131,7 @@ public class TambahTukangFragment extends Fragment implements OnMapReadyCallback
     LinearLayout loadLayout;
     ViewGroup vg;
     int count=0;
-
+    String userid,nama,email,telp,website;
     TextView mFileName;
     ImageView btnAddGamabar;
     private static final int REQUEST_GET_SINGLE_FILE = 202;
@@ -140,11 +141,18 @@ public class TambahTukangFragment extends Fragment implements OnMapReadyCallback
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tambah_tukang, container, false);
         vg=container;
-        init(view);
+
         setSpinner();
         startLatLng = new LatLng(-6.7487,111.0379);
         currentLatLng = startLatLng;
 
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("user_id","");
+        nama = sharedPreferences.getString("user_nama","");
+        email = sharedPreferences.getString("user_email","");
+        telp = sharedPreferences.getString("user_telp","");
+        website = sharedPreferences.getString("user_website","");
+        init(view);
         initMap();
         setupAutoCompleteFragment();
 
@@ -162,6 +170,10 @@ public class TambahTukangFragment extends Fragment implements OnMapReadyCallback
         mFileName = view.findViewById(R.id.mFileName);
         loadLayout = view.findViewById(R.id.loadLayout);
         btnAddGamabar = view.findViewById(R.id.btnAddGambar);
+        eNomorTelp.setText(telp);
+        eEmail.setText(email);
+        eWebsite.setText(website);
+
         //editText Jam
         eJamMingguBuka = view.findViewById(R.id.mJamMingguBuka);
         eMenitMingguBuka = view.findViewById(R.id.mMenitMingguBuka);
@@ -643,8 +655,7 @@ public class TambahTukangFragment extends Fragment implements OnMapReadyCallback
         RequestBody deskripsi = RequestBody.create(MediaType.parse("multipart/form-data"), eDeskripsi.getText().toString());
         RequestBody latitude;
         RequestBody longitude;
-        String uID = "0";
-        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), uID);
+        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), userid);
         if(location==null)
         {
             latitude = null;
