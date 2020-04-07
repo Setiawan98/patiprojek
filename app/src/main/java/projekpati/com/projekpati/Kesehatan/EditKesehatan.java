@@ -640,7 +640,7 @@ public class EditKesehatan extends Fragment implements OnMapReadyCallback, Locat
             gambarKesehatan = MultipartBody.Part.createFormData("gambar", "a.jpg", requestFile);
             // gambarKesehatanUtama = MultipartBody.Part.createFormData("gambarutama", "b.jpg", requestFile);
         }
-        Call<DetilKesehatanBaru> call = api.updateDataKesehatanWithGambar(id,gambarKesehatan,gambarKesehatanUtama,nama,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+        Call<DetilKesehatanBaru> call = api.updateDataKesehatanWithGambar(id,gambarKesehatan,gambarKesehatanUtama,nama,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilKesehatanBaru>() {
             @Override
@@ -815,7 +815,7 @@ public class EditKesehatan extends Fragment implements OnMapReadyCallback, Locat
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilKesehatanBaru> call = api.updateDataKesehatanWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,rHari_0,rHari_1,rHari_2,rHari_3,rHari_4,rHari_5,rHari_6,userId,value);
+        Call<DetilKesehatanBaru> call = api.updateDataKesehatanWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,rHari_0,rHari_1,rHari_2,rHari_3,rHari_4,rHari_5,rHari_6,value);
 
         call.enqueue(new Callback<DetilKesehatanBaru>() {
             @Override

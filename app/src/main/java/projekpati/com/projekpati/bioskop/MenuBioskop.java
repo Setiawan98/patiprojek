@@ -1,6 +1,8 @@
 package projekpati.com.projekpati.bioskop;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,12 +46,17 @@ public class MenuBioskop extends AppCompatActivity {
     TextView title;
     ImageView iconView;
     Integer status =0;
+    String userid;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_bioskop);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("user_id","");
 
         toolbar = (Toolbar) findViewById(R.id.bioskopToolbar);
         title = toolbar.findViewById(R.id.title);
@@ -105,17 +113,23 @@ public class MenuBioskop extends AppCompatActivity {
                 }
                 else if(id==R.id.tambah){
 
-                    TambahBioskopFragment third = new TambahBioskopFragment();
-                    openFragment(third);
-                    bottomNavigationView.setEnabled(false);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            status =0;
-                            bottomNavigationView.setEnabled(true);
-                        }
-                    },5000);
+                    if(userid.equals(""))
+                    {
+                        Toast.makeText(MenuBioskop.this,"Silahkan login terlebih dahulu untuk tambah data",Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        TambahBioskopFragment third = new TambahBioskopFragment();
+                        openFragment(third);
+                        bottomNavigationView.setEnabled(false);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                status = 0;
+                                bottomNavigationView.setEnabled(true);
+                            }
+                        }, 5000);
+                    }
                 }
                 else if(id==R.id.saring){
 //

@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClientInstance {
     private static Retrofit retrofit;
-    private static final String BASE_URL = "http://smartcity.patikab.go.id/index.php/api/";
+    private static final String BASE_URL = "https://smartcity.patikab.go.id/index.php/api/";
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {

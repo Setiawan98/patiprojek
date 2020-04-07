@@ -384,7 +384,7 @@ public class EditSalon extends Fragment implements OnMapReadyCallback, LocationL
             gambarSalon = MultipartBody.Part.createFormData("gambar", mFileName.getText().toString(), requestFile);
             //gambarSalonUtama = MultipartBody.Part.createFormData("gambarutama", mFileName.getText().toString(), requestFile);
         }
-        Call<DetilSalonBaru> call = api.updateDataSalonWithGambar(id,gambarSalon,gambarSalonUtama,null,null,null,null,null,null,null,userId,null);
+        Call<DetilSalonBaru> call = api.updateDataSalonWithGambar(id,gambarSalon,gambarSalonUtama,null,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilSalonBaru>() {
             @Override
@@ -438,7 +438,7 @@ public class EditSalon extends Fragment implements OnMapReadyCallback, LocationL
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilSalonBaru> call = api.updateDataSalonWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,userId,value);
+        Call<DetilSalonBaru> call = api.updateDataSalonWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,value);
 
         call.enqueue(new Callback<DetilSalonBaru>() {
             @Override

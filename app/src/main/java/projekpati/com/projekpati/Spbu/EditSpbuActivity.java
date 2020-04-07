@@ -386,7 +386,7 @@ public class EditSpbuActivity extends Fragment implements OnMapReadyCallback, Lo
             gambarSpbu = MultipartBody.Part.createFormData("gambar", mFileName.getText().toString(), requestFile);
             //gambarSpbuUtama = MultipartBody.Part.createFormData("gambarutama", mFileName.getText().toString(), requestFile);
         }
-        Call<DetilSpbuBaru> call = api.updateDataSpbuWithGambar(id,gambarSpbu,gambarSpbuUtama,nama,null,null,null,null,null,null,userId,null);
+        Call<DetilSpbuBaru> call = api.updateDataSpbuWithGambar(id,gambarSpbu,gambarSpbuUtama,nama,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilSpbuBaru>() {
             @Override
@@ -440,7 +440,7 @@ public class EditSpbuActivity extends Fragment implements OnMapReadyCallback, Lo
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilSpbuBaru> call = api.updateDataSpbuWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,userId,value);
+        Call<DetilSpbuBaru> call = api.updateDataSpbuWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,value);
 
         call.enqueue(new Callback<DetilSpbuBaru>() {
             @Override

@@ -453,7 +453,7 @@ public class EditOtomotif extends Fragment implements OnMapReadyCallback, Locati
             gambarOtomotif = MultipartBody.Part.createFormData("gambar", mFileName.getText().toString(), requestFile);
             //gambarOtomotifUtama = MultipartBody.Part.createFormData("gambarutama", mFileName.getText().toString(), requestFile);
         }
-        Call<DetilOtomotifBaru> call = api.updateDataOtomotifWithGambar(id,gambarOtomotif,gambarOtomotifUtama,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,userId,null);
+        Call<DetilOtomotifBaru> call = api.updateDataOtomotifWithGambar(id,gambarOtomotif,gambarOtomotifUtama,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilOtomotifBaru>() {
             @Override
@@ -515,7 +515,7 @@ public class EditOtomotif extends Fragment implements OnMapReadyCallback, Locati
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilOtomotifBaru> call = api.updateDataOtomotifWithGambar(id,null,null,nama,penjual,telp,email,website,alamat,harga,kondisi,model,warna,kilometer,thn,transmisi,habis,deskripsi,latitude,longitude,userId,value);
+        Call<DetilOtomotifBaru> call = api.updateDataOtomotifWithGambar(id,null,null,nama,penjual,telp,email,website,alamat,harga,kondisi,model,warna,kilometer,thn,transmisi,habis,deskripsi,latitude,longitude,value);
 
         call.enqueue(new Callback<DetilOtomotifBaru>() {
             @Override

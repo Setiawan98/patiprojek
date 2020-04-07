@@ -386,7 +386,7 @@ public class EditBioskopActivity extends Fragment implements OnMapReadyCallback,
             gambarBioskop = MultipartBody.Part.createFormData("gambar", mFileName.getText().toString(), requestFile);
             //gambarBioskopUtama = MultipartBody.Part.createFormData("gambarutama", mFileName.getText().toString(), requestFile);
         }
-        Call<DetilBioskopBaru> call = api.updateDataBioskopWithGambar(id,gambarBioskop,gambarBioskopUtama,nama,null,null,null,null,null,null,userId,null);
+        Call<DetilBioskopBaru> call = api.updateDataBioskopWithGambar(id,gambarBioskop,gambarBioskopUtama,nama,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilBioskopBaru>() {
             @Override
@@ -440,7 +440,7 @@ public class EditBioskopActivity extends Fragment implements OnMapReadyCallback,
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilBioskopBaru> call = api.updateDataBioskopWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,userId,value);
+        Call<DetilBioskopBaru> call = api.updateDataBioskopWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,value);
 
         call.enqueue(new Callback<DetilBioskopBaru>() {
             @Override

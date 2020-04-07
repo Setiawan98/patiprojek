@@ -640,7 +640,7 @@ public class EditPariwisata extends Fragment implements OnMapReadyCallback, Loca
             gambarPariwisata = MultipartBody.Part.createFormData("gambar", "a.jpg", requestFile);
             // gambarPariwisataUtama = MultipartBody.Part.createFormData("gambarutama", "b.jpg", requestFile);
         }
-        Call<DetilPariwisataBaru> call = api.updateDataPariwisataWithGambar(id,gambarPariwisata,gambarPariwisataUtama,nama,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+        Call<DetilPariwisataBaru> call = api.updateDataPariwisataWithGambar(id,gambarPariwisata,gambarPariwisataUtama,nama,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilPariwisataBaru>() {
             @Override
@@ -815,7 +815,7 @@ public class EditPariwisata extends Fragment implements OnMapReadyCallback, Loca
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilPariwisataBaru> call = api.updateDataPariwisataWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,rHari_0,rHari_1,rHari_2,rHari_3,rHari_4,rHari_5,rHari_6,userId,value);
+        Call<DetilPariwisataBaru> call = api.updateDataPariwisataWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,rHari_0,rHari_1,rHari_2,rHari_3,rHari_4,rHari_5,rHari_6,value);
 
         call.enqueue(new Callback<DetilPariwisataBaru>() {
             @Override

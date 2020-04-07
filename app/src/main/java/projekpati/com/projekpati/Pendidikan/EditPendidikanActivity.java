@@ -385,7 +385,7 @@ public class EditPendidikanActivity extends Fragment implements OnMapReadyCallba
             gambarPendidikan = MultipartBody.Part.createFormData("gambar", mFileName.getText().toString(), requestFile);
             //gambarPendidikanUtama = MultipartBody.Part.createFormData("gambarutama", mFileName.getText().toString(), requestFile);
         }
-        Call<DetilPendidikanBaru> call = api.updateDataPendidikanWithGambar(id,gambarPendidikan,gambarPendidikanUtama,null,null,null,null,null,null,null,userId,null);
+        Call<DetilPendidikanBaru> call = api.updateDataPendidikanWithGambar(id,gambarPendidikan,gambarPendidikanUtama,null,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilPendidikanBaru>() {
             @Override
@@ -439,7 +439,7 @@ public class EditPendidikanActivity extends Fragment implements OnMapReadyCallba
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilPendidikanBaru> call = api.updateDataPendidikanWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,userId,value);
+        Call<DetilPendidikanBaru> call = api.updateDataPendidikanWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,value);
 
         call.enqueue(new Callback<DetilPendidikanBaru>() {
             @Override

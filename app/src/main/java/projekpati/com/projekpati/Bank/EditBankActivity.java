@@ -386,7 +386,7 @@ public class EditBankActivity extends Fragment implements OnMapReadyCallback, Lo
             gambarBank = MultipartBody.Part.createFormData("gambar", mFileName.getText().toString(), requestFile);
             //gambarBankUtama = MultipartBody.Part.createFormData("gambarutama", mFileName.getText().toString(), requestFile);
         }
-        Call<DetilBankBaru> call = api.updateDataBankWithGambar(id,gambarBank,gambarBankUtama,nama,null,null,null,null,null,null,userId,null);
+        Call<DetilBankBaru> call = api.updateDataBankWithGambar(id,gambarBank,gambarBankUtama,nama,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilBankBaru>() {
             @Override
@@ -444,7 +444,7 @@ public class EditBankActivity extends Fragment implements OnMapReadyCallback, Lo
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilBankBaru> call = api.updateDataBankWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,userId,value);
+        Call<DetilBankBaru> call = api.updateDataBankWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,value);
 
         call.enqueue(new Callback<DetilBankBaru>() {
             @Override

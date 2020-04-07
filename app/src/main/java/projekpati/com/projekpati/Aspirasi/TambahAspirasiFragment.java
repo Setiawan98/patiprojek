@@ -116,7 +116,7 @@ public class TambahAspirasiFragment extends Fragment implements OnMapReadyCallba
     int count=0;
     int multiple=0;
     Map<String, tempImageModel> imageByte;
-    String userID;
+    String userid,nama,email,telp,website;
 
 
     @Override
@@ -133,8 +133,12 @@ public class TambahAspirasiFragment extends Fragment implements OnMapReadyCallba
         initMap();
         setupAutoCompleteFragment();
 
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("userData",Context.MODE_PRIVATE);
-        userID = sharedPreferences.getString("user_id","");
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("user_id","");
+        nama = sharedPreferences.getString("user_nama","");
+        email = sharedPreferences.getString("user_email","");
+        telp = sharedPreferences.getString("user_telp","");
+        website = sharedPreferences.getString("user_website","");
 
 
         // Inflate the layout for this fragment
@@ -148,6 +152,8 @@ public class TambahAspirasiFragment extends Fragment implements OnMapReadyCallba
         btnAddGamabar = view.findViewById(R.id.btnAddGambar);
         mFileName = view.findViewById(R.id.mFileName);
         loadLayout = view.findViewById(R.id.loadLayout);
+
+
 
 
         //Spinner
@@ -463,7 +469,7 @@ public class TambahAspirasiFragment extends Fragment implements OnMapReadyCallba
             longitude = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(location.longitude));
         }
         RequestBody value = RequestBody.create(MediaType.parse("multipart/form-data"), items_value[mRefNama.getSelectedItemPosition()]);
-        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), userID);
+        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), userid);
         RequestBody requestFile1=null;
         RequestBody requestFile2=null;
         RequestBody requestFile3=null;

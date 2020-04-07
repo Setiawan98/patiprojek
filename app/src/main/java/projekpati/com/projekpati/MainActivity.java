@@ -212,6 +212,17 @@ public class MainActivity extends AppCompatActivity {
                         sharedPreferences = getSharedPreferences("userData",MODE_PRIVATE);
                         myEdit = sharedPreferences.edit();
                         myEdit.putString("user_id","");
+                        myEdit.putString("user_nama","");
+                        myEdit.putString("user_namalogin","");
+                        myEdit.putString("user_password","");
+                        myEdit.putString("user_email","");
+                        myEdit.putString("user_telp","");
+                        myEdit.putString("user_website","");
+                        myEdit.putString("user_kode","");
+                        myEdit.putString("user_last_login","");
+                        myEdit.putString("user_waktu_register","");
+                        myEdit.putString("user_aktif","");
+                        myEdit.putString("lapor_user_id","");
                         myEdit.apply();
                         Toast.makeText(MainActivity.this, "Log out berhasil..", Toast.LENGTH_SHORT);
                         finish();

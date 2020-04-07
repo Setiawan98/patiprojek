@@ -4,6 +4,7 @@ package projekpati.com.projekpati.Hotel;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -115,6 +116,7 @@ public class TambahHotelFragment extends Fragment implements OnMapReadyCallback,
     int count=0;
     int multiple=0;
     Map<String, tempImageModel> imageByte;
+    String userid,nama,email,telp,website;
 
 
     @Override
@@ -123,6 +125,13 @@ public class TambahHotelFragment extends Fragment implements OnMapReadyCallback,
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tambah_hotel, container, false);
         vg=container;
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("user_id","");
+        nama = sharedPreferences.getString("user_nama","");
+        email = sharedPreferences.getString("user_email","");
+        telp = sharedPreferences.getString("user_telp","");
+        website = sharedPreferences.getString("user_website","");
+
         init(view);
         setSpinner();
         startLatLng = new LatLng(-6.7487,111.0379);
@@ -146,6 +155,9 @@ public class TambahHotelFragment extends Fragment implements OnMapReadyCallback,
         mFileName = view.findViewById(R.id.mFileName);
         loadLayout = view.findViewById(R.id.loadLayout);
 
+        eNomorTelp.setText(telp);
+        eEmail.setText(email);
+        eWebsite.setText(website);
 
         //Spinner
         mRefNama = view.findViewById(R.id.mRefNama);
@@ -469,7 +481,7 @@ public class TambahHotelFragment extends Fragment implements OnMapReadyCallback,
         }
         RequestBody value = RequestBody.create(MediaType.parse("multipart/form-data"), items_value[mRefNama.getSelectedItemPosition()]);
         String uID = "0";
-        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), uID);
+        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), userid);
         RequestBody requestFile1=null;
         RequestBody requestFile2=null;
         RequestBody requestFile3=null;

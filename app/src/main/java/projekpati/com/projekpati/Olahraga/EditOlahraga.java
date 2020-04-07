@@ -383,7 +383,7 @@ public class EditOlahraga extends Fragment implements OnMapReadyCallback, Locati
             gambarOlahraga = MultipartBody.Part.createFormData("gambar", mFileName.getText().toString(), requestFile);
             //gambarOlahragaUtama = MultipartBody.Part.createFormData("gambarutama", mFileName.getText().toString(), requestFile);
         }
-        Call<DetilOlahragaBaru> call = api.updateDataOlahragaWithGambar(id,gambarOlahraga,gambarOlahragaUtama,null,null,null,null,null,null,null,userId,null);
+        Call<DetilOlahragaBaru> call = api.updateDataOlahragaWithGambar(id,gambarOlahraga,gambarOlahragaUtama,null,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilOlahragaBaru>() {
             @Override
@@ -437,7 +437,7 @@ public class EditOlahraga extends Fragment implements OnMapReadyCallback, Locati
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilOlahragaBaru> call = api.updateDataOlahragaWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,userId,value);
+        Call<DetilOlahragaBaru> call = api.updateDataOlahragaWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,value);
 
         call.enqueue(new Callback<DetilOlahragaBaru>() {
             @Override

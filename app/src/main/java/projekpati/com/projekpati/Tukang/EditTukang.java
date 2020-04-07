@@ -639,7 +639,7 @@ public class EditTukang extends Fragment implements OnMapReadyCallback, Location
             gambarTukang = MultipartBody.Part.createFormData("gambar", "a.jpg", requestFile);
             // gambarTukangUtama = MultipartBody.Part.createFormData("gambarutama", "b.jpg", requestFile);
         }
-        Call<DetilTukangBaru> call = api.updateDataTukangWithGambar(id,gambarTukang,gambarTukangUtama,nama,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
+        Call<DetilTukangBaru> call = api.updateDataTukangWithGambar(id,gambarTukang,gambarTukangUtama,nama,null,null,null,null,null,null,null,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilTukangBaru>() {
             @Override
@@ -814,7 +814,7 @@ public class EditTukang extends Fragment implements OnMapReadyCallback, Location
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilTukangBaru> call = api.updateDataTukangWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,rHari_0,rHari_1,rHari_2,rHari_3,rHari_4,rHari_5,rHari_6,userId,value);
+        Call<DetilTukangBaru> call = api.updateDataTukangWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,rHari_0,rHari_1,rHari_2,rHari_3,rHari_4,rHari_5,rHari_6,value);
 
         call.enqueue(new Callback<DetilTukangBaru>() {
             @Override

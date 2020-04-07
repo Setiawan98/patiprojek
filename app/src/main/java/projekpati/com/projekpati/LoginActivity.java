@@ -94,6 +94,17 @@ public class LoginActivity extends AppCompatActivity {
                 if(response.body().getStatus().equals("OK"))
                 {
                     myEdit.putString("user_id",response.body().getData().getUser_id());
+                    myEdit.putString("user_nama",response.body().getData().getUser_nama());
+                    myEdit.putString("user_namalogin",response.body().getData().getUser_namalogin());
+                    myEdit.putString("user_password",response.body().getData().getUser_password());
+                    myEdit.putString("user_email",response.body().getData().getUser_email());
+                    myEdit.putString("user_telp",response.body().getData().getUser_telp());
+                    myEdit.putString("user_website",response.body().getData().getUser_website());
+                    myEdit.putString("user_kode",response.body().getData().getUser_kode());
+                    myEdit.putString("user_last_login",response.body().getData().getUser_last_login());
+                    myEdit.putString("user_waktu_register",response.body().getData().getUser_waktu_register());
+                    myEdit.putString("user_aktif",response.body().getData().getUser_aktif());
+                    myEdit.putString("lapor_user_id",response.body().getData().getLapor_user_id());
                     myEdit.commit();
 
 

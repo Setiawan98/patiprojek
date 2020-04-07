@@ -386,7 +386,7 @@ public class EditKoperasiActivity extends Fragment implements OnMapReadyCallback
             gambarKoperasi = MultipartBody.Part.createFormData("gambar", mFileName.getText().toString(), requestFile);
             //gambarKoperasiUtama = MultipartBody.Part.createFormData("gambarutama", mFileName.getText().toString(), requestFile);
         }
-        Call<DetilKoperasiBaru> call = api.updateDataKoperasiWithGambar(id,gambarKoperasi,gambarKoperasiUtama,nama,null,null,null,null,null,null,userId,null);
+        Call<DetilKoperasiBaru> call = api.updateDataKoperasiWithGambar(id,gambarKoperasi,gambarKoperasiUtama,nama,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilKoperasiBaru>() {
             @Override
@@ -444,7 +444,7 @@ public class EditKoperasiActivity extends Fragment implements OnMapReadyCallback
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilKoperasiBaru> call = api.updateDataKoperasiWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,userId,value);
+        Call<DetilKoperasiBaru> call = api.updateDataKoperasiWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,value);
 
         call.enqueue(new Callback<DetilKoperasiBaru>() {
             @Override

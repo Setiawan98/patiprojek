@@ -4,6 +4,7 @@ package projekpati.com.projekpati.Kuliner;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -136,12 +137,21 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
     TextView mFileName;
     ImageView btnAddGamabar;
     private static final int REQUEST_GET_SINGLE_FILE = 202;
+    String userid,nama,email,telp,website;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tambah, container, false);
         vg=container;
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("user_id","");
+        nama = sharedPreferences.getString("user_nama","");
+        email = sharedPreferences.getString("user_email","");
+        telp = sharedPreferences.getString("user_telp","");
+        website = sharedPreferences.getString("user_website","");
+
         init(view);
         setSpinner();
         startLatLng = new LatLng(-6.7487,111.0379);
@@ -168,6 +178,11 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
         mFileName = view.findViewById(R.id.mFileName);
         loadLayout = view.findViewById(R.id.loadLayout);
         btnAddGamabar = view.findViewById(R.id.btnAddGambar);
+
+        eNomorTelp.setText(telp);
+        eEmail.setText(email);
+        eWebsite.setText(website);
+        ePemilik.setText(nama);
 
         //editText Jam
         eJamMingguBuka = view.findViewById(R.id.mJamMingguBuka);
@@ -662,7 +677,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
         }
         RequestBody value = RequestBody.create(MediaType.parse("multipart/form-data"), items_value[mRefNama.getSelectedItemPosition()]);
         String uID = "0";
-        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), uID);
+        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), userid);
         String hari_0;
         if(eJamMingguBuka.getText().toString().equals("") || eMenitMingguBuka.getText().toString().equals("")
                 || eJamMingguTutup.getText().toString().equals("") || eMenitMingguTutup.getText().toString().equals("")
@@ -833,7 +848,7 @@ public class TambahFragment extends Fragment implements OnMapReadyCallback, Loca
             Log.d("nullImage","3");
         }
 
-        Call<DetilKulinerBaru> call = api.addDataKulinerWithGambar(gambarKuliner1,gambarKuliner2,gambarKuliner3,gambarKulinerUtama,nama,pemilik,telp,email,website,deskripsi,latitude,longitude,rHari_0,rHari_1,rHari_2,rHari_3,rHari_4,rHari_5,rHari_6,value);
+        Call<DetilKulinerBaru> call = api.addDataKulinerWithGambar(gambarKuliner1,gambarKuliner2,gambarKuliner3,gambarKulinerUtama,nama,pemilik,telp,email,website,deskripsi,latitude,longitude,rHari_0,rHari_1,rHari_2,rHari_3,rHari_4,rHari_5,rHari_6,userId,value);
 
         call.enqueue(new Callback<DetilKulinerBaru>() {
             @Override

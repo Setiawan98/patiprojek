@@ -243,6 +243,7 @@ public interface API {
             @Part("hari_4") RequestBody hari_4,
             @Part("hari_5") RequestBody hari_5,
             @Part("hari_6") RequestBody hari_6,
+            @Part("user_id") RequestBody user_id,
             @Part("ref_kuliner_id") RequestBody ref_kuliner_id
     );
 
@@ -317,7 +318,6 @@ public interface API {
             @Part("deskripsi") RequestBody deskripsi,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_pendidikan_id") RequestBody ref_pendidikan_id
     );
 
@@ -418,7 +418,6 @@ public interface API {
             @Part("hari_4") RequestBody hari_4,
             @Part("hari_5") RequestBody hari_5,
             @Part("hari_6") RequestBody hari_6,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_tukang_id") RequestBody ref_tukang_id
     );
 
@@ -524,7 +523,6 @@ public interface API {
             @Part("hari_4") RequestBody hari_4,
             @Part("hari_5") RequestBody hari_5,
             @Part("hari_6") RequestBody hari_6,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_pariwisata_id") RequestBody ref_pariwisata_id
     );
 
@@ -630,7 +628,6 @@ public interface API {
             @Part("hari_4") RequestBody hari_4,
             @Part("hari_5") RequestBody hari_5,
             @Part("hari_6") RequestBody hari_6,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_kesehatan_id") RequestBody ref_kesehatan_id
     );
 
@@ -756,7 +753,6 @@ public interface API {
             @Part("deskripsi") RequestBody deskripsi,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_bank_id") RequestBody ref_bank_id
     );
     @GET("bank/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
@@ -834,7 +830,6 @@ public interface API {
             @Part("deskripsi") RequestBody deskripsi,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_bioskop_id") RequestBody ref_bioskop_id
     );
 
@@ -920,7 +915,6 @@ public interface API {
             @Part("deskripsi") RequestBody deskripsi,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_hotel_id") RequestBody ref_hotel_id
     );
 
@@ -1006,7 +1000,6 @@ public interface API {
             @Part("deskripsi") RequestBody deskripsi,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_koperasi_id") RequestBody ref_koperasi_id
     );
     @GET("koperasi/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
@@ -1078,7 +1071,6 @@ public interface API {
             @Part("deskripsi") RequestBody deskripsi,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_olahraga_id") RequestBody ref_olahraga_id
     );
 
@@ -1163,7 +1155,6 @@ public interface API {
             @Part("deskripsi") RequestBody deskripsi,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_polisi_id") RequestBody ref_polisi_id
     );
 
@@ -1248,7 +1239,6 @@ public interface API {
             @Part("deskripsi") RequestBody deskripsi,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_salon_id") RequestBody ref_salon_id
     );
 
@@ -1346,7 +1336,6 @@ public interface API {
             @Part("deskripsi") RequestBody deskripsi,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_spbu_id") RequestBody ref_spbu_id
     );
 
@@ -1433,7 +1422,6 @@ public interface API {
             @Part("tgl") RequestBody tgl,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_aspirasi_id") RequestBody ref_aspirasi_id
     );
     @GET("aspirasi/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
@@ -1555,7 +1543,6 @@ public interface API {
             @Part("longitude") RequestBody longitude,
             @Part("barang") RequestBody barang,
             @Part("harga") RequestBody harga,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_lapak_id") RequestBody ref_lapak_id
     );
 
@@ -1666,7 +1653,6 @@ public interface API {
             @Part("deskripsi") RequestBody deskripsi,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_otomotif_id") RequestBody ref_otomotif_id
     );
 
@@ -1790,7 +1776,6 @@ public interface API {
             @Part("deskripsi") RequestBody deskripsi,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_kerjaan_id") RequestBody ref_kerjaan_id
     );
 
@@ -2126,7 +2111,6 @@ public interface API {
             @Part("deskripsi") RequestBody deskripsi,
             @Part("latitude") RequestBody latitude,
             @Part("longitude") RequestBody longitude,
-            @Part("user_id") RequestBody user_id,
             @Part("ref_ibadah_id") RequestBody ref_ibadah_id
     );
 

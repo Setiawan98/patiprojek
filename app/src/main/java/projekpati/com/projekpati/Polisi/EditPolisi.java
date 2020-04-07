@@ -383,7 +383,7 @@ public class EditPolisi extends Fragment implements OnMapReadyCallback, Location
             gambarPolisi = MultipartBody.Part.createFormData("gambar", mFileName.getText().toString(), requestFile);
             //gambarPolisiUtama = MultipartBody.Part.createFormData("gambarutama", mFileName.getText().toString(), requestFile);
         }
-        Call<DetilPolisiBaru> call = api.updateDataPolisiWithGambar(id,gambarPolisi,gambarPolisiUtama,null,null,null,null,null,null,null,userId,null);
+        Call<DetilPolisiBaru> call = api.updateDataPolisiWithGambar(id,gambarPolisi,gambarPolisiUtama,null,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilPolisiBaru>() {
             @Override
@@ -437,7 +437,7 @@ public class EditPolisi extends Fragment implements OnMapReadyCallback, Location
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilPolisiBaru> call = api.updateDataPolisiWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,userId,value);
+        Call<DetilPolisiBaru> call = api.updateDataPolisiWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,value);
 
         call.enqueue(new Callback<DetilPolisiBaru>() {
             @Override

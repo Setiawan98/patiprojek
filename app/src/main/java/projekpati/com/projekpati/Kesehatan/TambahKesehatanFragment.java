@@ -4,6 +4,7 @@ package projekpati.com.projekpati.Kesehatan;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -134,12 +135,21 @@ public class TambahKesehatanFragment extends Fragment implements OnMapReadyCallb
     TextView mFileName;
     ImageView btnAddGamabar;
     private static final int REQUEST_GET_SINGLE_FILE = 202;
+    String userid,nama,email,telp,website;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tambah_kesehatan, container, false);
         vg=container;
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("user_id","");
+        nama = sharedPreferences.getString("user_nama","");
+        email = sharedPreferences.getString("user_email","");
+        telp = sharedPreferences.getString("user_telp","");
+        website = sharedPreferences.getString("user_website","");
+
         init(view);
         setSpinner();
         startLatLng = new LatLng(-6.7487,111.0379);
@@ -219,6 +229,11 @@ public class TambahKesehatanFragment extends Fragment implements OnMapReadyCallb
         btnLiburKamis = (TextView) view.findViewById(R.id.btnLiburKamis);
         btnLiburJumat = (TextView) view.findViewById(R.id.btnLiburJumat);
         btnLiburSabtu = (TextView) view.findViewById(R.id.btnLiburSabtu);
+
+
+        eNomorTelp.setText(telp);
+        eEmail.setText(email);
+        eWebsite.setText(website);
 
         setJam.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -645,7 +660,7 @@ public class TambahKesehatanFragment extends Fragment implements OnMapReadyCallb
         RequestBody latitude;
         RequestBody longitude;
         String uID = "0";
-        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), uID);
+        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), userid);
         if(location==null)
         {
             latitude = null;

@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -18,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -49,17 +52,21 @@ public class MenuKerjaan  extends AppCompatActivity {
     TextView title;
     ImageView iconView;
     Integer status =0;
+    String userid;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_kerjaan);
+        SharedPreferences sharedPreferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("user_id","");
 
         toolbar = (Toolbar) findViewById(R.id.kerjaanToolbar);
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
         iconView = toolbar.findViewById(R.id.icon);
+
 
         //getIconImage();
         iconView.setLayoutParams(new LinearLayout.LayoutParams(80,80));
@@ -110,17 +117,24 @@ public class MenuKerjaan  extends AppCompatActivity {
                 }
                 else if(id==R.id.tambah){
 
-                    TambahKerjaanFragment third = new TambahKerjaanFragment();
-                    openFragment(third);
-                    bottomNavigationView.setEnabled(false);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            status =0;
-                            bottomNavigationView.setEnabled(true);
-                        }
-                    },5000);
+                    if(userid.equals(""))
+                    {
+                        Toast.makeText(MenuKerjaan.this,"Silahkan login terlebih dahulu untuk tambah data",Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+
+                        TambahKerjaanFragment third = new TambahKerjaanFragment();
+                        openFragment(third);
+                        bottomNavigationView.setEnabled(false);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                status = 0;
+                                bottomNavigationView.setEnabled(true);
+                            }
+                        }, 5000);
+                    }
 
                 }
                 else if(id==R.id.saring){

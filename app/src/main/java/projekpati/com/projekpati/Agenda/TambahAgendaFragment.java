@@ -2,6 +2,7 @@ package projekpati.com.projekpati.Agenda;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -84,12 +85,20 @@ public class TambahAgendaFragment  extends Fragment implements OnMapReadyCallbac
     TextView btnFree;
     boolean isFree;
     int status=0;
+    String userid,nama,email,telp,website;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tambah_agenda, container, false);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("user_id","");
+        nama = sharedPreferences.getString("user_nama","");
+        email = sharedPreferences.getString("user_email","");
+        telp = sharedPreferences.getString("user_telp","");
+        website = sharedPreferences.getString("user_website","");
 
         init(view);
         setSpinner();
@@ -122,6 +131,10 @@ public class TambahAgendaFragment  extends Fragment implements OnMapReadyCallbac
         eDDSelesai = view.findViewById(R.id.mDDSelesai);
         eMMSelesai = view.findViewById(R.id.mMMSelesai);
         eYYYYSelesai = view.findViewById(R.id.mYYYYSelesai);
+
+        eNomorTelp.setText(telp);
+        eEmail.setText(email);
+        eWebsite.setText(website);
 
         btnFree = view.findViewById(R.id.btnFree);
         btnFree.setOnClickListener(new View.OnClickListener() {
@@ -391,7 +404,7 @@ public class TambahAgendaFragment  extends Fragment implements OnMapReadyCallbac
 
 
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
-        Call<DetilAgendaBaru> call = api.addDataAgenda(nama,telp,email,tglMulai,tglSelesai,hargaTiket,website,deskripsi,latitude,longitude,"0",value);
+        Call<DetilAgendaBaru> call = api.addDataAgenda(nama,telp,email,tglMulai,tglSelesai,hargaTiket,website,deskripsi,latitude,longitude,userid,value);
 
         call.enqueue(new Callback<DetilAgendaBaru>() {
             @Override

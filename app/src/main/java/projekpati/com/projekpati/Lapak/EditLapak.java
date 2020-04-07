@@ -384,7 +384,7 @@ public class EditLapak extends Fragment implements OnMapReadyCallback, LocationL
             gambarLapak = MultipartBody.Part.createFormData("gambar", mFileName.getText().toString(), requestFile);
             //gambarLapakUtama = MultipartBody.Part.createFormData("gambarutama", mFileName.getText().toString(), requestFile);
         }
-        Call<DetilLapakBaru> call = api.updateDataLapakWithGambar(id,gambarLapak,gambarLapakUtama,null,null,null,null,null,null,null,null,null,userId,null);
+        Call<DetilLapakBaru> call = api.updateDataLapakWithGambar(id,gambarLapak,gambarLapakUtama,null,null,null,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilLapakBaru>() {
             @Override
@@ -440,7 +440,7 @@ public class EditLapak extends Fragment implements OnMapReadyCallback, LocationL
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilLapakBaru> call = api.updateDataLapakWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,barang,harga,userId,value);
+        Call<DetilLapakBaru> call = api.updateDataLapakWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,barang,harga,value);
 
         call.enqueue(new Callback<DetilLapakBaru>() {
             @Override

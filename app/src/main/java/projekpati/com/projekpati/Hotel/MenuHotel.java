@@ -1,6 +1,8 @@
 package projekpati.com.projekpati.Hotel;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -14,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,12 +53,15 @@ public class MenuHotel extends AppCompatActivity {
     TextView title;
     ImageView iconView;
     Integer status =0;
+    String userid;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_hotel);
+        SharedPreferences sharedPreferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("user_id","");
 
         toolbar = (Toolbar) findViewById(R.id.hotelToolbar);
         title = toolbar.findViewById(R.id.title);
@@ -111,18 +117,24 @@ public class MenuHotel extends AppCompatActivity {
 
                 }
                 else if(id==R.id.tambah){
+                    if(userid.equals(""))
+                    {
+                        Toast.makeText(MenuHotel.this,"Silahkan login terlebih dahulu untuk tambah data",Toast.LENGTH_SHORT).show();
+                    }
+                    else {
 
-                    TambahHotelFragment third = new TambahHotelFragment();
-                    openFragment(third);
-                    bottomNavigationView.setEnabled(false);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            status =0;
-                            bottomNavigationView.setEnabled(true);
-                        }
-                    },5000);
+                        TambahHotelFragment third = new TambahHotelFragment();
+                        openFragment(third);
+                        bottomNavigationView.setEnabled(false);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                status = 0;
+                                bottomNavigationView.setEnabled(true);
+                            }
+                        }, 5000);
+                    }
 
                 }
                 else if(id==R.id.saring){

@@ -386,7 +386,7 @@ public class EditHotelActivity extends Fragment implements OnMapReadyCallback, L
             gambarHotel = MultipartBody.Part.createFormData("gambar", mFileName.getText().toString(), requestFile);
             //gambarHotelUtama = MultipartBody.Part.createFormData("gambarutama", mFileName.getText().toString(), requestFile);
         }
-        Call<DetilHotelBaru> call = api.updateDataHotelWithGambar(id,gambarHotel,gambarHotelUtama,nama,null,null,null,null,null,null,userId,null);
+        Call<DetilHotelBaru> call = api.updateDataHotelWithGambar(id,gambarHotel,gambarHotelUtama,nama,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilHotelBaru>() {
             @Override
@@ -444,7 +444,7 @@ public class EditHotelActivity extends Fragment implements OnMapReadyCallback, L
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilHotelBaru> call = api.updateDataHotelWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,userId,value);
+        Call<DetilHotelBaru> call = api.updateDataHotelWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,value);
 
         call.enqueue(new Callback<DetilHotelBaru>() {
             @Override

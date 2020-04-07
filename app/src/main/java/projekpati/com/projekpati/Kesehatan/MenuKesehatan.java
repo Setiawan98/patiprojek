@@ -1,6 +1,8 @@
 package projekpati.com.projekpati.Kesehatan;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -58,6 +60,7 @@ public class MenuKesehatan extends AppCompatActivity {
     TextView title;
     ImageView iconView;
     Integer status =0;
+    String userid;
 
 
     @Override
@@ -65,6 +68,8 @@ public class MenuKesehatan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_kesehatan);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("user_id","");
         toolbar = (Toolbar) findViewById(R.id.kesehatanToolbar);
         title = toolbar.findViewById(R.id.title);
         title.setTextColor(0xFFFFFFFF);
@@ -121,18 +126,25 @@ public class MenuKesehatan extends AppCompatActivity {
                 }
                 else if(id==R.id.tambah){
 
-                    TambahKesehatanFragment third = new TambahKesehatanFragment();
-                    openFragment(third);
-                    bottomNavigationView.setEnabled(false);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            status =0;
-                            bottomNavigationView.setEnabled(true);
-                        }
-                    },5000);
-                    Toast.makeText(MenuKesehatan.this, "Clicked",Toast.LENGTH_SHORT).show();
+                    if(userid.equals(""))
+                    {
+                        Toast.makeText(MenuKesehatan.this,"Silahkan login terlebih dahulu untuk tambah data",Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+
+                        TambahKesehatanFragment third = new TambahKesehatanFragment();
+                        openFragment(third);
+                        bottomNavigationView.setEnabled(false);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                status = 0;
+                                bottomNavigationView.setEnabled(true);
+                            }
+                        }, 5000);
+                        Toast.makeText(MenuKesehatan.this, "Clicked", Toast.LENGTH_SHORT).show();
+                    }
 
                 }
                 else if(id==R.id.saring){

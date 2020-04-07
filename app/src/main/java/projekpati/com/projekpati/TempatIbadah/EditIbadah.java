@@ -384,7 +384,7 @@ public class EditIbadah extends Fragment implements OnMapReadyCallback, Location
             gambarIbadah = MultipartBody.Part.createFormData("gambar", mFileName.getText().toString(), requestFile);
             //gambarIbadahUtama = MultipartBody.Part.createFormData("gambarutama", mFileName.getText().toString(), requestFile);
         }
-        Call<DetilIbadahBaru> call = api.updateDataIbadahWithGambar(id,gambarIbadah,gambarIbadahUtama,null,null,null,null,null,null,null,userId,null);
+        Call<DetilIbadahBaru> call = api.updateDataIbadahWithGambar(id,gambarIbadah,gambarIbadahUtama,null,null,null,null,null,null,null,null);
 
         call.enqueue(new Callback<DetilIbadahBaru>() {
             @Override
@@ -438,7 +438,7 @@ public class EditIbadah extends Fragment implements OnMapReadyCallback, Location
         API api = RetrofitClientInstance.getRetrofitInstance().create(API.class);
 
 
-        Call<DetilIbadahBaru> call = api.updateDataIbadahWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,userId,value);
+        Call<DetilIbadahBaru> call = api.updateDataIbadahWithGambar(id,null,null,nama,telp,email,website,deskripsi,latitude,longitude,value);
 
         call.enqueue(new Callback<DetilIbadahBaru>() {
             @Override
