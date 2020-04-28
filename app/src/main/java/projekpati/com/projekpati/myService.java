@@ -34,11 +34,18 @@ public class myService extends Service {
         call.enqueue(new Callback<Notifikasi>() {
             @Override
             public void onResponse(Call<Notifikasi> call, Response<Notifikasi> response) {
-                judul = response.body().getJudul();
-                pesan = response.body().getPesan();
-                setNotification(context,judul,pesan);
+                if(!response.body().getStatus().equals("ERROR"))
+                {
+                    judul = response.body().getJudul();
+                    pesan = response.body().getPesan();
+                    setNotification(context,judul,pesan);
 
-                Log.d("cobaYa", response.body().getJudul());
+                    Log.d("Ada", response.body().getJudul());
+                }
+                else {
+                    Log.d("Tidak Ada", response.body().getJudul());
+                }
+
             }
 
             @Override

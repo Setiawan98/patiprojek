@@ -8,6 +8,10 @@ import projekpati.com.projekpati.Model.Agenda.AgendaModel;
 import projekpati.com.projekpati.Model.Agenda.DetilAgendaBaru;
 import projekpati.com.projekpati.Model.Agenda.DetilAgendaModel;
 import projekpati.com.projekpati.Model.Agenda.JenisAgendaLengkap;
+import projekpati.com.projekpati.Model.Angkutan.AngkutanModel;
+import projekpati.com.projekpati.Model.Angkutan.DetilAngkutanBaru;
+import projekpati.com.projekpati.Model.Angkutan.DetilAngkutanModel;
+import projekpati.com.projekpati.Model.Angkutan.JenisAngkutanLengkap;
 import projekpati.com.projekpati.Model.Aspirasi.AspirasiModel;
 import projekpati.com.projekpati.Model.Aspirasi.DetilAspirasiBaru;
 import projekpati.com.projekpati.Model.Aspirasi.DetilAspirasiModel;
@@ -2145,6 +2149,90 @@ public interface API {
             @Field("namalogin") String namalogin,
             @Field("sandi") String sandi
     );
+
+    //Angkutan
+    @GET("angkutan/data/?key=TechnoPhoriaIndonesia")
+    Call<AngkutanModel> tampilSemuaAngkutan();
+
+    @GET("angkutan/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<AngkutanModel> loadMoreAngkutan(@Path("id") String id);
+
+    @GET("angkutan/data/?key=TechnoPhoriaIndonesia")
+    Call<AngkutanModel> cariAngkutanbyAPI(@Query("cari") String keyword);
+
+    @GET("angkutan/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilAngkutanModel> detailAngkutan(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=angkutan")
+    Call<postKomentar> addKomentarBalasAngkutan(@Query("dataID") String data_id,
+                                                @Field("nama") String nama,
+                                                @Field("email") String email,
+                                                @Field("telp") String telp,
+                                                @Field("website") String website,
+                                                @Field("parentID") String parentID,
+                                                @Field("isi") String isi,
+                                                @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=angkutan")
+    Call<KomentarLengkap> getKomentarAngkutan(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("angkutan/update?key=TechnoPhoriaIndonesia")
+    Call<DetilAngkutanBaru> addDataAngkutan(
+            @Field("nama") String nama,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_angkutan_id") String ref_angkutan_id
+    );
+
+    @Multipart
+    @POST("angkutan/update?key=TechnoPhoriaIndonesia")
+    Call<DetilAngkutanBaru> addDataAngkutanWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_angkutan_id") RequestBody ref_angkutan_id
+    );
+
+    @Multipart
+    @POST("angkutan/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilAngkutanBaru> updateDataAngkutanWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("ref_angkutan_id") RequestBody ref_angkutan_id
+    );
+
+    @GET("angkutan/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilAngkutanModel> hapusGambarAngkutan(@Path("id") String id);
+
+    @GET("angkutan/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisAngkutanLengkap> tampilJenisAngkutan();
+
+    @GET("angkutan/data?key=TechnoPhoriaIndonesia")
+    Call<AngkutanModel> cariAngkutanByJenis(@Query("IDJenis") String keyword);
 
 
 }

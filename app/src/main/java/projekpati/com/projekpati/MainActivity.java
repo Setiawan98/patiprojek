@@ -46,6 +46,7 @@ import androidx.viewpager.widget.ViewPager;
 import java.util.Calendar;
 
 import projekpati.com.projekpati.Agenda.MenuAgenda;
+import projekpati.com.projekpati.Angkutan.MenuAngkutan;
 import projekpati.com.projekpati.Aspirasi.MenuAspirasi;
 import projekpati.com.projekpati.Bank.MenuBank;
 import projekpati.com.projekpati.BeliMobil.MenuBeliMobil;
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout,
             biosopLayout, hotelLayput, koperasiLayout,agendaLayout, kerjaanLayout, perdaLayout,
             beritaOnlineLayout, telpPentingLayout, kodePosLayout, apotekLayout, dokterLayout,rumahSakitLayout,ibadahLayout,
-            pukesmasLayout, ambulanLayout, videoLayout, panganLayout;
+            pukesmasLayout, ambulanLayout, videoLayout, panganLayout, angkutanLayout;
     private LinearLayout pendidikanLayout;
     private DrawerLayout dl;
     ScrollView scroll;
@@ -540,6 +541,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MenuPangan.class);
+                startActivity(intent);
+            }
+        });
+        angkutanLayout = findViewById(R.id.angkutanLinear);
+        angkutanLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MenuAngkutan.class);
                 startActivity(intent);
             }
         });

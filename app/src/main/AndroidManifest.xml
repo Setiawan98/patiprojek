@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="22" />
@@ -22,7 +22,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TempatIbadah.DataSaringIbadahActivity"></activity>
+        <activity android:name=".Angkutan.TampilAngkutanByJenis"></activity>
+        <activity android:name=".Angkutan.JenisAngkutanAdapter" />
+        <activity android:name=".Angkutan.AngkutanAdapter" />
+        <activity android:name=".Angkutan.EditAngkutanActivity" />
+        <activity android:name=".Angkutan.DetilMapAngkutan" />
+        <activity android:name=".Angkutan.DetilAngkutan" />
+        <activity android:name=".Angkutan.DataSaringAngkutanActivity" />
+        <activity android:name=".Angkutan.CariAngkutan" />
+        <activity android:name=".Angkutan.MenuAngkutan" />
+        <activity android:name=".TempatIbadah.DataSaringIbadahActivity" />
         <activity android:name=".Pangan.TampilPanganByJenis" />
         <activity android:name=".Pangan.JenisPanganAdapter" />
         <activity android:name=".Pangan.CariPangan" />
@@ -245,13 +254,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <service android:name=".myService"
+
+        <service
+            android:name=".myService"
             android:enabled="true"
             android:exported="true"
-            android:stopWithTask="false"/>
-        <receiver android:name=".NotificationPublisher"
+            android:stopWithTask="false" />
+
+        <receiver
+            android:name=".NotificationPublisher"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>
