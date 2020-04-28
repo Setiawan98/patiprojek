@@ -16,7 +16,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -27,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -42,10 +45,13 @@ public class MenuPerda extends AppCompatActivity {
     TextView title;
     ImageView iconView;
     Integer status =0;
+    String userid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_perda);
+        SharedPreferences sharedPreferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("user_id","");
 
         toolbar = (Toolbar) findViewById(R.id.perdaToolbaar);
         title = toolbar.findViewById(R.id.title);
@@ -100,7 +106,14 @@ public class MenuPerda extends AppCompatActivity {
 
                 }
                 else if(id==R.id.tambah){
+                    if(userid.equals(""))
+                    {
+                        Toast.makeText(MenuPerda.this,"Silahkan login terlebih dahulu untuk tambah data",Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
 
+                    }
                    /* TambahBeritaOnlineFragment third = new TambahBeritaOnlineFragment();
                     openFragment(third);
                     bottomNavigationView.setEnabled(false);

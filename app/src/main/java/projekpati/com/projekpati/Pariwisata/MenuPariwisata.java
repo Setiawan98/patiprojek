@@ -1,6 +1,8 @@
 package projekpati.com.projekpati.Pariwisata;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -57,12 +59,14 @@ public class MenuPariwisata extends AppCompatActivity {
     TextView title;
     ImageView iconView;
     Integer status =0;
-
+    String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_pariwisata);
+        SharedPreferences sharedPreferences = getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("user_id","");
 
         toolbar = (Toolbar) findViewById(R.id.pariwisataToolbar);
         title = toolbar.findViewById(R.id.title);
@@ -119,18 +123,24 @@ public class MenuPariwisata extends AppCompatActivity {
                     Toast.makeText(MenuPariwisata.this, "Clicked",Toast.LENGTH_SHORT).show();
                 }
                 else if(id==R.id.tambah){
-
-                    TambahPariwisataFragment third = new TambahPariwisataFragment();
-                    openFragment(third);
-                    bottomNavigationView.setEnabled(false);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            status =0;
-                            bottomNavigationView.setEnabled(true);
-                        }
-                    },5000);
+                    if(userid.equals(""))
+                    {
+                        Toast.makeText(MenuPariwisata.this,"Silahkan login terlebih dahulu untuk tambah data",Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        TambahPariwisataFragment third = new TambahPariwisataFragment();
+                        openFragment(third);
+                        bottomNavigationView.setEnabled(false);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                status =0;
+                                bottomNavigationView.setEnabled(true);
+                            }
+                        },5000);
+                    }
                     Toast.makeText(MenuPariwisata.this, "Clicked",Toast.LENGTH_SHORT).show();
 
                 }

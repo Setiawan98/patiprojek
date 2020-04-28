@@ -4,6 +4,7 @@ package projekpati.com.projekpati.Otomotif;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -103,7 +104,7 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
     int jumlahDataMotor;
     int jumlahDataMobil;
     int jumlahDataTotal;
-    
+    String userid,nama,email,telp,website;
     ImageView btnAddGamabar;
     TextView mFileName;
     private byte[] imageBytes1, imageBytes2,imageBytes3;
@@ -122,11 +123,18 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tambah_otomotif, container, false);
         vg=container;
-        init(view);
+
         setSpinner();
         startLatLng = new LatLng(-6.7487,111.0379);
         currentLatLng = startLatLng;
 
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("userData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("user_id","");
+        nama = sharedPreferences.getString("user_nama","");
+        email = sharedPreferences.getString("user_email","");
+        telp = sharedPreferences.getString("user_telp","");
+        website = sharedPreferences.getString("user_website","");
+        init(view);
         initMap();
         setupAutoCompleteFragment();
 
@@ -152,7 +160,10 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
         loadLayout = view.findViewById(R.id.loadLayout);
         btnAddGamabar = view.findViewById(R.id.btnAddGambar);
         mFileName = view.findViewById(R.id.mFileName);
-        
+        eNomorTelp.setText(telp);
+        eEmail.setText(email);
+        eWebsite.setText(website);
+
         //Spinner
         mRefNama = view.findViewById(R.id.mRefNama);
         mKondisi = view.findViewById(R.id.mKondisi);
@@ -546,8 +557,7 @@ public class TambahOtomotifFragment extends Fragment implements OnMapReadyCallba
         RequestBody kondisi = RequestBody.create(MediaType.parse("multipart/form-data"), items_value[mKondisi.getSelectedItemPosition()]);
         RequestBody transmisi = RequestBody.create(MediaType.parse("multipart/form-data"), items_value[mTransmisi.getSelectedItemPosition()]);
         RequestBody habis = RequestBody.create(MediaType.parse("multipart/form-data"), items_value[mHabis.getSelectedItemPosition()]);
-        String uID = "0";
-        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), uID);
+        RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"), userid);
         RequestBody requestFile1=null;
         RequestBody requestFile2=null;
         RequestBody requestFile3=null;
