@@ -66,6 +66,7 @@ import projekpati.com.projekpati.Olahraga.MenuOlahraga;
 import projekpati.com.projekpati.Otomotif.MenuOtomotif;
 import projekpati.com.projekpati.Pangan.MenuPangan;
 import projekpati.com.projekpati.Pariwisata.MenuPariwisata;
+import projekpati.com.projekpati.PelelanganIkan.MenuPelelanganIkan;
 import projekpati.com.projekpati.Pendidikan.MenuPendidikan;
 import projekpati.com.projekpati.PerangkatDaerah.MenuPerda;
 import projekpati.com.projekpati.Polisi.MenuPolisi;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
     private final static String default_notification_channel_id = "default" ;
     private LinearLayout kulinerLayout, bMotorLayout, bMobilLayout, beritaCetakLayout, otomotifLayout, lapakLayout, aspirasiLayout,
-            spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout,
+            spbuLayout, salonLayout ,tukangLayout,polisiLayout, olahragaLayout, pelelanganLayout,
             pariwisataLayout,kesehatanLayout,fasilitasUmumLayout, bankLayout,
             biosopLayout, hotelLayput, koperasiLayout,agendaLayout, kerjaanLayout, perdaLayout,
             beritaOnlineLayout, telpPentingLayout, kodePosLayout, apotekLayout, dokterLayout,rumahSakitLayout,ibadahLayout,
@@ -232,6 +233,14 @@ public class MainActivity extends AppCompatActivity {
                     //Toast.makeText(MainActivity.this, "Login dalam proses",Toast.LENGTH_SHORT).show();
                 }
                 return true;
+            }
+        });
+        pelelanganLayout = findViewById(R.id.pelelanganIkanLinear);
+        pelelanganLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MenuPelelanganIkan.class);
+                startActivity(i);
             }
         });
 

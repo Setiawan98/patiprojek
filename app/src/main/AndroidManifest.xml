@@ -22,7 +22,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Angkutan.TampilAngkutanByJenis"></activity>
+        <activity android:name=".PelelanganIkan.EditPelelanganIkanActivity"></activity>
+        <activity android:name=".PelelanganIkan.DataSaringPelelanganIkan" />
+        <activity android:name=".PelelanganIkan.CariPelelanganIkan" />
+        <activity android:name=".PelelanganIkan.DetilMapPelelanganIkan" />
+        <activity android:name=".PelelanganIkan.DetilPelelanganIkan" />
+        <activity android:name=".PelelanganIkan.TampilPelelanganIkanByJenis" />
+        <activity android:name=".PelelanganIkan.MenuPelelanganIkan" />
+        <activity android:name=".Angkutan.TampilAngkutanByJenis" />
         <activity android:name=".Angkutan.JenisAngkutanAdapter" />
         <activity android:name=".Angkutan.AngkutanAdapter" />
         <activity android:name=".Angkutan.EditAngkutanActivity" />

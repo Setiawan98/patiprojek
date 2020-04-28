@@ -77,6 +77,10 @@ import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataBaru;
 import projekpati.com.projekpati.Model.Pariwisata.DetilPariwisataModel;
 import projekpati.com.projekpati.Model.Pariwisata.JenisPariwisataLengkap;
 import projekpati.com.projekpati.Model.Pariwisata.PariwisataModel;
+import projekpati.com.projekpati.Model.PelelanganIkan.DetilPelelanganIkanBaru;
+import projekpati.com.projekpati.Model.PelelanganIkan.DetilPelelanganIkanModel;
+import projekpati.com.projekpati.Model.PelelanganIkan.JenisPelelanganIkanLengkap;
+import projekpati.com.projekpati.Model.PelelanganIkan.PelelanganIkanModel;
 import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanBaru;
 import projekpati.com.projekpati.Model.Pendidikan.DetilPendidikanModel;
 import projekpati.com.projekpati.Model.Pendidikan.JenisPendidikanLengkap;
@@ -2234,5 +2238,92 @@ public interface API {
     @GET("angkutan/data?key=TechnoPhoriaIndonesia")
     Call<AngkutanModel> cariAngkutanByJenis(@Query("IDJenis") String keyword);
 
+
+    //PelelanganIkan
+    @GET("pelelanganikan/data/?key=TechnoPhoriaIndonesia")
+    Call<PelelanganIkanModel> tampilSemuaPelelanganIkan();
+
+    @GET("pelelanganikan/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<PelelanganIkanModel> loadMorePelelanganIkan(@Path("id") String id);
+
+    @GET("pelelanganikan/data/?key=TechnoPhoriaIndonesia")
+    Call<PelelanganIkanModel> cariPelelanganIkanbyAPI(@Query("cari") String keyword);
+
+    @GET("pelelanganikan/detail/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilPelelanganIkanModel> detailPelelanganIkan(@Path("id") String id);
+
+    @FormUrlEncoded
+    @POST("komentar/?key=TechnoPhoriaIndonesia&dataJenis=pelelanganikan")
+    Call<postKomentar> addKomentarBalasPelelanganIkan(@Query("dataID") String data_id,
+                                                @Field("nama") String nama,
+                                                @Field("email") String email,
+                                                @Field("telp") String telp,
+                                                @Field("website") String website,
+                                                @Field("parentID") String parentID,
+                                                @Field("isi") String isi,
+                                                @Field("userID") String userID);
+
+    @GET("komentar/get/?key=TechnoPhoriaIndonesia&dataJenis=pelelanganikan")
+    Call<KomentarLengkap> getKomentarPelelanganIkan(@Query("dataID") String data_id);
+
+    @FormUrlEncoded
+    @POST("pelelanganikan/update?key=TechnoPhoriaIndonesia")
+    Call<DetilPelelanganIkanBaru> addDataPelelanganIkan(
+            @Field("nama") String nama,
+            @Field("pemilik") String pemilik,
+            @Field("telp") String telp,
+            @Field("email") String email,
+            @Field("website") String website,
+            @Field("deskripsi") String deskripsi,
+            @Field("latitude") String latitude,
+            @Field("longitude") String longitude,
+            @Field("user_id") String user_id,
+            @Field("ref_pelelangan_ikan_id") String ref_pelelangan_ikan_id
+    );
+
+    @Multipart
+    @POST("pelelanganikan/update?key=TechnoPhoriaIndonesia")
+    Call<DetilPelelanganIkanBaru> addDataPelelanganIkanWithGambar(
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambar2,
+            @Part MultipartBody.Part gambar3,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("pemilik") RequestBody pemilik,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("user_id") RequestBody user_id,
+            @Part("ref_pelelangan_ikan_id") RequestBody ref_pelelangan_ikan_id
+    );
+
+    @Multipart
+    @POST("pelelanganikan/update/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilPelelanganIkanBaru> updateDataPelelanganIkanWithGambar(
+            @Path("id") String id,
+            @Part MultipartBody.Part gambar,
+            @Part MultipartBody.Part gambarutama,
+            @Part("nama") RequestBody nama,
+            @Part("pemilik") RequestBody pemilik,
+            @Part("telp") RequestBody telp,
+            @Part("email") RequestBody email,
+            @Part("website") RequestBody website,
+            @Part("deskripsi") RequestBody deskripsi,
+            @Part("latitude") RequestBody latitude,
+            @Part("longitude") RequestBody longitude,
+            @Part("ref_pelelangan_ikan_id") RequestBody ref_pelelangan_ikan_id
+    );
+
+    @GET("pelelanganikan/hapusgambar/{id}?key=TechnoPhoriaIndonesia")
+    Call<DetilPelelanganIkanModel> hapusGambarPelelanganIkan(@Path("id") String id);
+
+    @GET("pelelanganikan/jenis?key=TechnoPhoriaIndonesia")
+    Call<JenisPelelanganIkanLengkap> tampilJenisPelelanganIkan();
+
+    @GET("pelelanganikan/data?key=TechnoPhoriaIndonesia")
+    Call<PelelanganIkanModel> cariPelelanganIkanByJenis(@Query("IDJenis") String keyword);
 
 }
