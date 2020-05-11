@@ -209,7 +209,7 @@ public class DetilMapPelelanganIkan extends AppCompatActivity implements OnMapRe
         for(int i =0;i<size;i++)
         {
             final ListPelelanganIkan lk = listLatn.get(i);
-//            Log.d("nama",lk.getNama());
+//            Log.d("nama",lk.getPemilik());
 
             if(lk!=null)
             {
@@ -237,7 +237,7 @@ public class DetilMapPelelanganIkan extends AppCompatActivity implements OnMapRe
                         e.printStackTrace();
                     }
                 }
-                titleText.setText(lk.getNama());
+                titleText.setText(lk.getPemilik());
                 titleJenis.setText(lk.getRef_pelelangan_ikan_nama());
                 //titleJenis.setTextColor(getResources().getColor(R.color.blue));
 //                if(lk.getRef_tukang_nama()!=null) {
@@ -310,7 +310,7 @@ public class DetilMapPelelanganIkan extends AppCompatActivity implements OnMapRe
 //
 //                        Marker marker = mMap.addMarker(new MarkerOptions()
 //                                .position(new LatLng(Float.parseFloat(lk.getLatitude()),Float.parseFloat(lk.getLongitude())))
-//                                .title(lk.getNama())
+//                                .title(lk.getPemilik())
 //                                .snippet(lk.getAlamat())
 //                                .icon(bitmapDescriptor(DetailMap.this,R.drawable.ic_location_on_black_24dp)));
 
@@ -320,7 +320,7 @@ public class DetilMapPelelanganIkan extends AppCompatActivity implements OnMapRe
 
                         for(Marker m: mClusterManager.getMarkerCollection().getMarkers())
                         {
-                            if(lk.getNama().equals(m.getTitle()))
+                            if(lk.getPemilik().equals(m.getTitle()))
                             {
                                 m.showInfoWindow();
                                 beforeShow=m;
@@ -348,7 +348,7 @@ public class DetilMapPelelanganIkan extends AppCompatActivity implements OnMapRe
 
         for(ListPelelanganIkan lk : listLatn) {
 
-            MyItem offsetItem = new MyItem(Double.parseDouble(lk.getLatitude()),Double.parseDouble(lk.getLongitude()),lk.getNama(),lk.getAlamat(),lk.getRef_pelelangan_ikan_nama());
+            MyItem offsetItem = new MyItem(Double.parseDouble(lk.getLatitude()),Double.parseDouble(lk.getLongitude()),lk.getPemilik(),lk.getAlamat(),lk.getRef_pelelangan_ikan_nama());
             mClusterManager.addItem(offsetItem);
         }
 
