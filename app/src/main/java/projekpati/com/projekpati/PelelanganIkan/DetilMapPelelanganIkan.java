@@ -209,7 +209,7 @@ public class DetilMapPelelanganIkan extends AppCompatActivity implements OnMapRe
         for(int i =0;i<size;i++)
         {
             final ListPelelanganIkan lk = listLatn.get(i);
-            Log.d("nama",lk.getNama());
+//            Log.d("nama",lk.getNama());
 
             if(lk!=null)
             {

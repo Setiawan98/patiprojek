@@ -183,7 +183,7 @@ public class DataPelelanganIkanFragment extends Fragment implements OnMapReadyCa
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), DetilPelelanganIkan.class);
-                intent.putExtra("id_",list.get(position).getId());
+                intent.putExtra("id_pelelangan_ikan",list.get(position).getId());
                 startActivity(intent);
             }
         });
@@ -239,7 +239,7 @@ public class DataPelelanganIkanFragment extends Fragment implements OnMapReadyCa
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(),DetilPelelanganIkan.class);
-                intent.putExtra("id_",list.get(position).getId());
+                intent.putExtra("id_pelelangan_ikan",list.get(position).getId());
                 startActivity(intent);
             }
         });
