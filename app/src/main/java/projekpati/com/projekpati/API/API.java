@@ -61,6 +61,7 @@ import projekpati.com.projekpati.Model.Lapak.DetilLapakBaru;
 import projekpati.com.projekpati.Model.Lapak.DetilLapakModel;
 import projekpati.com.projekpati.Model.Lapak.JenisLapakLengkap;
 import projekpati.com.projekpati.Model.Lapak.LapakModel;
+import projekpati.com.projekpati.Model.Notif.NotifModel;
 import projekpati.com.projekpati.Model.Notifikasi;
 import projekpati.com.projekpati.Model.Olahraga.DetilOlahragaBaru;
 import projekpati.com.projekpati.Model.Olahraga.DetilOlahragaModel;
@@ -2326,4 +2327,10 @@ public interface API {
     @GET("pelelanganikan/data?key=TechnoPhoriaIndonesia")
     Call<PelelanganIkanModel> cariPelelanganIkanByJenis(@Query("IDJenis") String keyword);
 
+    //Notifikasi
+    @GET("notif/data?key=TechnoPhoriaIndonesia")
+    Call<NotifModel> tampilSemuaNotif();
+
+    @GET("notif/data/{id}?key=TechnoPhoriaIndonesia")
+    Call<NotifModel> loadMoreNotif(@Path("id") String id);
 }

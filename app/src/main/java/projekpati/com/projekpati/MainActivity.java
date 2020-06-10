@@ -62,6 +62,7 @@ import projekpati.com.projekpati.KodePos.MenuKodePos;
 import projekpati.com.projekpati.Koperasi.MenuKoperasi;
 import projekpati.com.projekpati.Kuliner.MenuKuliner;
 import projekpati.com.projekpati.Lapak.MenuLapak;
+import projekpati.com.projekpati.Notif.NotifActivity;
 import projekpati.com.projekpati.Olahraga.MenuOlahraga;
 import projekpati.com.projekpati.Otomotif.MenuOtomotif;
 import projekpati.com.projekpati.Pangan.MenuPangan;
@@ -174,14 +175,9 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
 
-                if(id==R.id.mEditProfil){
-                    Toast.makeText(MainActivity.this, "Edit Profile Clicked",Toast.LENGTH_SHORT).show();
-                }
-                else if(id==R.id.mPenanda){
-                    Toast.makeText(MainActivity.this, "Penanda Clicked",Toast.LENGTH_SHORT).show();
-                }
-                else if(id==R.id.mPemberitahuan){
-                    Toast.makeText(MainActivity.this, "Pemberitahuan Clicked",Toast.LENGTH_SHORT).show();
+                if(id==R.id.mPemberitahuan){
+                    Intent i = new Intent(MainActivity.this, NotifActivity.class);
+                    startActivity(i);
                 }
                 else if(id==R.id.mMenuIcon){
                     if(icon==1)
@@ -194,15 +190,6 @@ public class MainActivity extends AppCompatActivity {
                         scroll.setVisibility(View.VISIBLE);
                         icon=1;
                     }
-                }
-                else if(id==R.id.mReaksiAnda){
-                    Toast.makeText(MainActivity.this, "Reaksi Anda Clicked",Toast.LENGTH_SHORT).show();
-                }
-                else if(id==R.id.mInfoGempa){
-                    Toast.makeText(MainActivity.this, "Info Gempa Clicked",Toast.LENGTH_SHORT).show();
-                }
-                else if(id==R.id.mTentangKami){
-                    Toast.makeText(MainActivity.this, "Tentang Kami Clicked",Toast.LENGTH_SHORT).show();
                 }
                 else if(id==R.id.mMasukDaftar){
                     if(userID.equals("")) {

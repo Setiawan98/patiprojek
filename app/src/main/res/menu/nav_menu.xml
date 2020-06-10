@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item
-        android:id="@+id/mEditProfil"
-        android:title="Edit Profil"
-        android:icon="@drawable/ic_edit_black_24dp">
-
-    </item>
-    <item
-        android:id="@+id/mPenanda"
-        android:title="Penanda Buku"
-        android:icon="@drawable/ic_bookmark_black_24dp">
-
-    </item>
     <item
         android:id="@+id/mPemberitahuan"
         android:title="Pemberitahuan"
@@ -25,24 +12,7 @@
         android:icon="@drawable/ic_menuicon">
 
     </item>
-    <item
-        android:id="@+id/mReaksiAnda"
-        android:title="Reaksi Anda"
-        android:icon="@drawable/ic_emoticon">
 
-    </item>
-    <item
-        android:id="@+id/mInfoGempa"
-        android:title="Info Gempa Bumi"
-        android:icon="@drawable/ic_announcement_black_24dp">
-
-    </item>
-    <item
-        android:id="@+id/mTentangKami"
-        android:title="Tentang Kami"
-        android:icon="@drawable/ic_info">
-
-    </item>
     <item
         android:id="@+id/mMasukDaftar"
         android:title="Masuk Atau Daftar">
